@@ -12,3 +12,28 @@
   /*margin-right: 9px;*/
   border-radius: 100%;
 }
+
+.orange{
+	color:  #8bc34a !important;
+}
+
+
+.bs-glyphicons li:hover{
+	background-color:  #8bc34a !important;
+}
+
+.btn-default {
+    text-shadow: 0px 1px 0px #FFF !important;
+    background-repeat: repeat-x !important;
+    background-image: none !important;
+    border-color: #8BC34A !important;
+}
+
+.form-control{
+	border: 1px solid #8BC34A !important;
+}
+
+.btn-danger, .btn-default, .btn-info, .btn-primary, .btn-success, .btn-warning {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: none !important;
+}

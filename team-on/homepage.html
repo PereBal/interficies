@@ -41,25 +41,30 @@
 
   <body> 
   
-    <header>
+  <div style="max-width=1000px">
+    
+       <header>
       <nav class="navbar navbar-default">
-        <div class="container-fluid">
+        <div class="container-fluid" style="background-color: white;">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
+   
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="row"> 
+            <div class="container col-md-12">
+     
+           <div class="navbar-header col-md-2">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" style="margin-left: 2em;">Timon</a>
+            <a class="navbar-brand orange" href="#" style="">Timon</a>
           </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <div class="container">
-    <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-md-6" style="margin-top: 0.5em;">
         <div class="input-group">
                 <div class="input-group-btn search-panel">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -69,7 +74,7 @@
                       <li><a href="#contains">Contains</a></li>
                       <li><a href="#its_equal">It's equal</a></li>
                       <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
+                      <li><a href="#less_than">Less than  </a></li>
                       <li class="divider"></li>
                       <li><a href="#all">Anything</a></li>
                     </ul>
@@ -81,24 +86,18 @@
                 </span>
             </div>
         </div>
-  </div>
-</div>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><i class="glyphicon glyphicon-user"></i> Perfil</a></li>
+        <ul class="nav navbar-nav navbar-right col-md-3">
+              <li><a href="#"><i class="glyphicon glyphicon-user orange"></i> Perfil</a></li>
               <li>
-                <a href="#" ><i class="glyphicon glyphicon-cog"></i> Configuración</a>
+                <a href="#" ><i class="glyphicon glyphicon-cog orange"></i> Social</a>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="margin-right: 2em;">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
+                <a href="#" ><i class="glyphicon glyphicon-cog orange"></i> Configuración</a>
               </li>
             </ul>
+  </div>
+</div>
+            
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>      
@@ -110,9 +109,9 @@
 
           <div class="col-md-9" style=""> <!-- div principal de las categorias-->
             <div class="bs-glyphicons" style="padding-left:5em; padding-right:1em">
-            <h4>Categorías</h4>
+            <h4 class="">Categorías</h4>
             <ul class="bs-glyphicons-list">
-                <li class="" style="margin: 0.33em;">
+                <li class="orange-hover" style="margin: 0.33em;">
                   <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
                   <span class="glyphicon-class">Carne</span>
                 </li>
@@ -201,7 +200,7 @@
           </div>  
 
                 <div class="bs-glyphicons" style="padding-left:5em; padding-right:4em">
-            <h4>Recetas mejor valoradas</h4>
+            <h4 class="">Recetas mejor valoradas</h4>
             <ul class="bs-glyphicons-list">
                 <li class="" style="margin: 0.33em;">
                   <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
@@ -224,9 +223,9 @@
 
         <div class="col-md-3" style="">
         <div class="panel panel-default" style="margin-right: 3.5em; margin-left: -3em;">
-        <h4>Usuarios mejor valorados</h4>
+        <h4 class="" style="padding-top: 0.5em; padding-left: 1em;">Usuarios mejor valorados</h4>
 
-         <blockquote style="border-left: 0px;">
+         <blockquote style="border-left: 0px; padding-left:1em;">
           <p style="margin-bottom: 15px;"><img src="https://pbs.twimg.com/profile_images/524182825226887168/OZkikFtw.jpeg" style="width: 2em; border-radius: 100%; height: 2em;"> Albert Rivera </p>
            <p style="margin-bottom: 15px;"><img src="http://zetaestaticos.com/cordoba/img/noticias/0/929/929402_1.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Pablo Iglesias</p>
            <p style="margin-bottom: 15px;"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTp8FT-OYLydHIPnuq675wEvJDCYm-eicBkE_Iq15QIzr4yLnOgSA" style="width: 2em; border-radius: 100%; height: 2em;"> Mariano Rajoy <span class="label label-info">Seguir</span></p>
@@ -238,9 +237,9 @@
 
         </div>
         <div class="panel panel-default" style="margin-right: 3.5em; margin-left: -3em;">
-        <h4>Usuarios más activos</h4>
+        <h4 class="" style="padding-top: 0.5em; padding-left: 1em;">Usuarios más activos</h4>
 
-        <blockquote style="border-left: 0px;">
+        <blockquote style="border-left: 0px; padding-left:1em;">
         <p style="margin-bottom: 15px;"><img src="http://cdn.revistagq.com/uploads/images/thumbs/201429/pedro_sanchez_9404_645x.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Pedro Sanchez</p>
            <p style="margin-bottom: 15px;"><img src="http://cdn.discogs.com/87cIPkn1x_MOqhTYsa-807rGSU8=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb()/discogs-images/A-2766577-1395356994-4468.jpeg.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Miliki</p>
           <p style="margin-bottom: 15px;"><img src="https://pbs.twimg.com/profile_images/524182825226887168/OZkikFtw.jpeg" style="width: 2em; border-radius: 100%; height: 2em;"> Albert Rivera</p>
@@ -253,6 +252,10 @@
         </div>
 
       </div>
+
+  </div>
+
+ 
     <footer>
       <div id="includedContent"></div>
     </footer>
