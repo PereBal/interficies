@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Receta</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom -->
+    <link href="timon.css" rel="stylesheet">
+    <script src="timon.js"></script>
+
+    <script>
+      $(function(){
+        $("#footer").load("footer.html");
+      });
+    </script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-lg-9">
+        <ol id="recipe-breadcumb" class="breadcrumb">
+          <li><a href="#">Sopas</a></li>
+          <li><a href="#">Calientes</a></li>
+          <li class="active">Sopa de cabra</li>
+        </ol>
+        <div id="recipe-header" class="row page-header">
+          <h1>
+            Sopa de cabra
+            <small style="font-size: 45%">
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 60 min |
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers
+            </small>
+          </h1>
+        </div>
+        <div id="recipe-subheader" class="row">
+          <div class="col-lg-9">
+            <img class="user-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALjAAAAJGIxMDA3YjUwLTcxMDYtNDM1Mi1iZThlLTYzYTE5NDMzOWY4Nw.jpg" style="margin-right: 15px"></img> <b>Lluc Martorell</b> Seguir
+          </div>
+          <div class="col-lg-3">
+            <div class="row lead" style="margin-bottom: 0px">
+              <small>
+                <span id="stars-existing" class="starrr" style="color: #ee8b2d;" data-rating='4'></span>
+              </small>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Compartir <i class="fa fa-share-alt"></i> <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="container" style="padding-left:1em;padding-top: 20px">
+            <div class="row">
+        		<div class="col-md-7 col-lg-7">
+        			<div class="featured-article">
+        				<a href="#">
+        					<img src="http://placehold.it/670x300" alt="" class="thumb">
+        				</a>
+        			</div>
+        		</div>
+        		<div class="col-md-5 col-lg-5">
+        			<ul class="media-list main-list">
+        			  <li class="media">
+        			    <a class="pull-left" href="#">
+        			      <img class="media-object" src="http://placehold.it/260x90" alt="...">
+        			    </a>
+        			  </li>
+        			  <li class="media">
+        			    <a class="pull-left" href="#">
+        			      <img class="media-object" src="http://placehold.it/260x90" alt="...">
+        			    </a>
+        			  </li>
+        			  <li class="media">
+        			    <a class="pull-left" href="#">
+        			      <img class="media-object" src="http://placehold.it/260x90" alt="...">
+        			    </a>
+        			  </li>
+        			</ul>
+        		</div>
+        	</div>
+      <div >
+      <div class="col-lg-3">
+      </div>
+    </div>
+  </body>
+  <div id="footer"></div>
+    <script>
+      $('.dropdown-toggle').dropdown()
+    </script>
+</html>
