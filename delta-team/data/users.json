@@ -8,7 +8,8 @@
      "lastname": "",
      "email": "foo@mail.com",
      "password": "foo",
-     "img": "images/jobs.jpeg"
+     "img": "images/jobs.jpeg",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
  },
  {
      "id": 2,
@@ -18,7 +19,8 @@
      "lastname": "",
      "email": "foo@mail.com",
      "password": "foo",
-     "img": "images/mrbean.jpeg"
+     "img": "images/mrbean.jpeg",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
  },
  {
      "id": 3,
@@ -28,7 +30,8 @@
      "lastname": "",
      "email": "foo@mail.com",
      "password": "foo",
-     "img": "images/dicaprio.jpeg"
+     "img": "images/dicaprio.jpeg",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
  },
  {
      "id": 4,
@@ -38,7 +41,8 @@
      "lastname": "",
      "email": "foo@mail.com",
      "password": "foo",
-     "img": "images/einstein.jpeg"
+     "img": "images/einstein.jpeg",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
  },
  {
      "id": 5,
@@ -48,7 +52,8 @@
      "lastname": "",
      "email": "foo@mail.com",
      "password": "foo",
-     "img": "images/carrey.jpeg"
+     "img": "images/carrey.jpeg",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
  },
  {
      "id": 6,
@@ -58,6 +63,7 @@
      "lastname": "",
      "email": "foo@mail.com",
      "password": "foo",
-     "img": "images/deniro.jpeg"
+     "img": "images/deniro.jpeg",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
  }
 ]

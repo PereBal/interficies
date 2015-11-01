@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body>
-  <nav class="navbar navbar-default" style="padding-bottom: 20px !important;">
-    <div class="container-fluid">
+  <body class="light-grey">
+  <nav class="navbar">
+    <div class="container-fluid light-grey">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -64,64 +64,29 @@
           </div>
 
           <div class="row">
-            <label ng-click="showFilter = !showFilter"><small>Show filters</small></label>
+            <label ng-click="showFilter = !showFilter" class="hand-cursor"><small>Show filters</small></label>
           </div>
 
           <div class="bs-glyphicons" ng-show="showFilter">
             <ul class="bs-glyphicons-list">
               <li>
-                <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-triangle-right</span>
+                <h3 style="margin-top: 10px;">Meat</h3>
               </li>
 
               <li>
-                <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-triangle-left</span>
+                <h3 style="margin-top: 10px;">fish</h3>
               </li>
 
               <li>
-                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-triangle-bottom</span>
+                <h3 style="margin-top: 10px;">Desserts</h3>
               </li>
 
               <li>
-                <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-triangle-top</span>
+                <h3 style="margin-top: 10px;">Fruits</h3>
               </li>
 
               <li>
-                <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-console</span>
-              </li>
-
-              <li>
-                <span class="glyphicon glyphicon-superscript" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-superscript</span>
-              </li>
-
-              <li>
-                <span class="glyphicon glyphicon-subscript" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-subscript</span>
-              </li>
-
-              <li>
-                <span class="glyphicon glyphicon-menu-left" aria-hidden="false"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-menu-left</span>
-              </li>
-
-              <li>
-                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-menu-right</span>
-              </li>
-
-              <li>
-                <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-menu-down</span>
-              </li>
-
-              <li>
-                <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
-                <span class="glyphicon-class">glyphicon glyphicon-menu-up</span>
+                <h3 style="margin-top: 10px;">Cocktails</h3>
               </li>
             </ul>
           </div>
@@ -132,7 +97,7 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div ng-view></div>
+    <div ng-view style="margun: 10px;"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>

@@ -1,0 +1,38 @@
+
+  <!-- usu mi perfil -->
+
+<div class="container">
+
+    <div class="row top-row-buffer">
+      <div class="col-md-3 top-separator">
+        <img ng-src="images/deniro.jpeg" class="img-circle hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
+        <img ng-src="images/add.png" ng-click="addImg();" class="img-circle hand-cursor" ng-show="edit" style="height: 200px; width:200px;"></img>
+      </div>
+
+      <div class="col-md-8">
+        <h2 ng-show="!edit">{{user.name}}</h2>
+        <div class="from-group">
+          <div class="form-inline" ng-show="edit">
+            <input class="form-control" placeholder="Name" ng-model="usuModel.name"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <button class="btn btn-primary pull-left" title="edit" ng-click="edit = !edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 top-separator">
+        <legend>Biography</legend>
+        <div ng-show="!edit">
+          <p>{{user.biography}}</p>
+        </div>
+        <textarea rows="5" placeholder="description" class="col-md-12" ng-show="edit" ng-model="usulModel.description"></textarea>
+      </div>
+      
+    </div>
+</div>

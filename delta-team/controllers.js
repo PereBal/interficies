@@ -183,6 +183,40 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
   $scope.predicate = 'rating';
   $scope.reverse = true;
+
+   $scope.userNews = [
+
+    {
+      source: 'user1',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+   {
+    source: 'user5',
+    action: 'añadio a favoritos a la receta de pedro',
+    img: 'images/carrey.jpeg'
+    },
+     {
+      source: 'user10',
+      action: 'lcompartio en twitter a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+     {
+      source: 'user8',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+     {
+      source: 'user1',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+     {
+      source: 'user1',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+  ];
 }
 
 function RecipeCtrl($rootScope, $scope, $routeParams, $http) {

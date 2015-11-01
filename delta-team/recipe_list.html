@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid back-white top-row-buffer">
   <div class="row">
     <div class="col-md-6 col-md-offset-2">
     <legend>News</legend>
       <div class="row" ng-repeat="recipe in recipes | orderBy:predicate:reverse">
-        <div class="well">
+        <div class="wrapper">
         <div class="row">
           <div class="col-md-3">
             <img class="img-responsive img-circle" ng-src="{{recipe.img}}"></img>
@@ -58,14 +58,31 @@
     </div>
     <div class="col-md-2">
     <legend>Most rated users</legend>
-      <div class="well">
-        <div class="row">
-          <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="user in users">
-            <img class="img-responsive img-circle" ng-src="{{user.img}}" ng-click="viewUser(user.id)" style="width: 100px; height: 100px"></img>
-            <legend><small>{{user.name}}</small></legend>
-          </div>
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-md-12 text-center hand-cursor" ng-repeat="user in users" style="border-left: 0px; padding-left:1em;">
+          <ul class="list-inline pull-left">
+            <li>
+              <img class="img-circle" ng-src="{{user.img}}" ng-click="viewUser(user.id)" style="width: 50px; height: 50px"></img>
+            </li>
+            <li>
+              {{user.name}} 
+            </li>
+          </ul>  
         </div>
       </div>
+    </div>
+    <legend class="top-row-buffer">User news</legend>
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-md-12" ng-repeat="userNew in userNews" style="border-left: 0px; padding-left:1em;">
+          <p class="pull-left" style="border-top: 1px solid; border-bottom: 1px solid; border-color: #EFEFEF; padding-top: 8px; padding-top: 8px;">
+            <img class="img-circle" ng-src="{{userNew.img}}" ng-click="viewUser(user.id)" style="width: 30px; height: 30px"></img>
+            <strong>{{userNew.source}} </strong>{{userNew.action}}
+          </p>  
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </div>

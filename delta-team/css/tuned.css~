@@ -78,34 +78,3 @@
   }
 }
 
-.wrapper {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: #FFFFFF;
-  /*border: 1px solid #E3E3E3;*/
-  border-radius: 2px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-
-.back-white{
-  background-color: #EFEFEF;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5) inset;
-}
-
-.dark-oragne {
-  background-color: #FF8B6C;
-}
-
-.dark-green {
-  background-color: #518188;
-}
-
-.light-green {
-  background-color: #5FA292;
-}
-
-.nav-grey {
-  background-color: #253939;
-}
