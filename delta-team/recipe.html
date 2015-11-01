@@ -1,0 +1,81 @@
+<div class="container">
+
+    <div class="row">
+
+      <div class="col-md-8">
+        <h2 ng-show="!edit">{{recipe.name}} <small>{{recipe.author}}</small></h2>
+        <div class="from-group">
+          <div class="form-inline" ng-show="edit">
+            <input class="form-control" placeholder="Name" ng-model="recipe.name"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1 col-md-offset-2">
+        <button class="btn btn-primary pull-left" title="edit" ng-click="edit = !edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+      </div>
+    </div>
+
+    <div class="row top-row-buffer">
+      <div class="col-md-4 top-separator">
+        <img ng-src="images/sandwich.jpg" class="img-thumbnail hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
+        <img ng-src="images/add.png" ng-click="addImg();" class="img-thumbnail hand-cursor" ng-show="edit" style="height: 200px; width:200px;"></img>
+      </div>
+
+      <div class="col-md-8 top-separator">
+        <legend>Ingredients</legend>
+        <div ng-repeat="ingredient in recipe.ingredients">
+          <p ng-show="!edit">{{$index}} - {{ingredient.name}}</p>
+          <div class="form-inline top-separator" ng-show="edit">
+            <input class="form-control" placeholder="Ingredient" style="width: 300px" ng-model="ingredient.name"></input>
+            <button class="btn btn-danger" ng-click="removeIngredient(ingredient);"><span><i class="fa fa fa-minus"></i></span></button>
+          </div>
+        </div>
+        <div class="top-separator pull-right" ng-show="edit">
+          <button class="btn btn-success" ng-click="addIngredient();"><span><i class="fa fa fa-plus"></i></span></button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4 top-separator">
+        <legend>Description</legend>
+        <div ng-show="!edit">
+          <p>{{recipe.description}}</p>
+        </div>
+        <textarea rows="5" placeholder="description" class="col-md-12" ng-show="edit" ng-model="recipe.description"></textarea>
+      </div>
+
+      <div class="col-md-8 top-separator">
+        <legend>Steps</legend>
+        <div ng-repeat="step in recipe.steps">
+          <p ng-show="!edit">{{$index}} - {{step.description}}</p>
+          <div class="form-inline top-separator" ng-show="edit">
+            <input class="form-control" placeholder="Description" style="width: 400px" ng-model="step.description"></input>
+            <button class="btn btn-danger" ng-click="removeStep(step);"><span><i class="fa fa fa-minus"></i></span></button>
+          </div>
+        </div>
+        <div class="top-separator pull-right" ng-show="edit">
+         <button class="btn btn-success" ng-click="addStep();"><span><i class="fa fa fa-plus"></i></span></button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row top-row-buffer">
+
+      <div class="col-md-6 col-md-offset-6 ">
+        <ul class="list-inline social-icons icon-circle pull-right">
+          <li> <a class="hand-cursor" title="share on facebook" ng-click="alertSocial('facebook')"><i class="fa fa-facebook"></i></a> </li>
+          <li> <a class="hand-cursor" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
+          <li> <a class="hand-cursor" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a> </li>
+          <li> <a class="hand-cursor" title="share on CookingApp" ng-click="alertSocial('CookingApp')"><i class="fa fa-share"></i></a> </li>
+          <li> <a class="hand-cursor" title="add to favorites" ng-click="alertSocial('fav')"><i class="fa fa-bookmark"></i></a> </li>
+        </ul>
+      </div>
+
+    </div>
+
+</div>

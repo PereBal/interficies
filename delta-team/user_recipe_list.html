@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+    <legend>News</legend>
+      <div class="row" ng-repeat="recipe in recipes | orderBy:predicate:reverse">
+        <div class="well">
+        <div class="row">
+          <div class="col-md-3">
+            <img class="img-responsive img-circle" ng-src="{{recipe.img}}"></img>
+          </div>
+          <div class="col-md-9">
+
+            <div class="row">
+              <div class="col-md-7">
+                <h3>{{recipe.title}} <small>{{recipe.author}}</small></h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <uib-rating ng-model="recipe.rating" readonly="false" on-hover="" on-leave="overStar = null"
+                  aria-labelledby="default-rating" state-on="yellow">
+                </uib-rating>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-inline social-icons icon-circle pull-right">
+                  <li> <a class="hand-cursor" title="share on facebook" ng-click="alertSocial('facebook')"><i class="fa fa-facebook"></i></a> </li>
+                  <li> <a class="hand-cursor" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
+                  <li> <a class="hand-cursor" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a> </li>
+                  <li> <a class="hand-cursor" title="share on CookingApp" ng-click="alertSocial('CookingApp')"><i class="fa fa-share"></i></a> </li>
+                  <li> <a class="hand-cursor" title="add to favorites" ng-click="alertSocial('fav')"><i class="fa fa-bookmark"></i></a> </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8">
+                 <legend><small>Description</small></legend>
+                <p>{{recipe.description}}</p>
+              </div>
+              <div class="col-md-4 pull-right">
+                <div class="top-row-buffer">
+                  <div class="row">
+                  <div class="col-md-10">
+                    <div style="padding-top: 50px" class="btn-group pull-right">
+                      <button class="btn btn-success" ng-show="user" ng-click="fork(recipe.id)">Borrow</button>
+                      <button class="btn btn-primary" ng-click="view(recipe.id)">View</button>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+    <legend>Most rated users</legend>
+      <div class="well">
+        <div class="row">
+          <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="user in users">
+            <img class="img-responsive img-circle" ng-src="{{user.img}}" ng-click="viewUser(user.id)" style="width: 100px; height: 100px"></img>
+            <legend><small>{{user.name}}</small></legend>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

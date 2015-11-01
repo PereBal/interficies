@@ -1,0 +1,63 @@
+[
+ {
+
+     "id": 1,
+     "alias": "jobs",
+     "name": "Steve",
+     "firstname": "Fname",
+     "lastname": "",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "img": "images/jobs.jpeg"
+ },
+ {
+     "id": 2,
+     "alias": "mrbean",
+     "name": "MR BN",
+     "firstname": "Fname",
+     "lastname": "",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "img": "images/mrbean.jpeg"
+ },
+ {
+     "id": 3,
+     "alias": "dicaprio",
+     "name": "Leonardo",
+     "firstname": "Fname",
+     "lastname": "",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "img": "images/dicaprio.jpeg"
+ },
+ {
+     "id": 4,
+     "alias": "ainstain",
+     "name": "Albert",
+     "firstname": "Fname",
+     "lastname": "",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "img": "images/einstein.jpeg"
+ },
+ {
+     "id": 5,
+     "alias": "carrey",
+     "name": "Alberta",
+     "firstname": "Fname",
+     "lastname": "",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "img": "images/carrey.jpeg"
+ },
+ {
+     "id": 6,
+     "alias": "deniro",
+     "name": "Roberto",
+     "firstname": "Fname",
+     "lastname": "",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "img": "images/deniro.jpeg"
+ }
+]
