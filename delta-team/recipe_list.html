@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-2">
     <legend>News</legend>
-      <div class="row" ng-repeat="recipe in recipes | orderBy:predicate:reverse">
+    <div class="row" ng-repeat="recipe in recipes | filter: {private: false} | orderBy:predicate:reverse">
         <div class="well">
         <div class="row">
           <div class="col-md-3">
@@ -28,7 +28,7 @@
                   <li> <a class="hand-cursor" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
                   <li> <a class="hand-cursor" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a> </li>
                   <li> <a class="hand-cursor" title="share on CookingApp" ng-click="alertSocial('CookingApp')"><i class="fa fa-share"></i></a> </li>
-                  <li> <a class="hand-cursor" title="add to favorites" ng-click="alertSocial('fav')"><i class="fa fa-bookmark"></i></a> </li>
+                  <li> <a class="hand-cursor" title="add to favorites" ng-click="favorite(recipe)"><i class="fa fa-bookmark"></i></a> </li>
                 </ul>
               </div>
             </div>

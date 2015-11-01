@@ -1,95 +1,140 @@
 [
-
     {
         "id": 1,
-        "userId": 1,
-        "title": "Steve",
-        "author": "Ronald mcDonald",
-        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "title": "Steve's burger",
+        "author": "Steve",
         "rating": 3,
+        "hardness": "begginner",
+        "time": {"hours": 1, "minutes": 10},
+        "eaters": {"number": 3, "info": "per ration"},
+        "related": [3, 4],
         "ingredients": [
         {
-            "id": 1,
-            "name": "cow meat",
-            "quantity": 1.0,
+            "name": "Cow meat",
+            "amount": 1.0,
             "unit": "kg"
         },
         {
-            "id": 2,
-            "name": "onions",
-            "quantity": 0.0,
-            "unit": "units"
+            "name": "Onion",
+            "amount": 2.0,
+            "unit": "pieces"
         }],
-        "steps":[{"id": 1, "description": "Adobe the meat"}, {"id": 2, "description":"Burn it"}],
-        "img": "images/burger.jpg"
+        "steps":[
+        {
+            "description": "Adobe the meat"
+        },
+        {
+            "description": "Burn it"
+        },
+        {
+            "description": "Say it's not your fault"
+        },
+        {
+            "description": "Blame the children!"
+        }],
+        "private": false,
+        "img": "images/burger.jpg",
+        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "userId": 1
     },
     {
         "id": 2,
-        "userId": 1,
-        "title": "Pastel",
-        "author": "Steve",
-        "description": "Lorem ipsum",
+        "title": "Missleading chicken",
+        "author": "MR BN",
         "rating": 1,
+        "hardness": "master chief",
+        "time": {"hours": 0, "minutes": 10},
+        "eaters": {"number": 1, "info": "per ration"},
+        "related": [],
         "ingredients": [
         {
-            "id": 1,
-            "name": "cow meat",
-            "quantity": 1.0,
-            "unit": "kg"
+            "name": "Air",
+            "amount": 1.0,
+            "unit": "piece"
         },
         {
-            "id": 2,
-            "name": "onions",
-            "quantity": 0.0,
-            "unit": "units"
+            "name": "Pair",
+            "amount": 2.0,
+            "unit": "pieces"
         }],
-        "steps":[{"id": 1, "description": "Adobe the meat"}, {"id": 2, "description":"Burn it"}],
-        "img": "images/burger.jpg"
+        "steps":[
+        {
+            "description": "Cut the pair"
+        },
+        {
+            "description": "Mix it with air"
+        },
+        {
+            "description": "Repeat until fullyfied desire"
+        }],
+        "private": true,
+        "img": "images/burger.jpg",
+        "description": "This is a legendary recipe from an outern world ingredient. The legend says: 'if anyone can cook this, he or she will become a true master chief!",
+        "userId": 2
     },
     {
         "id": 3,
-        "userId": 2,
-        "title": "Pasta",
-        "author": "MR BN",
-        "description": "Dolor sith ameth",
-        "rating": 5,
+        "title": "Mc stuff",
+        "author": "Leonardo",
+        "rating": 4,
+        "hardness": "average",
+        "time": {"hours": 4, "minutes": 0},
+        "eaters": {"number": 100, "info": "per ration"},
+        "related": [],
         "ingredients": [
         {
-            "id": 1,
-            "name": "cow meat",
-            "quantity": 1.0,
+            "name": "Pork meat",
+            "amount": 10.0,
             "unit": "kg"
         },
         {
-            "id": 2,
-            "name": "onions",
-            "quantity": 0.0,
-            "unit": "units"
+            "name": "Onion",
+            "amount": 20.0,
+            "unit": "pieces"
         }],
-        "steps":[{"id": 1, "description": "Adobe the pasta"}, {"id": 2, "description":"Burn it"}],
-        "img": "images/burger.jpg"
+        "steps":[
+        {
+            "description": "Adobe the meat"
+        },
+        {
+            "description": "Burn it"
+        },
+        {
+            "description": "Say it's not your fault"
+        },
+        {
+            "description": "Blame the children!"
+        }],
+        "private": false,
+        "img": "images/burger.jpg",
+        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "userId": 3
     },
     {
         "id": 4,
-        "userId": 3,
-        "title": "Cacho carne",
-        "author": "Leonardo",
-        "description": "Dolor sith ameth",
-        "rating": 4,
+        "title": "Cow stuff",
+        "author": "MR BN",
+        "rating": 5,
+        "hardness": "be",
+        "time": {"hours": 4, "minutes": 0},
+        "eaters": {"number": 100, "info": "per ration"},
+        "related": [],
         "ingredients": [
         {
-            "id": 1,
-            "name": "cow meat",
-            "quantity": 1.0,
+            "name": "Cow meat",
+            "amount": 10.0,
             "unit": "kg"
+        }],
+        "steps":[
+        {
+            "description": "Eat the meat as is"
         },
         {
-            "id": 2,
-            "name": "onions",
-            "quantity": 0.0,
-            "unit": "units"
+            "description": "Enjoy"
         }],
-        "steps":[{"id": 1, "description": "Adobe the meat"}, {"id": 2, "description":"Burn it"}],
-        "img": "images/burger.jpg"
+        "private": false,
+        "img": "images/burger.jpg",
+        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "userId": 3
     }
 ]

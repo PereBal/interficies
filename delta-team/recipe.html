@@ -6,7 +6,7 @@
         <h2 ng-show="!edit">{{recipe.name}} <small>{{recipe.author}}</small></h2>
         <div class="from-group">
           <div class="form-inline" ng-show="edit">
-            <input class="form-control" placeholder="Name" ng-model="recipe.name"></input>
+            <input class="form-control" placeholder="Recipe Name" ng-model="recipe.name"></input>
           </div>
         </div>
       </div>
@@ -18,14 +18,14 @@
 
     <div class="row top-row-buffer">
       <div class="col-md-4 top-separator">
-        <img ng-src="images/sandwich.jpg" class="img-thumbnail hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
+        <img ng-src="{{ recipe.img }}" class="img-thumbnail hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
         <img ng-src="images/add.png" ng-click="addImg();" class="img-thumbnail hand-cursor" ng-show="edit" style="height: 200px; width:200px;"></img>
       </div>
 
       <div class="col-md-8 top-separator">
         <legend>Ingredients</legend>
         <div ng-repeat="ingredient in recipe.ingredients">
-          <p ng-show="!edit">{{$index}} - {{ingredient.name}}</p>
+          <p ng-show="!edit">{{$index}} - {{ingredient.name}}, {{ ingredient.amount }} {{ ingredient.unit }}</p>
           <div class="form-inline top-separator" ng-show="edit">
             <input class="form-control" placeholder="Ingredient" style="width: 300px" ng-model="ingredient.name"></input>
             <button class="btn btn-danger" ng-click="removeIngredient(ingredient);"><span><i class="fa fa fa-minus"></i></span></button>
@@ -72,7 +72,7 @@
           <li> <a class="hand-cursor" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
           <li> <a class="hand-cursor" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a> </li>
           <li> <a class="hand-cursor" title="share on CookingApp" ng-click="alertSocial('CookingApp')"><i class="fa fa-share"></i></a> </li>
-          <li> <a class="hand-cursor" title="add to favorites" ng-click="alertSocial('fav')"><i class="fa fa-bookmark"></i></a> </li>
+          <li> <a class="hand-cursor" title="add to favorites" ng-click="favorite(recipe)"><i class="fa fa-bookmark"></i></a> </li>
         </ul>
       </div>
 
