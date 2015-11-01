@@ -1,0 +1,95 @@
+[
+
+    {
+        "id": 1,
+        "userId": 1,
+        "title": "Steve",
+        "author": "Ronald mcDonald",
+        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "rating": 3,
+        "ingredients": [
+        {
+            "id": 1,
+            "name": "cow meat",
+            "quantity": 1.0,
+            "unit": "kg"
+        },
+        {
+            "id": 2,
+            "name": "onions",
+            "quantity": 0.0,
+            "unit": "units"
+        }],
+        "steps":[{"id": 1, "description": "Adobe the meat"}, {"id": 2, "description":"Burn it"}],
+        "img": "images/burger.jpg"
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "title": "Pastel",
+        "author": "Steve",
+        "description": "Lorem ipsum",
+        "rating": 1,
+        "ingredients": [
+        {
+            "id": 1,
+            "name": "cow meat",
+            "quantity": 1.0,
+            "unit": "kg"
+        },
+        {
+            "id": 2,
+            "name": "onions",
+            "quantity": 0.0,
+            "unit": "units"
+        }],
+        "steps":[{"id": 1, "description": "Adobe the meat"}, {"id": 2, "description":"Burn it"}],
+        "img": "images/burger.jpg"
+    },
+    {
+        "id": 3,
+        "userId": 2,
+        "title": "Pasta",
+        "author": "MR BN",
+        "description": "Dolor sith ameth",
+        "rating": 5,
+        "ingredients": [
+        {
+            "id": 1,
+            "name": "cow meat",
+            "quantity": 1.0,
+            "unit": "kg"
+        },
+        {
+            "id": 2,
+            "name": "onions",
+            "quantity": 0.0,
+            "unit": "units"
+        }],
+        "steps":[{"id": 1, "description": "Adobe the pasta"}, {"id": 2, "description":"Burn it"}],
+        "img": "images/burger.jpg"
+    },
+    {
+        "id": 4,
+        "userId": 3,
+        "title": "Cacho carne",
+        "author": "Leonardo",
+        "description": "Dolor sith ameth",
+        "rating": 4,
+        "ingredients": [
+        {
+            "id": 1,
+            "name": "cow meat",
+            "quantity": 1.0,
+            "unit": "kg"
+        },
+        {
+            "id": 2,
+            "name": "onions",
+            "quantity": 0.0,
+            "unit": "units"
+        }],
+        "steps":[{"id": 1, "description": "Adobe the meat"}, {"id": 2, "description":"Burn it"}],
+        "img": "images/burger.jpg"
+    }
+]

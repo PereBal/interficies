@@ -1,0 +1,16 @@
+.glyphicon-star {
+  color: #FBC02D ;
+}
+
+.glyphicon-star, .glyphicon-star-empty {
+  font-size: 1.7em;
+}
+
+.top-row-buffer {
+  padding-top: 20px;
+}
+
+.hand-cursor { 
+  cursor:hand; 
+  cursor:pointer; 
+}
