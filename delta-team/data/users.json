@@ -1,69 +1,98 @@
 [
  {
-
      "id": 1,
-     "alias": "jobs",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": true,
+         "verified": true
+     },
      "name": "Steve",
      "firstname": "Fname",
      "lastname": "",
-     "email": "foo@mail.com",
-     "password": "foo",
-     "img": "images/jobs.jpeg",
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
+     "img":  "images/jobs.jpeg",
+     "fav_users": [2, 3],
+     "fav_recipes": [4]
  },
  {
      "id": 2,
-     "alias": "mrbean",
+     "email": "foo2@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": true,
+         "verified": false
+     },
      "name": "MR BN",
      "firstname": "Fname",
      "lastname": "",
-     "email": "foo@mail.com",
-     "password": "foo",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/mrbean.jpeg",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
+     "fav_users": [],
+     "fav_recipes": []
  },
  {
      "id": 3,
-     "alias": "dicaprio",
+     "email": "foo3@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": false,
+         "verified": false
+     },
      "name": "Leonardo",
      "firstname": "Fname",
      "lastname": "",
-     "email": "foo@mail.com",
-     "password": "foo",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/dicaprio.jpeg",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
+     "fav_users": [],
+     "fav_recipes": []
  },
  {
      "id": 4,
-     "alias": "ainstain",
+     "email": "foo4@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": false,
+         "verified": false
+     },
      "name": "Albert",
      "firstname": "Fname",
      "lastname": "",
-     "email": "foo@mail.com",
-     "password": "foo",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/einstein.jpeg",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
+     "fav_users": [],
+     "fav_recipes": []
  },
  {
      "id": 5,
-     "alias": "carrey",
-     "name": "Alberta",
+     "email": "foo5@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": true,
+         "verified": false
+     },
+     "name": "JrCarrey",
      "firstname": "Fname",
      "lastname": "",
-     "email": "foo@mail.com",
-     "password": "foo",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/carrey.jpeg",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
+     "fav_users": [],
+     "fav_recipes": []
  },
  {
      "id": 6,
-     "alias": "deniro",
+     "email": "foo@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": true,
+         "verified": true
+     },
      "name": "Roberto",
      "firstname": "Fname",
      "lastname": "",
-     "email": "foo@mail.com",
-     "password": "foo",
+     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/deniro.jpeg",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)"
+     "fav_users": [],
+     "fav_recipes": []
  }
 ]

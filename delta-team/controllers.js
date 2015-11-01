@@ -19,6 +19,8 @@ var get = function (data, eval) {
 var filter = function (data, eval) {
   console.log("filter(" + data + ")");
   res = [];
+  if (typeof data === 'undefined')
+    return res;
   for (var i = 0, len = data.length; i < len; i++) {
     console.log(i + "::" + data[i].id + "::" + eval(data[i]));
     if (eval(data[i])) {
@@ -59,7 +61,27 @@ var callbackIfNeeded = function (callback, $rootScope, $scope, $http, $routePara
   }
 }
 
+/*
+ * Carrega totes les coses interessants segons la ruta al scope i executa una
+ * funció de callback si s'ha especificat
+ *  sempre ->  recipes, users, alertSocial, favorite
+ *  si userId i recipeId -> user, recipe, related (llista de relacionades a
+ *  recipe)
+ *  si userId -> user, fav_users, fav_recipes
+ *  si recipeId -> recipe, related
+ */
 var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, args) {
+  if (!$rootScope.favorite) {
+    $rootScope.favorite = function (recipe) {
+      alert("Recipe " + recipe.title + " added to favs!");
+    }
+  }
+  if (!$rootScope.alertSocial) {
+    $rootScope.alertSocial = function (socialNetwork) {
+      alert("Share on " + socialNetwork);
+    }
+  }
+
   var userId = ($routeParams.userId) ? $routeParams.userId:false;
   var recipeId = ($routeParams.recipeId) ? $routeParams.recipeId:false;
 
@@ -67,6 +89,9 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
     return elem.id == evalUser.id;
   }
   evalUser.id = userId;
+  var evalRelated = function (elem) {
+    return evalRelated.ids.indexOf(elem.id) != -1;
+  }
 
   if (userId && recipeId) {
     var evalUserRecipe = function (elem) {
@@ -80,8 +105,17 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
         $rootScope.users = data;
         $http.get('data/recipes.json').success(function (data) {
           $rootScope.recipes = data;
-          $scope.user = get($rootScope.users, evalUser);
+
           $scope.recipe = get($rootScope.recipes, evalUserRecipe);
+          evalRelated.ids = $scope.recipe.related;
+          $scope.related = filter(data, evalRelated);
+
+          $scope.user = get($rootScope.users, evalUser);
+          evalRelated.ids = $scope.user.fav_users;
+          $scope.fav_users = filter($rootScope.users, evalRelated);
+          evalRelated.ids = $scope.user.fav_recipes;
+          $scope.fav_recipes = filter($rootScope.recipes, evalRelated);
+
           callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
         });
       });
@@ -89,22 +123,48 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
     } else if (!$rootScope.users) {
       $http.get('data/users.json').success(function (data) {
         $rootScope.users = data;
-        $scope.user = get($rootScope.users, evalUser);
+
         $scope.recipe = get($rootScope.recipes, evalUserRecipe);
+        evalRelated.ids = $scope.recipe.related;
+        $scope.related = filter(data, evalRelated);
+
+        $scope.user = get($rootScope.users, evalUser);
+        evalRelated.ids = $scope.user.fav_users;
+        $scope.fav_users = filter($rootScope.users, evalRelated);
+        evalRelated.ids = $scope.user.fav_recipes;
+        $scope.fav_recipes = filter($rootScope.recipes, evalRelated);
+
         callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
       });
 
     } else if (!$rootScope.recipes) {
       $http.get('data/recipes.json').success(function (data) {
         $rootScope.recipes = data;
-        $scope.user = get($rootScope.users, evalUser);
+
         $scope.recipe = get($rootScope.recipes, evalUserRecipe);
+        evalRelated.ids = $scope.recipe.related;
+        $scope.related = filter(data, evalRelated);
+
+        $scope.user = get($rootScope.users, evalUser);
+        evalRelated.ids = $scope.user.fav_users;
+        $scope.fav_users = filter($rootScope.users, evalRelated);
+        evalRelated.ids = $scope.user.fav_recipes;
+        $scope.fav_recipes = filter($rootScope.recipes, evalRelated);
+
         callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
       });
 
     } else {
-      $scope.user = get($rootScope.users, evalUser);
       $scope.recipe = get($rootScope.recipes, evalUserRecipe);
+      evalRelated.ids = $scope.recipe.related;
+      $scope.related = filter($rootScope.recipes, evalRelated);
+
+      $scope.user = get($rootScope.users, evalUser);
+      evalRelated.ids = $scope.user.fav_users;
+      $scope.fav_users = filter($rootScope.users, evalRelated);
+      evalRelated.ids = $scope.user.fav_recipes;
+      $scope.fav_recipes = filter($rootScope.recipes, evalRelated);
+
       callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
     }
 
@@ -112,12 +172,23 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
     if (!$rootScope.users) {
       $http.get('data/users.json').success(function (data) {
         $rootScope.users = data;
+
         $scope.user = get($rootScope.users, evalUser);
+        evalRelated.ids = $scope.user.fav_users;
+        $scope.fav_users = filter($rootScope.users, evalRelated);
+        evalRelated.ids = $scope.user.fav_recipes;
+        $scope.fav_recipes = filter($rootScope.recipes, evalRelated);
+
         callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
       });
 
     } else {
       $scope.user = get($rootScope.users, evalUser);
+      evalRelated.ids = $scope.user.fav_users;
+      $scope.fav_users = filter($rootScope.users, evalRelated);
+      evalRelated.ids = $scope.user.fav_recipes;
+      $scope.fav_recipes = filter($rootScope.recipes, evalRelated);
+
       callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
     }
 
@@ -131,11 +202,17 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
       $http.get('data/recipes.json').success(function (data) {
         $rootScope.recipes = data;
         $scope.recipe = get(data, evalRecipe);
+        evalRelated.ids = $scope.recipe.related;
+        $scope.related = filter(data, evalRelated);
+
         callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
       });
 
     } else {
       $scope.recipe = get($rootScope.recipes, evalRecipe);
+      evalRelated.ids = $scope.recipe.related;
+      $scope.related = filter($rootScope.recipes, evalRelated);
+
       callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
     }
 
@@ -177,10 +254,6 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
     $location.path('/users/' + userId + '/profile');
   }
 
-  $scope.alertSocial = function (socialNetwork) {
-    alert("Share on " + socialNetwork);
-  }
-
   $scope.predicate = 'rating';
   $scope.reverse = true;
 
@@ -220,36 +293,31 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 }
 
 function RecipeCtrl($rootScope, $scope, $routeParams, $http) {
-  loadContext($rootScope, $scope, $http, $routeParams);
+  loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    $scope.addIngredient = function () {
+      $scope.recipe.ingredients.push({name: "", amount: 0.0, unit: ""});
+    }
 
-  $scope.addIngredient = function () {
-    var next = $scope.recipe.ingredients.length + 1;
-    $scope.recipe.ingredients.push({id: next, name: "", quantity: 0.0, unit: ""});
-  }
+    $scope.removeIngredient = function (ingredient) {
+      $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
+    }
 
-  $scope.removeIngredient = function (ingredient) {
-    $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
-  }
+    $scope.addStep = function () {
+      $scope.recipe.steps.push({name: "", amount: 0.0, unit: ""});
+    }
 
-  $scope.addStep = function () {
-    var next = $scope.recipe.steps.length + 1;
-    $scope.recipe.steps.push({id: next, name: "", quantity: 0.0, unit: ""});
-  }
+    $scope.removeStep = function (step) {
+      $scope.recipe.steps.splice($scope.recipe.steps.indexOf(step), 1);
+    }
 
-  $scope.removeStep = function (step) {
-    $scope.recipe.steps.splice($scope.recipe.steps.indexOf(step), 1);
-  }
 
-  $scope.alertSocial = function (socialNetwork) {
-    alert("Share on " + socialNetwork);
-  }
+  });
 }
 
 function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
   $scope.validate = function (user) {
     args = [$location, user];
     loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams, args) {
-      console.log('login');
       var eval = function (elem) {
         return elem.email == eval.email && elem.password == eval.password;
       };
@@ -266,7 +334,6 @@ function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
   $scope.save = function (user) {
     args = [$location, user];
-    console.log('register');
     loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams, args) {
       var eval = function (elem) {
         return elem.id == eval.id;
@@ -302,12 +369,7 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
   }
 
   $scope.fork = function (recipe) {
-    // TODO intro les dades per defecte
-    $location.path('/users/' + $routeParams.userId + '/recipes/create');
-  }
-
-  $scope.alertSocial = function(socialNetwork) {
-    alert("Share on " + socialNetwork);
+    alert('Iniciar fork de la receta ' + recipe);
   }
 }
 
@@ -323,10 +385,6 @@ function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
   $scope.view = function (recipe) {
     $location.path('/users/' + $routeParams.userId + '/recipes/' + recipe.id);
-  }
-
-  $scope.alertSocial = function (socialNetwork) {
-    alert("Share on " + socialNetwork);
   }
 }
 
