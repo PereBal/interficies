@@ -331,8 +331,8 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 function RecipeCtrl($rootScope, $scope, $routeParams, $http) {
   loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
     $scope.edit = false;
-    $scope.restrictEditAccess = function () {
-      return true;
+    $scope.allowEdit = function () {
+      return false;
     }
     $scope.readOnly = function () {
       return true;
@@ -437,11 +437,11 @@ function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
     }
 
     $scope.edit = false;
-    $scope.restrictEditAccess = function () {
-      return (typeof $rootScope.user === 'undefined') || (typeof $routeParams.userId === 'undefined') || $rootScope.user.id != $routeParams.userId;
+    $scope.allowEdit = function () {
+      return (typeof $rootScope.user !== 'undefined') && (typeof $routeParams.userId !== 'undefined') && $rootScope.user.id == $routeParams.userId;
     }
     $scope.readOnly = function () {
-        return !$scope.edit || $scope.restrictEditAccess();
+        return !$scope.edit || !$scope.allowEdit();
     }
   });
 }
@@ -458,42 +458,50 @@ function UsrCreateRecipeCtrl($rootScope, $scope, $http, $location, $routeParams)
 }
 
 function UsrEditRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
-  loadContext($rootScope, $scope, $http, $routeParams);
-
-  $scope.save = function () {
-    loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
-      var eval = function (elem, elem2) {
-        return elem.id == elem2.id;
-      }
-      save($rootScope.recipes, $scope.recipe, eval);
-    });
-    $location.path('/users/' + $routeParams.userId + '/recipes');
-  }
+  loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    $scope.save = function () {
+      loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+        var eval = function (elem, elem2) {
+          return elem.id == elem2.id;
+        }
+        save($rootScope.recipes, $scope.recipe, eval);
+      });
+      $location.path('/users/' + $routeParams.userId + '/recipes');
+    }
+  });
 }
 
 function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
-  loadContext($rootScope, $scope, $http, $routeParams);
+  loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    $scope.edit = false;
+    $scope.allowEdit = function () {
+      return (typeof $rootScope.user !== 'undefined') && (typeof $routeParams.userId !== 'undefined') && $rootScope.user.id == $routeParams.userId;
+    }
+    $scope.readOnly = function () {
+        return !$scope.edit || !$scope.allowEdit();
+    }
 
-  $scope.radioProfessional = function (user) {
-    return (user.professional.professional) ? 'active':''
-  }
+    $scope.radioProfessional = function (user) {
+      return (user.professional.professional) ? 'active':''
+    }
 
-  $scope.radioAmateur = function (user) {
-    return (user.professional.professional) ? '':'active'
-  }
+    $scope.radioAmateur = function (user) {
+      return (user.professional.professional) ? '':'active'
+    }
 
-  $scope.verificationLevel = function (user) {
-    if (!user.professional.professional)
-      return 'amateur';
-    else if (!user.professional.verified)
-      return 'professional';
-    else
-      return 'verified';
-  }
+    $scope.verificationLevel = function (user) {
+      if (!user.professional.professional)
+        return 'amateur';
+      else if (!user.professional.verified)
+        return 'professional';
+      else
+        return 'verified';
+    }
 
-  $scope.verifyAlert = function (user) {
-    alert('Verification process started for ' + user.name);
-  }
+    $scope.verifyAlert = function (user) {
+      alert('Verification process started for ' + user.name);
+    }
+  });
 }
 
 function UsrEditProfileCtrl($rootScope, $scope, $http, $routeParams) {

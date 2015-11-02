@@ -46,7 +46,7 @@
       </div>
 
       <div class="col-md-1 pull-right">
-        <button class="btn btn-primary pull-left general-btn" title="edit" ng-show="!restrictEditAccess()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+        <button class="btn btn-primary pull-left general-btn" title="edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
       </div>
     </div>
 
@@ -105,7 +105,7 @@
       <div class="col-md-6">
         <ul class="list-inline">
           <li ng-repeat="re in related">
-            <img ng-src="re.img" class="img-circle" style="height: 30px; width: 30px;">
+            <img ng-src="{{ re.img }}" class="img-circle" style="height: 30px; width: 30px;">
             {{re.title}}
           </li>
         </ul>
