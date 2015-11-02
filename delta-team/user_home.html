@@ -19,7 +19,7 @@
     <div class="col-md-6 col-md-offset-2">
       <legend>Recents</legend>
       <div class="row" ng-repeat="recipe in recipes">
-        <div class="well">
+        <div class="wrapper">
           <div class="row">
             <div class="col-md-3">
               <img class="img-responsive img-circle" ng-src="{{recipe.img}}">
@@ -34,7 +34,7 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <uib-rating ng-model="recipe.rating" readonly="false" on-hover="" on-leave="overStar = null"
+                  <uib-rating ng-model="recipe.rating" readonly="true" on-hover="" on-leave="overStar = null"
                     aria-labelledby="default-rating" state-on="yellow">
                   </uib-rating>
                 </div>
@@ -54,26 +54,24 @@
                    <legend><small>Description</small></legend>
                   <p>{{recipe.description}}</p>
                 </div>
-                <div class="col-md-4 pull-right">
-                  <div class="top-row-buffer">
-                    <div class="row">
-                      <div class="col-md-10">
-                        <div style="padding-top: 50px" class="btn-group pull-right">
-                          <button class="btn btn-success" ng-click="fork(recipe)">Borrow</button>
-                          <button class="btn btn-primary" ng-click="view(recipe)">View</button>
-                        </div>
-                      </div>
-                    </div>
+              </div>
+
+              <div class="row top-separator">
+                <div class="col-md-11">
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-success general-btn" ng-click="fork(recipe)">Borrow</button>
+                    <button class="btn btn-primary general-btn" ng-click="view(recipe)">View</button>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-md-2">
-      <legend>Most rated users</legend>
+      <legend>Followed users</legend>
       <div class="well">
         <div class="row">
           <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="followed in followedUsers">

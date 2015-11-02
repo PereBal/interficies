@@ -7,6 +7,20 @@
           <div class="row">
             <div class="col-md-3">
               <img class="img-responsive img-circle" ng-src="{{recipe.img}}"></img>
+                <ul class="list-unstyled top-row-buffer">
+                  <li>
+                    <span><i class="fa fa-cutlery"></i></span>:
+                    {{recipe.hardness}}
+                  </li>
+                  <li>
+                    <span><i class="fa fa-clock-o"></i></span>:
+                    {{recipe.time.hours}}:{{recipe.time.minutes}} h
+                  </li>
+                  <li>
+                    <span><i class="fa fa-users"></i></span>:
+                    {{recipe.eaters.number}}
+                  </li>
+                </ul>
             </div>
             <div class="col-md-9">
 
@@ -42,8 +56,8 @@
             </div>
 
             <div class="row top-separator">
-              <div class="col-md-11">
-                <div class="btn-group pull-right">
+              <div class="col-md-2 pull-right">
+                <div class="btn-group">
                   <button class="btn btn-primary general-btn" ng-click="view(recipe)">View</button>
                 </div>
               </div>

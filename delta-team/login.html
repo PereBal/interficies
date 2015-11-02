@@ -1,4 +1,4 @@
-<div class="container well">
+<div class="container wrapper">
   <div class="row" ng-init="register = true">
 
     <div class="col-md-6 col-md-offset-3 text-center top-row-buffer">
@@ -17,7 +17,7 @@
               <input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
             </div>
             <div class="row text-center">
-              <button class="btn btn-primary" ng-click="validate(user)">Log in</button>
+              <button class="btn btn-primary general-btn" ng-click="validate(user)">Log in</button>
             </div>
             <div class="row text-center top-row-buffer">
               <a href="" ng-click="register = true">Went wrong!?, <strong>back to register</strong> </a>
@@ -46,7 +46,7 @@
               <input type="password" class="form-control" placeholder="Repeat Password"></input>
             </div>
             <div class="row text-center">
-              <button class="btn btn-primary" ng-click="save(user)">Register</button>
+              <button class="btn btn-primary general-btn" ng-click="save(user)">Register</button>
             </div>
             <div class="row text-center top-row-buffer">
               <a href="" ng-click="register = false">Already registered?, click to log in! :)</a>
