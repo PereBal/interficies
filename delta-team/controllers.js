@@ -281,23 +281,19 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
 }
 
 function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
-  loadContext($rootScope, $scope, $http, $routeParams);
+  var args = [$location];
+  loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    $scope.alertShowNext = function(message) {
+      alert('Not yet implemented, this will show the '+ message);
+    }
 
-  $scope.alertShowNext = function(message) {
-    alert('Not yet implemented, this will show the '+ message);
-  }
+    $scope.view = function (recipe) {
+      args[0].path('/recipes/' + recipe.id);
+    }
 
-  $scope.view = function (recipe) {
-    $location.path('/recipes/' + recipe.id);
-  }
-
-  $scope.viewUser = function (userId) {
-    $location.path('/users/' + userId + '/profile');
-  }
-
-  $scope.predicate = 'rating';
-  $scope.reverse = true;
-
+    $scope.viewUser = function (userId) {
+      args[0].path('/users/' + userId + '/profile');
+    }
 
   $rootScope.filteredRecipes = [
     {
@@ -376,39 +372,42 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
   ];
 
-   $scope.userNews = [
+  $scope.predicate = 'rating';
+  $scope.reverse = true;
 
+  $scope.userNews = [
     {
       source: 'user1',
       action: 'like a la receta de pedro',
       img: 'images/carrey.jpeg'
     },
-   {
-    source: 'user5',
-    action: 'añadio a favoritos a la receta de pedro',
-    img: 'images/carrey.jpeg'
+    {
+      source: 'user5',
+      action: 'añadio a favoritos a la receta de pedro',
+      img: 'images/carrey.jpeg'
     },
-     {
+    {
       source: 'user10',
       action: 'lcompartio en twitter a la receta de pedro',
       img: 'images/carrey.jpeg'
     },
-     {
+    {
       source: 'user8',
       action: 'like a la receta de pedro',
       img: 'images/carrey.jpeg'
     },
-     {
+    {
       source: 'user1',
       action: 'like a la receta de pedro',
       img: 'images/carrey.jpeg'
     },
-     {
+    {
       source: 'user1',
       action: 'like a la receta de pedro',
       img: 'images/carrey.jpeg'
-    },
-  ];
+    }];
+  }, args);
+
 }
 
 function RecipeCtrl($rootScope, $scope, $routeParams, $http) {
@@ -425,7 +424,7 @@ function RecipeCtrl($rootScope, $scope, $routeParams, $http) {
 
 function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
   $scope.validate = function (user) {
-    args = [$location, user];
+    var args = [$location, user];
     loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams, args) {
       var eval = function (elem) {
         return elem.email == eval.email && elem.password == eval.password;
@@ -442,7 +441,7 @@ function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
   }
 
   $scope.save = function (user) {
-    args = [$location, user];
+    var args = [$location, user];
     loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams, args) {
       var eval = function (elem) {
         return elem.id == eval.id;
@@ -457,6 +456,7 @@ function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
 }
 
 function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
+  args = [$location];
   loadContext($rootScope, $scope, $http, $routeParams, function($rootScope, $scope, $http, $routeParams) {
     var eval = function (elem) {
       return elem.userId != eval.id;
@@ -471,22 +471,24 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
     } else {
       $scope.recipes = filter($rootScope.user_lastrecipes, eval);
     }
-  });
 
-  $scope.view = function (recipe) {
-    $location.path('/recipes/' + recipe.id);
-  }
+    $scope.view = function (recipe) {
+      args[0].path('/recipes/' + recipe.id);
+    }
 
-  $scope.viewUser = function (userId) {
-    $location.path('/users/' + userId + '/profile');
-  }
+    $scope.viewUser = function (userId) {
+      args[0].path('/users/' + userId + '/profile');
+    }
 
-  $scope.fork = function (recipe) {
-    alert('Iniciar fork de la receta ' + recipe.title);
-  }
+    $scope.fork = function (recipe) {
+      alert('Iniciar fork de la receta ' + recipe.title);
+    }
+  }, args);
+
 }
 
 function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
+  var args = [$location];
   loadContext($rootScope, $scope, $http, $routeParams, function($rootScope, $scope, $http, $routeParams) {
     var eval = function (elem) {
       return elem.userId == eval.id;
@@ -494,19 +496,19 @@ function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
     eval.id = $routeParams.userId;
 
     $scope.recipes = filter($rootScope.recipes, eval);
-  });
 
-  $scope.view = function (recipe) {
-    $location.path('/users/' + $routeParams.userId + '/recipes/' + recipe.id);
-  }
+    $scope.view = function (recipe) {
+      args[0].path('/users/' + $routeParams.userId + '/recipes/' + recipe.id);
+    }
 
-  $scope.recipePrivacy = function (recipe) {
-    return (recipe.private) ? 'Private':'Public';
-  }
+    $scope.recipePrivacy = function (recipe) {
+      return (recipe.private) ? 'Private':'Public';
+    }
 
-  $scope.recipePrivacyClass = function (recipe) {
-    return (recipe.private) ? 'btn btn-danger btn-xs':'btn btn-success btn-xs';
-  }
+    $scope.recipePrivacyClass = function (recipe) {
+      return (recipe.private) ? 'btn btn-danger btn-xs':'btn btn-success btn-xs';
+    }
+  }, args);
 }
 
 function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
@@ -548,17 +550,19 @@ function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
 }
 
 function UsrCreateRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
-  loadContext($rootScope, $scope, $http, $routeParams);
-
-  $scope.save = function () {
-    loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
-      save($rootScope.recipes, $scope.recipe);
-    });
-    $location.path('/users/' + $routeParams.userId + '/recipes');
-  }
+  var args = [$location];
+  loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    $scope.save = function () {
+      loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+        save($rootScope.recipes, $scope.recipe);
+      });
+      args[0].path('/users/' + $routeParams.userId + '/recipes');
+    }
+  }, args);
 }
 
 function UsrEditRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
+  var args = [$location];
   loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
     $scope.save = function () {
       loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
@@ -567,9 +571,9 @@ function UsrEditRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
         }
         save($rootScope.recipes, $scope.recipe, eval);
       });
-      $location.path('/users/' + $routeParams.userId + '/recipes');
+      args[0].path('/users/' + $routeParams.userId + '/recipes');
     }
-  });
+  }, args);
 }
 
 function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
@@ -606,7 +610,7 @@ function UsrEditProfileCtrl($rootScope, $scope, $http, $routeParams) {
   loadContext($rootScope, $scope, $http, $routeParams);
 
   $scope.save = function () {
-    args = [$location];
+    var args = [$location];
     loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams, args) {
       var eval = function (elem, elem2) {
         return elem.id == elem2.id;
