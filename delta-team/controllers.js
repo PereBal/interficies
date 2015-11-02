@@ -71,6 +71,7 @@ var callbackIfNeeded = function (callback, $rootScope, $scope, $http, $routePara
  *  si recipeId -> recipe, related
  */
 var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, args) {
+
   if (!$rootScope.favorite) {
     $rootScope.favorite = function (recipe) {
       alert("Recipe " + recipe.title + " added to favs!");
@@ -241,10 +242,41 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
       callbackIfNeeded(callback, $rootScope, $scope, $http, $routeParams, args);
     }
   }
+
+  $rootScope.firstRegions = [ 'Spain', 'Italy', 'France', 'Germany', 'England' ];
+  $rootScope.secondRegions = [ 'North america', 'Argentina', 'Japan', 'China', 'Burundy' ];
+  $rootScope.allRegions = [ 'Spain', 'Italy', 'France', 'Germany', 'England', 'North america', 'Argentina', 'Japan', 'China', 'Burundy' ];
+
+  $rootScope.showRegions = 1;
+  $rootScope.apliedFilter = false;
+
+  $rootScope.showNextRegions = function() {
+    if ($rootScope.showRegions === 1) {
+
+      $rootScope.showRegions = 2;
+    } else {
+
+      $rootScope.showRegions = 1;
+    }
+  } 
+  $rootScope.showAllRegions = function() {
+
+    if ($rootScope.showRegions ===3 ) {
+
+      $rootScope.showRegions = 1;
+    } else {
+
+      $rootScope.showRegions = 3; 
+    }
+  } 
 }
 
 function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
   loadContext($rootScope, $scope, $http, $routeParams);
+
+  $scope.alertShowNext = function(message) {
+    alert('Not yet implemented, this will show the '+ message);
+  }
 
   $scope.view = function (recipe) {
     $location.path('/recipes/' + recipe.id);
