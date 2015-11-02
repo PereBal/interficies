@@ -166,5 +166,43 @@
         "img": "images/burger.jpg",
         "description": "This beans are cool",
         "userId": 3
+    },
+    {
+        "id": 6,
+        "title": "Steve's Crabby",
+        "author": "Steve",
+        "rating": 1,
+        "hardness": "very hard",
+        "time": {"hours": 0, "minutes": 30},
+        "eaters": {"number": 2, "info": "per ration"},
+        "related": [],
+        "ingredients": [
+        {
+            "name": "Cow meat",
+            "amount": 1.0,
+            "unit": "kg"
+        },
+        {
+            "name": "Onion",
+            "amount": 2.0,
+            "unit": "pieces"
+        }],
+        "steps":[
+        {
+            "description": "Adobe the meat"
+        },
+        {
+            "description": "Burn it"
+        },
+        {
+            "description": "Say it's not your fault"
+        },
+        {
+            "description": "Blame the children!"
+        }],
+        "private": true,
+        "img": "images/burger.jpg",
+        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "userId": 1
     }
 ]
