@@ -41,7 +41,7 @@
 
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#receta-modal">
-    Edit/create
+    Crear receta
   </button>
 
   <!-- Modal -->
@@ -50,7 +50,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Editar Sopa de cabra</h4>
+          <h2 class="modal-title" id="myModalLabel">Crear Receta</h2>
         </div>
         <div class="modal-body">
           <form class="form-horizontal" role="form">
@@ -63,8 +63,22 @@
             <div class="form-group">
               <label class="control-label col-sm-2" for="description">Descripción</label>
               <div class="col-sm-9">
-                <textarea type="textarea" class="form-control" id="description" rows="4" placeholder="Descripción corta de la receta..."></textarea>
+                <textarea type="textarea" class="form-control" id="description" rows="4" style="resize: none" placeholder="Descripción corta de la receta..."></textarea>
               </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="privacidad">Privacidad</label>
+              <div class="col-sm-9" id="privacidad">
+                <label class="radio-inline col-sm-5"><input type="radio" name="optradio1">
+                  <span class="fa fa-unlock fa-2x" style="margin-right: 15px"></span>Receta Publica
+                </label>
+                <label class="radio-inline col-sm-4"><input type="radio" name="optradio1">
+                  <span class="fa fa-lock fa-2x" style="margin-right: 15px"></span>Receta Privada
+                </label>
+              </div>
+            </div>
+            <div class="page-header" style="margin: 40px 50px 20px !important">
+              <h4>Preparación de la receta</h4>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-2" for="time">Tiempo</label>
@@ -145,22 +159,34 @@
               </div>
             </div>
 
-
-
-
-
-            <div class="form-group">
-          		
+            <div class="page-header" style="margin: 40px 50px 20px !important">
+              <h4>Fotos de la receta</h4>
             </div>
-
-
-
-
-
-
-
-
-
+            <!-- File Button -->
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="filebutton">Foto principal</label>
+              <div class="col-md-2">
+                <input id="filebutton" name="filebutton" class="input-file" type="file">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="filebutton">Foto secundaria</label>
+              <div class="col-md-9">
+                <input id="filebutton" name="filebutton" class="input-file" type="file">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="filebutton">Foto secundaria</label>
+              <div class="col-md-9">
+                <input id="filebutton" name="filebutton" class="input-file" type="file">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="filebutton">Foto secundaria</label>
+              <div class="col-md-9">
+                <input id="filebutton" name="filebutton" class="input-file" type="file">
+              </div>
+            </div>
          </form>
         </div>
         <div class="modal-footer">

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuckingCookerApp</title>
+
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="timon.css">
+    <link rel="stylesheet" href="docs.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(e){
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
+        e.preventDefault();
+        var param = $(this).attr("href").replace("#","");
+        var concept = $(this).text();
+        $('.search-panel span#search_concept').text(concept);
+        $('.input-group #search_param').val(param);
+      });
+    });
+    </script>
+
+    <script src="jquery.js"></script>
+  <script>
+  $(function(){
+    $("#includedContent").load("footer.html");
+  });
+  </script>
+</head>
+
+<body>
+  <!-- Modal -->
+  <div class="modal fade bs-example-modal-lg" id="edicion-rapida-receta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel">Crear Receta</h2>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="titulo">Título</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" id="titulo" placeholder="Título de la receta...">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="description">Descripción</label>
+              <div class="col-sm-9">
+                <textarea type="textarea" class="form-control" id="description" rows="4" placeholder="Descripción corta de la receta..."></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="privacidad">Privacidad</label>
+              <div class="col-sm-9" id="privacidad">
+                <label class="radio-inline col-sm-5"><input type="radio" name="optradio1">
+                  <span class="fa fa-unlock fa-2x" style="margin-right: 15px"></span>Receta Publica
+                </label>
+                <label class="radio-inline col-sm-4"><input type="radio" name="optradio1">
+                  <span class="fa fa-lock fa-2x" style="margin-right: 15px"></span>Receta Privada
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Receta</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="docs.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom -->
+    <link href="timon.css" rel="stylesheet">
+    <script src="timon.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function(e){
+          $('.search-panel .dropdown-menu').find('a').click(function(e) {
+          e.preventDefault();
+          var param = $(this).attr("href").replace("#","");
+          var concept = $(this).text();
+          $('.search-panel span#search_concept').text(concept);
+          $('.input-group #search_param').val(param);
+        });
+      });
+      </script>
+
+      <script src="jquery.js"></script>
+      <script>
+        $(function(){
+          $("#footer").load("footer.html");
+          $("#resumen-receta1").load("resumen-receta-homepage.html");
+          $("#resumen-receta2").load("resumen-receta-homepage.html");
+          $("#resumen-receta3").load("resumen-receta-homepage.html");
+        });
+      </script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid" style="background-color: white;">
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="row">
+              <div class="container col-md-12">
+                <div class="navbar-header col-md-2">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand orange" href="homepage-usuario.html" style="">Timon</a>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 0.5em;">
+                  <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span id="search_concept">Buscar</span> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Región</a></li>
+                        <li><a href="#">Estación</a></li>
+                        <li><a href="#">Dificultad</a></li>
+                        <li><a href="#">Ingredientes</a></li>
+                        <li><a href="#">Dieta</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Usuarios</a></li>
+                      </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="x" placeholder="Search term...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="nav navbar-nav navbar-right col-md-3">
+                  <li><a href="perfil.html"><i class="glyphicon glyphicon-user orange"></i> Mi perfil</a></li>
+                  <li><a href="cocina.html"><i class="glyphicon glyphicon-cutlery orange"></i> Mi cocina</a></li>
+                  <li><a href="config.html" ><i class="glyphicon glyphicon-cog orange"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+
+    <div class="container-fluid" style="margin-top: -15px">
+      <div class="col-lg-12">
+        <div class="col-md-9"> <!-- div principal de las categorias-->
+          <div class="bs-glyphicons" style="padding-left:5em; padding-right:1em">
+            <h4 class="">Categorías</h4>
+            <ul class="bs-glyphicons-list">
+              <li class="orange-hover" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+              <li class="" style="margin: 0.33em;">
+                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                <span class="glyphicon-class">Carne</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bs-glyphicons" style="padding-left:5em; padding-right:4em">
+            <h4 class="">Recetas mejor valoradas</h4>
+            <div id="resumen-receta1"></div>
+            <div id="resumen-receta2"></div>
+            <div id="resumen-receta3"></div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="panel panel-default" style="margin-right: 3.5em; margin-left: -3em;">
+            <h4 class="" style="padding-top: 0.5em; padding-left: 1em;">Usuarios mejor valorados</h4>
+            <blockquote style="border-left: 0px; padding-left:1em;">
+              <p style="margin-bottom: 15px;"><img src="https://pbs.twimg.com/profile_images/524182825226887168/OZkikFtw.jpeg" style="width: 2em; border-radius: 100%; height: 2em;"> Albert Rivera<a href="#" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
+              <p style="margin-bottom: 15px;"><img src="http://zetaestaticos.com/cordoba/img/noticias/0/929/929402_1.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Pablo Iglesias<a href="#" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+              <p style="margin-bottom: 15px;"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTp8FT-OYLydHIPnuq675wEvJDCYm-eicBkE_Iq15QIzr4yLnOgSA" style="width: 2em; border-radius: 100%; height: 2em;"> Mariano Rajoy <a href="#" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+              <p style="margin-bottom: 15px;"><img src="http://cdn.revistagq.com/uploads/images/thumbs/201429/pedro_sanchez_9404_645x.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Pedro Sanchez <a href="#" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
+              <p style="margin-bottom: 15px;"><img src="http://cdn.discogs.com/87cIPkn1x_MOqhTYsa-807rGSU8=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb()/discogs-images/A-2766577-1395356994-4468.jpeg.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Miliki <a href="#" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+              <a href="#" style="text-decotarion:none;"><small>Ver más...</small></a>
+            </blockquote>
+          </div>
+          <div class="panel panel-default" style="margin-right: 3.5em; margin-left: -3em;">
+            <h4 class="" style="padding-top: 0.5em; padding-left: 1em;">Usuarios más activos</h4>
+            <blockquote style="border-left: 0px; padding-left:1em;">
+              <p style="margin-bottom: 15px;"><img src="http://cdn.revistagq.com/uploads/images/thumbs/201429/pedro_sanchez_9404_645x.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Pedro Sanchez<a href="#" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
+              <p style="margin-bottom: 15px;"><img src="http://cdn.discogs.com/87cIPkn1x_MOqhTYsa-807rGSU8=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb()/discogs-images/A-2766577-1395356994-4468.jpeg.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Miliki <a href="#" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+              <p style="margin-bottom: 15px;"><img src="https://pbs.twimg.com/profile_images/524182825226887168/OZkikFtw.jpeg" style="width: 2em; border-radius: 100%; height: 2em;"> Albert Rivera <a href="#" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
+              <p style="margin-bottom: 15px;"><img src="http://zetaestaticos.com/cordoba/img/noticias/0/929/929402_1.jpg" style="width: 2em; border-radius: 100%; height: 2em;"> Pablo Iglesias <a href="#" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+              <p style="margin-bottom: 15px;"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTp8FT-OYLydHIPnuq675wEvJDCYm-eicBkE_Iq15QIzr4yLnOgSA" style="width: 2em; border-radius: 100%; height: 2em;"> Mariano Rajoy <a href="#" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+              <a href="#" style="text-decotarion:none;"><small>Ver más...</small></a>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="footer"></div>
+    </footer>
+  </body>
+</html>
