@@ -72,15 +72,23 @@
     </div>
     <div class="col-md-2">
       <legend>Followed users</legend>
-      <div class="well">
+      <div class="wrapper">
         <div class="row">
-          <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="followed in fav_users">
-            <img class="img-responsive img-circle" ng-src="{{followed.img}}" ng-click="viewUser(followed.id)" style="width: 100px; height: 100px">
-            <legend><small>{{followed.name}}</small></legend>
+          <div class="col-md-12 text-center hand-cursor" ng-repeat="user in users" style="border-left: 0px; padding-left:1em;">
+            <ul class="list-inline pull-left">
+              <li>
+                <img class="img-circle" ng-src="{{user.img}}" ng-click="viewUser(user.id)" style="width: 50px; height: 50px"></img>
+              </li>
+              <li>
+                {{user.name}}
+              </li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <span class="hand-cursor" ng-click="alertShowNext('most rated users')"><i class="fa fa-chevron-down"></i></span>
           </div>
         </div>
       </div>
-    </div>
 
   </div>
 </div>

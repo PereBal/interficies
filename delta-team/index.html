@@ -10,178 +10,177 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-  <nav class="navbar">
-    <div class="container-fluid light-grey">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
-                style="background-color: #EFEFEF;">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#/" ng-show="!user"><img class="img-circle" style="margin-top:-20px" src="images/CookingAppLetters.jpg"></a>
-        <a class="navbar-brand" href="#/users/{{ user.id }}" ng-show="user"><img class="img-circle" style="margin-top:-20px" src="images/CookingAppLetters.jpg"></a>
-      </div>
+    <nav class="navbar">
+      <div class="container-fluid light-grey">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+                  style="background-color: #EFEFEF;">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/" ng-show="!user"><img class="img-circle" style="margin-top:-20px" src="images/CookingAppLetters.jpg"></a>
+          <a class="navbar-brand" href="#/users/{{ user.id}}" ng-show="user"><img class="img-circle" style="margin-top:-20px" src="images/CookingAppLetters.jpg"></a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="#/" ng-show="!user"><i class="glyphicon glyphicon-home color-grey"></i> <span class="sr-only"></span></a>
-            <a href="#/users/{{ user.id }}" ng-show="user"><i class="glyphicon glyphicon-home color-grey"></i> <span class="sr-only"></span></a>
-          </li>
-          <li><a href="#/users/{{ user.id }}/recipes" ng-show="user"><i class="glyphicon glyphicon-book color-grey"></i> <span class="sr-only"></span></a></li>
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#/" ng-show="!user"><i class="glyphicon glyphicon-home color-grey"></i> <span class="sr-only"></span></a>
+              <a href="#/users/{{ user.id}}" ng-show="user"><i class="glyphicon glyphicon-home color-grey"></i> <span class="sr-only"></span></a>
+            </li>
+            <li><a href="#/users/{{ user.id}}/recipes" ng-show="user"><i class="glyphicon glyphicon-book color-grey"></i> <span class="sr-only"></span></a></li>
+          </ul>
 
 
-        <ul class="nav navbar-nav navbar-right">
-          <li ng-show="!user"><a href="#/login" style="color: grey;">log in/register</a></li>
-          <li class="dropdown" ng-show="user">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user fa-lg"></i>{{ user.name }}<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" ng-show="user">
-              <li><a href="#/users/{{ user.id }}/profile">Profile</li>
-              <li></li>
-              <li><a href="#/" ng-click="user = undefined">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-show="!user"><a href="#/login" style="color: grey;">log in/register</a></li>
+            <li class="dropdown" ng-show="user">
+              <a class="dropdown-toggle color-grey" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user fa-lg color-grey" style="margin-right:10px;"></i>{{ user.name}}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" ng-show="user">
+                <li><a href="#/users/{{ user.id}}/profile">Profile</li>
+                <li><a href="#/" ng-click="user = undefined">Log out</a></li>
+              </ul>
+            </li>
+          </ul>
 
-        <div class="container text-center">
-          <div class="row">
-            <div>
-              <form class="navbar-form" role="search">
-                <div class="input-group">
-                  <input type="text" class="form-control col-md-3" placeholder="Search" style="min-width: 300px !important">
-                  <div class="input-group-btn">
+          <div class="container text-center">
+            <div class="row">
+              <div>
+                <form class="navbar-form" role="search">
+                  <div class="input-group">
+                    <input type="text" class="form-control col-md-3" placeholder="Search" style="min-width: 300px !important">
+                    <div class="input-group-btn">
                       <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
                   </div>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div class="row">
-            <label ng-click="showFilter = !showFilter" ng-show="!showFilter" class="hand-cursor"><small class="color-grey">Show filters</small></label>
-            <label ng-click="showFilter = !showFilter" ng-show="showFilter" class="hand-cursor"><small class="color-grey">Hide filters</small></label>
-          </div>
-
-          <div class="bs-glyphicons row" ng-show="showFilter">
-            
-            <div class="col-md-12">
-              <div class="row">
-                <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Country</legend>
-                <div class="col-md-8">
-                  <ul class="bs-glyphicons-list text-center list-inline">
-                    <li class="hand-cursor" ng-repeat="region in firstRegions track by $index" ng-show="showRegions == 1">{{region}}</li>
-                    <li class="hand-cursor" ng-repeat="region in secondRegions track by $index" ng-show="showRegions == 2">{{region}}</li>
-                    <li class="hand-cursor" ng-repeat="region in allRegions track by $index" ng-show="showRegions == 3">{{region}}</li>
-                  </ul>
-                </div>
-                <div class="col-md-2">
-                  <div class="hand-cursor" ng-click="showNextRegions()"><span ng-show="showRegions !== 3"><i class="fa fa-chevron-right"></i></span></div>
-                </div>
-                <div class="col-md-2">
-                  <div class="hand-cursor" ng-click="showAllRegions()">
-                    <button class="btn btn-default btn-sm" style="border: none;" ng-show="showRegions === 1 || showRegions === 2">Show all</button>
-                    <button class="btn btn-default btn-sm" style="border: none;" ng-show="showRegions === 3">Hide all</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Type of ingredient</legend>
-                <div class="col-md-8">
-                  <ul class="bs-glyphicons-list text-center list-inline">
-                    <li class="hand-cursor">Meat</li>
-                    <li class="hand-cursor">fish</li>
-                    <li class="hand-cursor">Desserts</li>
-                    <li class="hand-cursor">Fruits</li>
-                    <li class="hand-cursor">Cocktails</li>
-                  </ul>
-                </div>
-                <div class="col-md-2">
-                  <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
-                </div>
-                <div class="col-md-2">
-                  <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
-                </div>
-              </div>
-            
-              <div class="row">
-                <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Difficulty</legend>
-                <div class="col-md-8">
-                  <ul class="bs-glyphicons-list text-center list-inline">
-                    <li class="hand-cursor">Beginner</li>
-                    <li class="hand-cursor">Easy</li>
-                    <li class="hand-cursor">Medium</li>
-                    <li class="hand-cursor">Hard</li>
-                    <li class="hand-cursor">Professional</li>
-                  </ul>
-                </div>
-                <div class="col-md-2">
-                  <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
-                </div>
-                <div class="col-md-2">
-                  <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
-                </div>
-              </div>
-
-              <div class="row">
-                <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Festivity</legend>
-                <div class="col-md-8">
-                  <ul class="bs-glyphicons-list text-center list-inline">
-                    <li class="hand-cursor">Easter</li>
-                    <li class="hand-cursor">Xmas</li>
-                    <li class="hand-cursor">Halloween</li>
-                    <li class="hand-cursor">Ramadan</li>
-                    <li class="hand-cursor">Aïd el kebir</li>
-                  </ul>
-                </div>
-                <div class="col-md-2">
-                  <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
-                </div>
-                <div class="col-md-2">
-                  <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
-                </div>
-              </div>
-
-              <div class="row">
-                <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Diet</legend>
-                <div class="col-md-8">
-                  <ul class="bs-glyphicons-list text-center list-inline">
-                    <li class="hand-cursor">Vegan</li>
-                    <li class="hand-cursor">Vegetarian</li>
-                    <li class="hand-cursor">Low carb</li>
-                    <li class="hand-cursor">Dissociated</li>
-                    <li class="hand-cursor">Zone</li>
-                  </ul>
-                </div>
-                <div class="col-md-2">
-                  <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
-                </div>
-                <div class="col-md-2">
-                  <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
-                </div>
+                </form>
               </div>
             </div>
-          </div>
 
-          <div class="pull-right">
-            <button class="btn btn-default btn-sm" style="border: none;" ng-click="apliedFilter = !apliedFilter" ng-show="showFilter">
-              Apply filter
-            </button>
-          </div>
-          <label class="pull-left color-grey" ng-show="!apliedFilter"><small>Recipes</small></label>
-          <label class="pull-left color-grey" ng-show="apliedFilter"><small>Recipes / Spain </small></label>
+            <div class="row">
+              <label ng-click="showFilter = !showFilter" ng-show="!showFilter" class="hand-cursor"><small class="color-grey">Show filters</small></label>
+              <label ng-click="showFilter = !showFilter" ng-show="showFilter" class="hand-cursor"><small class="color-grey">Hide filters</small></label>
+            </div>
+
+            <div class="bs-glyphicons row" ng-show="showFilter">
+
+              <div class="col-md-12">
+                <div class="row">
+                  <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Country</legend>
+                  <div class="col-md-8">
+                    <ul class="bs-glyphicons-list text-center list-inline">
+                      <li class="hand-cursor" ng-repeat="region in firstRegions track by $index" ng-show="showRegions == 1">{{region}}</li>
+                      <li class="hand-cursor" ng-repeat="region in secondRegions track by $index" ng-show="showRegions == 2">{{region}}</li>
+                      <li class="hand-cursor" ng-repeat="region in allRegions track by $index" ng-show="showRegions == 3">{{region}}</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="hand-cursor" ng-click="showNextRegions()"><span ng-show="showRegions !== 3"><i class="fa fa-chevron-right"></i></span></div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="hand-cursor" ng-click="showAllRegions()">
+                      <button class="btn btn-default btn-sm" style="border: none;" ng-show="showRegions === 1 || showRegions === 2">Show all</button>
+                      <button class="btn btn-default btn-sm" style="border: none;" ng-show="showRegions === 3">Hide all</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Type of ingredient</legend>
+                  <div class="col-md-8">
+                    <ul class="bs-glyphicons-list text-center list-inline">
+                      <li class="hand-cursor">Meat</li>
+                      <li class="hand-cursor">fish</li>
+                      <li class="hand-cursor">Desserts</li>
+                      <li class="hand-cursor">Fruits</li>
+                      <li class="hand-cursor">Cocktails</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Difficulty</legend>
+                  <div class="col-md-8">
+                    <ul class="bs-glyphicons-list text-center list-inline">
+                      <li class="hand-cursor">Beginner</li>
+                      <li class="hand-cursor">Easy</li>
+                      <li class="hand-cursor">Medium</li>
+                      <li class="hand-cursor">Hard</li>
+                      <li class="hand-cursor">Professional</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Festivity</legend>
+                  <div class="col-md-8">
+                    <ul class="bs-glyphicons-list text-center list-inline">
+                      <li class="hand-cursor">Easter</li>
+                      <li class="hand-cursor">Xmas</li>
+                      <li class="hand-cursor">Halloween</li>
+                      <li class="hand-cursor">Ramadan</li>
+                      <li class="hand-cursor">Aïd el kebir</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Diet</legend>
+                  <div class="col-md-8">
+                    <ul class="bs-glyphicons-list text-center list-inline">
+                      <li class="hand-cursor">Vegan</li>
+                      <li class="hand-cursor">Vegetarian</li>
+                      <li class="hand-cursor">Low carb</li>
+                      <li class="hand-cursor">Dissociated</li>
+                      <li class="hand-cursor">Zone</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="hand-cursor"><span ng-click="alertMessage('regions')"><i class="fa fa-chevron-right"></i></span></div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-default btn-sm" style="border: none;">Show all</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pull-right">
+              <button class="btn btn-default btn-sm" style="border: none;" ng-click="apliedFilter = !apliedFilter" ng-show="showFilter">
+                Apply filter
+              </button>
+            </div>
+            <label class="pull-left color-grey" ng-show="!apliedFilter"><small>Recipes</small></label>
+            <label class="pull-left color-grey" ng-show="apliedFilter"><small>Recipes / Spain </small></label>
 
           </div>
         </div><!-- /.navbar-collapse -->
 
-      <legend style="margin-top: 10px;"></legend>
+        <legend style="margin-top: 10px;"></legend>
       </div><!-- /.container-fluid -->
     </nav>
 

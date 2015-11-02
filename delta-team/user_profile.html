@@ -1,54 +1,110 @@
 <div class="container">
 
-    <div class="row top-row-buffer">
-      <div class="col-md-3 top-separator">
-        <img ng-src="{{ user.img }} " class="img-circle hand-cursor" ng-show="readOnly()" style="height: 200px; width:200px;"></img>
-        <img ng-src="images/add.png" ng-click="addImg();" class="img-circle hand-cursor" ng-show="!readOnly()" style="height: 200px; width:200px;"></img>
-      </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 top-separator">
+      <div class="wrapper" ng-style="{'background-image':'url({{user.img}})'}" style="height:300px" ng-show="readOnly()"></div>
+      <div class="wrapper" style="background-image:url(images/add.png); height:300px;" ng-show="!readOnly()"></div>
+    </div>
+  </div>
 
-      <div class="col-md-8">
-        <h2 ng-show="readOnly()">{{ user.name }}</h2>
-        <h3 ng-show="readOnly()">{{ user.email }}</h3>
-        <h3 ng-show="readOnly() && verificationLevel(user) == 'amateur'">
-          <p>Amateur Chef</p>
-        </h3>
-        <h3 ng-show="readOnly() && verificationLevel(user) == 'professional'">
-          <p>Professional Chef</p>
-        </h3>
-        <h3 ng-show="readOnly() && verificationLevel(user) == 'verified'">
-          <p>Verified Professional Chef</p>
-        </h3>
-        <div class="from-group">
-          <div class="form-horizontal" ng-show="!readOnly()">
-            <label>Name: </label>
-            <input class="form-control" placeholder="Name" ng-model="user.name"></input>
-            <label>Email: </label>
-            <input class="form-control" placeholder="Email" ng-model="user.email"></input>
-            <label>Professional: </label>
-            <div class="from-control btn-group" placeholder="Status" data-toggle="buttons">
-              <button class="btn btn-primary btn-sm" ng-class="radioAmateur(user)" type="radio" ng-model="user.professional.professional" ng-value="false">No</button>
-              <button class="btn btn-primary btn-sm" ng-class="radioProfessional(user)" type="radio" ng-model="user.professional.professional" ng-value="true">Yes</button>
-              <button class="btn btn-danger btn-sm" ng-show="verificationLevel(user) == 'professional'" ng-model="user.professional.verified" ng-click="verifyAlert(user)">Verify!</button>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <legend ng-show="!readOnly()"><small>Name</small></legend>
+      <h3 ng-show="readOnly()">{{user.name}}</h3>
+      <h5 ng-show="readOnly()">{{user.email}}</h5>
+      <div>
+        <input ng-show="!readOnly()" placeholder="Name" ng-model="user.name" style="widht: 300px"></input>
       </div>
-
-      <div class="col-md-1">
-        <button class="btn btn-primary pull-left" title="Edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+      <div class="top-separator">
+        <input ng-show="!readOnly()" placeholder="email" ng-model="user.email" style="widht: 300px"></input>
       </div>
-
     </div>
 
-    <div class="row">
+    <div class="col-md-3 top-row-buffer">
+      <label class="label label-success" ng-show="readOnly() && verificationLevel(user) == 'verified'">Verified professional</label>
+      <label class="label label-alert" ng-show="readOnly() && verificationLevel(user) == 'professional'">Professional</label>
+      <label class="label label-info" ng-show="readOnly() && verificationLevel(user) == 'amateur'">Amateur</label>
 
-      <div class="col-md-6 top-separator">
-        <legend>Biography</legend>
-        <div ng-show="readOnly()">
-          <p>{{ user.biography }}</p>
-        </div>
-        <textarea rows="5" placeholder="Biography" class="col-md-12" ng-show="!readOnly()" ng-model="user.biography"></textarea>
+      <div class="from-control btn-group" placeholder="Status" data-toggle="buttons" ng-show="!readOnly()">
+        <label style="margin-left: 15px"> Are you professional?</label>
+        <button class="btn btn-info btn-sm" ng-class="radioAmateur(user)" type="radio" ng-model="user.professional.professional" ng-value="false">No</button>
+        <button class="btn btn-info btn-sm" ng-class="radioProfessional(user)" type="radio" ng-model="user.professional.professional" ng-value="true">Yes</button>
+        <button class="btn btn-danger btn-sm" ng-show="verificationLevel(user) == 'professional'" ng-model="user.professional.verified" ng-click="verifyAlert(user)">Verify!</button>
       </div>
+    </div> 
 
+    <div class="col-md-1 top-row-buffer">
+      <button class="btn btn-primary" title="Edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
     </div>
+
+  </div>
+
+  <div class="row" style="margin-bottom: 20px;">
+
+    <div class="col-md-10 col-md-offset-1">
+      <legend>Biography</legend>
+      <div ng-show="readOnly()">
+        <p>{{ user.biography }}</p>
+      </div>
+      <textarea rows="5" placeholder="Biography" class="col-md-12" ng-show="!readOnly()" ng-model="user.biography"></textarea>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <legend><small>Recipes information</small></legend>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4 col-md-offset-1">
+      <div class="row">
+       <div class="col-md-4 text-right">
+         <label class="pull-right">Rating:</label>
+       </div>
+       <div class="col-md-6">
+        <uib-rating ng-model="user.rating" readonly="true" on-hover="" on-leave="overStar = null"
+          aria-labelledby="default-rating" state-on="yellow">
+        </uib-rating>
+       </div>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="row">
+       <div class="col-md-4 text-right">
+         <label class="pull-right">Shared:</label>
+       </div>
+       <div class="col-md-6">
+        <ul class="list-inline social-icons icon-circle pull-right">
+          <li class="top-separator">
+            <a class="hand-cursor" title="share on facebook" ng-click="alertSocial('facebook')"><i class="fa fa-facebook"></i></a>
+            25
+          </li>
+          <li class="top-separator"> 
+            <a class="hand-cursor top-separator" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> 
+            112
+          </li>
+          <li class="top-separator">
+            <a class="hand-cursor top-separator" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a>
+            45
+          </li>
+          <li class="top-separator"> 
+            <a class="hand-cursor top-separator" title="share on CookingApp" ng-click="alertSocial('CookingApp')"><i class="fa fa-share"></i></a>
+            217
+          </li>
+          <li class="top-separator"> 
+            <a class="hand-cursor" title="add to favorites" ng-click="favorite(recipe)"><i class="fa fa-bookmark"></i></a>
+            321
+          </li>
+        </ul>
+       </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
