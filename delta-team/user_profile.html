@@ -1,19 +1,35 @@
-
-  <!-- usu mi perfil -->
-
 <div class="container">
 
     <div class="row top-row-buffer">
       <div class="col-md-3 top-separator">
-        <img ng-src="images/deniro.jpeg" class="img-circle hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
+        <img ng-src="{{ user.img }} " class="img-circle hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
         <img ng-src="images/add.png" ng-click="addImg();" class="img-circle hand-cursor" ng-show="edit" style="height: 200px; width:200px;"></img>
       </div>
 
       <div class="col-md-8">
-        <h2 ng-show="!edit">{{user.name}}</h2>
+        <h2 ng-show="!edit">{{ user.name }}</h2>
+        <h3 ng-show="!edit">{{ user.email }}</h3>
+        <h3 ng-show="!edit && verificationLevel(user) == 'amateur'">
+          <p>Amateur Chef</p>
+        </h3>
+        <h3 ng-show="!edit && verificationLevel(user) == 'professional'">
+          <p>Professional Chef</p>
+        </h3>
+        <h3 ng-show="!edit && verificationLevel(user) == 'verified'">
+          <p>Verified Professional Chef</p>
+        </h3>
         <div class="from-group">
-          <div class="form-inline" ng-show="edit">
-            <input class="form-control" placeholder="Name" ng-model="usuModel.name"></input>
+          <div class="form-horizontal" ng-show="edit">
+            <label>Name: </label>
+            <input class="form-control" placeholder="Name" ng-model="user.name"></input>
+            <label>Email: </label>
+            <input class="form-control" placeholder="Email" ng-model="user.email"></input>
+            <label>Professional: </label>
+            <div class="from-control btn-group" placeholder="Status" data-toggle="buttons">
+              <button class="btn btn-primary btn-sm" ng-class="radioAmateur(user)" type="radio" ng-model="user.professional.professional" ng-value="false">No</button>
+              <button class="btn btn-primary btn-sm" ng-class="radioProfessional(user)" type="radio" ng-model="user.professional.professional" ng-value="true">Yes</button>
+              <button class="btn btn-danger btn-sm" ng-show="verificationLevel(user) == 'professional'" ng-model="user.professional.verified" ng-click="verifyAlert(user)">Verify!</button>
+            </div>
           </div>
         </div>
       </div>
@@ -29,10 +45,10 @@
       <div class="col-md-6 top-separator">
         <legend>Biography</legend>
         <div ng-show="!edit">
-          <p>{{user.biography}}</p>
+          <p>{{ user.biography }}</p>
         </div>
-        <textarea rows="5" placeholder="description" class="col-md-12" ng-show="edit" ng-model="usulModel.description"></textarea>
+        <textarea rows="5" placeholder="Biography" class="col-md-12" ng-show="edit" ng-model="user.biography"></textarea>
       </div>
-      
+
     </div>
 </div>

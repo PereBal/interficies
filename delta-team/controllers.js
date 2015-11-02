@@ -7,26 +7,30 @@ var appControllers = angular.module("cookingAppControllers", ['ngAnimate', 'ui.b
 
 var get = function (data, eval) {
   console.log("get(" + data + ")");
-  for (var i = 0, len = data.length; i < len; i++) {
-    console.log(i + "::" + data[i].id + "::" + eval(data[i]));
-    if (eval(data[i])) {
-      return data[i];
+  try {
+    for (var i = 0, len = data.length; i < len; i++) {
+      console.log(i + "::" + data[i].id + "::" + eval(data[i]));
+      if (eval(data[i])) {
+        return data[i];
+      }
     }
-  }
+  } catch (err) { console.log(err); };
   return false;
 }
 
 var filter = function (data, eval) {
   console.log("filter(" + data + ")");
   res = [];
-  if (typeof data === 'undefined')
-    return res;
-  for (var i = 0, len = data.length; i < len; i++) {
-    console.log(i + "::" + data[i].id + "::" + eval(data[i]));
-    if (eval(data[i])) {
-      res.push(data[i]);
+  try {
+    if (typeof data === 'undefined' || typeof eval == 'undefined')
+      return res;
+    for (var i = 0, len = data.length; i < len; i++) {
+      console.log(i + "::" + data[i].id + "::" + eval(data[i]));
+      if (eval(data[i])) {
+        res.push(data[i]);
+      }
     }
-  }
+  } catch (err) { console.log(err); }
   return res;
 }
 
@@ -66,7 +70,7 @@ var callbackIfNeeded = function (callback, $rootScope, $scope, $http, $routePara
  * funció de callback si s'ha especificat
  *  sempre ->  recipes, users, alertSocial, favorite
  *  si userId i recipeId -> user, recipe, related (llista de relacionades a
- *  recipe)
+ *  recipe), fav_users, fav_recipes
  *  si userId -> user, fav_users, fav_recipes
  *  si recipeId -> recipe, related
  */
@@ -326,23 +330,13 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
 function RecipeCtrl($rootScope, $scope, $routeParams, $http) {
   loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
-    $scope.addIngredient = function () {
-      $scope.recipe.ingredients.push({name: "", amount: 0.0, unit: ""});
+    $scope.edit = false;
+    $scope.restrictEditAccess = function () {
+      return true;
     }
-
-    $scope.removeIngredient = function (ingredient) {
-      $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
+    $scope.readOnly = function () {
+      return true;
     }
-
-    $scope.addStep = function () {
-      $scope.recipe.steps.push({name: "", amount: 0.0, unit: ""});
-    }
-
-    $scope.removeStep = function (step) {
-      $scope.recipe.steps.splice($scope.recipe.steps.indexOf(step), 1);
-    }
-
-
   });
 }
 
@@ -400,6 +394,10 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
     $location.path('/users/' + recipe.userId + '/recipes/' + recipe.id);
   }
 
+  $scope.viewUser = function (userId) {
+    $location.path('/users/' + userId + '/profile');
+  }
+
   $scope.fork = function (recipe) {
     alert('Iniciar fork de la receta ' + recipe);
   }
@@ -421,7 +419,31 @@ function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 }
 
 function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
-  loadContext($rootScope, $scope, $http, $routeParams);
+  loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    $scope.addIngredient = function () {
+      $scope.recipe.ingredients.push({name: "", amount: 0.0, unit: ""});
+    }
+
+    $scope.removeIngredient = function (ingredient) {
+      $scope.recipe.ingredients.splice($scope.recipe.ingredients.indexOf(ingredient), 1);
+    }
+
+    $scope.addStep = function () {
+      $scope.recipe.steps.push({name: "", amount: 0.0, unit: ""});
+    }
+
+    $scope.removeStep = function (step) {
+      $scope.recipe.steps.splice($scope.recipe.steps.indexOf(step), 1);
+    }
+
+    $scope.edit = false;
+    $scope.restrictEditAccess = function () {
+      return (typeof $rootScope.user === 'undefined') || (typeof $routeParams.userId === 'undefined') || $rootScope.user.id != $routeParams.userId;
+    }
+    $scope.readOnly = function () {
+        return !$scope.edit || $scope.restrictEditAccess();
+    }
+  });
 }
 
 function UsrCreateRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
@@ -451,6 +473,27 @@ function UsrEditRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
 function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
   loadContext($rootScope, $scope, $http, $routeParams);
+
+  $scope.radioProfessional = function (user) {
+    return (user.professional.professional) ? 'active':''
+  }
+
+  $scope.radioAmateur = function (user) {
+    return (user.professional.professional) ? '':'active'
+  }
+
+  $scope.verificationLevel = function (user) {
+    if (!user.professional.professional)
+      return 'amateur';
+    else if (!user.professional.verified)
+      return 'professional';
+    else
+      return 'verified';
+  }
+
+  $scope.verifyAlert = function (user) {
+    alert('Verification process started for ' + user.name);
+  }
 }
 
 function UsrEditProfileCtrl($rootScope, $scope, $http, $routeParams) {

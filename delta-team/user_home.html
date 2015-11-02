@@ -2,12 +2,12 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <legend>Most rated</legend>
+      <legend>Favourite Recipes</legend>
       <uib-carousel interval="-1" no-wrap="false">
-        <uib-slide ng-repeat="recipe in recipes" active="recipe.active">
-          <img ng-src="{{recipe.img}}" style="margin:auto;">
+        <uib-slide ng-repeat="recipe in fav_recipes" active="recipe.active">
+          <img ng-src="{{recipe.img}}" style="margin:auto;" ng-click="view(recipe)">
           <div class="carousel-caption">
-            <h4>Recipe {{$index}}</h4>
+            <h4>{{ recipe.title }}</h4>
             <p>{{recipe.description}}</p>
           </div>
         </uib-slide>
@@ -74,8 +74,8 @@
       <legend>Followed users</legend>
       <div class="well">
         <div class="row">
-          <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="followed in followedUsers">
-            <img class="img-responsive img-circle" ng-src="{{followed.img}}" style="width: 100px; height: 100px">
+          <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="followed in fav_users">
+            <img class="img-responsive img-circle" ng-src="{{followed.img}}" ng-click="viewUser(followed.id)" style="width: 100px; height: 100px">
             <legend><small>{{followed.name}}</small></legend>
           </div>
         </div>
