@@ -75,6 +75,11 @@ var callbackIfNeeded = function (callback, $rootScope, $scope, $http, $routePara
  *  si recipeId -> recipe, related
  */
 var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, args) {
+  if (!$rootScope.allowEdit) {
+    $rootScope.allowEdit = function () {
+      return (typeof $rootScope.user !== 'undefined') && (typeof $routeParams.userId !== 'undefined') && $rootScope.user.id == $routeParams.userId;
+    }
+  }
 
   if (!$rootScope.favorite) {
     $rootScope.favorite = function (recipe) {
@@ -262,7 +267,7 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
 
       $rootScope.showRegions = 1;
     }
-  } 
+  }
   $rootScope.showAllRegions = function() {
 
     if ($rootScope.showRegions ===3 ) {
@@ -270,9 +275,9 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
       $rootScope.showRegions = 1;
     } else {
 
-      $rootScope.showRegions = 3; 
+      $rootScope.showRegions = 3;
     }
-  } 
+  }
 }
 
 function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
@@ -469,7 +474,7 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
   });
 
   $scope.view = function (recipe) {
-    $location.path('/users/' + recipe.userId + '/recipes/' + recipe.id);
+    $location.path('/recipes/' + recipe.id);
   }
 
   $scope.viewUser = function (userId) {
@@ -477,7 +482,7 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
   }
 
   $scope.fork = function (recipe) {
-    alert('Iniciar fork de la receta ' + recipe);
+    alert('Iniciar fork de la receta ' + recipe.title);
   }
 }
 
@@ -493,6 +498,14 @@ function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
   $scope.view = function (recipe) {
     $location.path('/users/' + $routeParams.userId + '/recipes/' + recipe.id);
+  }
+
+  $scope.recipePrivacy = function (recipe) {
+    return (recipe.private) ? 'Private':'Public';
+  }
+
+  $scope.recipePrivacyClass = function (recipe) {
+    return (recipe.private) ? 'btn btn-danger btn-xs':'btn btn-success btn-xs';
   }
 }
 
@@ -515,12 +528,22 @@ function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
     }
 
     $scope.edit = false;
-    $scope.allowEdit = function () {
-      return (typeof $rootScope.user !== 'undefined') && (typeof $routeParams.userId !== 'undefined') && $rootScope.user.id == $routeParams.userId;
-    }
     $scope.readOnly = function () {
-        return !$scope.edit || !$scope.allowEdit();
+        return !$scope.edit || !$rootScope.allowEdit();
     }
+
+    $scope.recipePrivacy = function () {
+      return ($scope.recipe.private) ? 'Private':'Public';
+    }
+
+    $scope.recipePrivacyClass = function () {
+      return ($scope.recipe.private) ? 'btn btn-danger':'btn btn-success';
+    }
+
+    $scope.alertPrivacy = function () {
+      alert('The privacy of the recipe ' + $scope.recipe.title + ' will change shortly as requested');
+    }
+
   });
 }
 
@@ -552,11 +575,8 @@ function UsrEditRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
 function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
   loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
     $scope.edit = false;
-    $scope.allowEdit = function () {
-      return (typeof $rootScope.user !== 'undefined') && (typeof $routeParams.userId !== 'undefined') && $rootScope.user.id == $routeParams.userId;
-    }
     $scope.readOnly = function () {
-        return !$scope.edit || !$scope.allowEdit();
+        return !$scope.edit || !$rootScope.allowEdit();
     }
 
     $scope.radioProfessional = function (user) {
@@ -607,3 +627,29 @@ appControllers.controller('UsrCreateRecipeCtrl', ['$rootScope', '$scope', '$http
 appControllers.controller('UsrEditRecipeCtrl', ['$rootScope', '$scope', '$http', '$location', '$routeParams', UsrEditRecipeCtrl]);
 appControllers.controller('UsrProfileCtrl', ['$rootScope', '$scope', '$http', '$routeParams', UsrProfileCtrl]);
 appControllers.controller('UsrEditProfileCtrl', ['$rootScope', '$scope', '$http', '$routeParams', UsrEditProfileCtrl]);
+
+angular.module("cookingAppFilters", [])
+  .filter('hidePrivateRecipes', ['$rootScope', '$routeParams', function ($rootScope, $routeParams) {
+    return function (data) {
+      console.log('hello');
+      var user = $rootScope.user;
+      var pathUserId = $routeParams.userId;
+      var filtered = [];
+      if (typeof data === 'undefined')
+        return filtered;
+
+      // filter by privacy
+      if (typeof user === 'undefined' || typeof pathUserId === 'undefined' || user.id != pathUserId) {
+        console.log('privacy');
+        for (var i = 0, len=data.length; i < len; i++) {
+          console.log(i + '::' + data[i].private);
+          if (!data[i].private) {
+            filtered.push(data[i]);
+          }
+        }
+      } else {
+        filtered = data;
+      }
+      return filtered;
+    }
+  }]);

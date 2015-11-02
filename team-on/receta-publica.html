@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand orange" href="homepage.html" style="">Timon</a>
+                  <a class="navbar-brand orange" href="homepage-usuario.html" style="">Timon</a>
                 </div>
 
                 <div class="col-md-6" style="margin-top: 0.5em;">
@@ -97,8 +97,8 @@
           <h1 class="col-md-9">
             Nombre_receta
             <small style="font-size: 45%">
-              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 60 min  |
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers  |
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1h |
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers. |
               <span class="label label-success">Sencillo</span>
             </small>
           </h1>
@@ -112,19 +112,21 @@
 
         <div id="recipe-subheader" class="row">
           <div class="col-lg-9">
-            <a href="" style="text-decoration:none; color:#333;"><img class="user-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALjAAAAJGIxMDA3YjUwLTcxMDYtNDM1Mi1iZThlLTYzYTE5NDMzOWY4Nw.jpg" style="margin-right: 15px"></img> <b>Lorem Ipsum</b></a><a href="#" style="text-decoration:none; margin-left: 10px " class="orange">Seguir</a>
-
+            </span>
+            <a href="#" style="text-decoration:none; color:#333;"><img class="user-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALjAAAAJGIxMDA3YjUwLTcxMDYtNDM1Mi1iZThlLTYzYTE5NDMzOWY4Nw.jpg" style="margin-right: 15px"></img> <b>Lorem Ipsum</b></a>
           </div>
           <div class="col-lg-3">
             <div class="row lead pull-right" style="margin-right: 30px; margint-bottom: 20px">
-              <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" style="margin-right:10px">
-                <i class="fa fa-heart"></i>
-              </button>
-              <button type="button" class="btn btn-default" style="margin-right:10px">
+              <span data-toggle="button" aria-pressed="false" autocomplete="off" >
+                <button type="button" class="btn btn-default" style="margin-right:10px" data-toggle="tooltip" data-placement="left" title="Marca como favorita">
+                  <i class="fa fa-heart"></i>
+                </button>
+              </span>
+              <button type="button" class="btn btn-default" style="margin-right:10px" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva receta a partir de esta">
                 <i class="fa fa-code-fork"></i>
               </button>
               <!-- Split button -->
-              <div class="btn-group">
+              <div class="btn-group" data-toggle="tooltip" data-placement="left" title="Comparte la receta">
                 <button type="button" class="btn btn-default"><i class="fa fa-share-alt"></i></button>
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span>
@@ -389,3 +391,9 @@
     </footer>
   </body>
 </html>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

@@ -1,6 +1,7 @@
 var app = angular.module("cookingApp", [
     'ngRoute',
-    'cookingAppControllers'
+    'cookingAppControllers',
+    'cookingAppFilters'
 ]);
 
 app.config(['$routeProvider',

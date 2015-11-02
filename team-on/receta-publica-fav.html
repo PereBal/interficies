@@ -26,7 +26,10 @@
     <script>
       $(function(){
         $("#footer").load("footer.html");
-
+        $("#recom1").load("resumen-receta-recomendadas.html");
+        $("#recompro1").load("resumen-receta-recomendadas-profesional.html");
+        $("#recom3").load("resumen-receta-recomendadas.html");
+        $("#recom4").load("resumen-receta-recomendadas.html");
       });
     </script>
   </head>
@@ -112,13 +115,12 @@
 
         <div id="recipe-subheader" class="row">
           <div class="col-lg-9">
-            <a href="" style="text-decoration:none; color:#333;"><img class="user-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALjAAAAJGIxMDA3YjUwLTcxMDYtNDM1Mi1iZThlLTYzYTE5NDMzOWY4Nw.jpg" style="margin-right: 15px"></img> <b>Lorem Ipsum</b></a><a href="#" style="text-decoration:none; margin-left: 10px " class="orange">Seguir</a>
-
+            <a href="" style="text-decoration:none; color:#333;"><img class="user-img" src="https://lh3.googleusercontent.com/-BEo-ZfLBxRU/AAAAAAAAAAI/AAAAAAAAAFk/ubfJWmgjwW4/s120-c/photo.jpg" style="margin-right: 15px"></img> <b>Lorem Ipsum</b></a><a href="#" style="text-decoration:none; margin-left: 10px " class="orange">Seguir</a>
           </div>
           <div class="col-lg-3">
             <div class="row lead pull-right" style="margin-right: 30px; margint-bottom: 20px">
               <span data-toggle="button" aria-pressed="true" autocomplete="off" >
-                <button type="button" class="btn btn-default active" style="margin-right:10px" data-toggle="tooltip" data-placement="left" title="Desmarcar como favorita">
+                <button type="button" class="btn btn-default active" style="margin-right:10px" data-toggle="tooltip" data-placement="left" title="Desmarca como favorita">
                   <i class="fa fa-heart"></i>
                 </button>
               </span>
@@ -320,6 +322,13 @@
       </div>
     </div>
 
+    <div class="container-fluid orange" style="background-color: #8bc34a">
+      <div id="recom1"></div>
+      <div id="recompro1"></div>
+      <div id="recom3"></div>
+      <div id="recom4"></div>
+    </div>
+
     <!-- Comment section -->
     <div class="container-fluid" style="background-color: #F4F4F4">
       <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -381,7 +390,6 @@
               <span><a class="orange" href="#">Responder</a></span>
             </div>
           </div>
-
         </div>
       </div>
     </div>

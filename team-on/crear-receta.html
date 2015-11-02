@@ -1,51 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FuckingCookerApp</title>
-
-
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="timon.css">
-    <link rel="stylesheet" href="docs.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(e){
-        $('.search-panel .dropdown-menu').find('a').click(function(e) {
-        e.preventDefault();
-        var param = $(this).attr("href").replace("#","");
-        var concept = $(this).text();
-        $('.search-panel span#search_concept').text(concept);
-        $('.input-group #search_param').val(param);
-      });
-    });
-    </script>
-
-    <script src="jquery.js"></script>
-  <script>
-  $(function(){
-    $("#includedContent").load("footer.html");
-  });
-  </script>
-
-</head>
-
-<body>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#receta-modal">
-    Crear receta
-  </button>
+  <div class="col-md-3">
+      <a href="#" title="Crea una nueva receta" data-toggle="modal" data-target="#crear-receta-modal">
+        <span class="fa-stack fa-5x" style="margin-left: 19%; margin-top:33%;border: 3px solid #8bc34a; color: white; border-radius: 100% ! important;">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-plus fa-stack-1x orange"></i>
+        </span>
+      </a>
+  </div>
 
   <!-- Modal -->
-  <div class="modal fade bs-example-modal-lg" id="receta-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade bs-example-modal-lg" id="crear-receta-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -84,7 +49,7 @@
               <label class="control-label col-sm-2" for="time">Tiempo</label>
               <div class="col-sm-3">
                 <div class="input-group spinner" id="time">
-                  <input type="text" class="form-control" value="30 min">
+                  <input type="text" class="form-control" value="0min">
                   <div class="input-group-btn-vertical">
                     <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
                     <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
@@ -94,7 +59,7 @@
               <label class="control-label col-sm-2" for="time">Comensales</label>
               <div class="col-sm-3">
                 <div class="input-group spinner" id="time">
-                  <input type="text" class="form-control" value="5 pers">
+                  <input type="text" class="form-control" value="0 pers">
                   <div class="input-group-btn-vertical">
                     <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
                     <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
@@ -120,7 +85,7 @@
               </div>
             </div>
             <div class="form-group">
-          		<input type="hidden" name="count" value="1"/>
+              <input type="hidden" name="count" value="1"/>
               <div class="control-group" id="fields">
                   <label class="control-label col-sm-2" for="field1">Ingredientes</label>
                   <div class="col-sm-9">
@@ -141,7 +106,7 @@
               </div>
             </div>
             <div class="form-group">
-          		<input type="hidden" name="count" value="1"/>
+              <input type="hidden" name="count" value="1"/>
               <div class="control-group" id="fields">
                   <label class="control-label col-sm-2" for="field1">Elaboracion</label>
                   <div class="col-sm-9">
@@ -197,32 +162,10 @@
     </div>
   </div>
 
-</body>
+</html>
 
-
-<script type="text/javascript">
-$(document).ready(function(){
-  var next = 1;
-  $(".add-more").click(function(e){
-      e.preventDefault();
-      var addto = "#field" + next;
-      next = next + 1;
-      var newIn = '<br /><br /><div class="col-sm-3 pull-left" style="padding-left: 0px ! important;"><input class="form-control" id="subfield' + next + '" name="subprof' + next + '" type="text" placeholder="Cantidad"/></div><div class="col-sm-8 pull-left" style="padding-left: 0px ! important;padding-right: 5px ! important;"><input class="form-control" id="field' + next + '" name="prof' + next + '" type="text" placeholder="Ingrediente"/></div><div class="col-sm-1"></div>';
-      var newInput = $(newIn);
-      $("#group-of-ingredientes").after(newInput);
-      $("#count").val(next);
-  });
-
-  var next_step = 1;
-  $(".add-more-steps").click(function(e){
-      e.preventDefault();
-      var addto = "#step" + next_step;
-      next_step = next_step + 1;
-      var newIn = '<br /><br /><div id="group-of-steps" class="col-sm-11 pull-left" style="padding-left: 0px ! important;padding-right: 5px;padding-top: 10px !important"><textarea type="textarea" class="form-control" id="step' + next_step + '" rows="4" placeholder="Paso de la elaboracion..."></textarea></div>';
-      var newInput = $(newIn);
-      $("#group-of-steps").after(newInput);
-      $("#count").val(next_step);
-  });
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
 });
 </script>
-</html>

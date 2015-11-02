@@ -2,18 +2,30 @@
 <html lang="en">
   <div class="col-md-4">
     <div class="thumbnail" style="margin-top:1em;">
-      <a href="receta-publica.html"><img src="http://placehold.it/350x250"></a>
+      <a href="receta-publica.html"><img src="http://placehold.it/350x250"></img></a>
       <div class="caption">
         <a href="receta-publica.html" style="text-decoration:none"><h4 class="orange">Nombre_receta</h4></a>
-        <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre_autor</p></a>
+        <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"></img> Nombre_autor</p></a>
         <p>
-          <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-            <i class="fa fa-heart"></i>
+          <span data-toggle="button" aria-pressed="false" autocomplete="off" >
+            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Marca como favorita">
+              <i class="fa fa-heart"></i>
+            </button>
+          </span>
+          <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Crea una nueva receta a partir de esta">
+            <i class="fa fa-code-fork"></i>
           </button>
-          <a href="#" class="btn btn-default" role="button"><i class="fa fa-code-fork"></i></a>
-          <a href="#" class="btn btn-default" role="button"><i class="fa fa-share-alt"></i></a>
+          <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Comparte la receta">
+            <i class="fa fa-share-alt"></i>
+          </button>
         </p>
       </div>
     </div>
   </div>
 </html>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>
