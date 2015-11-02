@@ -456,7 +456,7 @@ function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
 }
 
 function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
-  args = [$location];
+  var args = [$location];
   loadContext($rootScope, $scope, $http, $routeParams, function($rootScope, $scope, $http, $routeParams) {
     var eval = function (elem) {
       return elem.userId != eval.id;
