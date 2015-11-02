@@ -293,6 +293,84 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
   $scope.predicate = 'rating';
   $scope.reverse = true;
 
+
+  $rootScope.filteredRecipes = [
+    {
+        id: 6,
+        title: 'Steves burger',
+        author: 'Steve',
+        rating: 3,
+        hardness: 'easy',
+        time: {'hours': 1, 'minutes': 10},
+        eaters: {'number': 3, 'info': 'per ration'},
+        related: [3, 4],
+        ingredients: [
+        {
+            name: 'Cow meat',
+            amount: 1.0,
+            unit: 'kg'
+        },
+        {
+            name: 'Onion',
+            amount: 2.0,
+            unit: 'pieces'
+        }],
+        steps:[
+        {
+            description: 'Adobe the meat'
+        },
+        {
+            description: 'Burn it'
+        },
+        {
+            description: 'Say its not your fault'
+        },
+        {
+            description: 'Blame the children!'
+        }],
+        private: false,
+        img: 'images/paamboli.jpg',
+        description: 'Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.',
+        userId: 1
+    },
+    {
+        id: 7,
+        title: 'Missleading chicken',
+        author: 'MR BN',
+        rating: 1,
+        hardness: 'very hard',
+        time: {'hours': 0, 'minutes': 10},
+        eaters: {'number': 1, 'info': 'per ration'},
+        related: [],
+        ingredients: [
+        {
+            name: 'Air',
+            amount: 1.0,
+            unit: 'piece'
+        },
+        {
+            name: 'Pair',
+            amount: 2.0,
+            unit: 'pieces'
+        }],
+        steps:[
+        {
+            description: 'Cut the pair'
+        },
+        {
+            description: 'Mix it with air'
+        },
+        {
+            description: 'Repeat until fullyfied desire'
+        }],
+        private: true,
+        img: 'images/cocatrampo.jpg',
+        description: 'This is a legendary recipe from an outern world ingredient. The legend says: if anyone can cook this, he or she will become a true master chief!',
+        userId: 2
+    }
+
+  ];
+
    $scope.userNews = [
 
     {

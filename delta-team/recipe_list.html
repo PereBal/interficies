@@ -1,6 +1,6 @@
 <div class="container-fluid top-row-buffer">
   <div class="row">
-    <div class="col-md-6 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-2" ng-show="!apliedFilter">
     <legend>News</legend>
       <div class="row" ng-repeat="recipe in recipes | filter: {private: false} | orderBy:predicate:reverse">
         <div class="wrapper">
@@ -75,6 +75,87 @@
       </div>
 
     </div>
+
+
+
+  <!-- div que se muestra con el filtro -->
+    <div class="col-md-6 col-md-offset-2" ng-show="apliedFilter">
+    <legend>Filtered</legend>
+      <div class="row" ng-repeat="recipe in filteredRecipes">
+        <div class="wrapper">
+          <div class="row">
+            <div class="col-md-3">
+              <img class="img-responsive img-circle" ng-src="{{recipe.img}}"></img>
+                <ul class="list-unstyled top-row-buffer">
+                  <li>
+                    <span><i class="fa fa-cutlery"></i></span>:
+                    {{recipe.hardness}}
+                  </li>
+                  <li>
+                    <span><i class="fa fa-clock-o"></i></span>:
+                    {{recipe.time.hours}}:{{recipe.time.minutes}} h
+                  </li>
+                  <li>
+                    <span><i class="fa fa-users"></i></span>:
+                    {{recipe.eaters.number}}
+                  </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+
+              <div class="row">
+                <div class="col-md-7">
+                  <h3>{{recipe.title}} <small>{{recipe.author}}</small></h3>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <uib-rating ng-model="recipe.rating" readonly="true" on-hover="" on-leave="overStar = null"
+                    aria-labelledby="default-rating" state-on="yellow">
+                  </uib-rating>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-inline social-icons icon-circle pull-right">
+                    <li class="top-separator"> <a class="hand-cursor" title="share on facebook" ng-click="alertSocial('facebook')"><i class="fa fa-facebook"></i></a> </li>
+                    <li class="top-separator"> <a class="hand-cursor top-separator" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
+                    <li class="top-separator"> <a class="hand-cursor top-separator" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a> </li>
+                    <li class="top-separator"> <a class="hand-cursor top-separator" title="share on CookingApp" ng-click="alertSocial('CookingApp')" ng-if=""><i class="fa fa-share"></i></a> </li>
+                    <li> <a class="hand-cursor top-separator" title="add to favorites" ng-click="favorite(recipe)"><i class="fa fa-bookmark" ng-if=""></i></a> </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-8">
+                   <legend><small>Description</small></legend>
+                  <p>{{recipe.description}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row top-separator">
+              <div class="col-md-2 pull-right">
+                <div class="btn-group">
+                  <button class="btn btn-primary general-btn" ng-click="view(recipe)">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+      <!-- este spinner indica que el contenido se va recargando periodicamente -->
+      <div class="row text-center" style="padding-bottom: 20px;">
+        <div class="col-md-6 col-md-offset-3">
+          <span><i class="fa fa-spinner fa-spin"></i></span>
+        </div>
+      </div>
+
+    </div>
+
     <div class="col-md-2">
     <legend>Most rated users</legend>
     <div class="wrapper">
@@ -103,7 +184,15 @@
             <strong>{{userNew.source}} </strong>{{userNew.action}}
           </p>
         </div>
-        
+        <div class="col-md-12" ng-if="!userNews" style="border-left: 0px; padding-left:1em;">
+          <p class="pull-left" style="border-top: 1px solid; border-bottom: 1px solid; border-color: #EFEFEF; padding-top: 8px; padding-top: 8px;">
+            <div class="row text-center" style="padding-bottom: 20px;">
+              <div class="col-md-6 col-md-offset-3">
+                <span><i class="fa fa-spinner fa-spin"></i></span>
+              </div>
+            </div>
+          </p>
+        </div>
         <div class="text-center">
           <span class="hand-cursor" ng-click="alertShowNext('user news')"><i class="fa fa-chevron-down"></i></span>
         </div>
