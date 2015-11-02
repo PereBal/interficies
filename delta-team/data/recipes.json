@@ -4,7 +4,7 @@
         "title": "Steve's burger",
         "author": "Steve",
         "rating": 3,
-        "hardness": "begginner",
+        "hardness": "easy",
         "time": {"hours": 1, "minutes": 10},
         "eaters": {"number": 3, "info": "per ration"},
         "related": [3, 4],
@@ -42,7 +42,7 @@
         "title": "Missleading chicken",
         "author": "MR BN",
         "rating": 1,
-        "hardness": "master chief",
+        "hardness": "very hard",
         "time": {"hours": 0, "minutes": 10},
         "eaters": {"number": 1, "info": "per ration"},
         "related": [],
@@ -77,7 +77,7 @@
         "title": "Mc stuff",
         "author": "Leonardo",
         "rating": 4,
-        "hardness": "average",
+        "hardness": "medium",
         "time": {"hours": 4, "minutes": 0},
         "eaters": {"number": 100, "info": "per ration"},
         "related": [],
@@ -108,14 +108,14 @@
         "private": false,
         "img": "images/burger.jpg",
         "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
-        "userId": 3
+        "userId": 2
     },
     {
         "id": 4,
         "title": "Cow stuff",
         "author": "MR BN",
         "rating": 5,
-        "hardness": "be",
+        "hardness": "easy",
         "time": {"hours": 4, "minutes": 0},
         "eaters": {"number": 100, "info": "per ration"},
         "related": [],
@@ -135,6 +135,74 @@
         "private": false,
         "img": "images/burger.jpg",
         "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "userId": 2
+    },
+    {
+        "id": 5,
+        "title": "Delta on bunny",
+        "author": "Leonardo",
+        "rating": 3,
+        "hardness": "medium",
+        "time": {"hours": 2, "minutes": 20},
+        "eaters": {"number": 1, "info": "per ration"},
+        "related": [],
+        "ingredients": [
+        {
+            "name": "Magic beans",
+            "amount": 1,
+            "unit": "unit"
+        }],
+        "steps":[
+        {
+            "description": "Plant the beans"
+        },
+        {
+            "description": "Irrigate them"
+        },
+        {
+            "description": "Watch them grow"
+        }],
+        "private": false,
+        "img": "images/burger.jpg",
+        "description": "This beans are cool",
         "userId": 3
+    },
+    {
+        "id": 6,
+        "title": "Steve's Crabby",
+        "author": "Steve",
+        "rating": 1,
+        "hardness": "very hard",
+        "time": {"hours": 0, "minutes": 30},
+        "eaters": {"number": 2, "info": "per ration"},
+        "related": [],
+        "ingredients": [
+        {
+            "name": "Cow meat",
+            "amount": 1.0,
+            "unit": "kg"
+        },
+        {
+            "name": "Onion",
+            "amount": 2.0,
+            "unit": "pieces"
+        }],
+        "steps":[
+        {
+            "description": "Adobe the meat"
+        },
+        {
+            "description": "Burn it"
+        },
+        {
+            "description": "Say it's not your fault"
+        },
+        {
+            "description": "Blame the children!"
+        }],
+        "private": true,
+        "img": "images/burger.jpg",
+        "description": "Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.",
+        "userId": 1
     }
 ]

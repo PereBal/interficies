@@ -13,7 +13,8 @@
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img":  "images/jobs.jpeg",
      "fav_users": [2, 3],
-     "fav_recipes": [4]
+     "fav_recipes": [4, 5],
+     "rating": 4
  },
  {
      "id": 2,
@@ -29,7 +30,8 @@
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/mrbean.jpeg",
      "fav_users": [],
-     "fav_recipes": []
+     "fav_recipes": [],
+     "rating": 4
  },
  {
      "id": 3,
@@ -45,7 +47,8 @@
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/dicaprio.jpeg",
      "fav_users": [],
-     "fav_recipes": []
+     "fav_recipes": [],
+     "rating": 4
  },
  {
      "id": 4,
@@ -61,7 +64,8 @@
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/einstein.jpeg",
      "fav_users": [],
-     "fav_recipes": []
+     "fav_recipes": [],
+     "rating": 4
  },
  {
      "id": 5,
@@ -77,7 +81,8 @@
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/carrey.jpeg",
      "fav_users": [],
-     "fav_recipes": []
+     "fav_recipes": [],
+     "rating": 4
  },
  {
      "id": 6,
@@ -93,6 +98,7 @@
      "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
      "img": "images/deniro.jpeg",
      "fav_users": [],
-     "fav_recipes": []
+     "fav_recipes": [],
+     "rating": 4
  }
 ]

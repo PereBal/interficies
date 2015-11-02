@@ -1,11 +1,11 @@
-<div class="container well">
+<div class="container wrapper">
   <div class="row" ng-init="register = true">
 
     <div class="col-md-6 col-md-offset-3 text-center top-row-buffer">
       <img class="img-thumbnail" src="images/CookingAppLogo.jpg"></img>
     </div>
 
-    <div class="col-md-6 col-md-offset-3" ng-show="!register">
+    <div class="col-md-6 col-md-offset-3" ng-show="register">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <form class="form-horizontal">
@@ -17,10 +17,10 @@
               <input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
             </div>
             <div class="row text-center">
-              <button class="btn btn-primary" ng-click="validate(user)">Log in</button>
+              <button class="btn btn-primary general-btn" ng-click="validate(user)">Log in</button>
             </div>
             <div class="row text-center top-row-buffer">
-              <a href="" ng-click="register = true">Went wrong!?, <strong>back to register</strong> </a>
+              <a href="" ng-click="register = false">Do not have an account?<strong>, Please register for free! :)</strong> </a>
             </div>
           </form>
           </form>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="col-md-6 col-md-offset-3" ng-show="register">
+    <div class="col-md-6 col-md-offset-3" ng-show="!register">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
            <form class="form-horizontal">
@@ -46,10 +46,10 @@
               <input type="password" class="form-control" placeholder="Repeat Password"></input>
             </div>
             <div class="row text-center">
-              <button class="btn btn-primary" ng-click="save(user)">Register</button>
+              <button class="btn btn-primary general-btn" ng-click="save(user)">Register</button>
             </div>
             <div class="row text-center top-row-buffer">
-              <a href="" ng-click="register = false">Already registered?, click to log in! :)</a>
+              <a href="" ng-click="register = true">Already registered!?, <strong>Go back to login :)</strong></a>
             </div>
           </form>
         </div>

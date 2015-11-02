@@ -1,38 +1,74 @@
 <div class="container">
 
     <div class="row">
-
-      <div class="col-md-8">
-        <h2 ng-show="!edit">{{recipe.name}} <small>{{recipe.author}}</small></h2>
+      <div class="col-md-10">
+        <h2 ng-show="readOnly()">{{recipe.title}} <small>{{recipe.author}}</small></h2>
+        <ul ng-show="readOnly()" class="list-inline">
+          <li>
+            <span><i class="fa fa-cutlery"></i></span>:
+            {{recipe.hardness}}
+          </li>
+          <li>
+            <span><i class="fa fa-clock-o"></i></span>:
+            {{recipe.time.hours}}:{{recipe.time.minutes}} h
+          </li>
+          <li>
+            <span><i class="fa fa-users"></i></span>:
+            {{recipe.eaters.number}}
+          </li>
+        </ul>
         <div class="from-group">
-          <div class="form-inline" ng-show="edit">
-            <input class="form-control" placeholder="Recipe Name" ng-model="recipe.name"></input>
+          <div class="form-inline" ng-show="!readOnly()">
+            <input class="form-control" placeholder="Recipe Name" ng-model="recipe.title"></input>
+          </div>
+        </div>
+
+        <div class="from-group top-separator">
+          <div class="form-inline" ng-show="!readOnly()">
+            <span>
+              <i class="fa fa-cutlery">
+                <input class="form-control" style="width: 100px; margin-left:10px; margin-right:10px; " placeholder="Recipe difficulty" ng-model="recipe.hardness"></input>
+              </i>
+            </span>
+            <span>
+              <i class="fa fa-clock-o">
+                <input class="form-control" style="width: 100px; margin-left:10px;" placeholder="Recipe hours" ng-model="recipe.time.hours"></input> :
+              </i>
+            </span>
+            <input class="form-control" style="width: 100px; margin-right:10px;" placeholder="Recipe minutes" ng-model="recipe.time.minutes"></input>
+            <span>
+              <i class="fa fa-users">
+                <input class="form-control" style="width: 100px; margin-left:10px;" placeholder="Recipe diners" ng-model="recipe.eaters.number"></input>
+              </i>
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="col-md-1 col-md-offset-2">
-        <button class="btn btn-primary pull-left" title="edit" ng-click="edit = !edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+      <div class="col-md-1 pull-right">
+        <button class="btn btn-primary pull-left general-btn" title="edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
       </div>
     </div>
 
     <div class="row top-row-buffer">
       <div class="col-md-4 top-separator">
-        <img ng-src="{{ recipe.img }}" class="img-thumbnail hand-cursor" ng-show="!edit" style="height: 200px; width:200px;"></img>
-        <img ng-src="images/add.png" ng-click="addImg();" class="img-thumbnail hand-cursor" ng-show="edit" style="height: 200px; width:200px;"></img>
+        <img ng-src="{{ recipe.img }}" class="hand-cursor" ng-show="readOnly()" style="height: 200px; width:200px;"></img>
+        <img ng-src="images/add.png" ng-click="addImg();" class="hand-cursor" ng-show="!readOnly()" style="height: 200px; width:200px;"></img>
       </div>
 
       <div class="col-md-8 top-separator">
         <legend>Ingredients</legend>
         <div ng-repeat="ingredient in recipe.ingredients">
-          <p ng-show="!edit">{{$index}} - {{ingredient.name}}, {{ ingredient.amount }} {{ ingredient.unit }}</p>
-          <div class="form-inline top-separator" ng-show="edit">
+          <p ng-show="readOnly()">{{$index}} - {{ingredient.name}}, {{ ingredient.amount }} {{ ingredient.unit }}</p>
+          <div class="form-inline top-separator" ng-show="!readOnly()">
             <input class="form-control" placeholder="Ingredient" style="width: 300px" ng-model="ingredient.name"></input>
-            <button class="btn btn-danger" ng-click="removeIngredient(ingredient);"><span><i class="fa fa fa-minus"></i></span></button>
+            <input class="form-control" placeholder="Amount" style="width: 100px" ng-model="ingredient.amount"></input>
+            <input class="form-control" placeholder="Unit" style="width: 100px" ng-model="ingredient.unit"></input>
+            <button class="btn btn-danger general-btn" ng-click="removeIngredient(ingredient);"><span><i class="fa fa fa-minus"></i></span></button>
           </div>
         </div>
-        <div class="top-separator pull-right" ng-show="edit">
-          <button class="btn btn-success" ng-click="addIngredient();"><span><i class="fa fa fa-plus"></i></span></button>
+        <div class="top-separator pull-right" ng-show="!readOnly()">
+          <button class="btn btn-success general-btn" ng-click="addIngredient();"><span><i class="fa fa fa-plus"></i></span></button>
         </div>
       </div>
 
@@ -42,22 +78,25 @@
 
       <div class="col-md-4 top-separator">
         <legend>Description</legend>
-        <div ng-show="!edit">
+        <div ng-show="readOnly()">
           <p>{{recipe.description}}</p>
         </div>
-        <textarea rows="5" placeholder="description" class="col-md-12" ng-show="edit" ng-model="recipe.description"></textarea>
+        <textarea rows="5" placeholder="description" class="col-md-12" ng-show="!readOnly()" ng-model="recipe.description"></textarea>
+        <div ng-show="allowEdit()">
+          <legend ng-show="readOnly()">Privacy: <small ng-class="recipePrivacyClass()" ng-click="alertPrivacy()">{{ recipePrivacy() }}</small></legend>
+        </div>
       </div>
 
       <div class="col-md-8 top-separator">
         <legend>Steps</legend>
         <div ng-repeat="step in recipe.steps">
-          <p ng-show="!edit">{{$index}} - {{step.description}}</p>
-          <div class="form-inline top-separator" ng-show="edit">
+          <p ng-show="readOnly()">{{$index}} - {{step.description}}</p>
+          <div class="form-inline top-separator" ng-show="!readOnly()">
             <input class="form-control" placeholder="Description" style="width: 400px" ng-model="step.description"></input>
             <button class="btn btn-danger" ng-click="removeStep(step);"><span><i class="fa fa fa-minus"></i></span></button>
           </div>
         </div>
-        <div class="top-separator pull-right" ng-show="edit">
+        <div class="top-separator pull-right" ng-show="!readOnly()">
          <button class="btn btn-success" ng-click="addStep();"><span><i class="fa fa fa-plus"></i></span></button>
         </div>
       </div>
@@ -66,7 +105,16 @@
 
     <div class="row top-row-buffer">
 
-      <div class="col-md-6 col-md-offset-6 ">
+      <div class="col-md-6">
+        <ul class="list-inline">
+          <li ng-repeat="re in related">
+            <img ng-src="{{ re.img }}" class="img-circle" style="height: 30px; width: 30px;" ng-click="">
+            {{re.title}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
         <ul class="list-inline social-icons icon-circle pull-right">
           <li> <a class="hand-cursor" title="share on facebook" ng-click="alertSocial('facebook')"><i class="fa fa-facebook"></i></a> </li>
           <li> <a class="hand-cursor" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
