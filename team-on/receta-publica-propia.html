@@ -26,7 +26,10 @@
     <script>
       $(function(){
         $("#footer").load("footer.html");
-
+        $("#recom1").load("reesumen-receta-recomendadas.html");
+        $("#recompro1").load("reesumen-receta-recomendadas-profesional.html");
+        $("#recom3").load("reesumen-receta-recomendadas.html");
+        $("#recom4").load("reesumen-receta-recomendadas.html");
       });
     </script>
   </head>
@@ -97,8 +100,8 @@
           <h1 class="col-md-9">
             Nombre_receta
             <small style="font-size: 45%">
-              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 60 min  |
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers  |
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1h |
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers. |
               <span class="label label-success">Sencillo</span>
             </small>
           </h1>
@@ -113,23 +116,26 @@
         <div id="recipe-subheader" class="row">
           <div class="col-lg-9">
             <span style="margin-right: 20px">
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edicion-receta">
-                <i class="fa fa-pencil-square-o"></i>
-              </button>
+              <span data-toggle="modal" data-target="#edicion-receta">
+                <button id="quick-edit" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edita la receta">
+                  <i class="fa fa-pencil-square-o"></i>
+                </button>
+              </span>
             </span>
             <a href="" style="text-decoration:none; color:#333;"><img class="user-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALjAAAAJGIxMDA3YjUwLTcxMDYtNDM1Mi1iZThlLTYzYTE5NDMzOWY4Nw.jpg" style="margin-right: 15px"></img> <b>Lorem Ipsum</b></a>
           </div>
           <div class="col-lg-3">
             <div class="row lead pull-right" style="margin-right: 30px; margint-bottom: 20px">
-              <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off"
-              style="margin-right:10px">
-                <i class="fa fa-heart"></i>
-              </button>
-              <button type="button" class="btn btn-default" style="margin-right:10px">
+              <span data-toggle="button" aria-pressed="false" autocomplete="off" >
+                <button type="button" class="btn btn-default" style="margin-right:10px" data-toggle="tooltip" data-placement="left" title="Marca como favorita">
+                  <i class="fa fa-heart"></i>
+                </button>
+              </span>
+              <button type="button" class="btn btn-default" style="margin-right:10px" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva receta a partir de esta">
                 <i class="fa fa-code-fork"></i>
               </button>
               <!-- Split button -->
-              <div class="btn-group">
+              <div class="btn-group" data-toggle="tooltip" data-placement="left" title="Comparte la receta">
                 <button type="button" class="btn btn-default"><i class="fa fa-share-alt"></i></button>
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span>
@@ -323,6 +329,13 @@
       </div>
     </div>
 
+    <div class="container-fluid orange" style="background-color: #8bc34a">
+      <div id="recom1"></div>
+      <div id="recompro1"></div>
+      <div id="recom3"></div>
+      <div id="recom4"></div>
+    </div>
+
     <!-- Comment Secition -->
     <div class="container-fluid" style="background-color: #F4F4F4">
       <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -428,7 +441,7 @@
                 <label class="control-label col-sm-2" for="time">Tiempo</label>
                 <div class="col-sm-3">
                   <div class="input-group spinner" id="time">
-                    <input type="text" class="form-control" value="60 min">
+                    <input type="text" class="form-control" value="60min">
                     <div class="input-group-btn-vertical">
                       <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
                       <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
@@ -534,6 +547,7 @@
            </form>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Eliminar</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-primary">Guardar</button>
           </div>
@@ -546,3 +560,9 @@
     </footer>
   </body>
 </html>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

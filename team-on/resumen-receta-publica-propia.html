@@ -2,74 +2,77 @@
 <html lang="en">
   <div class="col-md-3">
     <div class="thumbnail" style="margin-top:1em;">
-      <a href="receta-publica.html"><img src="http://placehold.it/350x250"></a>
+      <a href="receta-publica.html"><img src="http://placehold.it/350x250"></img></a>
       <div class="caption">
         <a href="receta-publica-propia.html" style="text-decoration:none"><h4 class="orange">Receta_pública</h4></a>
-        <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Mi_usuario</p></a>
+        <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"></img> Mi_usuario</p></a>
         <p>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edicion-rapida-receta">
-            <i class="fa fa-pencil-square-o"></i>
+          <span data-toggle="modal" data-target="#edicion-rapida-receta">
+            <button id="quick-edit" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edita rapidamente la receta">
+              <i class="fa fa-pencil-square-o"></i>
+            </button>
+          </span>
+          <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Eliminar la receta">
+            <i class="fa fa-trash-o"></i>
           </button>
-          <a href="#" class="btn btn-default" role="button"> <i class="fa fa-trash-o"></i></a>
-          <a href="#" class="btn btn-default" role="button"><i class="fa fa-code-fork"></i></a>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <span class="caret"></span>
-           <span class="sr-only">Toggle Dropdown</span>
-           </button>
-           <ul class="dropdown-menu">
-           <li><a href="#">Facebook</a></li>
-           <li><a href="#">Twitter</a></li>
-           <li><a href="#">Google +</a></li>
-           <li><a href="#">Pinterest</a></li>
-           </ul>
-
+          <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva receta a partir de esta">
+            <i class="fa fa-code-fork"></i>
+          </button>
+          <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Comparte la receta">
+            <i class="fa fa-share-alt"></i>
+          </button>
         </p>
       </div>
     </div>
   </div>
 
-
     <!-- Modal -->
-    <div class="modal fade bs-example-modal-lg" id="edicion-rapida-receta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title" id="myModalLabel">Edicion rapida Receta_publica</h2>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="titulo">Título</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="titulo" value="Receta_publica" placeholder="Título de la receta...">
-                </div>
+  <div class="modal fade bs-example-modal-lg" id="edicion-rapida-receta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel">Edicion rapida Receta_publica</h2>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="titulo">Título</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="titulo" value="Receta_publica" placeholder="Título de la receta...">
               </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="description">Descripción</label>
-                <div class="col-sm-9">
-                  <textarea type="textarea" class="form-control" id="description" style="resize:none" rows="4" placeholder="Descripción corta de la receta...">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</textarea>
-                </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="description">Descripción</label>
+              <div class="col-sm-9">
+                <textarea type="textarea" class="form-control" id="description" style="resize:none" rows="4" placeholder="Descripción corta de la receta...">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</textarea>
               </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="privacidad">Privacidad</label>
-                <div class="col-sm-9" id="privacidad">
-                  <label class="radio-inline col-sm-5"><input type="radio" name="optradio1" checked>
-                    <span class="fa fa-unlock fa-2x" style="margin-right: 15px"></span>Receta Publica
-                  </label>
-                  <label class="radio-inline col-sm-4"><input type="radio" name="optradio1">
-                    <span class="fa fa-lock fa-2x" style="margin-right: 15px"></span>Receta Privada
-                  </label>
-                </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="privacidad">Privacidad</label>
+              <div class="col-sm-9" id="privacidad">
+                <label class="radio-inline col-sm-5"><input type="radio" name="optradio1" checked>
+                  <span class="fa fa-unlock fa-2x" style="margin-right: 15px"></span>Receta Publica
+                </label>
+                <label class="radio-inline col-sm-4"><input type="radio" name="optradio1">
+                  <span class="fa fa-lock fa-2x" style="margin-right: 15px"></span>Receta Privada
+                </label>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
-          </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Eliminar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
-
+  </div>
 </html>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>
