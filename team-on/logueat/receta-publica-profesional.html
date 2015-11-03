@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Timon · Nombre Receta Pro</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="MyIcons/flaticon-reducido.css">
+    <!-- <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom -->
+    <link href="timon.css" rel="stylesheet">
+    <script src="timon.js"></script>
+
+    <script>
+      $(function(){
+        $("#footer").load("footer.html");
+        $("#header").load("header.html");
+        $("#recom1").load("resumen-receta-recomendadas.html");
+        $("#recompro1").load("resumen-receta-recomendadas-profesional.html");
+        $("#recom3").load("resumen-receta-recomendadas.html");
+        $("#recom4").load("resumen-receta-recomendadas.html");
+      });
+    </script>
+
+  </head>
+
+  <body>
+    <header>
+      <div id="header"></div>
+    </header>
+
+    <!-- Receip body -->
+    <div class="container" style="margin-top: -15px">
+      <div class="col-lg-12">
+        <ol id="recipe-breadcumb" class="breadcrumb" style="background-color: #FFF">
+          <li><a href="#" class="orange">Lorem</a></li>
+          <li><a href="#" class="orange">Ipsum</a></li>
+          <li class="active">Nombre Receta</li>
+        </ol>
+
+        <div id="recipe-header" class="page-header row" style="padding-bottom: 0em; margin-bottom: 0.75em;">
+          <h1 class="col-md-9">
+            Nombre Receta
+            <small style="font-size: 45%">
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1h |
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers. |
+              <span class="label label-success">Sencillo</span>
+            </small>
+          </h1>
+          <div class="col-md-3">
+            <div class="pull-right" style="font-size: 150%; line-height: 3em; margin-top: 1em; margin-bottom: -2em; margin-right: 35px">
+              <span id="stars-existing" class="starrr" style="color: #ee8b2d;" data-rating='4'></span>
+              <small>(200)</small>
+            </div>
+          </div>
+        </div>
+
+        <div id="recipe-subheader" class="row">
+          <div class="col-lg-9">
+            </span>
+            <a href="perfil-profesional.html" style="text-decoration:none; color:#333;"><img class="user-img" src="http://placehold.it/50x50" style="margin-right: 15px"></img> <b>Nombre Autor</b><span  class="gold brown label label-default" style="margin-left:5px;">PRO<i class="Rflaticon-chef31-reducido"></i></span></a>
+            <button class="dark-brown-bg orange" style="border-radius: 3px !important;border: 0px solid white !important;color: white !important; margin-left: 15px">
+              <i class="glyphicon glyphicon-hand-right"></i>  Seguir
+            </button>
+          </div>
+          <div class="col-lg-3">
+            <div class="row lead pull-right" style="margin-right: 30px; margint-bottom: 20px">
+              <span data-toggle="button" aria-pressed="false" autocomplete="off" >
+                <button type="button" class="btn btn-default" style="margin-right:10px" data-toggle="tooltip" data-placement="left" title="Marca como favorita">
+                  <i class="fa fa-heart"></i>
+                </button>
+              </span>
+              <button type="button" class="btn btn-default" style="margin-right:10px" data-toggle="tooltip" data-placement="bottom" title="Crea una nueva receta a partir de esta">
+                <i class="fa fa-code-fork"></i>
+              </button>
+              <!-- Split button -->
+              <div class="btn-group" data-toggle="tooltip" data-placement="left" title="Comparte la receta">
+                <button type="button" class="btn btn-default"><i class="fa fa-share-alt"></i></button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Google +</a></li>
+                  <li><a href="#">Pinterest</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div id="center" style="margin: auto; max-width: 1090px">
+            <div class="row">
+              <div class="col-md-7 col-lg-7">
+                <div class="featured-article">
+                  <a href="#">
+                    <img src="http://placehold.it/640x300" alt="" class="thumb">
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-5 col-lg-5">
+                <ul class="media-list main-list">
+                  <li class="media">
+                    <a class="pull-left" href="#">
+                      <img class="media-object" src="http://placehold.it/260x90" alt="...">
+                    </a>
+                  </li>
+                  <li class="media">
+                    <a class="pull-left" href="#">
+                      <img class="media-object" src="http://placehold.it/260x90" alt="...">
+                    </a>
+                  </li>
+                  <li class="media">
+                    <a class="pull-left" href="#">
+                      <img class="media-object" src="http://placehold.it/260x90" alt="...">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="page-header">
+              <h4>Ingredientes</h4>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>1 cucharada</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>1 L</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>100 ml</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>2 unidades</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>150 g</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>140 ml</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>120 ml</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>450 g</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-right col-md-3">
+                <b>3 cucharadas</b>
+              </div>
+              <div class="col-md-9">
+                Lorem ipsum dolor sit amet
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="page-header">
+              <h4>Descripción</h4>
+            </div>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="page-header">
+            <h3>Elaboración</h3>
+          </div>
+          <div>
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-md-1">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x" style="color: #FFF">1</i>
+                </span>
+              </div>
+              <p class="col-md-11">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
+            </div>
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-md-1">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x" style="color: #FFF">2</i>
+                </span>
+              </div>
+              <p class="col-md-11">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
+            </div>
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-md-1">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x" style="color: #FFF">3</i>
+                </span>
+              </div>
+              <p class="col-md-11">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
+            </div>
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-md-1">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x" style="color: #FFF">4</i>
+                </span>
+              </div>
+              <p class="col-md-11">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
+            </div>
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-md-1">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x" style="color: #FFF">5</i>
+                </span>
+              </div>
+              <p class="col-md-11">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid orange" style="background-color: #8bc34a">
+      <div id="recom1"></div>
+      <div id="recompro1"></div>
+      <div id="recom3"></div>
+      <div id="recom4"></div>
+    </div>
+
+    <!-- Comment Secition -->
+    <div class="container-fluid" style="background-color: #F4F4F4">
+      <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+        <form>
+          <div class="form-group" style="margin-top: 25px">
+            <label for="comment">Tu comentario</label>
+            <textarea name="comment" class="form-control" style="resize: none" rows="3" placeholder="Pon aquí tu comentario..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+        <br><br>
+
+        <div class="row" style="margin-bottom: 25px">
+          <div class="row">
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <blockquote style="margin-left: 20px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </blockquote>
+            <div class="comment-meta">
+              <span><a class="orange" href="#">Responder</a></span>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px;margin-left: 30px">
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <blockquote style="margin-left:20px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </blockquote>
+            <div class="comment-meta">
+              <span><a class="orange" href="#">Responder</a></span>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 25px; margin-bottom: 25px">
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <blockquote style="margin-left: 20px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </blockquote>
+            <div class="comment-meta">
+              <span><a class="orange" href="#">Responder</a></span>
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom: 25px">
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <blockquote style="margin-left: 20px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </blockquote>
+            <div class="comment-meta">
+              <span><a class="orange" href="#">Responder</a></span>
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom: 25px">
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <blockquote style="margin-left: 20px">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            </blockquote>
+            <div class="comment-meta">
+              <span><a class="orange" href="#">Responder</a></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="footer"></div>
+    </footer>
+  </body>
+</html>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

@@ -1,0 +1,20 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="Rflaticon-"]:before, [class*=" Rflaticon-"]:before,
+[class^="Rflaticon-"]:after, [class*=" Rflaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 15px;
+        color:#5D4037;
+font-style: normal;
+margin-left: 5px;
+}.Rflaticon-chef31-reducido:before {
+	content: "\e000";
+}

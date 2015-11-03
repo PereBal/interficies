@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Timon · Homepage</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="docs.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom -->
+    <link href="timon.css" rel="stylesheet">
+    <script src="timon.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function(e){
+          $('.search-panel .dropdown-menu').find('a').click(function(e) {
+          e.preventDefault();
+          var param = $(this).attr("href").replace("#","");
+          var concept = $(this).text();
+          $('.search-panel span#search_concept').text(concept);
+          $('.input-group #search_param').val(param);
+        });
+      });
+      </script>
+
+      <script>
+        $(function(){
+          $("#footer").load("footer.html");
+          $('#header').load("header.html");
+          $("#resumen-receta1").load("resumen-receta-homepage-profesional.html");
+          $("#resumen-receta2").load("resumen-receta-homepage.html");
+          $("#resumen-receta3").load("resumen-receta-homepage.html");
+        });
+      </script>
+
+      <script type="text/javascript">
+       function Hover(id){
+          var newid=(id+="q");
+
+          var elem=document.getElementById(newid);
+            /*.removeClass("glyphicon-ok");*/
+            /*addClass("glyphicon-remove");*/
+
+            elem.className -= 'glyphicon glyphicon-ok';
+            elem.className += ' glyphicon glyphicon-remove';
+
+        }
+
+        function NotHover(id){
+          var newid=(id+="q");
+
+          var elem=document.getElementById(newid);
+            /*.removeClass("glyphicon-ok");*/
+            /*addClass("glyphicon-remove");*/
+
+             elem.className -= 'glyphicon glyphicon-remove';
+            elem.className += ' glyphicon glyphicon-ok';
+
+        }
+
+      </script>
+
+      <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
+      </script>
+  </head>
+  <body>
+    <header>
+      <div id="header"></div>
+    </header>
+
+    <div class="container-fluid" style="margin-top: -15px">
+      <div class="col-lg-12">
+        <div class="col-md-9"> <!-- div principal de las categorias-->
+          <div class="bs-glyphicons" style="padding-left:5em; padding-right:1em">
+            <h4 class="">Categorías</h4>
+            <ul class="bs-glyphicons-list">
+
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 1</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 2</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 3</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 4</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 5</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 6</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 7</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 8</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 9</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 10</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-scale" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 11</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 12</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 13</span>
+                </li>
+              </a>
+              <a class="" href="filtro-categoria.html" style="text-decoration:none; color:#333;">
+                <li class="" style="margin: 0.33em;">
+                  <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                  <span class="glyphicon-class">Categoría 14</span>
+                </li>
+              </a>
+            </ul>
+          </div>
+
+          <div class="bs-glyphicons" style="padding-left:5em; padding-right:4em">
+            <h4 class="">Recetas mejor valoradas</h4>
+            <div id="resumen-receta1"></div>
+            <div id="resumen-receta2"></div>
+            <div id="resumen-receta3"></div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="panel panel-default" style="margin-right: 3.5em; margin-left: -3em;">
+            <h4 class="" style="padding-top: 0.5em; padding-left: 1em;">Usuarios mejor valorados</h4>
+                        <blockquote style="border-left: 0px; padding-left:1em;">
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="<grey">
+              <span class="plug-in-pro gold brown label label-default" style="float:right;">PRO</span>
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="orange">
+              <span class="plug-in-pro gold brown label label-default" style="float:right;">PRO</span>
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="" style="text-decoration:none; float:right;" class="orange">
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="" style="text-decoration:none; float:right;" class="grey">
+              <span class="plug-in-pro gold brown label label-default" style="float:right;">PRO</span>
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="" style="text-decoration:none; float:right;" class="orange">
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <a href="#" style="text-decotarion:none;"><small>Ver más...</small></a>
+
+            </blockquote>
+          </div>
+          <div class="panel panel-default" style="margin-right: 3.5em; margin-left: -3em;">
+            <h4 class="" style="padding-top: 0.5em; padding-left: 1em;">Usuarios más activos</h4>
+            <blockquote style="border-left: 0px; padding-left:1em;">
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="#" style="text-decoration:none; float:right;" class="grey">
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="#" style="text-decoration:none; float:right;" class="orange">
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="#" style="text-decoration:none; float:right;" class="grey">
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="#" style="text-decoration:none; float:right;" class="orange">
+              <span class="plug-in-pro gold brown label label-default" style="float:right;">PRO</span>
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+                <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <p style="margin-bottom: 15px;"><img href="" src="http://placehold.it/25x25" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario <a href="#" style="text-decoration:none; float:right;" class="orange">
+              <button data-toggle="tooltip" data-placement="right" title="Seguir" class="dark-brown-bg  mini-boton-pers ">
+                <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+
+              <a href="#" style="text-decotarion:none;"><small>Ver más...</small></a>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="footer"></div>
+    </footer>
+  </body>
+</html>
