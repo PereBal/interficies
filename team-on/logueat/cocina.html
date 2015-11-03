@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="es">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Timon · Mi Cocina</title>
+
+
+      <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="timon.css">
+      <link rel="stylesheet" href="docs.min.css">
+      <link rel="stylesheet" href="MyIcons/flaticon-reducido.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="bootstrap/js/npm.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $(".btn-pref .btn").click(function () {
+              $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+              // $(".tab").addClass("active"); // instead of this do the below
+              $(this).removeClass("btn-default").addClass("btn-primary");
+          });
+          });
+      </script>
+
+      <script src="jquery.js"></script>
+    <script>
+    $(function(){
+      $("#includedContent").load("footer.html");
+      $("#header").load("header.html");
+      $("#rcrear").load("crear-receta.html");
+      $("#rpu2").load("resumen-receta-publica-propia.html");
+      $("#rpu3").load("resumen-receta-publica-propia.html");
+      $("#rpu4").load("resumen-receta-publica-propia.html");
+      $("#rpu11").load("resumen-receta-publica-propia.html");
+      $("#rpu12").load("resumen-receta-publica-propia.html");
+      $("#rpu13").load("resumen-receta-publica-propia.html");
+      $("#rpu14").load("resumen-receta-publica-propia.html");
+      $("#rpr1").load("resumen-receta-privada.html");
+      $("#rpr2").load("resumen-receta-privada.html");
+      $("#rpr3").load("resumen-receta-privada.html");
+      $("#rpr4").load("resumen-receta-privada.html");
+
+      $("#rfav1").load("resumen-receta-favorita.html");
+      $("#rfav2").load("resumen-receta-favorita.html");
+      $("#rfav3").load("resumen-receta-favorita-profesional.html");
+      $("#rfav4").load("resumen-receta-favorita-profesional.html");
+      $("#rfav5").load("resumen-receta-favorita.html");
+      $("#rfav6").load("resumen-receta-favorita.html");
+      $("#rfav7").load("resumen-receta-favorita-profesional.html");
+      $("#rfav8").load("resumen-receta-favorita.html");
+    });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div id="header"></div>
+    </header>
+
+    <div class="container-fluid" style="margin-top: -15px">
+      <div class="col-lg-12">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                  <button style="border: 0em none; border-bottom-left-radius: 0px;" type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class=" glyphicon glyphicon-globe" aria-hidden="true"></span>
+                    <div class="hidden-xs">Timeline</div>
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button style="border: 0em none; " type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                    <div class="hidden-xs">Mis recetas</div>
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button style="border: 0em none; border-bottom-right-radius: 0px;" type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                    <div class="hidden-xs">Recetas Favoritas</div>
+                  </button>
+                </div>
+              </div>
+
+          <div class="well" style="background-color: white ! important; border: 0px none;">
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="tab1">
+
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="media-heading" style="color:#424242"><a href="receta-publica.html" class="orange">Receta_01</a> ha sido <b style="color:black;">creada</b> por
+                          <a href="perfil.html" class="orange">Usuario_01</a>, ¡échale un vistazo!
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Ahora</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media brown-bg" style="padding:0.5em;">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body ">
+                        <h5 class="media-heading">Has añadido a <b style="color:black;">favoritos</b> la receta <a href="receta-publica-fav.html" class="orange">Receta_Fav_01</a>!
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hace 44 segundos</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="media-heading" style="color:#424242;"><a href="receta-publica.html" class="orange">Receta_02</a> ha sido <b style="color:black">compartida</b> por <a href="perfil.html" class="orange">Usuario_02</a>, ¿Y tu qué opinas?
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hace 5 minuntos.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="media-heading" style="color:#424242;"><a href="receta-publica.html" class="orange">Receta_03</a> ha sido <b style="color:black">compartida</b> por <a href="perfil.html" class="orange">Usuario_02</a>, ¿Y tu qué opinas?
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hace 35 minuntos.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="media-heading" style="color:#424242;"><a href="receta-publica.html" class="orange">Receta_03</a> ha sido <b style="color:black;">editada</b> por <a href="perfil.html" class="orange">Usuario_02</a>, ¡descubre las novedades!
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hace 37 minutos.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="media-heading" style="color:#424242;"><a href="receta-publica.html" class="orange">Receta_01</a> de <a href="perfil.html" class="orange">Usuario_01</a> ha sido añadida a <b style="color:black;">favoritos</b> por <a href="perfil.html" class="orange">Usuario_02</a>.
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hace 3 horas aproximadamente.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media brown-bg" style="padding:0.5em;">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body ">
+                        <h5 class="media-heading">Has <b style="color:black;">creado</b> la receta <a href="receta-publica-propia.html" class="orange">Receta_04</a>!
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hace 4 horas aproximadamente.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media brown-bg" style="padding:0.5em;">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body ">
+                        <h5 class="media-heading"><a href="perfil.html" class="orange">Usuario_02</a> ha comenzado a <b style="color:black;">seguirte</b>!
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hoy a las 11:39.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                      </div>
+                    </div>
+
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#"><img class="media-object" src="http://placehold.it/64x64"></a>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="media-heading" style="color:#424242;"><a href="perfil.html" class="orange">Usuario_01</a> ha comenzado a <b style="color:black;">seguir</b> a <a href="perfil.html" class="orange">Usuario_02</a>.
+                          <small> <span class=" glyphicon glyphicon-time" aria-hidden="true"></span> Hoy a las 10:10.</small>
+                        </h5>
+                        <p>Aquí va una pequeña descripción</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><i class="fa fa-circle-o-notch fa-spin fa-2x" style="margin-bottom: 0.5em; margin-left: 48.5%; color:#777;" ></i></div>
+                  </div>
+
+
+                  <div class="tab-pane fade in" id="tab2">
+                    <div id="rcrear"></div>
+                    <div id="rpu2"></div>
+                    <div id="rpr1"></div>
+                    <div id="rpu3"></div>
+                    <div id="rpu4"></div>
+                    <div id="rpu5"></div>
+                    <div id="rpr2"></div>
+                    <div id="rpu11"></div>
+                    <div id="rpu12"></div>
+                    <div id="rpr3"></div>
+                    <div id="rpr4"></div>
+                    <div id="rpu13"></div>
+                    <div id="rpu14"></div>
+                  </div>
+
+                  <div class="tab-pane fade in" id="tab3">
+                    <div id="rfav1"></div>
+                    <div id="rfav2"></div>
+                    <div id="rfav3"></div>
+                    <div id="rfav4"></div>
+                    <div id="rfav5"></div>
+                    <div id="rfav6"></div>
+                    <div id="rfav7"></div>
+                    <div id="rfav8"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="includedContent"></div>
+    </footer>
+
+    <div class="floating-button">
+      <!-- link that opens popup -->
+      <a href="#" title="Crea una nueva receta" data-toggle="modal" data-target="#crear-receta-modal">
+        <i class="star glyphicon glyphicon-plus"></i>
+      </a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade bs-example-modal-lg" id="crear-receta-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title" id="myModalLabel">Crear Receta</h2>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="titulo">Título</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="titulo" placeholder="Título de la receta...">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="description">Descripción</label>
+                <div class="col-sm-9">
+                  <textarea type="textarea" class="form-control" id="description" rows="4" style="resize: none" placeholder="Descripción corta de la receta..."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="privacidad">Privacidad</label>
+                <div class="col-sm-9" id="privacidad">
+                  <label class="radio-inline col-sm-5"><input type="radio" name="optradio1">
+                    <span class="fa fa-unlock fa-2x" style="margin-right: 15px"></span>Receta Publica
+                  </label>
+                  <label class="radio-inline col-sm-4"><input type="radio" name="optradio1">
+                    <span class="fa fa-lock fa-2x" style="margin-right: 15px"></span>Receta Privada
+                  </label>
+                </div>
+              </div>
+              <div class="page-header" style="margin: 40px 50px 20px !important">
+                <h4>Preparación de la receta</h4>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="time">Tiempo</label>
+                <div class="col-sm-3">
+                  <div class="input-group spinner" id="time">
+                    <input type="text" class="form-control" value="0min">
+                    <div class="input-group-btn-vertical">
+                      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <label class="control-label col-sm-2" for="time">Comensales</label>
+                <div class="col-sm-3">
+                  <div class="input-group spinner" id="time">
+                    <input type="text" class="form-control" value="0 pers">
+                    <div class="input-group-btn-vertical">
+                      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="dificultad">Dificultad</label>
+                <div class="col-sm-9" id="dificultad">
+                  <label class="radio-inline"><input type="radio" name="optradio">
+                    <span class="label label-success">Sencillo</span>
+                  </label>
+                  <label class="radio-inline"><input type="radio" name="optradio">
+                    <span class="label label-info">Medio</span>
+                  </label>
+                  <label class="radio-inline"><input type="radio" name="optradio">
+                    <span class="label label-warning">Dificil</span>
+                  </label>
+                  <label class="radio-inline"><input type="radio" name="optradio">
+                    <span class="label label-danger"> Muy Dificil</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="hidden" name="count" value="1"/>
+                <div class="control-group" id="fields">
+                    <label class="control-label col-sm-2" for="field1">Ingredientes</label>
+                    <div class="col-sm-9">
+                      <div class="controls" id="profs">
+                          <div class="input-append">
+                            <div class="col-sm-3 pull-left" style="padding-left: 0px ! important;">
+                              <input class="form-control" id="subfield1" name="subprof1" type="text" placeholder="Cantidad"/>
+                            </div>
+                            <div id="group-of-ingredientes" class="col-sm-8 pull-left" style="padding-left: 0px ! important;padding-right: 5px ! important;">
+                              <input class="form-control" id="field1" name="prof1" type="text" placeholder="Ingrediente"/>
+                            </div>
+                            <div class="col-sm-1">
+                              <button id="b1" class="btn btn-default add-more" style="text-shadow:0px 0px 0px #FFF !important;background-color: #8BC34A !important;border-radius: 3px !important;color: #FFF !important;" type="button">+</button>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="hidden" name="count" value="1"/>
+                <div class="control-group" id="fields">
+                    <label class="control-label col-sm-2" for="field1">Elaboracion</label>
+                    <div class="col-sm-9">
+                      <div class="controls" id="profs">
+                          <div class="input-append" s>
+                            <div id="group-of-steps" class="col-sm-11 pull-left" style="padding-left: 0px ! important;padding-right: 5px">
+                              <textarea type="textarea" class="form-control" id="step1" rows="4" placeholder="Paso de la elaboracion..."></textarea>
+                            </div>
+                            <div class="col-sm-1" style="padding-top: 10px">
+                              <button id="b1" class="btn btn-default add-more" style="text-shadow:0px 0px 0px #FFF !important;background-color: #8BC34A !important;border-radius: 3px !important;color: #FFF !important;" type="button">+</button>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="page-header" style="margin: 40px 50px 20px !important">
+                <h4>Fotos de la receta</h4>
+              </div>
+              <!-- File Button -->
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="filebutton">Foto principal</label>
+                <div class="col-md-2">
+                  <input id="filebutton" name="filebutton" class="input-file" type="file">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="filebutton">Foto secundaria</label>
+                <div class="col-md-9">
+                  <input id="filebutton" name="filebutton" class="input-file" type="file">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="filebutton">Foto secundaria</label>
+                <div class="col-md-9">
+                  <input id="filebutton" name="filebutton" class="input-file" type="file">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="filebutton">Foto secundaria</label>
+                <div class="col-md-9">
+                  <input id="filebutton" name="filebutton" class="input-file" type="file">
+                </div>
+              </div>
+           </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-default" style="text-shadow:0px 0px 0px #FFF !important;background-color: #8BC34A !important;border-radius: 3px !important;color: #FFF !important;">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
