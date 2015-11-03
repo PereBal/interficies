@@ -5,7 +5,7 @@
       <legend>Favourite Recipes</legend>
       <uib-carousel interval="-1" no-wrap="false">
         <uib-slide ng-repeat="recipe in fav_recipes" active="recipe.active">
-          <img ng-src="{{recipe.img}}" style="margin:auto;" ng-click="view(recipe)">
+          <img ng-src="{{recipe.img}}" class="hand-cursor" style="margin:auto;" ng-click="view(recipe)">
           <div class="carousel-caption">
             <h4>{{ recipe.title }}</h4>
             <p>{{recipe.description}}</p>
