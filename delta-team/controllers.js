@@ -749,6 +749,12 @@ function UsrEditRecipeCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
 function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
   loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+    var eval = function (elem) {
+      return elem.userId == eval.id;
+    }
+    eval.id = $routeParams.userId;
+    $scope.recipes = filter($rootScope.recipes, eval);
+
     $scope.edit = false;
     $scope.readOnly = function () {
         return !$scope.edit || !$rootScope.allowEdit();
