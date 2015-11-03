@@ -603,7 +603,7 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
     }
 
     $scope.fork = function (recipe) {
-      alert('Iniciar fork de la receta ' + recipe.title);
+      alert('Not yet implemented, the recipe ' + recipe.title + 'will be added to your recipes and then you wil be able to edit it');
     }
 
 
