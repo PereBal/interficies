@@ -1,9 +1,111 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 col-md-offset-2">
-    <legend>News</legend>
-      <div class="row" ng-repeat="recipe in recipes | orderBy:predicate:reverse">
-        <div class="well">
+    <div class="col-md-4 pull-right">
+      <div class="button-group">
+        <button class="btn btn-primary general-btn" ng-click="adding=!adding">New recipe</button>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="adding">
+
+  <div class="col-md-10 col-md-offset-1">
+  <legend class="top-row-buffer"></legend>
+    <div class="row">
+  <div class="col-md-4">
+        <div class="from-group">
+          <div class="form-inline">
+            <input class="form-control" placeholder="Recipe Name" ng-model="recipeNew.title"></input>
+          </div>
+        </div>
+        <div class="from-group top-separator">
+          <div class="form-inline">
+            <span>
+              <i class="fa fa-cutlery">
+                <input class="form-control" style="width: 100px; margin-left:10px; margin-right:10px; " placeholder="Recipe difficulty" ng-model="recipeNew.hardness"></input>
+              </i>
+            </span>
+            <span>
+              <i class="fa fa-clock-o">
+                <input class="form-control" style="width: 50px; margin-left:10px;" placeholder="Recipe hours" ng-model="recipeNew.time.hours"></input> :
+              </i>
+            </span>
+            <input class="form-control" style="width: 50px; margin-right:10px;" placeholder="Recipe minutes" ng-model="recipeNew.time.minutes"></input>
+            <span>
+              <i class="fa fa-users">
+                <input class="form-control" style="width: 50px; margin-left:10px; margin-top:10px;" placeholder="Recipe diners" ng-model="recipeNew.eaters.number"></input>
+              </i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 top-row-buffer">
+        <uib-rating ng-model="recipeNew.rating" readonly="false" on-hover="" on-leave="overStar = null"
+          aria-labelledby="default-rating" state-on="yellow" class="hand-cursor pull-left">
+        </uib-rating>        
+      </div>
+    </div>
+
+    <div class="row top-row-buffer">
+      <div class="col-md-4 top-separator">
+        <img ng-src="images/add.png" ng-click="addImg();" class="hand-cursor" style="height: 200px; width:200px;"></img>
+      </div>
+
+      <div class="col-md-8 top-separator">
+        <legend>Ingredients</legend>
+        <div ng-repeat="ingredient in ingredients">
+          <div class="form-inline top-separator">
+            <input class="form-control" placeholder="Ingredient" style="width: 300px" ng-model="ingredient.name"></input>
+            <input class="form-control" placeholder="Amount" style="width: 100px" ng-model="ingredient.amount"></input>
+            <input class="form-control" placeholder="Unit" style="width: 100px" ng-model="ingredient.unit"></input>
+            <button class="btn btn-danger general-btn" ng-click="removeIngredient(ingredient);"><span><i class="fa fa fa-minus"></i></span></button>
+          </div>
+        </div>
+        <div class="top-separator pull-right">
+          <button class="btn btn-success general-btn" ng-click="addIngredient();"><span><i class="fa fa fa-plus"></i></span></button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4 top-separator">
+        <legend>Description</legend>
+        <textarea rows="5" placeholder="description" class="col-md-12" ng-model="recipeNew.description"></textarea>
+      </div>
+
+      <div class="col-md-8 top-separator">
+        <legend>Steps</legend>
+        <div ng-repeat="step in steps">
+          <div class="form-inline top-separator">
+            <input class="form-control" placeholder="Description" style="width: 400px" ng-model="step.description"></input>
+            <button class="btn btn-danger" ng-click="removeStep(step);"><span><i class="fa fa fa-minus"></i></span></button>
+          </div>
+        </div>
+        <div class="top-separator pull-right">
+         <button class="btn btn-success" ng-click="addStep();"><span><i class="fa fa fa-plus"></i></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row top-row-buffer">
+      <div class="col-md-1 col-md-offset-11">
+        <button class="btn btn-success general-btn" ng-click="addUserRecipe();">Add recipe</button>
+      </div>
+    </div>
+
+    <legend class="top-separator"></legend>
+
+    </div>
+  </div>
+
+
+
+    <div class="col-md-8 col-md-offset-2">
+    <legend>My recipes</legend>
+      <div class="row" ng-repeat="recipe in recipes track by $index">
+        <div class="wrapper">
         <div class="row">
           <div class="col-md-3">
             <img class="img-responsive img-circle" ng-src="{{recipe.img}}"></img>
@@ -43,29 +145,17 @@
                   <div class="row">
                   <div class="col-md-10">
                     <div style="padding-top: 50px" class="btn-group pull-right">
-                      <button class="btn btn-success" ng-show="user" ng-click="fork(recipe.id)">Borrow</button>
-                      <button class="btn btn-primary" ng-click="view(recipe.id)">View</button>
+                      <button class="btn btn-danger" ng-show="user" ng-click="deleteUserRecipe($index)">Delete</button>
+                      <button class="btn btn-primary" ng-click="view(recipe)">View</button>
                     </div>
                   </div>
                 </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-      </div>
-    </div>
-    <div class="col-md-2">
-    <legend>Most rated users</legend>
-      <div class="well">
-        <div class="row">
-          <div class="col-xs-3 col-md-6 text-center hand-cursor" ng-repeat="user in users">
-            <img class="img-responsive img-circle" ng-src="{{user.img}}" ng-click="viewUser(user.id)" style="width: 100px; height: 100px"></img>
-            <legend><small>{{user.name}}</small></legend>
-          </div>
-        </div>
       </div>
     </div>
   </div>

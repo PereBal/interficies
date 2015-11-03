@@ -60,6 +60,11 @@
   background-color: #EFEFEF;
 }
 
+.selected-item {
+  color: #000;
+  background-color: #EFEFEF; 
+}
+
 @media (min-width: 768px) {
   .bs-glyphicons {
     margin-right: 0;

@@ -75,9 +75,12 @@
                   <legend class="text-left" style="font-size: 12px; margin-bottom: 10px;">Country</legend>
                   <div class="col-md-8">
                     <ul class="bs-glyphicons-list text-center list-inline">
-                      <li class="hand-cursor" ng-repeat="region in firstRegions track by $index" ng-show="showRegions == 1">{{region}}</li>
-                      <li class="hand-cursor" ng-repeat="region in secondRegions track by $index" ng-show="showRegions == 2">{{region}}</li>
-                      <li class="hand-cursor" ng-repeat="region in allRegions track by $index" ng-show="showRegions == 3">{{region}}</li>
+                      <li class="hand-cursor" ng-repeat="region in firstRegions track by $index" ng-class="region.selected ? 'selected-item' : ''"
+                                ng-click="selectFilter($index)" ng-show="showRegions == 1">{{region.name}}</li>
+                      <li class="hand-cursor" ng-repeat="region in secondRegions track by $index" ng-class="region.selected ? 'selected-item' : ''"
+                                ng-click="selectFilter($index)" ng-show="showRegions == 2">{{region.name}}</li>
+                      <li class="hand-cursor" ng-repeat="region in allRegions track by $index" ng-class="region.selected ? 'selected-item' : ''" 
+                                ng-click="selectFilter($index)" ng-show="showRegions == 3">{{region.name}}</li>
                     </ul>
                   </div>
                   <div class="col-md-2">
@@ -174,9 +177,6 @@
                 Apply filter
               </button>
             </div>
-            <label class="pull-left color-grey" ng-show="!apliedFilter"><small>Recipes</small></label>
-            <label class="pull-left color-grey" ng-show="apliedFilter"><small>Recipes / Spain </small></label>
-
           </div>
         </div><!-- /.navbar-collapse -->
 

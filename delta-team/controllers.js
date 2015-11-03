@@ -252,9 +252,94 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
     }
   }
 
-  $rootScope.firstRegions = [ 'Spain', 'Italy', 'France', 'Germany', 'England' ];
-  $rootScope.secondRegions = [ 'North america', 'Argentina', 'Japan', 'China', 'Burundy' ];
-  $rootScope.allRegions = [ 'Spain', 'Italy', 'France', 'Germany', 'England', 'North america', 'Argentina', 'Japan', 'China', 'Burundy' ];
+  $rootScope.firstRegions = [ 
+    {
+      name:'Spain',
+      selected:true
+    },
+    {
+      name:'Italy',
+      selected:false
+    },
+    {
+      name:'France',
+      selected:false
+    },
+    {
+      name:'Germany',
+      selected:false
+    },
+    {
+      name:'England',
+      selected:false
+    }
+  ];
+  $rootScope.secondRegions = [
+    {
+      name:'North america',
+      selected:false
+    },
+    {
+      name:'Argentina',
+      selected:false
+    },
+    {
+      name:'Japan',
+      selected:false
+    },
+    {
+      name:'China',
+      selected:false
+    },
+    {
+      name:'Burundy',
+      selected:false
+    }
+  ];
+  $rootScope.allRegions = [ 
+    {
+      name:'Spain',
+      selected:false
+    },
+    {
+      name:'Italy',
+      selected:false
+    },
+    {
+      name:'France',
+      selected:false
+    },
+    {
+      name:'Germany',
+      selected:false
+    },
+    {
+      name:'England',
+      selected:false
+    },
+    {
+      name:'North america',
+      selected:true
+    },
+    {
+      name:'Argentina',
+      selected:false
+    },
+    {
+      name:'Japan',
+      selected:false
+    },
+    {
+      name:'China',
+      selected:false
+    },
+    {
+      name:'Burundy',
+      selected:false
+    }
+
+  ];
+
 
   $rootScope.showRegions = 1;
   $rootScope.apliedFilter = false;
@@ -441,7 +526,9 @@ function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
   }
 
   $scope.save = function (user) {
-    var args = [$location, user];
+
+    alert('Not yet implemented, if you want to feel the experience of beeing one of our users, try it with this login -> usr: foo@mail.com , pass:foo');
+    /*var args = [$location, user];
     loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams, args) {
       var eval = function (elem) {
         return elem.id == eval.id;
@@ -451,7 +538,7 @@ function LoginCtrl($rootScope, $scope, $http, $location, $routeParams) {
       save($rootScope.users, args[1], eval);
       $rootScope.user = args[1];
       args[0].path('/users/' + args[1].id);
-    }, args);
+    }, args);*/
   }
 }
 
@@ -483,6 +570,40 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
     $scope.fork = function (recipe) {
       alert('Iniciar fork de la receta ' + recipe.title);
     }
+
+
+    $scope.userNews = [
+    {
+      source: 'user1',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+    {
+      source: 'user5',
+      action: 'añadio a favoritos a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+    {
+      source: 'user10',
+      action: 'lcompartio en twitter a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+    {
+      source: 'user8',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+    {
+      source: 'user1',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    },
+    {
+      source: 'user1',
+      action: 'like a la receta de pedro',
+      img: 'images/carrey.jpeg'
+    }];
+
   }, args);
 
 }
@@ -495,7 +616,24 @@ function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
     }
     eval.id = $routeParams.userId;
 
+    var adding = false;
+
+    $scope.recipeNew = [];
+
     $scope.recipes = filter($rootScope.recipes, eval);
+
+    $scope.ingredients = [{
+            name: '',
+            amount: 0,
+            unit: ''
+        }];
+
+      $scope.steps=[{
+         description: ''
+      }];
+
+      $scope.img = 'images/add.png';
+
 
     $scope.view = function (recipe) {
       args[0].path('/users/' + $routeParams.userId + '/recipes/' + recipe.id);
@@ -508,11 +646,43 @@ function UsrRecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
     $scope.recipePrivacyClass = function (recipe) {
       return (recipe.private) ? 'btn btn-danger btn-xs':'btn btn-success btn-xs';
     }
+
+    $scope.addIngredient = function () {
+      $scope.ingredients.push({name: "", amount: 0.0, unit: ""});
+    }
+
+    $scope.removeIngredient = function (ingredient) {
+      $scope.ingredients.splice($scope.ingredients.indexOf(ingredient), 1);
+    }
+
+    $scope.addStep = function () {
+      $scope.steps.push({name: "", amount: 0.0, unit: ""});
+    }
+
+    $scope.removeStep = function (step) {
+      $scope.steps.splice($scope.steps.indexOf(step), 1);
+    }
+
+    $scope.addUserRecipe = function() {
+      $scope.adding = false;
+      $scope.recipeNew.id = $scope.recipes.lenght + 1;
+      $scope.recipeNew.img = $scope.img;
+      $scope.recipeNew.author = 'Steve';
+
+      $scope.recipes.push($scope.recipeNew);
+  }
+
+    $scope.deleteUserRecipe = function(id) {
+
+      $scope.recipes.splice(id, 1);
+  }
+
   }, args);
 }
 
 function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
   loadContext($rootScope, $scope, $http, $routeParams, function ($rootScope, $scope, $http, $routeParams) {
+
     $scope.addIngredient = function () {
       $scope.recipe.ingredients.push({name: "", amount: 0.0, unit: ""});
     }
@@ -544,6 +714,7 @@ function UsrRecipeCtrl($rootScope, $scope, $http, $routeParams) {
 
     $scope.alertPrivacy = function () {
       alert('The privacy of the recipe ' + $scope.recipe.title + ' will change shortly as requested');
+
     }
 
   });

@@ -1,5 +1,15 @@
 <div class="container-fluid top-row-buffer">
-  <div class="row">
+  <div class="row"  ng-show="!apliedFilter">
+    <div class="col-md-2 col-md-offset-2">
+      <label>Recipes</label>
+    </div>
+  </div>
+    <div class="row"  ng-show="apliedFilter">
+    <div class="col-md-2 col-md-offset-2">
+      <label>Recipes / Spain</label>
+    </div>
+  </div>
+  <div class="row top-separator">
     <div class="col-md-6 col-md-offset-2" ng-show="!apliedFilter">
     <legend>News</legend>
       <div class="row" ng-repeat="recipe in recipes | hidePrivateRecipes | orderBy:predicate:reverse">
