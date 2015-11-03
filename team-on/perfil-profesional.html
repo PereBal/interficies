@@ -50,6 +50,34 @@
     });
     </script> 
 
+    <script type="text/javascript">
+
+       function Hover(id){
+          var newid=(id+="q");
+
+          var elem=document.getElementById(newid);
+            /*.removeClass("glyphicon-ok");*/
+            /*addClass("glyphicon-remove");*/
+            
+            elem.className -= 'glyphicon glyphicon-ok';
+            elem.className += ' glyphicon glyphicon-remove';
+
+        }
+
+        function NotHover(id){
+          var newid=(id+="q");
+
+          var elem=document.getElementById(newid);
+            /*.removeClass("glyphicon-ok");*/
+            /*addClass("glyphicon-remove");*/
+            
+             elem.className -= 'glyphicon glyphicon-remove';
+            elem.className += ' glyphicon glyphicon-ok';
+
+        }
+
+      </script>
+
   </head>
 
   <body> 
@@ -235,6 +263,7 @@
       <h3 style="position: absolute; margin-top: -1.55em !important; margin-left:-2.25em; "><i class="fa fa-share-alt"></i> 17</h3>
       <h3 style="position: absolute; margin-top: -1.55em ! important; margin-left: 1.75em; border-left: 3px solid; padding-left: 1.5em; ">230 <small>Siguiendo</small></h3>
       <h3 style="position: absolute; margin-top: -1.55em !important; margin-left:9.5em; ">198 <small>Seguidores</small></h3>
+      <button class="dark-brown-bg orange boton-pers "><i class="glyphicon glyphicon-hand-right"></i>  Seguir</button>
 
 
      
@@ -268,11 +297,16 @@
 
          <blockquote style="border-left: 0px; padding-left:1em;">
 
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" >Dejar de seguir</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" >Dejar de seguir</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" >Dejar de seguir</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" >Dejar de seguir</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" >Dejar de seguir</a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" ><button onmouseover="Hover(this.id);" onmouseout="NotHover(this.id);" id="okey1" class="mini-boton-pers oks">
+              <i id="okey1q" class=" glyphicon glyphicon-ok"></i> </button></a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" ><button onmouseover="Hover(this.id);" onmouseout="NotHover(this.id);" id="okey2" class="mini-boton-pers oks">
+              <i id="okey2q" class=" glyphicon glyphicon-ok"></i> </button></a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" ><button onmouseover="Hover(this.id);" onmouseout="NotHover(this.id);" id="okey3" class="mini-boton-pers oks">
+              <i id="okey3q" class=" glyphicon glyphicon-ok"></i> </button></a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" ><button onmouseover="Hover(this.id);" onmouseout="NotHover(this.id);" id="okey4" class="mini-boton-pers oks">
+              <i id="okey4q" class=" glyphicon glyphicon-ok"></i> </button></a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right; color: #D32F2F;" ><button onmouseover="Hover(this.id);" onmouseout="NotHover(this.id);" id="okey5" class="mini-boton-pers oks">
+              <i id="okey5q" class=" glyphicon glyphicon-ok"></i> </button></a></p>
            <a href="#" style="text-decotarion:none;"><small>Ver más...</small></a>
 
         </blockquote>
@@ -283,11 +317,17 @@
 
         <blockquote style="border-left: 0px; padding-left:1em;">
 
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey">Siguiendo</a></p>
-           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="orange">Seguir</a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey"><button class="dark-brown-bg  mini-boton-pers ">
+              <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+           <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey"><button class="dark-brown-bg  mini-boton-pers ">
+          <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+          <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey"><button class="dark-brown-bg  mini-boton-pers ">
+          <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+          <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey"><button onmouseover="Hover(this.id);" onmouseout="NotHover(this.id);" id="okey6" class="mini-boton-pers oks">
+              <i id="okey6q" class=" glyphicon glyphicon-ok"></i> </button></a></p>
+          <p style="margin-bottom: 15px;"><img src="http://placehold.it/15x15" style="width: 2em; border-radius: 100%; height: 2em;"> Nombre Usuario<a href="" style="text-decoration:none; float:right;" class="grey"><button class="dark-brown-bg  mini-boton-pers ">
+          <i class="glyphicon glyphicon-hand-right"></i> </button></a></p>
+           
            <a href="#" style="text-decotarion:none;"><small>Ver más...</small></a>
 
         </blockquote>

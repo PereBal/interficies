@@ -214,6 +214,53 @@ margin: 0.4em 0.5em 0.5em;
 color: white;
 }
 
+.plug-in-pro{
+  margin-left: -10em !important;
+position: absolute;
+margin-top: 0.7em;
+}
+
+.boton-pers{
+    margin-left: 30em !important;
+    margin-top: -2.9em !important;
+    position: absolute !important;
+    background-color: rgb(139, 195, 74) ;
+    border-radius: 3px !important;
+    border: 0px solid white !important;
+    width: 6em !important;
+    height: 2.5em !important;
+    color: white !important ;
+}
+
+.mini-boton-pers:hover{
+  background-color: #dd2c00;
+}
+
+.mini-boton-pers{
+margin-left: -2em !important;
+margin-top: 0.5em !important;
+position: absolute !important;
+background-color: #8BC34A ;
+border-radius: 3px !important;
+width: 2em !important;
+height: 1.5em !important;
+color: #FFF !important;
+border: 0px;
+}
+
+/*Categorias*/
+
+.linked a{
+ text-decoration:none !important;
+ color:#333 !important;
+}
+
+.linked a:hover a:focus{
+  color:white !important;
+}
+
+
+
 /*Listado de ususarios*/
 
 blockquote {
