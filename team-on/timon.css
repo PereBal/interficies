@@ -20,10 +20,30 @@
   color:  #777 !important;
 }
 
+
 .black {
   color: #000 !important;
 }
 
+.brown{
+  color:#5D4037 !important;
+}
+
+.brown-bg{
+  background-color:#EFEBE9 !important;
+}
+
+.dark-brown{
+  color:#5D4037 !important;
+}
+
+.dark-brown-bg{
+  background-color:#5D4037 !important;
+}
+
+.gold{
+  background-color: #ffc107 !important;
+}
 
 .bs-glyphicons li:hover{
 	background-color:  #8bc34a !important;
@@ -175,6 +195,23 @@
     background-color: #fff !important;
     border-color: #fff !important;
     border-bottom: 3px solid #8BC34A !important;
+}
+
+.floating-button{
+  width: 55.5px;
+height: 55.5px;
+background: rgb(139, 195, 74) none repeat scroll 0% 0%;
+border-radius: 100%;
+position: fixed;
+right: 3em;
+bottom: 6em;
+box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16), 0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.star{
+  font-size: 2em;
+margin: 0.4em 0.5em 0.5em;
+color: white;
 }
 
 /*Listado de ususarios*/

@@ -9,6 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="MyIcons/flaticon-reducido.css">
     <!-- <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"> -->
 
     <!-- FontAwesome -->
@@ -26,9 +28,13 @@
     <script>
       $(function(){
         $("#footer").load("footer.html");
-
+        $("#recom1").load("resumen-receta-recomendadas.html");
+        $("#recompro1").load("resumen-receta-recomendadas-profesional.html");
+        $("#recom3").load("resumen-receta-recomendadas.html");
+        $("#recom4").load("resumen-receta-recomendadas.html");
       });
     </script>
+    
   </head>
 
   <body>
@@ -90,12 +96,12 @@
         <ol id="recipe-breadcumb" class="breadcrumb" style="background-color: #FFF">
           <li><a href="#" class="orange">Lorem</a></li>
           <li><a href="#" class="orange">Ipsum</a></li>
-          <li class="active">Nombre_receta</li>
+          <li class="active">Nombre Receta</li>
         </ol>
 
         <div id="recipe-header" class="page-header row" style="padding-bottom: 0em; margin-bottom: 0.75em;">
           <h1 class="col-md-9">
-            Nombre_receta
+            Nombre Receta
             <small style="font-size: 45%">
               <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 1h |
               <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 4 pers. |
@@ -113,7 +119,7 @@
         <div id="recipe-subheader" class="row">
           <div class="col-lg-9">
             </span>
-            <a href="#" style="text-decoration:none; color:#333;"><img class="user-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAALjAAAAJGIxMDA3YjUwLTcxMDYtNDM1Mi1iZThlLTYzYTE5NDMzOWY4Nw.jpg" style="margin-right: 15px"></img> <b>Lorem Ipsum</b></a>
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><img class="user-img" src="http://placehold.it/50x50" style="margin-right: 15px"></img> <b>Nombre Autor</b><a href="#" style="text-decoration:none; margin-left: 10px " class="orange">Seguir</a></a>
           </div>
           <div class="col-lg-3">
             <div class="row lead pull-right" style="margin-right: 30px; margint-bottom: 20px">
@@ -320,6 +326,13 @@
       </div>
     </div>
 
+    <div class="container-fluid orange" style="background-color: #8bc34a">
+      <div id="recom1"></div>
+      <div id="recompro1"></div>
+      <div id="recom3"></div>
+      <div id="recom4"></div>
+    </div>
+
     <!-- Comment Secition -->
     <div class="container-fluid" style="background-color: #F4F4F4">
       <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -334,7 +347,7 @@
 
         <div class="row" style="margin-bottom: 25px">
           <div class="row">
-            <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Mi_usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
             <blockquote style="margin-left: 20px">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             </blockquote>
@@ -343,7 +356,7 @@
             </div>
           </div>
           <div class="row" style="margin-top: 10px;margin-left: 30px">
-            <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Mi_usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
             <blockquote style="margin-left:20px">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             </blockquote>
@@ -353,7 +366,7 @@
           </div>
 
           <div class="row" style="margin-top: 25px; margin-bottom: 25px">
-            <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Mi_usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
             <blockquote style="margin-left: 20px">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             </blockquote>
@@ -363,7 +376,7 @@
           </div>
 
           <div class="row" style="margin-bottom: 25px">
-            <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Mi_usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
             <blockquote style="margin-left: 20px">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             </blockquote>
@@ -373,7 +386,7 @@
           </div>
 
           <div class="row" style="margin-bottom: 25px">
-            <a href="perfil_publico.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Mi_usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
+            <a href="perfil.html" style="text-decoration:none; color:#333;"><p><img src="http://placehold.it/21x21" style="width: 1.5em; border-radius: 100%; height: 1.5em;"> Nombre Usuario <small><span clas="glyphicon glyphicon-time"></span> hace 10 minutos</small></p></a>
             <blockquote style="margin-left: 20px">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             </blockquote>
