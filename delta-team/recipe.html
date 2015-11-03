@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-4">
         <h2 ng-show="readOnly()">{{recipe.title}} <small>{{recipe.author}}</small></h2>
         <ul ng-show="readOnly()" class="list-inline">
           <li>
@@ -32,17 +32,26 @@
             </span>
             <span>
               <i class="fa fa-clock-o">
-                <input class="form-control" style="width: 100px; margin-left:10px;" placeholder="Recipe hours" ng-model="recipe.time.hours"></input> :
+                <input class="form-control" style="width: 50px; margin-left:10px;" placeholder="Recipe hours" ng-model="recipe.time.hours"></input> :
               </i>
             </span>
-            <input class="form-control" style="width: 100px; margin-right:10px;" placeholder="Recipe minutes" ng-model="recipe.time.minutes"></input>
+            <input class="form-control" style="width: 50px; margin-right:10px;" placeholder="Recipe minutes" ng-model="recipe.time.minutes"></input>
             <span>
               <i class="fa fa-users">
-                <input class="form-control" style="width: 100px; margin-left:10px;" placeholder="Recipe diners" ng-model="recipe.eaters.number"></input>
+                <input class="form-control" style="width: 50px; margin-left:10px; margin-top:10px;" placeholder="Recipe diners" ng-model="recipe.eaters.number"></input>
               </i>
             </span>
           </div>
         </div>
+      </div>
+
+      <div class="col-md-6 top-row-buffer">
+        <uib-rating ng-model="recipe.rating" readonly="true" on-hover="" on-leave="overStar = null"
+          aria-labelledby="default-rating" state-on="yellow" ng-show="!allowEdit()" class="hand-cursor pull-left">
+        </uib-rating>
+        <uib-rating ng-model="recipe.rating" readonly="false" on-hover="" on-leave="overStar = null"
+          aria-labelledby="default-rating" state-on="yellow" ng-show="allowEdit()" class="hand-cursor pull-left">
+        </uib-rating>        
       </div>
 
       <div class="col-md-1 pull-right">

@@ -32,7 +32,7 @@ app.config(['$routeProvider',
         controller: 'UsrEditProfileCtrl'
       }).
       when('/users/:userId/recipes', {
-        templateUrl: 'recipe_list.html',
+        templateUrl: 'usr_recipe_list.html',
         controller: 'UsrRecipeListCtrl'
       }).
       when('/users/:userId/recipes/:recipeId', {
