@@ -34,7 +34,9 @@
     </div> 
 
     <div class="col-md-1 top-row-buffer">
-      <button class="btn btn-primary" title="Edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+      <button class="btn -primary" title="Edit" ng-show="!allowEdit() && !followed" ng-click="followButton('Now you are following this user');">Follow</span></button>
+      <button class="btn btn-success" title="Edit" ng-show="!allowEdit() && followed" ng-click="followButton('Yout just stoped following this user');">Stop following</span></button>
+      <button class="btn btn-primary" title="Edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-pencil-square-o"></i></span></button>
     </div>
 
   </div>
@@ -49,6 +51,63 @@
       <textarea rows="5" placeholder="Biography" class="col-md-12" ng-show="!readOnly()" ng-model="user.biography"></textarea>
     </div>
 
+  </div>
+
+  <div class="row" ng-show="readOnly()">
+    <div class="col-md-10 col-md-offset-1">
+      <legend>Recipes</legend>
+      <div class="row" ng-repeat="recipe in recipes track by $index">
+        <div class="wrapper">
+        <div class="row">
+          <div class="col-md-3">
+            <img class="img-responsive img-circle" ng-src="{{recipe.img}}"></img>
+          </div>
+          <div class="col-md-9">
+
+            <div class="row">
+              <div class="col-md-7">
+                <h3>{{recipe.title}} <small>{{recipe.author}}</small></h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <uib-rating ng-model="recipe.rating" readonly="false" on-hover="" on-leave="overStar = null"
+                  aria-labelledby="default-rating" state-on="yellow">
+                </uib-rating>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-inline social-icons icon-circle pull-right">
+                  <li> <a class="hand-cursor" title="share on facebook" ng-click="alertSocial('facebook')"><i class="fa fa-facebook"></i></a> </li>
+                  <li> <a class="hand-cursor" title="share on twitter" ng-click="alertSocial('twitter')"><i class="fa fa-twitter"></i></a> </li>
+                  <li> <a class="hand-cursor" title="share on instagram" ng-click="alertSocial('instagram')"><i class="fa fa-instagram"></i></a> </li>
+                  <li> <a class="hand-cursor" title="share on CookingApp" ng-click="alertSocial('CookingApp')"><i class="fa fa-share"></i></a> </li>
+                  <li> <a class="hand-cursor" title="add to favorites" ng-click="alertSocial('fav')"><i class="fa fa-bookmark"></i></a> </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8">
+                 <legend><small>Description</small></legend>
+                <p>{{recipe.description}}</p>
+              </div>
+              <div class="col-md-4 pull-right">
+                <div class="top-row-buffer">
+                  <div class="row">
+                  <div class="col-md-10">
+                    <div style="padding-top: 50px" class="btn-group pull-right">
+                      <button class="btn btn-primary" ng-click="alertButton('Shows the view as when you get into a recipe from homepage')">View</button>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 

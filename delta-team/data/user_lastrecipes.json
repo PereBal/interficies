@@ -1,62 +1,161 @@
 [
     {
-        "id": 3,
-        "userId": 2,
-        "title": "Pasta",
-        "author": "MR BN",
-        "description": "Dolor sith ameth",
-        "rating": 5,
-        "ingredients": [{ 
-            "name": "none",
-            "quantity": 0.0,
-            "unit": "kg"
-        }],
-        "steps":["step 1", "step 2"],
-        "img": "images/burger.jpg"
+        "id": 6,
+        "title": "Street tacos",
+        "author": "Albert Einstein",
+        "rating": 1,
+        "hardness": "very hard",
+        "time": {"hours": 0, "minutes": 10},
+        "eaters": {"number": 1, "info": "per ration"},
+        "related": [],
+        "ingredients": [
+        {
+            "name": "gegeric 1",
+            "amount": 1.0,
+            "unit": "piece"
+        },
+        {
+            "name": "gegeric 1",
+            "amount": 2.0,
+            "unit": "pieces"
+        },
+        {
+            "name": "gegeric 3",
+            "amount": 2.0,
+            "unit": "pieces"
+        },
+        {
+            "name": "gegeric 3",
+            "amount": 2.0,
+            "unit": "pieces"
+        }
+        ],
+        "steps":[
+        {
+            "description": "step 1"
+        },
+        {
+            "description": "step 2"
+        },
+        {
+            "description": "step 3"
+        },
+        {
+            "description": "step 4"
+        },
+        {
+            "description": "step 5"
+        }
+        ],
+        "private": true,
+        "img": "images/street-tacos.jpg",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        "userId": 4
     },
     {
-        "id": 4,
-        "userId": 3,
-        "title": "Cacho carne",
-        "author": "Leonardo",
-        "description": "Dolor sith ameth",
+        "id": 7,
+        "title": "Swedish cheese",
+        "author": "Jimmy Carrey",
         "rating": 4,
-        "ingredients": [{ 
-            "name": "none",
-            "quantity": 0.0,
-            "unit": "kg"
-        }],
-        "steps":["step 1", "step 2"],
-        "img": "images/burger.jpg"
+        "hardness": "medium",
+        "time": {"hours": 4, "minutes": 0},
+        "eaters": {"number": 100, "info": "per ration"},
+        "related": [],
+        "ingredients": [
+        {
+            "name": "gegeric 1",
+            "amount": 1.0,
+            "unit": "piece"
+        },
+        {
+            "name": "gegeric 1",
+            "amount": 2.0,
+            "unit": "pieces"
+        },
+        {
+            "name": "gegeric 3",
+            "amount": 2.0,
+            "unit": "pieces"
+        },
+        {
+            "name": "gegeric 3",
+            "amount": 2.0,
+            "unit": "pieces"
+        }
+        ],
+        "steps":[
+        {
+            "description": "step 1"
+        },
+        {
+            "description": "step 2"
+        },
+        {
+            "description": "step 3"
+        },
+        {
+            "description": "step 4"
+        },
+        {
+            "description": "step 5"
+        }
+        ],
+        "private": false,
+        "img": "images/swedish-cheese.jpg",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        "userId": 5
     },
-    {
-        "id": 4,
-        "userId": 3,
-        "title": "Cacho carne",
-        "author": "Leonardo",
-        "description": "Dolor sith ameth",
+        {
+        "id": 7,
+        "title": "Ice-cream and cream",
+        "author": "Jimmy Carrey",
         "rating": 4,
-        "ingredients": [{ 
-            "name": "none",
-            "quantity": 0.0,
-            "unit": "kg"
-        }],
-        "steps":["step 1", "step 2"],
-        "img": "images/burger.jpg"
-    },
-    {
-        "id": 4,
-        "userId": 3,
-        "title": "Cacho carne",
-        "author": "Leonardo",
-        "description": "Dolor sith ameth",
-        "rating": 4,
-        "ingredients": [{ 
-            "name": "none",
-            "quantity": 0.0,
-            "unit": "kg"
-        }],
-        "steps":["step 1", "step 2"],
-        "img": "images/burger.jpg"
+        "hardness": "medium",
+        "time": {"hours": 4, "minutes": 0},
+        "eaters": {"number": 100, "info": "per ration"},
+        "related": [],
+        "ingredients": [
+        {
+            "name": "gegeric 1",
+            "amount": 1.0,
+            "unit": "piece"
+        },
+        {
+            "name": "gegeric 1",
+            "amount": 2.0,
+            "unit": "pieces"
+        },
+        {
+            "name": "gegeric 3",
+            "amount": 2.0,
+            "unit": "pieces"
+        },
+        {
+            "name": "gegeric 3",
+            "amount": 2.0,
+            "unit": "pieces"
+        }
+        ],
+        "steps":[
+        {
+            "description": "step 1"
+        },
+        {
+            "description": "step 2"
+        },
+        {
+            "description": "step 3"
+        },
+        {
+            "description": "step 4"
+        },
+        {
+            "description": "step 5"
+        }
+        ],
+        "private": false,
+        "img": "images/icecream.jpg",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        "userId": 5
     }
 ]

@@ -252,6 +252,10 @@ var loadContext = function ($rootScope, $scope, $http, $routeParams, callback, a
     }
   }
 
+  $rootScope.alertFind = function(){
+    alert('Not implemented yet, this button search through all the recipes what you have written in the inpup');
+  }
+
   $rootScope.firstRegions = [ 
     {
       name:'Spain',
@@ -381,80 +385,111 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
     }
 
   $rootScope.filteredRecipes = [
-    {
-        id: 6,
-        title: 'Steves burger',
-        author: 'Steve',
-        rating: 3,
-        hardness: 'easy',
-        time: {'hours': 1, 'minutes': 10},
-        eaters: {'number': 3, 'info': 'per ration'},
+   {
+        id: 1,
+        title: "Spanish Burguer",
+        author: "Steve",
+        rating: 5,
+        hardness: "medium",
+        time: {"hours": 0, "minutes": 30},
+        eaters: {"number": 4, "info": "per ration"},
         related: [3, 4],
         ingredients: [
         {
-            name: 'Cow meat',
-            amount: 1.0,
-            unit: 'kg'
+            name: "Cow meat",
+            amount: 1,
+            unit: "kg"
         },
         {
-            name: 'Onion',
-            amount: 2.0,
-            unit: 'pieces'
-        }],
+            name: "Onion",
+            amount: 2,
+            unit: "pieces"
+        },
+        {
+            name: "salad",
+            amount: 3,
+            unit: "pieces"
+        },
+        {
+            name: "tomato",
+            amount: 4,
+            unit: "pieces"
+        },
+        {
+            name: "Bread",
+            amount: 4,
+            unit: "pieces"
+        }        ],
         steps:[
         {
-            description: 'Adobe the meat'
+            description: "Adobe the meat with pepper an salt"
         },
         {
-            description: 'Burn it'
+            description: "Make 4 balls and then smash them"
         },
         {
-            description: 'Say its not your fault'
+            description: "Grill the burguers durin 5 minutes each side"
         },
         {
-            description: 'Blame the children!'
+            description: "Prepare the burguers with love"
         }],
         private: false,
-        img: 'images/paamboli.jpg',
-        description: 'Esta es la última hamburguesa diseñada por la prestigiosa cadena mcDonalds, sabor y excelencia contenidas en este maravilloso cacho de carne rancia buhahahahahahaha.',
+        img: "images/burguer.jpg",
+        description: "A hamburger (also called a beef burger, hamburger sandwich, burger, hamburg or cheeseburger when served with a slice of cheese) is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bun. Hamburgers may be cooked in a variety of ways, including pan-frying, barbecuing, and flame-broiling. Hamburgers are often served with lettuce, bacon, tomato, onion, pickles, cheese and condiments such as mustard, mayonnaise, ketchup, relish, and chiles.[1] The term burger can also be applied to the meat patty on its own, especially in the UK where the term patty is rarely used. The term may be prefixed with the type of meat or meat substitute used, as in turkey burger, bison burger, or veggie burger. Hamburgers are sold at fast-food restaurants, diners, and specialty and high-end restaurants (where burgers may sell for several times the cost of a fast-food burger). There are many international and regional variations of the hamburger.",
         userId: 1
-    },
-    {
-        id: 7,
-        title: 'Missleading chicken',
-        author: 'MR BN',
-        rating: 1,
-        hardness: 'very hard',
-        time: {'hours': 0, 'minutes': 10},
-        eaters: {'number': 1, 'info': 'per ration'},
+    },{
+        id: 9,
+        title: "Pa amb oli",
+        author: "Robert de Niro",
+        rating: 4,
+        hardness: "medium",
+        time: {"hours": 4, "minutes": 0},
+        eaters: {"number": 100, "info": "per ration"},
         related: [],
         ingredients: [
         {
-            name: 'Air',
+            name: "gegeric 1",
             amount: 1.0,
-            unit: 'piece'
+            unit: "piece"
         },
         {
-            name: 'Pair',
+            name: "gegeric 1",
             amount: 2.0,
-            unit: 'pieces'
-        }],
+            unit: "pieces"
+        },
+        {
+            name: "gegeric 3",
+            amount: 2.0,
+            unit: "pieces"
+        },
+        {
+            name: "gegeric 3",
+            amount: 2.0,
+            unit: "pieces"
+        }
+        ],
         steps:[
         {
-            description: 'Cut the pair'
+            description: "step 1"
         },
         {
-            description: 'Mix it with air'
+            description: "step 2"
         },
         {
-            description: 'Repeat until fullyfied desire'
-        }],
-        private: true,
-        img: 'images/cocatrampo.jpg',
-        description: 'This is a legendary recipe from an outern world ingredient. The legend says: if anyone can cook this, he or she will become a true master chief!',
-        userId: 2
+            description: "step 3"
+        },
+        {
+            description: "step 4"
+        },
+        {
+            description: "step 5"
+        }
+        ],
+        private: false,
+        img: "images/paamboli.jpg",
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        userId: 6
     }
-
   ];
 
   $scope.predicate = 'rating';
@@ -462,34 +497,34 @@ function RecipeListCtrl($rootScope, $scope, $http, $location, $routeParams) {
 
   $scope.userNews = [
     {
-      source: 'user1',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'im Carrey',
+      action: 'likes Einstein recipe a lot',
+      img: 'images/carrey.jpg'
     },
     {
-      source: 'user5',
-      action: 'añadio a favoritos a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Einstein',
+      action: 'Liked Jim carreys like',
+      img: 'images/einstein.jpg'
     },
     {
-      source: 'user10',
-      action: 'lcompartio en twitter a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Sr Mr Bean',
+      action: 'Just added chids salad to his recipes',
+      img: 'images/mr-bean.jpg'
     },
     {
-      source: 'user8',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Steve jobs',
+      action: 'disliked Pa amb oli from Robert de Niro',
+      img: 'images/steve-jobs.jpg'
     },
     {
-      source: 'user1',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'DiCaprio',
+      action: 'has shared in instagram his recipe',
+      img: 'images/leo-dicaprio.jpg'
     },
     {
-      source: 'user1',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Einstein',
+      action: 'Liked Jim carreys like',
+      img: 'images/einstein.jpg'
     }];
   }, args);
 
@@ -572,36 +607,37 @@ function UsrHomeCtrl($rootScope, $scope, $http, $location, $routeParams) {
     }
 
 
-    $scope.userNews = [
+    
+  $scope.userNews = [
     {
-      source: 'user1',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'im Carrey',
+      action: 'likes Einstein recipe a lot',
+      img: 'images/carrey.jpg'
     },
     {
-      source: 'user5',
-      action: 'añadio a favoritos a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Einstein',
+      action: 'Liked Jim carreys like',
+      img: 'images/einstein.jpg'
     },
     {
-      source: 'user10',
-      action: 'lcompartio en twitter a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Sr Mr Bean',
+      action: 'Just added chids salad to his recipes',
+      img: 'images/mr-bean.jpg'
     },
     {
-      source: 'user8',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Steve jobs',
+      action: 'disliked Pa amb oli from Robert de Niro',
+      img: 'images/steve-jobs.jpg'
     },
     {
-      source: 'user1',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'DiCaprio',
+      action: 'has shared in instagram his recipe',
+      img: 'images/leo-dicaprio.jpg'
     },
     {
-      source: 'user1',
-      action: 'like a la receta de pedro',
-      img: 'images/carrey.jpeg'
+      source: 'Einstein',
+      action: 'Liked Jim carreys like',
+      img: 'images/einstein.jpg'
     }];
 
   }, args);
@@ -755,6 +791,7 @@ function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
     eval.id = $routeParams.userId;
     $scope.recipes = filter($rootScope.recipes, eval);
 
+    $scope.followed = false;
     $scope.edit = false;
     $scope.readOnly = function () {
         return !$scope.edit || !$rootScope.allowEdit();
@@ -779,6 +816,20 @@ function UsrProfileCtrl($rootScope, $scope, $http, $routeParams) {
 
     $scope.verifyAlert = function (user) {
       alert('Verification process started for ' + user.name);
+    }
+
+    $scope.alertButton = function(msg){
+      alert(msg);
+    }
+
+    $scope.followButton = function(msg){
+      if(!$rootScope.allowEdit()) {
+        alert('You must me registerd and logged to follow users');
+      }else{
+        alert(msg);
+        $scope.followed = !$scope.followed;
+      }
+      
     }
   });
 }

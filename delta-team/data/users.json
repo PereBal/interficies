@@ -1,104 +1,104 @@
 [
  {
      "id": 1,
-     "email": "foo@mail.com",
-     "password": "foo",
+     "email": "jobs@mail.com",
+     "password": "jobs",
      "professional": {
          "professional": true,
          "verified": true
      },
-     "name": "Steve",
+     "name": "Steve Jobs",
      "firstname": "Fname",
      "lastname": "",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
-     "img":  "images/jobs.jpeg",
-     "fav_users": [2, 3],
-     "fav_recipes": [4, 5],
+     "biography": "the American businessman and technology visionary who is best known as the co-founder, chairman, and chief executive officer of Apple Inc, was born on February 24, 1955. His parents were two University of Wisconsin graduate students, Joanne Carole Schieble and Syrian-born Abdulfattah Jandali. They were both unmarried at the time. Jandali, who was teaching in Wisconsin when Steve was born, said he had no choice but to put the baby up for adoption because his girlfriend's family objected to their relationship.",
+     "img":  "images/steve-jobs.jpg",
+     "fav_users": [2, 3, 4],
+     "fav_recipes": [4, 5, 6],
      "rating": 4
  },
  {
      "id": 2,
-     "email": "foo2@mail.com",
+     "email": "mr_Bean2@mail.com",
      "password": "foo",
      "professional": {
          "professional": true,
          "verified": false
      },
-     "name": "MR BN",
+     "name": "Sr. Mr. Bean",
      "firstname": "Fname",
      "lastname": "",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
-     "img": "images/mrbean.jpeg",
-     "fav_users": [],
-     "fav_recipes": [],
-     "rating": 4
+     "biography": "Comic actor and writer Rowan Sebastian Atkinson was born on January 6, 1955, in Newcastle upon Tyne, Tyne and Wear, England. Rowan Atkinson is most famous for his roles in classic sitcoms, including Blackadder and Mr. Bean. Atkinson studied at Newcastle University and Oxford University, and earned a master's degree in electrical engineering. He got his start performing sketches while studying at Oxford, first appearing in Oxford revues at the Edinburgh Festival Fringe. Soon, he was entertaining at several theater clubs and on comedy shows for BBC Radio 3. In 1979, Atkinson wrote for and starred in the BBC's Not the Nine O'clock News. In 1981, Atkinson became the youngest performer to have had a one-man show in the West End. Atkinson later appeared in theatrical productions like The Nerd (1984), The New Revue (1986) and The Sneeze (1988). He then landed parts on such television shows as Not the Nine O'Clock News (1979-82), Blackadder (1983-89) The Thin Blue Line (1995-96) and Mr. Bean (1990-95). The success of Blackadder spurred the creation of the TV specials Blackadder's Christmas Carol and Blackadder: The Cavalier Years—both of which aired in 1988. In 1990, Atkinson starred as his originally developed character Mr. Bean on the TV series of the same name. The successful comedy series was adapted for film in 1997. Atkinson reprised his famous Mr. Bean character in a comedy sketch at the opening ceremony of the 2012 Summer Olympic Games. Atkinson's other film credits include Bean: the Ultimate Disaster Movie (1997), Johnny English (2003) and Keeping Mum (2005).",
+     "img": "images/mr-bean.jpg",
+     "fav_users": [1, 4],
+     "fav_recipes": [5, 6, 7],
+     "rating": 3
  },
  {
      "id": 3,
-     "email": "foo3@mail.com",
-     "password": "foo",
-     "professional": {
-         "professional": false,
-         "verified": false
-     },
-     "name": "Leonardo",
-     "firstname": "Fname",
-     "lastname": "",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
-     "img": "images/dicaprio.jpeg",
-     "fav_users": [],
-     "fav_recipes": [],
-     "rating": 4
- },
- {
-     "id": 4,
-     "email": "foo4@mail.com",
-     "password": "foo",
-     "professional": {
-         "professional": false,
-         "verified": false
-     },
-     "name": "Albert",
-     "firstname": "Fname",
-     "lastname": "",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
-     "img": "images/einstein.jpeg",
-     "fav_users": [],
-     "fav_recipes": [],
-     "rating": 4
- },
- {
-     "id": 5,
-     "email": "foo5@mail.com",
+     "email": "dicaprioLeo@mail.com",
      "password": "foo",
      "professional": {
          "professional": true,
          "verified": false
      },
-     "name": "JrCarrey",
+     "name": "Leonardo DiCaprio",
      "firstname": "Fname",
      "lastname": "",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
-     "img": "images/carrey.jpeg",
-     "fav_users": [],
-     "fav_recipes": [],
-     "rating": 4
+     "biography": "After Titanic, DiCaprio had a bit of a career slump. Both The Man in the Iron Mask (1998) and The Beach (2000) proved to be disappointments both financially and artistically. But DiCaprio soon bounced back. He demonstrated his range as an actor in two noteworthy films Catch Me if You Can and Gangs of New York. The latter film served as the first of many projects that DiCaprio would work on with famed director Martin Scorsese In The Aviator (2004), DiCaprio took on the challenge of playing one of America's most famous businessmen. He received another Academy Award nomination for his portrayal of the eccentric and later reclusive Howard Hughes. DiCaprio continued to impress critics and audiences alike with his daring roles. In 2006 he starred in a pair of well-received films Blood Diamond and The Departed. DiCaprio earned his third Academy Award nomination for Blood Diamond, a dramatic thriller about the pursuit of a precious gem in war-torn Sierra Leone. For the compelling Martin Scorsese-directed crime saga The Departed, he co-starred with Matt Damon and Jack Nicholson. In 2008 DiCaprio reunited with Kate Winslet in Revolutionary Road, a tense film about a 1950s suburban couple who struggles to weather a myriad of personal problems. He explored a fantastical future in Christopher Nolan's Inception (2010) where technology allows people to invade the dreams of others. That same year, DiCaprio starred in Martin Scorsese's thriller Shutter Island. DiCaprio took on another famous figure in the 2011 biographical drama J. Edgar. Directed by Clint Eastwood, the film explores the life of J. Edgar Hoover who ran the FBI for nearly five decades. To prepare for the role, DiCaprio conducted extensive research. He visited many of Hoover's haunts in Washington, D.C. I do love playing historical figures simply because there's so much incredibly diverse interesting information about a character when you can research their life. A lot of the stuff you'd never be able to make up as a writer, he explained to Back Stage.",
+     "img": "images/leo-dicaprio.jpg",
+     "fav_users": [1,8],
+     "fav_recipes": [2, 5, 6],
+     "rating": 5
+ },
+ {
+     "id": 4,
+     "email": "Einstein_Albert@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": false,
+         "verified": false
+     },
+     "name": "Albert Einstein",
+     "firstname": "Fname",
+     "lastname": "",
+     "biography": "While working at the patent office, Einstein had the time to further ideas that had taken hold during his studies at Polytechnic and thus cemented his theorems on what would be known as the principle of relativity. In 1905—seen by many as a miracle year for the theorist—Einstein had four papers published in the Annalen der Physik, one of the best known physics journals of the era. The four papers focused on the photoelectric effect, Brownian motion, the special theory of relativity (the most widely circulated of the write-ups) and the matter/energy relationship, thus taking physics in an electrifying new direction. In his fourth paper, Einstein came up with the equation E=mc2, suggesting that tiny particles of matter could be converted into huge amounts of energy, foreshadowing the development of atomic power.  Famed quantum theorist Max Planck backed up the assertions of Einstein, who thus became a star of the lecture circuit and academia, taking on various positions before becoming director of the Kaiser Wilhelm Institute for Physics from 1913 to 1933.",
+     "img": "images/einstein.jpg",
+     "fav_users": [1, 2, 3],
+     "fav_recipes": [4, 5, 6],
+     "rating": 1
+ },
+ {
+     "id": 5,
+     "email": "Jimmy-Carrey@mail.com",
+     "password": "foo",
+     "professional": {
+         "professional": false,
+         "verified": false
+     },
+     "name": "Jim Carrey",
+     "firstname": "Fname",
+     "lastname": "",
+     "biography": "Carrey took a successful dramatic turn as Truman Burbank in Peter Weir's The Truman Show (1998), for which he won a Golden Globe award for Best Actor. He teamed up with legendary director Milos Forman for the Andy Kaufman biopic Man on the Moon (1999), co-starring Courtney Love. For his dead-on portrayal of Kaufman, Carrey took home his second Golden Globe. Despite his Golden Globe success, Carrey has never been nominated for an Academy Award, perhaps due to the Academy's traditional lack of recognition for comedic actors. Carrey has become one of the highest-paid actors in Hollywood, with an reported asking price of $20 million. In the summer of 2000, Carrey portrayed a character with two dueling personalities (both in love with the same woman) in the comedy Me, Myself and Irene. That fall, wearing pounds of green fur and makeup, he starred as the titular curmudgeon in the long-awaited big budget film version of Dr. Seuss' holiday classic, How the Grinch Stole Christmas, directed by Ron Howard. In 2003, the actor starred as a man endowed with God-like powers in Bruce Almighty with Jennifer Aniston. The following year, Carrey starred opposite Kate Winslet in Charlie Kaufman's Eternal Sunshine of the Spotless Mind. His other projects include two remakes: Steven Spielberg's version of the 1947 comedy The Secret Life of Walter Mitty and the 1977 flick Fun with Dick and Jane.",
+     "img": "images/carrey.jpg",
+     "fav_users": [1, 2, 3],
+     "fav_recipes": [2, 3],
+     "rating": 3
  },
  {
      "id": 6,
-     "email": "foo@mail.com",
+     "email": "Robert.lawyer@mail.com",
      "password": "foo",
      "professional": {
          "professional": true,
          "verified": true
      },
-     "name": "Roberto",
+     "name": "Robert de Niro",
      "firstname": "Fname",
      "lastname": "",
-     "biography": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando  un impresor (N. del T. persona que se dedica a la imprenta)",
-     "img": "images/deniro.jpeg",
-     "fav_users": [],
-     "fav_recipes": [],
-     "rating": 4
+     "biography": "In 1974, De Niro established himself as one the nation's finest actors with his Academy Award-winning portrayal of Vito Corleone in The Godfather: Part II, a role for which he learned to speak Sicilian. Two years later, De Niro delivered perhaps the most chilling performance of his career, playing vengeful cabbie Travis Bickle in Taxi Driver (1976) alongside Jodie Foster. He continued to show his tremendous skill as a dramatic actor in 1978's The Deer Hunter. The film follows a group of friends haunted by their Vietnam War experiences.  De Niro later portrayed middleweight boxer Jake LaMotta in the commercially unsuccessful but critically adored film Raging Bull (1980), again helmed by Scorsese. The previously skinny De Niro had put on 60 pounds of muscle for his riveting turn as LaMotta and was rewarded for his dedication with the 1981 Academy Award for best actor. After 1981's True Confessions, his next roles were that of an aspiring standup comedian in Scorsese's The King of Comedy (1983) and as a Jewish mobster in the sprawling historical epic Once Upon a Time in America (1984). Other notable projects on the actor's diverse roster for the '80s included sci-fi art film Brazil (1985) and the historically inspired The Mission (1986), followed by fare like the crime drama The Untouchables (1987, in which De Niro portrayed gangster Al Capone opposite Kevin Costner as Eliot Ness) and the action comedy Midnight Run (1988).",
+     "img": "images/deniro.jpg",
+     "fav_users": [3, 4, 5],
+     "fav_recipes": [4, 5],
+     "rating": 2
  }
 ]

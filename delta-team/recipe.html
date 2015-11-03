@@ -26,7 +26,13 @@
           <div class="form-inline" ng-show="!readOnly()">
             <span>
               <i class="fa fa-cutlery">
-                <input class="form-control" style="width: 100px; margin-left:10px; margin-right:10px; " placeholder="Recipe difficulty" ng-model="recipe.hardness"></input>
+                <select class="form-control" style="width: 100px; margin-left:10px; margin-right:10px; " placeholder="Recipe difficulty" ng-model="recipe.hardness">
+                  <option value="very easy">very easy</option>
+                  <option value="easy">easy</option>
+                  <option value="medium">medium</option>
+                  <option value="hard">hard</option>
+                  <option value="very hard">very hard</option>
+                </select>
               </i>
             </span>
             <span>
@@ -54,14 +60,14 @@
       </div>
 
       <div class="col-md-1 pull-right">
-        <button class="btn btn-primary pull-left general-btn" title="edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-lock"></i></span></button>
+        <button class="btn btn-primary pull-left general-btn" title="edit" ng-show="allowEdit()" ng-click="edit=!edit"><span><i class="fa fa-lg fa-pencil-square-o"></i></span></button>
       </div>
     </div>
 
     <div class="row top-row-buffer">
       <div class="col-md-4 top-separator">
-        <img ng-src="{{ recipe.img }}" class="hand-cursor" ng-show="readOnly()" style="height: 200px; width:200px;"></img>
-        <img ng-src="images/add.png" ng-click="addImg();" class="hand-cursor" ng-show="!readOnly()" style="height: 200px; width:200px;"></img>
+        <img ng-src="{{ recipe.img }}" class="hand-cursor img-circle img-responsive" ng-show="readOnly()" style="height: 200px; width:200px;"></img>
+        <img ng-src="images/add.png" ng-click="addImg();" class="img-circle img-responsive hand-cursor" ng-show="!readOnly()" style="height: 200px; width:200px;"></img>
       </div>
 
       <div class="col-md-8 top-separator">
@@ -90,8 +96,8 @@
           <p>{{recipe.description}}</p>
         </div>
         <textarea rows="5" placeholder="description" class="col-md-12" ng-show="!readOnly()" ng-model="recipe.description"></textarea>
-        <div ng-show="allowEdit()">
-          <legend ng-show="readOnly()">Privacy: <small ng-class="recipePrivacyClass()" ng-click="alertPrivacy()">{{ recipePrivacy() }}</small></legend>
+        <div ng-show="allowEdit()" >
+          <label ng-show="readOnly()">Privacy: <small ng-class="recipePrivacyClass()" ng-click="alertPrivacy()">{{ recipePrivacy() }}</small></label>
         </div>
       </div>
 
@@ -114,6 +120,7 @@
     <div class="row top-row-buffer">
 
       <div class="col-md-6">
+        <label>Related:</label>
         <ul class="list-inline">
           <li ng-repeat="re in related">
             <img ng-src="{{ re.img }}" class="img-circle" style="height: 30px; width: 30px;" ng-click="">
