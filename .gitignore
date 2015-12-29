@@ -1,1 +1,22 @@
 #Gitignore
+#ant specific
+practica-2/Dashboard/dist/
+practica-2/Dashboard/build/
+
+#netbeans specific
+practica-2/Dashboard/core
+practica-2/Dashboard/nbproject/*
+practica-2/Dashboard/!nbproject/project.properties
+practica-2/Dashboard/!nbproject/project.xml
+
+#java specific
+practica-2/Dashboard/*.class
+
+#general swap/backup files
+practica-2/Dashboard/*.so
+practica-2/Dashboard/*.log
+practica-2/Dashboard/*.out
+practica-2/Dashboard/*~
+practica-2/Dashboard/*.swp
+practica-2/Dashboard/*.DS_Store
+practica-2/Dashboard/*.lock
