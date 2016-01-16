@@ -6,7 +6,7 @@
 [How-To](http://stackoverflow.com/questions/2010990/how-do-you-return-a-json-object-from-a-java-servlet#2010993)
 
 **Los putos JSONs los defines tu GILIPOLLAS**
-* `GET /:uid`
+* `GET /:uid` **Proposta:** `GET /`
   * 200 -> Obj JSON dades de les gràfiques
   * _**Comentari**_: Cada gràfica hauría de ser una petició al microservei corresponent.
   La idea seria algo del pal:
@@ -19,28 +19,39 @@
 * `GET /:uid/admin | POST /admin/:uid`
   * _**Comentari**_: S'ha de fer un _**CRUD**_.
 
+_**PROPOSTA**_
+* `GET /admin`
+  * 200 -> `admin.jsp`
+
+_**CRUD**_ sobre usuaris
+* `GET /admin/users` -> Llistar usuaris
+* `GET /admin/users/:id` -> Collir un usuaris
+* `POST /admin/users` -> Crear un usuari
+* `PUT /admin/users/:id` -> Modificar un usuari
+* `DELETE /admin/users/:id` -> Borrar un usuari
+
 ## Login
 * `GET /login`
   * 200 -> `login.jsp`
 
 
 * `POST /login`
-  * 200 -> `home.jsp`
-  * 401 -> `login.jsp`
+  * 302 -> `home.jsp`, URI: `/`
+  * 401 -> `login.jsp`, URI: `/login`
 
 ## Chat
-* `CREATE /:uid/chats/create-with/:uid2`
-  * 302 -> `chat.jsp`
-
-
-* `GET /:uid/chats`
+* **Proposta:** `GET /chats[/:cid]`
   * 200 -> `chat.jsp`, Ordered by time
     * *Comentari per experts* Els nulls tenen preferència
 
 
-* `GET /:uid/chats/:cid?unread=&begin=`
+* `POST /:uid/chats/create-with/:uid2` **Proposta:**`POST /chats?party=uid`
+  * 302 -> `chat.jsp`, URI: `/chats/:cid`
+
+
+* `GET /:uid/chats/:cid?unread=&begin=` **Proposta:**`GET /chats/:cid?unread=&begin=`
   * 200 -> `Ajax`, Ordered by time
-  ```JSON
+  ```json
   {
     "cid": "",
     "mssg": [
@@ -53,9 +64,9 @@
   ```
 
 
-* `GET /:uid/chats/unread/:cid-focus`
+* `GET /:uid/chats/unread/:cid-focus` **Proposta:** `/chats/unread?focus=cid`
   * 200 -> `Ajax`
-  ```JSON
+  ```json
     [
       "cid": {
         "count": "",
@@ -65,13 +76,14 @@
   ```
 
 
-* `POST /send/:uid/to/:cid`
+
+* `POST /send/:uid/to/:cid` **Proposta:**`/send?to=uid`
   * 200 -> `Ajax`
 
 
-* `GET /search?value=string`
+* `GET /search?val=string`
   * 200 -> `Ajax`, matching per nom i correu , limit 5
-  ```JSON
+  ```json
     [
       {
         "uid": "",
