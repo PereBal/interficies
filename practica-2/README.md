@@ -11,7 +11,9 @@
   * _**Comentari**_: Cada gràfica hauría de ser una petició al microservei corresponent.
   La idea seria algo del pal:
         /:graphId[/params]
+
         ò
+
         /:graphId/:rangeBegin/:rangeEnd[/params]
 
 
@@ -67,12 +69,12 @@ _**CRUD**_ sobre usuaris
 * `GET /:uid/chats/unread/:cid-focus` **Proposta:** `/chats/unread?focus=cid`
   * 200 -> `Ajax`
   ```json
-    [
+    {
       "cid": {
         "count": "",
         "lmssg": ""
       }
-    ]
+    }
   ```
 
 
