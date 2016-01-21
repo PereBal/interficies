@@ -47,7 +47,7 @@ _**CRUD**_ sobre usuaris
     * *Comentari per experts* Els nulls tenen preferència
 
 
-* `POST /:uid/chats/create-with/:uid2` **Proposta:**`POST /chats?party=uid`, **2 Proposta:** `PUT /chats?party=uid`
+* `POST /:uid/chats/create-with/:uid2` **Proposta:**`POST /chats?party=uid`, **2 Proposta:** `POST /chats?party=uid`
   * 302 -> `chat.jsp`, URI: `/chats/:cid`
 
 
@@ -78,7 +78,7 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `POST /send/:uid/to/:cid` **Proposta:**`/send?to=uid`, **2 Proposta:** `PUT /chats/:cid/messages`
+* `POST /send/:uid/to/:cid` **Proposta:**`/send?to=uid`, **2 Proposta:** `POST /chats/:cid/messages`
   * 200 -> `Ajax`
 
 
