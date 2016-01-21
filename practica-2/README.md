@@ -6,7 +6,7 @@
 [How-To](http://stackoverflow.com/questions/2010990/how-do-you-return-a-json-object-from-a-java-servlet#2010993)
 
 **Los putos JSONs los defines tu GILIPOLLAS**
-* `GET /:uid` **Proposta:** `GET /`
+* `GET /:uid` **Proposta:** `GET /`, **2 Proposta:** `GET /graphs/:id`
   * 200 -> Obj JSON dades de les gràfiques
   * _**Comentari**_: Cada gràfica hauría de ser una petició al microservei corresponent.
   La idea seria algo del pal:
@@ -47,11 +47,11 @@ _**CRUD**_ sobre usuaris
     * *Comentari per experts* Els nulls tenen preferència
 
 
-* `POST /:uid/chats/create-with/:uid2` **Proposta:**`POST /chats?party=uid`
+* `POST /:uid/chats/create-with/:uid2` **Proposta:**`POST /chats?party=uid`, **2 Proposta:** `PUT /chats?party=uid`
   * 302 -> `chat.jsp`, URI: `/chats/:cid`
 
 
-* `GET /:uid/chats/:cid?unread=&begin=` **Proposta:**`GET /chats/:cid?unread=&begin=`
+* `GET /:uid/chats/:cid?unread=&begin=` **Proposta:**`GET /chats/:cid?unread=&begin=`, **2 Proposta:** `GET /chats/:cid/messages?unread=&begin=`
   * 200 -> `Ajax`, Ordered by time
   ```json
   {
@@ -66,7 +66,7 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `GET /:uid/chats/unread/:cid-focus` **Proposta:** `/chats/unread?focus=cid`
+* `GET /:uid/chats/unread/:cid-focus` **Proposta:** `/chats/unread?focus=cid`, **2 Proposta:** `GET /chats[/:cid]?unread=`
   * 200 -> `Ajax`
   ```json
     {
@@ -78,12 +78,11 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-
-* `POST /send/:uid/to/:cid` **Proposta:**`/send?to=uid`
+* `POST /send/:uid/to/:cid` **Proposta:**`/send?to=uid`, **2 Proposta:** `PUT /chats/:cid/messages`
   * 200 -> `Ajax`
 
 
-* `GET /search?val=string`
+* `GET /search?val=string`, **2 Proposta:** `GET /users?value=`
   * 200 -> `Ajax`, matching per nom i correu , limit 5
   ```json
     [
