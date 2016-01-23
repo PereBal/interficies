@@ -1,17 +1,20 @@
-#Gitignore
-#ant specific
-**/dist/
-**/build/
+# Created by https://www.gitignore.io/api/netbeans
 
-#netbeans specific
-# Core? dafq fran?
-**/core/
-**/nbproject/
-**/!nbproject/project.properties
-**/!nbproject/project.xml
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+.nb-gradle/
 
-#java specific
-**/*.class
+### Java ###
+*.class
+
+# Package Files #
+*.war
+*.ear
 
 #general swap/backup files
 **/*.so
