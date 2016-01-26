@@ -6,49 +6,46 @@
 [How-To](http://stackoverflow.com/questions/2010990/how-do-you-return-a-json-object-from-a-java-servlet#2010993)
 
 **Los putos JSONs los defines tu GILIPOLLAS**
-* `GET /:uid` **Proposta:** `GET /`, **2 Proposta:** `GET /graphs/:id`
-  * 200 -> Obj JSON dades de les gràfiques
+* `GET /`
+  * 200 → `index.jsp`
+
+
+Obj JSON dades de les gràfiques:
   * _**Comentari**_: Cada gràfica hauría de ser una petició al microservei corresponent.
   La idea seria algo del pal:
         /:graphId[/params]
-
         ò
-
         /:graphId/:rangeBegin/:rangeEnd[/params]
 
 
 ## Admin
 * `GET /admin`
-  * 200 -> `admin.jsp`
+  * 200 → `admin.jsp`
 
 _**CRUD**_ sobre usuaris
-* `GET /admin/users` -> Llistar usuaris
-* `GET /admin/users/:id` -> Collir un usuaris
-* `POST /admin/users` -> Crear un usuari
-* `PUT /admin/users/:id` -> Modificar un usuari
-* `DELETE /admin/users/:id` -> Borrar un usuari
+* `GET /admin/users` → Llistar usuaris
+* `GET /admin/users/:id` → Collir un usuaris
+* `POST /admin/users` → Crear un usuari
+* `PUT /admin/users/:id` → Modificar un usuari
+* `DELETE /admin/users/:id` → Borrar un usuari
 
 ## Login
-* `GET /login`
-  * 200 -> `login.jsp`
-
-
 * `POST /login`
-  * 302 -> `home.jsp`, URI: `/`
-  * 401 -> `login.jsp`, URI: `/login`
+  * 302 → `index.jsp`, URI: `/`
+  * 401 → `index.jsp`, URI: `/`
 
 ## Chat
 * `GET /chats[/:cid]`
-  * 200 -> `chat.jsp`, Ordered by time
+  * 200 → `chat.jsp`, Ordered by time
     * *Comentari per experts* Els nulls tenen preferència
 
 
 * `POST /chats?party=uid`
-  * 302 -> `chat.jsp`, URI: `/chats/:cid`
+  * 302 → `chat.jsp`, URI: `/chats/:cid`
 
 
 * `GET /chats/:cid/messages?unread=&begin=`
-  * 200 -> `Ajax`, Ordered by time
+  * 200 → `Ajax`, Ordered by time
   ```json
   {
     "cid": "",
@@ -63,7 +60,7 @@ _**CRUD**_ sobre usuaris
 
 
 * `GET /chats?unread=&skip=:cid`
-  * 200 -> `Ajax`
+  * 200 → `Ajax`
   ```json
     {
       "cid": {
@@ -75,11 +72,11 @@ _**CRUD**_ sobre usuaris
 
 
 * `POST /chats/:cid/messages`
-  * 200 -> `Ajax`
+  * 200 → `Ajax`
 
 
 * `GET /users?value=`
-  * 200 -> `Ajax`, matching per nom i correu , limit 5
+  * 200 → `Ajax`, matching per nom i correu , limit 5
   ```json
     [
       {
@@ -157,6 +154,5 @@ public class DBProperties {
   public static final String port = "27017";
   public static final String db   = "chat";
   public static final String coll = "chats";
-  public static final String pass = "";
 }
 ```
