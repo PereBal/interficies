@@ -5,9 +5,7 @@
  */
 package Servlets;
 
-import Database.DBActions;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +29,13 @@ public class Signup extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String n = request.getParameter("userName");
-        String p = request.getParameter("userPassword");
-
-        n = "Joan";
-        p = "1234";
-        DBActions dba = new DBActions();
-        dba.insertUser(n, p);
+//        String n = request.getParameter("userName");
+//        String p = request.getParameter("userPassword");
+//
+//        n = "Joan";
+//        p = "1234";
+//        DBActions dba = new DBActions();
+//        dba.insertUser(n, p);
 
         response.sendRedirect("Successful.jsp");
     }
