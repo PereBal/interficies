@@ -18,10 +18,6 @@
 
 
 ## Admin
-* `GET /:uid/admin | POST /admin/:uid`
-  * _**Comentari**_: S'ha de fer un _**CRUD**_.
-
-_**PROPOSTA**_
 * `GET /admin`
   * 200 -> `admin.jsp`
 
@@ -42,16 +38,16 @@ _**CRUD**_ sobre usuaris
   * 401 -> `login.jsp`, URI: `/login`
 
 ## Chat
-* **Proposta:** `GET /chats[/:cid]`
+* `GET /chats[/:cid]`
   * 200 -> `chat.jsp`, Ordered by time
     * *Comentari per experts* Els nulls tenen preferència
 
 
-* `POST /:uid/chats/create-with/:uid2` **Proposta:**`POST /chats?party=uid`, **2 Proposta:** `POST /chats?party=uid`
+* `POST /chats?party=uid`
   * 302 -> `chat.jsp`, URI: `/chats/:cid`
 
 
-* `GET /:uid/chats/:cid?unread=&begin=` **Proposta:**`GET /chats/:cid?unread=&begin=`, **2 Proposta:** `GET /chats/:cid/messages?unread=&begin=`
+* `GET /chats/:cid/messages?unread=&begin=`
   * 200 -> `Ajax`, Ordered by time
   ```json
   {
@@ -66,7 +62,7 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `GET /:uid/chats/unread/:cid-focus` **Proposta:** `/chats/unread?focus=cid`, **2 Proposta:** `GET /chats[/:cid]?unread=`
+* `GET /chats?unread=&skip=:cid`
   * 200 -> `Ajax`
   ```json
     {
@@ -78,11 +74,11 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `POST /send/:uid/to/:cid` **Proposta:**`/send?to=uid`, **2 Proposta:** `POST /chats/:cid/messages`
+* `POST /chats/:cid/messages`
   * 200 -> `Ajax`
 
 
-* `GET /search?val=string`, **2 Proposta:** `GET /users?value=`
+* `GET /users?value=`
   * 200 -> `Ajax`, matching per nom i correu , limit 5
   ```json
     [
@@ -160,7 +156,7 @@ public class DBProperties {
   public static final String host = "localhost";
   public static final String port = "27017";
   public static final String db   = "chat";
-  public static final String user = "root";
+  public static final String coll = "chats";
   public static final String pass = "";
 }
 ```
