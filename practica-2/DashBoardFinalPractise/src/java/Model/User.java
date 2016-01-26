@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 public class User {
 
   private int id;
@@ -39,5 +41,15 @@ public class User {
 
   public String getRememberToken() {
     return remember_token;
+  }
+  
+  // TO DO
+  public List<Chat> getChats() {
+    return null;
+  }
+  
+  // TO DO
+  public List<Message> getUnreadMessages(String chat_id) {
+    return null;
   }
 }
