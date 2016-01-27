@@ -2,7 +2,6 @@ package Model;
 
 import Database.Chat.DBActions;
 import Database.Chat.Exceptions.ChatDoNotExistsException;
-import Database.Chat.Exceptions.PartyNotCorrectSizeException;
 import Database.Chat.Exceptions.UserIsNotInPartyException;
 import Database.Www.Exceptions.UserDoNotExistsException;
 import java.util.Date;
@@ -17,17 +16,8 @@ public class Chat {
   private final List<Message> messages;
   private final Date created_at;
 
-  public Chat(List<Party> parties) throws
-    UserDoNotExistsException,
-    PartyNotCorrectSizeException
-  {
-    if (parties.size() != 2) {
-      throw new PartyNotCorrectSizeException();
-    }
-    User u1 = parties.get(0).getUser();
-    User u2 = parties.get(1).getUser();
-
-    Chat c = DBActions.createChat(u1.getId(), u2.getId());
+  public Chat(int user_id1, int user_id2) throws UserDoNotExistsException {
+    Chat c = DBActions.createChat(user_id1, user_id2);
 
     this.id         = c.getId();
     this.is_deleted = c.getIsDeleted();

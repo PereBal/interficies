@@ -27,9 +27,9 @@ public class Party {
   
   // TO DO
   public void setLastReadMessage(Message message) {
-    String chat_id    = this.chat_id.toString();
-    String message_id = message.getId().toString();
-    int user_id       = this.user.getId();
+    //String chat_id    = this.chat_id.toString();
+    //String message_id = message.getId().toString();
+    //int user_id       = this.user.getId();
     
     //DBActions.updateLastReadMessage(chat_id, message_id, user_id);
     this.last_read_message = message;
