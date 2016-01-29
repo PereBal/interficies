@@ -2,6 +2,8 @@ package database.www;
 
 import model.User;
 import database.tools.Utils;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -73,13 +75,23 @@ public class DBActions {
   }
 
   public User getUserByEmail(String email, String password) {
-    return getUser(advancedFactory, "email='" + Utils.cleanEmail(email) + "'"
-            + "AND pwd='" + Utils.hash(Utils.cleanPwd(password)) + "'");
+    try {
+      return getUser(advancedFactory, "email='" + Utils.cleanEmail(email) + "'"
+              + "AND pwd='" + Utils.encrypt(password) + "'");
+    } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+      ex.printStackTrace();
+      return null;
+    }
   }
 
   public User getUserByName(String name, String password) {
-    return getUser(advancedFactory, "name='" + Utils.cleanName(name) + "'"
-            + " AND pwd='" + Utils.hash(Utils.cleanPwd(password)) + "'");
+    try {
+      return getUser(advancedFactory, "name='" + Utils.cleanName(name) + "'"
+              + " AND pwd='" + Utils.encrypt(password) + "'");
+    } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+      ex.printStackTrace();
+      return null;
+    }
   }
 
   private static User getUser(UserFactory factory, String filter) {
@@ -117,10 +129,10 @@ public class DBActions {
   }
 
   public boolean insertUser(String email, String name, String password, String isAdmin) {
-    return insertUser(email, name, null, password, isAdmin);
+    return insertUser(email, name, null, password, isAdmin, null);
   }
 
-  public boolean insertUser(String email, String name, String lastName, String password, String isAdmin) {
+  public boolean insertUser(String email, String name, String lastName, String password, String isAdmin, String authToken) {
     try (DBConnection con = new DBConnection();) {
       con.open();
       Statement st = con.getConection().createStatement();
@@ -130,12 +142,13 @@ public class DBActions {
               + "'" + Utils.cleanEmail(email) + "',"
               + "'" + Utils.cleanName(name) + "',"
               + "'" + Utils.cleanLastName(lastName) + "',"
-              + "'" + Utils.hash(Utils.cleanPwd(password)) + "',"
-              + "'" + Utils.cleanAdmin(isAdmin) + "'"
+              + "'" + Utils.encrypt(password) + "',"
+              + Utils.cleanAdmin(isAdmin) + ","
+              + "'" + Utils.cleanAuthToken(authToken) + "'"
               + ");";
       st.executeUpdate(Query);
       return true;
-    } catch (SQLException ex) {
+    } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
       ex.printStackTrace();
       return false;
     }
