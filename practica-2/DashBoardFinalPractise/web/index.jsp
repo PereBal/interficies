@@ -1,4 +1,4 @@
-<%@page import="Database.DBActions"%>
+<%@page import="database.www.DBActions"%>
 <!DOCTYPE html>
 <html lang="en">
 

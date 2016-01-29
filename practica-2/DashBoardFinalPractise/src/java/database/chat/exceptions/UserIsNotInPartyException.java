@@ -1,4 +1,4 @@
-package Database.Chat.Exceptions;
+package database.chat.exceptions;
 
 public class UserIsNotInPartyException extends Exception {
   

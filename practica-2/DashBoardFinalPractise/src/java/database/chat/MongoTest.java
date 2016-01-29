@@ -1,7 +1,7 @@
-package Database.Chat;
+package database.chat;
 
-import Model.Chat;
-import Model.Message;
+import model.Chat;
+import model.Message;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;

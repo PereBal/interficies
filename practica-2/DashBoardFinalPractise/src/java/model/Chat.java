@@ -1,9 +1,9 @@
-package Model;
+package model;
 
-import Database.Chat.DBActions;
-import Database.Chat.Exceptions.ChatDoNotExistsException;
-import Database.Chat.Exceptions.UserIsNotInPartyException;
-import Database.Www.Exceptions.UserDoNotExistsException;
+import database.chat.DBActions;
+import database.chat.exceptions.ChatDoNotExistsException;
+import database.chat.exceptions.UserIsNotInPartyException;
+import database.www.exceptions.UserDoNotExistsException;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -19,18 +19,18 @@ public class Chat {
   public Chat(int user_id1, int user_id2) throws UserDoNotExistsException {
     Chat c = DBActions.createChat(user_id1, user_id2);
 
-    this.id         = c.getId();
+    this.id = c.getId();
     this.is_deleted = c.getIsDeleted();
-    this.parties    = c.getParties();
-    this.messages   = c.getMessages();
+    this.parties = c.getParties();
+    this.messages = c.getMessages();
     this.created_at = c.getCreatedAt();
   }
 
   public Chat(ObjectId id, Boolean is_deleted, List<Party> parties, List<Message> messages) {
-    this.id         = id;
+    this.id = id;
     this.is_deleted = is_deleted;
-    this.parties    = parties;
-    this.messages   = messages;
+    this.parties = parties;
+    this.messages = messages;
     this.created_at = id.getDate(); //revisar el format del date object id
   }
 
@@ -54,17 +54,16 @@ public class Chat {
   public List<Message> getMessages() {
     return messages;
   }
-  
+
   // TO DO
   public List<Message> getUnreadMessages(int user_id) {
     return null;
   }
 
   public void setMessages(List<Message> messages) throws
-    UserDoNotExistsException,
-    UserIsNotInPartyException,
-    ChatDoNotExistsException
-  {
+          UserDoNotExistsException,
+          UserIsNotInPartyException,
+          ChatDoNotExistsException {
     for (Message message : messages) {
       Message msg = DBActions.createMessage(this.id.toString(), message.getUser().getId(), message.getText());
       this.messages.add(msg);
