@@ -37,7 +37,6 @@ public class Signup extends HttpServlet {
     database.www.DBActions wDBA = new database.www.DBActions();
     //wDBA.insertUser(n, p);
 
-    database.www.DBActions.info();
     database.chat.DBActions.info();
     database.highcharts.DBActions.info();
 

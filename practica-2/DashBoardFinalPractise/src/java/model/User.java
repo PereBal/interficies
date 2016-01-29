@@ -4,19 +4,12 @@ import java.util.List;
 
 public class User {
 
-  private int id;
-  private String email;
-  private String name;
+  private final int id;
+  private final String email;
+  private final String name;
   private String lastName;
-  private boolean isAdmin;
+  private final boolean isAdmin;
   private String authToken;
-
-  public User() {
-  }
-  
-  public User(java.sql.ResultSet rs) {
-    
-  }
 
   public User(int id, String email, String name, boolean isAdmin) {
     this.id = id;
@@ -26,7 +19,7 @@ public class User {
     this.lastName = "";
     this.authToken = null;
   }
-  
+
   public User(int id, String email, String name, String lastName, boolean isAdmin, String authToken) {
     this.id = id;
     this.email = email;
@@ -52,10 +45,6 @@ public class User {
     return lastName;
   }
 
-  public Boolean getIsAdmin() {
-    return isAdmin;
-  }
-
   public String getAuthToken() {
     return authToken;
   }
@@ -68,5 +57,9 @@ public class User {
   // TO DO
   public List<Message> getUnreadMessages(String chat_id) {
     return null;
+  }
+
+  public boolean isAdmin() {
+    return isAdmin;
   }
 }

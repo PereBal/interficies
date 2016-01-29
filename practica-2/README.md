@@ -103,9 +103,9 @@ Tendrem 3 bases de dades:
 | email      | string (unique) |
 | name       | string          |
 | last_name  | string          |
-| role       | bool            |
-| pswd       | string          |
-| rmbr_token | string          |
+| admin      | bool            |
+| pwd        | string          |
+| auth_token | string          |
 
 ### Chats - MongoDB
 ```

@@ -6,96 +6,139 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DBActions {
 
-  public static Boolean userExists(int user_id) {
-    return true;
+  // WHY? cause I want to learn more about the factory programming pattern
+  private interface UserFactory {
+
+    /**
+     * Map from ResultSet to User. Each Factory object must implement its own mapper.
+     *
+     * @param rs <b>java.sql.ResultSet></b>
+     * @return User
+     * @throws SQLException
+     */
+    User toUser(ResultSet rs) throws SQLException;
+
+    /**
+     * User fields with value on SQLString way. Use this function to specify which fields will be on the result set.
+     *
+     * @return A String of field names with the format: <b>"</b><i>fieldName1</i>, <i>fieldName2</i>, ...,
+     * <i>fnameN</i><b>"</b>
+     */
+    String fields();
   }
 
-  public static User getUserById(int user_id) {
+  private static UserFactory basicFactory = new UserFactory() {
+    @Override
+    public User toUser(ResultSet rs) throws SQLException {
+      return new User(
+              rs.getInt("id"),
+              rs.getString("email"),
+              rs.getString("name"),
+              rs.getBoolean("admin"));
+    }
+
+    @Override
+    public String fields() {
+      return "id, email, name, admin";
+    }
+  };
+
+  private static UserFactory advancedFactory = new UserFactory() {
+    @Override
+    public User toUser(ResultSet rs) throws SQLException {
+      return new User(
+              rs.getInt("id"),
+              rs.getString("email"),
+              rs.getString("name"),
+              rs.getString("last_name"),
+              rs.getBoolean("admin"),
+              rs.getString("auth_token"));
+    }
+
+    @Override
+    public String fields() {
+      return "id, email, name, last_name, admin, auth_token";
+    }
+  };
+
+  public static Boolean userExists(int userId) {
+    return getUser(basicFactory, "id=" + userId) != null;
+  }
+
+  public static User getUserById(int userId) {
+    return getUser(advancedFactory, "id=" + userId);
+  }
+
+  public User getUserByEmail(String email, String password) {
+    return getUser(advancedFactory, "email='" + Utils.cleanEmail(email) + "'"
+            + "AND pwd='" + Utils.hash(Utils.cleanPwd(password)) + "'");
+  }
+
+  public User getUserByName(String name, String password) {
+    return getUser(advancedFactory, "name='" + Utils.cleanName(name) + "'"
+            + " AND pwd='" + Utils.hash(Utils.cleanPwd(password)) + "'");
+  }
+
+  private static User getUser(UserFactory factory, String filter) {
+    try (DBConnection con = new DBConnection();) {
+      con.open();
+      Statement st = con.getConection().createStatement();
+      ResultSet rs = st.executeQuery("SELECT " + factory.fields() + " FROM user WHERE " + filter + ";");
+      if (rs.next()) {
+        return factory.toUser(rs);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return null;
   }
 
-  public static void info() {
-
-  }
-
   public ArrayList<User> getUsers() {
-    DBConnection con = new DBConnection();
-    ArrayList<User> userList = new ArrayList<>(20);
-    try {
+    // OJO al límit
+    final int lim = 20;
+    ArrayList<User> userList = null;
+    try (DBConnection con = new DBConnection();) {
       con.open();
       Statement st = con.getConection().createStatement();
-      // OJO al límit
-      ResultSet rs = st.executeQuery("SELECT id, email, name, level FROM users LIMIT 20;");
+      ResultSet rs = st.executeQuery("SELECT " + basicFactory.fields() + " FROM user LIMIT " + lim + ";");
+
+      userList = new ArrayList<>(lim);
       while (rs.next()) {
-        userList.add(new User(
-                rs.getInt("id"),
-                rs.getString("email"),
-                rs.getString("name"),
-                rs.getString("level").equals("1")));
+        userList.add(basicFactory.toUser(rs));
       }
+
     } catch (Exception ex) {
-    } finally {
-      con.close();
+      ex.printStackTrace();
     }
     return userList;
   }
 
-  public User getUser(String name, String password) {
-    DBConnection con = new DBConnection();
-    User auxUser = new User();
-    try {
-      con.open();
-      Statement st = con.getConection().createStatement();
-      ResultSet rs = st.executeQuery(
-              "SELECT id, email, name, last_name, level, auth_token FROM users"
-              + " WHERE name='" + Utils.cleanName(name) + "'"
-              + " AND password='" + Utils.hash(Utils.cleanPwd(password)) + "';");
-      if (rs.next()) {
-        return new User(
-                rs.getInt("id"),
-                rs.getString("email"),
-                rs.getString("name"),
-                rs.getString("last_name"),
-                rs.getString("level").equals("1"),
-                rs.getString("remember_token"));
-      }
-    } catch (Exception ex) {
-    } finally {
-      con.close();
-    }
-    return null;
+  public boolean insertUser(String email, String name, String password, String isAdmin) {
+    return insertUser(email, name, null, password, isAdmin);
   }
 
-  public void insertUser(String email, String name, String password, String level) {
-    insertUser(email, name, null, password, level);
-  }
-
-  public void insertUser(String email, String name, String lastName, String password, String level) {
-    DBConnection con = new DBConnection();
-    try {
+  public boolean insertUser(String email, String name, String lastName, String password, String isAdmin) {
+    try (DBConnection con = new DBConnection();) {
       con.open();
       Statement st = con.getConection().createStatement();
 
-      String Query = "INSERT INTO users (email, name, last_name, password, level) VALUES"
+      String Query = "INSERT INTO user (email, name, last_name, password, admin) VALUES"
               + "("
               + "'" + Utils.cleanEmail(email) + "',"
               + "'" + Utils.cleanName(name) + "',"
               + "'" + Utils.cleanLastName(lastName) + "',"
               + "'" + Utils.hash(Utils.cleanPwd(password)) + "',"
-              + "'" + Utils.cleanLevel(level) + "'"
+              + "'" + Utils.cleanAdmin(isAdmin) + "'"
               + ");";
       st.executeUpdate(Query);
-
+      return true;
     } catch (SQLException ex) {
-      Logger.getLogger(DBActions.class
-              .getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      con.close();
+      ex.printStackTrace();
+      return false;
     }
   }
+
 }

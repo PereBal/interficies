@@ -28,8 +28,8 @@ public class Utils {
     return pwd;
   }
 
-  public static String cleanLevel(String level) {
-    return level;
+  public static String cleanAdmin(String isAdmin) {
+    return isAdmin;
   }
   
   public static String hash(String pwd) {
