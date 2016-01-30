@@ -27,32 +27,28 @@ public class DBActions {
     new database.highcharts.graphs.Graph05()};
 
   public JSONObject getGraph(int graphId, int year) {
-    if (graphId-1 < 0 || graphId-1 > graphs.length) {
-      return null;
-    }
-    Graph g = graphs[graphId-1];
-    try (DBConnection conn = new DBConnection();) {
-      conn.open();
-
-      Statement st = conn.getConection().createStatement();
-      ResultSet rs = st.executeQuery(g.query(year));
-      return g.toJSON(rs);
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-      return null;
-    }
+    return createGraph(graphId, year, -1);
   }
 
   public JSONObject getGraph(int graphId, int year, int month) {
-    if (graphId-1 < 0 || graphId-1 > graphs.length) {
+    return createGraph(graphId, year, month);
+  }
+
+  private JSONObject createGraph(int graphId, int year, int month) {
+    if (graphId - 1 < 0 || graphId - 1 > graphs.length) {
       return null;
     }
-    Graph g = graphs[graphId-1];
+    Graph g = graphs[graphId - 1];
     try (DBConnection conn = new DBConnection();) {
       conn.open();
 
       Statement st = conn.getConection().createStatement();
-      ResultSet rs = st.executeQuery(g.query(year, month));
+      ResultSet rs;
+      if (month >= 0) {
+        rs = st.executeQuery(g.query(year, month));
+      } else {
+        rs = st.executeQuery(g.query(year));
+      }
       return g.toJSON(rs);
     } catch (SQLException ex) {
       ex.printStackTrace();

@@ -1,5 +1,5 @@
 package database.chat.exceptions;
 
-public class ChatDoNotExistsException extends Exception {
+public class ChatDoesNotExistException extends Exception {
   
 }

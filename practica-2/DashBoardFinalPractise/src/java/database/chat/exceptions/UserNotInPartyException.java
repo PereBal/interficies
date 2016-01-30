@@ -1,5 +1,5 @@
 package database.chat.exceptions;
 
-public class UserIsNotInPartyException extends Exception {
+public class UserNotInPartyException extends Exception {
   
 }
