@@ -12,9 +12,9 @@ import static java.util.Arrays.asList;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.elemMatch;
 import static com.mongodb.client.model.Filters.eq;
-import database.www.exceptions.UserDoNotExistsException;
-import database.chat.exceptions.ChatDoNotExistsException;
-import database.chat.exceptions.UserIsNotInPartyException;
+import database.www.exceptions.UserDoesNotExistException;
+import database.chat.exceptions.ChatDoesNotExistException;
+import database.chat.exceptions.UserNotInPartyException;
 
 /**
  * TO-DO: - getUnreadMessages(String chat_id, int user_id) - updateLastReadMessage(String chat_id, String message_id,
@@ -34,14 +34,14 @@ public class DBActions {
 
   /**
    *
-   * @param user_id1
-   * @param user_id2
+   * @param userId1
+   * @param userId2
    * @return Chat or null
-   * @throws UserDoNotExistsException
+   * @throws UserDoesNotExistException
    */
-  public static Chat createChat(int user_id1, int user_id2) throws UserDoNotExistsException {
-    if (!database.www.DBActions.userExists(user_id1) || !database.www.DBActions.userExists(user_id1)) {
-      throw new UserDoNotExistsException();
+  public static Chat createChat(int userId1, int userId2) throws UserDoesNotExistException {
+    if (!database.www.DBActions.userExists(userId1) || !database.www.DBActions.userExists(userId1)) {
+      throw new UserDoesNotExistException();
     }
 
     try (DBConnection connection = new DBConnection();) {
@@ -51,10 +51,10 @@ public class DBActions {
               .append("is_deleted", false)
               .append("party", asList(
                       new Document()
-                      .append("user_id", user_id1)
+                      .append("user_id", userId1)
                       .append("last_read_message", null),
                       new Document()
-                      .append("user_id", user_id2)
+                      .append("user_id", userId2)
                       .append("last_read_message", null)));
 
       MongoDatabase db = connection.getDatabase();
@@ -68,19 +68,19 @@ public class DBActions {
   }
 
   public static Message createMessage(String chat_id, int user_id, String text) throws
-          ChatDoNotExistsException,
-          UserDoNotExistsException,
-          UserIsNotInPartyException {
+          ChatDoesNotExistException,
+          UserDoesNotExistException,
+          UserNotInPartyException {
     if (!DBActions.chatExists(chat_id)) {
-      throw new ChatDoNotExistsException();
+      throw new ChatDoesNotExistException();
     }
 
     if (!database.www.DBActions.userExists(user_id)) {
-      throw new UserDoNotExistsException();
+      throw new UserDoesNotExistException();
     }
 
     if (!DBActions.userInParty(chat_id, user_id)) {
-      throw new UserIsNotInPartyException();
+      throw new UserNotInPartyException();
     }
 
     try (DBConnection connection = new DBConnection();) {
@@ -111,9 +111,9 @@ public class DBActions {
   /////////////////////////////////
   //// Update Entities!!!
   /////////////////////////////////
-  public static void updateIsDeleted(String chat_id, Boolean is_deleted) throws ChatDoNotExistsException {
+  public static void updateIsDeleted(String chat_id, Boolean is_deleted) throws ChatDoesNotExistException {
     if (!DBActions.chatExists(chat_id)) {
-      throw new ChatDoNotExistsException();
+      throw new ChatDoesNotExistException();
     }
 
     try (DBConnection connection = new DBConnection();) {

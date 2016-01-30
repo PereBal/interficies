@@ -1,9 +1,9 @@
 package model;
 
 import database.chat.DBActions;
-import database.chat.exceptions.ChatDoNotExistsException;
-import database.chat.exceptions.UserIsNotInPartyException;
-import database.www.exceptions.UserDoNotExistsException;
+import database.chat.exceptions.ChatDoesNotExistException;
+import database.chat.exceptions.UserNotInPartyException;
+import database.www.exceptions.UserDoesNotExistException;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -11,27 +11,34 @@ import org.bson.types.ObjectId;
 public class Chat {
 
   private final ObjectId id;
-  private Boolean is_deleted;
+  private Boolean isDeleted;
   private final List<Party> parties;
   private final List<Message> messages;
-  private final Date created_at;
+  private final Date createdAt;
 
-  public Chat(int user_id1, int user_id2) throws UserDoNotExistsException {
-    Chat c = DBActions.createChat(user_id1, user_id2);
+  public Chat(int userId1, int userId2) throws UserDoesNotExistException {
+    /*
+     * Alternative:
+     * 1. Create/Get parties List
+     * 2. Create/Get messages List
+     * 3. id = DBActions.createChat(parties, messages)
+     * 4. if (id != null) createdAt = now(); 
+    */
+    Chat c = DBActions.createChat(userId1, userId2);
 
     this.id = c.getId();
-    this.is_deleted = c.getIsDeleted();
+    this.isDeleted = c.getIsDeleted();
     this.parties = c.getParties();
     this.messages = c.getMessages();
-    this.created_at = c.getCreatedAt();
+    this.createdAt = c.getCreatedAt();
   }
 
-  public Chat(ObjectId id, Boolean is_deleted, List<Party> parties, List<Message> messages) {
+  public Chat(ObjectId id, boolean isDeleted, List<Party> parties, List<Message> messages) {
     this.id = id;
-    this.is_deleted = is_deleted;
+    this.isDeleted = isDeleted;
     this.parties = parties;
     this.messages = messages;
-    this.created_at = id.getDate(); //revisar el format del date object id
+    this.createdAt = id.getDate(); //revisar el format del date object id
   }
 
   public ObjectId getId() {
@@ -39,12 +46,12 @@ public class Chat {
   }
 
   public Boolean getIsDeleted() {
-    return is_deleted;
+    return isDeleted;
   }
 
-  public void setIsDeleted(Boolean is_deleted) throws ChatDoNotExistsException {
-    DBActions.updateIsDeleted(this.id.toString(), is_deleted);
-    this.is_deleted = is_deleted;
+  public void setIsDeleted(Boolean isDeleted) throws ChatDoesNotExistException {
+    DBActions.updateIsDeleted(this.id.toString(), isDeleted);
+    this.isDeleted = isDeleted;
   }
 
   public List<Party> getParties() {
@@ -61,9 +68,9 @@ public class Chat {
   }
 
   public void setMessages(List<Message> messages) throws
-          UserDoNotExistsException,
-          UserIsNotInPartyException,
-          ChatDoNotExistsException {
+          UserDoesNotExistException,
+          UserNotInPartyException,
+          ChatDoesNotExistException {
     for (Message message : messages) {
       Message msg = DBActions.createMessage(this.id.toString(), message.getUser().getId(), message.getText());
       this.messages.add(msg);
@@ -71,7 +78,7 @@ public class Chat {
   }
 
   public Date getCreatedAt() {
-    return created_at;
+    return createdAt;
   }
 
   ///////////////////////////////////

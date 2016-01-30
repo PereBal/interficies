@@ -38,7 +38,6 @@ public class Signup extends HttpServlet {
     //wDBA.insertUser(n, p);
 
     database.chat.DBActions.info();
-    database.highcharts.DBActions.info();
 
     response.sendRedirect("Successful.jsp");
   }

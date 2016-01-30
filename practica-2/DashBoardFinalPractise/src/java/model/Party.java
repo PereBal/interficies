@@ -7,13 +7,13 @@ import org.bson.types.ObjectId;
 public class Party {
 
   private final User user;
-  private final ObjectId chat_id;
-  private Message last_read_message;
+  private final ObjectId chatId;
+  private Message lastReadMessage;
 
-  public Party(User user, ObjectId chat_id, Message message) {
+  public Party(User user, ObjectId chatId, Message lastReadMessage) {
     this.user = user;
-    this.chat_id = chat_id;
-    this.last_read_message = message;
+    this.chatId = chatId;
+    this.lastReadMessage = lastReadMessage;
   }
 
   public User getUser() {
@@ -21,7 +21,7 @@ public class Party {
   }
 
   public Message getLastReadMessage() {
-    return last_read_message;
+    return lastReadMessage;
   }
 
   // TO DO
@@ -31,7 +31,7 @@ public class Party {
     //int user_id       = this.user.getId();
 
     //DBActions.updateLastReadMessage(chat_id, message_id, user_id);
-    this.last_read_message = message;
+    this.lastReadMessage = message;
   }
 
   // TO DO
@@ -40,19 +40,19 @@ public class Party {
   }
 
   public String getChatId() {
-    if (this.chat_id == null) {
+    if (this.chatId == null) {
       return null;
     }
 
-    return this.chat_id.toString();
+    return this.chatId.toString();
   }
 
   public Chat getChat() {
-    if (this.chat_id == null) {
+    if (this.chatId == null) {
       return null;
     }
 
-    return DBActions.getChatById(this.chat_id.toString());
+    return DBActions.getChatById(this.chatId.toString());
   }
 
   ///////////////////////////////////

@@ -1,9 +1,9 @@
 package model;
 
 import database.chat.DBActions;
-import database.chat.exceptions.ChatDoNotExistsException;
-import database.chat.exceptions.UserIsNotInPartyException;
-import database.www.exceptions.UserDoNotExistsException;
+import database.chat.exceptions.ChatDoesNotExistException;
+import database.chat.exceptions.UserNotInPartyException;
+import database.www.exceptions.UserDoesNotExistException;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -11,30 +11,30 @@ import org.bson.types.ObjectId;
 public class Message {
 
   private final ObjectId id;
-  private final ObjectId chat_id;
+  private final ObjectId chatId;
   private final User user;
   private final String text;
-  private final Date created_at;
+  private final Date createdAt;
 
-  public Message(String chat_id, int user_id, String text) throws
-          UserDoNotExistsException,
-          UserIsNotInPartyException,
-          ChatDoNotExistsException {
-    Message m = DBActions.createMessage(chat_id, user_id, text);
+  public Message(String chatId, int userId, String text) throws
+          UserDoesNotExistException,
+          UserNotInPartyException,
+          ChatDoesNotExistException {
+    Message m = DBActions.createMessage(chatId, userId, text);
 
     this.id = m.getId();
-    this.chat_id = new ObjectId(chat_id);
+    this.chatId = new ObjectId(chatId);
     this.user = m.getUser();
     this.text = m.getText();
-    this.created_at = m.getCreatedAt();
+    this.createdAt = m.getCreatedAt();
   }
 
-  public Message(ObjectId id, ObjectId chat_id, User user, String text) {
+  public Message(ObjectId id, ObjectId chatId, User user, String text) {
     this.id = id;
-    this.chat_id = chat_id;
+    this.chatId = chatId;
     this.user = user;
     this.text = text;
-    this.created_at = id.getDate();
+    this.createdAt = id.getDate();
   }
 
   public ObjectId getId() {
@@ -50,23 +50,23 @@ public class Message {
   }
 
   public Date getCreatedAt() {
-    return created_at;
+    return createdAt;
   }
 
   public String getChatId() {
-    if (this.chat_id == null) {
+    if (this.chatId == null) {
       return null;
     }
 
-    return this.chat_id.toString();
+    return this.chatId.toString();
   }
 
   public Chat getChat() {
-    if (this.chat_id == null) {
+    if (this.chatId == null) {
       return null;
     }
 
-    return DBActions.getChatById(this.chat_id.toString());
+    return DBActions.getChatById(this.chatId.toString());
   }
 
   ///////////////////////////////////

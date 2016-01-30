@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class User {
 
@@ -50,12 +50,12 @@ public class User {
   }
 
   // TO DO
-  public List<Chat> getChats() {
-    return null;
+  public ArrayList<Chat> getChats() {
+    return null; //database.chat.DBActions.getUserChats(id);
   }
 
   // TO DO
-  public List<Message> getUnreadMessages(String chat_id) {
+  public ArrayList<Message> getUnreadMessages(String chat_id) {
     return null;
   }
 
