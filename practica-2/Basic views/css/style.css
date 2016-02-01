@@ -12,3 +12,14 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+.tabs .indicator{
+	background-color: #039be5;
+}
+
+.tabs .tab {
+  line-height: 1px;
+  text-transform: none;
+  letter-spacing: 0.8px;
+  font-size: 1.2em;
+}
