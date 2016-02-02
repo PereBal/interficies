@@ -5,7 +5,10 @@
  */
 package database.highcharts.graphs;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -14,19 +17,41 @@ import org.json.JSONObject;
  */
 public class Graph02 implements Graph {
 
+  private final String q = "SELECT idioma, COUNT(idioma) AS cnt_idioma, anyo, mes_num "
+          + "FROM " + database.highcharts.DBProperties.DB + ".sm_procesados GROUP BY idioma ";
+
   @Override
   public String query(int year) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return q + "HAVING anyo=" + year + ";";
   }
 
   @Override
   public String query(int year, int month) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return q + "HAVING anyo=" + year + " "
+            + "AND mes_num=" + month + ";";
   }
 
   @Override
-  public JSONObject toJSON(ResultSet rs) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public JSONArray toJSON(ResultSet rs) {
+    JSONArray langs = new JSONArray();
+    try {
+      int count = 0;
+      while (rs.next()) {
+        count += rs.getInt("cnt_idioma");
+      }
+      rs.beforeFirst();
+
+      double val;
+      final double max_count = (double) count;
+      while (rs.next()) {
+        val = rs.getDouble("cnt_idioma") / max_count * 100.0;
+        val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        langs.put(new JSONObject().put(rs.getString("idioma"), val));
+      }
+    } catch (SQLException ex) {
+      java.util.logging.Logger.getLogger(Graph02.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    return langs;
   }
-  
+
 }

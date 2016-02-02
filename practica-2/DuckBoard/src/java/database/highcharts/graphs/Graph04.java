@@ -6,6 +6,7 @@
 package database.highcharts.graphs;
 
 import java.sql.ResultSet;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -25,8 +26,8 @@ public class Graph04 implements Graph {
   }
 
   @Override
-  public JSONObject toJSON(ResultSet rs) {
+  public JSONArray toJSON(ResultSet rs) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
+
 }

@@ -10,9 +10,11 @@ package database.highcharts.graphs;
  * @author pere
  */
 public interface Graph {
-  
+
   String query(int year);
+
   String query(int year, int month);
-  org.json.JSONObject toJSON(java.sql.ResultSet rs);
-  
+
+  org.json.JSONArray toJSON(java.sql.ResultSet rs);
+
 }

@@ -10,7 +10,7 @@ import database.highcharts.graphs.Graph;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 /**
  *
@@ -26,15 +26,15 @@ public class DBActions {
     new database.highcharts.graphs.Graph04(),
     new database.highcharts.graphs.Graph05()};
 
-  public JSONObject getGraph(int graphId, int year) {
+  public JSONArray getGraph(int graphId, int year) {
     return createGraph(graphId, year, -1);
   }
 
-  public JSONObject getGraph(int graphId, int year, int month) {
+  public JSONArray getGraph(int graphId, int year, int month) {
     return createGraph(graphId, year, month);
   }
 
-  private JSONObject createGraph(int graphId, int year, int month) {
+  private JSONArray createGraph(int graphId, int year, int month) {
     if (graphId - 1 < 0 || graphId - 1 > graphs.length) {
       return null;
     }
@@ -51,7 +51,7 @@ public class DBActions {
       }
       return g.toJSON(rs);
     } catch (SQLException ex) {
-      ex.printStackTrace();
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       return null;
     }
   }

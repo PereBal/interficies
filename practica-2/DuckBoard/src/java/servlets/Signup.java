@@ -32,13 +32,6 @@ public class Signup extends HttpServlet {
     String n = request.getParameter("userName");
     String p = request.getParameter("userPassword");
 
-    n = "Joan";
-    p = "1234";
-    database.www.DBActions wDBA = new database.www.DBActions();
-    //wDBA.insertUser(n, p);
-
-    database.chat.DBActions.info();
-
     response.sendRedirect("Successful.jsp");
   }
 
