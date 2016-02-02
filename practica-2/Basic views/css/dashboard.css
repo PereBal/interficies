@@ -1,0 +1,4 @@
+.linear-transition {
+
+	transition: visibility 0s, opacity 0.2s linear;
+}
