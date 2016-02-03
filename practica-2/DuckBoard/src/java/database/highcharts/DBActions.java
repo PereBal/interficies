@@ -45,9 +45,9 @@ public class DBActions {
       Statement st = conn.getConection().createStatement();
       ResultSet rs;
       if (month >= 0) {
-        rs = st.executeQuery(g.query(year, month));
+        rs = g.query(st, year, month);
       } else {
-        rs = st.executeQuery(g.query(year));
+        rs = g.query(st, year);
       }
       return g.toJSON(rs);
     } catch (SQLException ex) {

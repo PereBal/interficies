@@ -16,19 +16,19 @@ import org.json.JSONObject;
  */
 public class Graph03 implements Graph {
 
-  private String q = "SELECT polaridad, dia_sem, count(dia_sem) AS count_dia_sem, anyo, mes_num "
+  private String q = "SELECT polaridad, dia_sem, count(dia_sem) AS cnt_dia_sem, anyo, mes_num "
           + "FROM " + database.highcharts.DBProperties.DB + ".sm_procesados "
           + "GROUP BY polaridad, dia_sem "
           + "HAVING polaridad IS NOT NULL ";
 
   @Override
-  public String query(int year) {
-    return q + "AND anyo=" + year + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {
+    return st.executeQuery(q + "AND anyo=" + year + ";");
   }
 
   @Override
-  public String query(int year, int month) {
-    return q + "AND anyo=" + year + " AND mes_num=" + month + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year, int month) throws java.sql.SQLException {
+    return st.executeQuery(q + "AND anyo=" + year + " AND mes_num=" + month + ";");
   }
 
   @Override
@@ -48,9 +48,11 @@ public class Graph03 implements Graph {
           week_polarity = new JSONObject();
           week = new JSONArray();
         }
-        week.put(new JSONObject().put(rs.getString("dia_sem"), rs.getInt("count_dia_sem")));
+        week.put(new JSONObject().put(rs.getString("dia_sem"), rs.getInt("cnt_dia_sem")));
         prpolar = cpolar;
       }
+      week_polarity.put(prpolar, week);
+      polarity.put(week_polarity);
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(Graph03.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }

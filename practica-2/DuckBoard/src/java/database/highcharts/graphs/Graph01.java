@@ -31,14 +31,14 @@ public class Graph01 implements Graph {
   }
 
   @Override
-  public String query(int year) {
-    return q + "HAVING " + database.highcharts.DBProperties.DB + ".sm_procesados.anyo=" + year + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {
+    return st.executeQuery(q + "HAVING " + database.highcharts.DBProperties.DB + ".sm_procesados.anyo=" + year + ";");
   }
 
   @Override
-  public String query(int year, int month) {
-    return q + "HAVING " + database.highcharts.DBProperties.DB + ".sm_procesados.anyo=" + year + " "
-            + "AND " + database.highcharts.DBProperties.DB + ".sm_procesados.mes_num=" + month + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year, int month) throws java.sql.SQLException {
+    return st.executeQuery(q + "HAVING " + database.highcharts.DBProperties.DB + ".sm_procesados.anyo=" + year + " "
+            + "AND " + database.highcharts.DBProperties.DB + ".sm_procesados.mes_num=" + month + ";");
   }
 
   @Override

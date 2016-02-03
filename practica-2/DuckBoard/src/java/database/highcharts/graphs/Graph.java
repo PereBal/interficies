@@ -11,9 +11,9 @@ package database.highcharts.graphs;
  */
 public interface Graph {
 
-  String query(int year);
+  java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException;
 
-  String query(int year, int month);
+  java.sql.ResultSet query(java.sql.Statement st, int year, int month) throws java.sql.SQLException;
 
   org.json.JSONArray toJSON(java.sql.ResultSet rs);
 

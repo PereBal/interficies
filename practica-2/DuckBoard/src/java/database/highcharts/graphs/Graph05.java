@@ -17,61 +17,43 @@ import org.json.JSONObject;
  */
 public class Graph05 implements Graph {
 
-  private static final int LIM_FIELDS = 5;
-  private static final String[] FIELDS = new String[]{"mallorca", "menorca", "ibiza", "formentera", "baleares", "cine", "playa",
-    "baile", "teatro", "musica", "conciertos", "restaurantes", "arte", "hotel"};
-
-  private String q;
+  private final String q;
 
   public Graph05() {
-    q = "SELECT ";
-    int i = 0;
-    for (; i < LIM_FIELDS; i++) {
-      q += "COUNT(T_" + FIELDS[i] + ") AS " + FIELDS[i] + ",";
-    }
-    for (int len = FIELDS.length - 1; i < len; i++) {
-      q += "COUNT(T_" + FIELDS[i] + ")+";
-    }
-    q += "COUNT(T_" + FIELDS[i] + ") AS FueradeB,";
-
-    i = 0;
-    for (int len = LIM_FIELDS; i < len; i++) {
-      q += "COUNT(T_" + FIELDS[i] + ")+";
-    }
-    q += "COUNT(T_" + FIELDS[i] + ") AS sum_total,";
-
-    q += "anyo,mes_num ";
-    q += "FROM " + database.highcharts.DBProperties.DB + ".sm_procesados ";
+    q = "SELECT isla, COUNT(isla) AS cnt_isla, anyo, mes_num FROM " + database.highcharts.DBProperties.DB + ".sm_procesados "
+            + "GROUP BY isla ";
   }
 
   @Override
-  public String query(int year) {
-    System.out.println(q);
-    return q + "HAVING anyo=" + year + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {
+    return st.executeQuery(q + "HAVING anyo=" + year + ";");
   }
 
   @Override
-  public String query(int year, int month) {
-    return q + "HAVING anyo=" + year + " "
-            + "AND mes_num=" + month + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year, int month) throws java.sql.SQLException {
+    return st.executeQuery(q + "HAVING anyo=" + year + " "
+            + "AND mes_num=" + month + ";");
   }
 
   @Override
   public JSONArray toJSON(ResultSet rs) {
     JSONArray island = new JSONArray();
     try {
+
       if (rs.next()) {
-        int i;
+        int count = rs.getInt("cnt_isla");
+        do {
+          count += rs.getInt("cnt_isla");
+        } while (rs.next());
+        rs.beforeFirst();
+
         double val;
-        final double max_val = rs.getDouble("sum_total");
-        for (i = 0; i < LIM_FIELDS; i++) {
-          val = (rs.getDouble(FIELDS[i]) / max_val) * 100.0;
+        final double max_val = (double) count;
+        while (rs.next()) {
+          val = (rs.getDouble("cnt_isla") / max_val) * 100.0;
           val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-          island.put(new JSONObject().put(FIELDS[i], val));
+          island.put(new JSONObject().put(rs.getString("isla"), val));
         }
-        val = (rs.getDouble("FueradeB") / max_val) * 100.0;
-        val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        island.put(new JSONObject().put("FueradeB", val));
       }
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(Graph05.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

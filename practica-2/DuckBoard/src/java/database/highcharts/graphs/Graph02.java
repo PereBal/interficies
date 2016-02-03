@@ -21,14 +21,14 @@ public class Graph02 implements Graph {
           + "FROM " + database.highcharts.DBProperties.DB + ".sm_procesados GROUP BY idioma ";
 
   @Override
-  public String query(int year) {
-    return q + "HAVING anyo=" + year + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {
+    return st.executeQuery(q + "HAVING anyo=" + year + ";");
   }
 
   @Override
-  public String query(int year, int month) {
-    return q + "HAVING anyo=" + year + " "
-            + "AND mes_num=" + month + ";";
+  public java.sql.ResultSet query(java.sql.Statement st, int year, int month) throws java.sql.SQLException {
+    return st.executeQuery(q + "HAVING anyo=" + year + " "
+            + "AND mes_num=" + month + ";");
   }
 
   @Override
