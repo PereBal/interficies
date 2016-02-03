@@ -1,41 +1,22 @@
 package model;
 
-import database.chat.DBActions;
-import database.chat.exceptions.ChatDoesNotExistException;
-import database.chat.exceptions.UserNotInPartyException;
-import database.www.exceptions.UserDoesNotExistException;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
+import database.chat.DBActions;
+import database.chat.exceptions.UserNotInPartyException;
+import database.www.exceptions.UserDoesNotExistException;
+import database.chat.exceptions.ChatDoesNotExistException;
 
 public class Chat {
 
   private final ObjectId id;
-  private Boolean isDeleted;
   private final List<Party> parties;
   private final List<Message> messages;
   private final Date createdAt;
 
-  public Chat(int userId1, int userId2) throws UserDoesNotExistException {
-    /*
-     * Alternative:
-     * 1. Create/Get parties List
-     * 2. Create/Get messages List
-     * 3. id = DBActions.createChat(parties, messages)
-     * 4. if (id != null) createdAt = now(); 
-    */
-    Chat c = DBActions.createChat(userId1, userId2);
-
-    this.id = c.getId();
-    this.isDeleted = c.getIsDeleted();
-    this.parties = c.getParties();
-    this.messages = c.getMessages();
-    this.createdAt = c.getCreatedAt();
-  }
-
-  public Chat(ObjectId id, boolean isDeleted, List<Party> parties, List<Message> messages) {
+  public Chat(ObjectId id, List<Party> parties, List<Message> messages) {
     this.id = id;
-    this.isDeleted = isDeleted;
     this.parties = parties;
     this.messages = messages;
     this.createdAt = id.getDate(); //revisar el format del date object id
@@ -45,26 +26,34 @@ public class Chat {
     return id;
   }
 
-  public Boolean getIsDeleted() {
-    return isDeleted;
-  }
-
-  public void setIsDeleted(Boolean isDeleted) throws ChatDoesNotExistException {
-    DBActions.updateIsDeleted(this.id.toString(), isDeleted);
-    this.isDeleted = isDeleted;
-  }
-
   public List<Party> getParties() {
     return parties;
   }
 
-  public List<Message> getMessages() {
-    return messages;
+  public List<Message> getMessages() throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    return DBActions.getMessages(this.id.toString(), Message.LIMIT, 0);
   }
 
-  // TO DO
-  public List<Message> getUnreadMessages(int user_id) {
-    return null;
+  public List<Message> getMessages(int skip) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    return DBActions.getMessages(this.id.toString(), Message.LIMIT, skip);
+  }
+
+  public List<Message> getUnreadMessages(int userId) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.id.toString(), userId, true, Message.LIMIT, 0);
+  }
+
+  public List<Message> getUnreadMessages(int userId, int skip) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.id.toString(), userId, true, Message.LIMIT, skip);
   }
 
   public void setMessages(List<Message> messages) throws
@@ -77,6 +66,20 @@ public class Chat {
     }
   }
 
+  public void setLastReadMessage(int userId) throws
+          ChatDoesNotExistException,
+          UserDoesNotExistException,
+          UserNotInPartyException {
+    DBActions.updateLastReadMessage(this.id.toString(), userId);
+  }
+
+  public void setLastReadMessage(int userId, String messageId) throws
+          ChatDoesNotExistException,
+          UserDoesNotExistException,
+          UserNotInPartyException {
+    DBActions.updateLastReadMessage(this.id.toString(), userId, messageId);
+  }
+
   public Date getCreatedAt() {
     return createdAt;
   }
@@ -84,12 +87,20 @@ public class Chat {
   ///////////////////////////////////
   /////   Wrappering DBActions!!!
   ///////////////////////////////////
-  public static Chat retrieveByPk(String id) {
+  public static Chat create(int userId1, int userId2) throws UserDoesNotExistException {
+    return DBActions.createChat(userId1, userId2);
+  }
+
+  public static Chat retrieveByPk(String id) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
     return DBActions.getChatById(id);
   }
 
-  // TO DO
-  public static List<Chat> retrieveChatsByUserPk(int user_id) {
-    return null;
+  public static List<Chat> retrieveChatsByUserPk(int id) throws
+          UserDoesNotExistException,
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    return database.chat.DBActions.getChatsByUserId(id);
   }
 }

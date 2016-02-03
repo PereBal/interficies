@@ -9,17 +9,27 @@ import org.bson.Document;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
 import static java.util.Arrays.asList;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.elemMatch;
+import com.mongodb.client.AggregateIterable;
 import static com.mongodb.client.model.Filters.eq;
-import database.www.exceptions.UserDoesNotExistException;
-import database.chat.exceptions.ChatDoesNotExistException;
+import static com.mongodb.client.model.Filters.ne;
+import static com.mongodb.client.model.Filters.lt;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Updates.set;
+import static com.mongodb.client.model.Aggregates.skip;
+import static com.mongodb.client.model.Aggregates.sort;
+import static com.mongodb.client.model.Aggregates.match;
+import static com.mongodb.client.model.Aggregates.limit;
 import database.chat.exceptions.UserNotInPartyException;
+import static com.mongodb.client.model.Updates.addToSet;
+import database.www.exceptions.UserDoesNotExistException;
+import static com.mongodb.client.model.Filters.elemMatch;
+import static com.mongodb.client.model.Projections.slice;
+import database.chat.exceptions.ChatDoesNotExistException;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Indexes.descending;
 
-/**
- * TO-DO: - getUnreadMessages(String chat_id, int user_id) - updateLastReadMessage(String chat_id, String message_id,
- * int user_id) - getParty(String chat_id) - getChats(int user_id)
- */
 public class DBActions {
 
   public static void info() {
@@ -28,15 +38,17 @@ public class DBActions {
       System.out.println("Success: " + conn.getDatabase().getName());
     }
   }
+
   /////////////////////////////////
   //// Creator Entities!!!
   /////////////////////////////////
 
   /**
+   * Create Chat document, with the party initialized.
    *
    * @param userId1
    * @param userId2
-   * @return Chat or null
+   * @return Chat entity
    * @throws UserDoesNotExistException
    */
   public static Chat createChat(int userId1, int userId2) throws UserDoesNotExistException {
@@ -48,7 +60,6 @@ public class DBActions {
       connection.open();
 
       Document chat = new Document()
-              .append("is_deleted", false)
               .append("party", asList(
                       new Document()
                       .append("user_id", userId1)
@@ -58,6 +69,7 @@ public class DBActions {
                       .append("last_read_message", null)));
 
       MongoDatabase db = connection.getDatabase();
+
       db.getCollection(DBProperties.COLL).insertOne(chat);
 
       return DBActions.documentToChat(chat);
@@ -67,41 +79,48 @@ public class DBActions {
     }
   }
 
-  public static Message createMessage(String chat_id, int user_id, String text) throws
+  /**
+   * Insert a message in chat document.
+   *
+   * @param chatId
+   * @param userId
+   * @param text
+   * @return Message entity
+   * @throws ChatDoesNotExistException
+   * @throws UserDoesNotExistException
+   * @throws UserNotInPartyException
+   */
+  public static Message createMessage(String chatId, int userId, String text) throws
           ChatDoesNotExistException,
           UserDoesNotExistException,
           UserNotInPartyException {
-    if (!DBActions.chatExists(chat_id)) {
+    if (!DBActions.chatExist(chatId)) {
       throw new ChatDoesNotExistException();
     }
 
-    if (!database.www.DBActions.userExists(user_id)) {
+    if (!database.www.DBActions.userExists(userId)) {
       throw new UserDoesNotExistException();
     }
 
-    if (!DBActions.userInParty(chat_id, user_id)) {
+    if (!DBActions.userInParty(chatId, userId)) {
       throw new UserNotInPartyException();
     }
 
     try (DBConnection connection = new DBConnection();) {
       connection.open();
 
-      Document query = new Document("_id", new ObjectId(chat_id));
-
-      Document message = new Document("messages", new Document()
+      Document message = new Document()
               .append("_id", new ObjectId())
-              .append("user_id", user_id)
-              .append("text", text));
+              .append("user_id", userId)
+              .append("text", text);
 
       MongoDatabase db = connection.getDatabase();
-      db.getCollection(
-              DBProperties.COLL
-      ).updateOne(
-              query,
-              new Document("$addToSet", message)
-      );
 
-      return DBActions.documentToMessage(message, query.getObjectId("_id"));
+      db.getCollection(DBProperties.COLL).updateOne(
+              eq("_id", new ObjectId(chatId)),
+              addToSet("messages", message));
+
+      return DBActions.documentToMessage(message, new ObjectId(chatId));
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -111,132 +130,388 @@ public class DBActions {
   /////////////////////////////////
   //// Update Entities!!!
   /////////////////////////////////
-  public static void updateIsDeleted(String chat_id, Boolean is_deleted) throws ChatDoesNotExistException {
-    if (!DBActions.chatExists(chat_id)) {
+
+  /**
+   *
+   * @param chatId
+   * @param userId
+   * @throws ChatDoesNotExistException
+   * @throws UserDoesNotExistException
+   * @throws UserNotInPartyException
+   */
+  public static void updateLastReadMessage(String chatId, int userId) throws
+          ChatDoesNotExistException,
+          UserDoesNotExistException,
+          UserNotInPartyException {
+    if (!chatExist(chatId)) {
       throw new ChatDoesNotExistException();
     }
 
-    try (DBConnection connection = new DBConnection();) {
+    if (!database.www.DBActions.userExists(userId)) {
+      throw new UserDoesNotExistException();
+    }
+
+    if (!userInParty(chatId, userId)) {
+      throw new UserNotInPartyException();
+    }
+
+    try (DBConnection connection = new DBConnection()) {
       connection.open();
-
-      Document query = new Document("_id", new ObjectId(chat_id));
-
       MongoDatabase db = connection.getDatabase();
-      db.getCollection(
-              DBProperties.COLL
-      ).updateOne(
-              query,
-              new Document("$set", new Document("is_deleted", is_deleted))
-      );
+
+      String messageId = db.getCollection(DBProperties.COLL).find(
+              eq("_id", new ObjectId(chatId)))
+              .projection(
+                      fields(
+                              sort(descending("messages._id")),
+                              elemMatch("messages", ne("user_id", userId))))
+              .first().getObjectId("messages._id").toString();
+
+      db.getCollection(DBProperties.COLL).updateOne(
+              and(
+                      eq("_id", new ObjectId(chatId)),
+                      eq("party.user_id", userId)),
+              set("party.$.last_read_message", messageId));
+    }
+  }
+  
+  /**
+   *
+   * @param chatId
+   * @param userId
+   * @param messageId
+   * @throws ChatDoesNotExistException
+   * @throws UserDoesNotExistException
+   * @throws UserNotInPartyException
+   */
+  public static void updateLastReadMessage(String chatId, int userId, String messageId) throws
+          ChatDoesNotExistException,
+          UserDoesNotExistException,
+          UserNotInPartyException {
+    if (!chatExist(chatId)) {
+      throw new ChatDoesNotExistException();
+    }
+
+    if (!database.www.DBActions.userExists(userId)) {
+      throw new UserDoesNotExistException();
+    }
+
+    if (!userInParty(chatId, userId)) {
+      throw new UserNotInPartyException();
+    }
+
+    if (!messageExist(messageId)) {
+      //throw new ;
+    }
+
+    if (!isMessagePartOfChat(chatId, messageId)) {
+      //throw new ;
+    }
+
+    try (DBConnection connection = new DBConnection()) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      db.getCollection(DBProperties.COLL).updateOne(
+              and(
+                      eq("_id", new ObjectId(chatId)),
+                      eq("party.user_id", userId)),
+              set("party.$.last_read_message", messageId));
     }
   }
 
   /////////////////////////////////
   //// Getter Entities!!!
-  /////////////////////////////////
-  public static Message getMessageById(String id) {
-    DBConnection connection = new DBConnection();
-    connection.open();
+  ///////////////////////////////// 
+  
+  /**
+   * Get specific chat by chat Id.
+   *
+   * @param id
+   * @return Chat entity
+   * @throws database.chat.exceptions.ChatDoesNotExistException
+   * @throws database.chat.exceptions.UserNotInPartyException
+   */
+  public static Chat getChatById(String id) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    Document chat;
 
-    MongoDatabase db = connection.getDatabase();
+    try (DBConnection connection = new DBConnection();) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
 
-    Document query = new Document("messages._id", new ObjectId(id));
-
-    Document chat = db.getCollection(DBProperties.COLL).find(query).first();
-
-    connection.close();
+      chat = db.getCollection(DBProperties.COLL).find(
+              eq("_id", new ObjectId(id)))
+              .first();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
 
     if (chat == null) {
       return null;
     }
 
-    Document message = null;
-
-    // REALLY??? I DONT LIKE IT!!! I DONT HAVE FOUND ANY SOLUTION TO THIS 
-    for (Object obj : chat.get("messages", List.class)) {
-      Document doc = (Document) obj;
-
-      if (doc.getObjectId("_id").equals(query)) {
-        message = doc;
-        break;
-      }
+    return DBActions.documentToChat(chat);
+  }
+  
+  /**
+   * Get specific message by message Id.
+   *
+   * @param id
+   * @return
+   * @throws database.chat.exceptions.ChatDoesNotExistException
+   */
+  public static Message getMessageById(String id) throws ChatDoesNotExistException {
+    if (!DBActions.chatExist(id)) {
+      throw new ChatDoesNotExistException();
     }
 
-    if (message == null) {
+    Document chat;
+
+    try (DBConnection connection = new DBConnection()) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      chat = db.getCollection(DBProperties.COLL).find(
+              eq("messages._id", new ObjectId(id)))
+              .projection(elemMatch("messages", eq("_id", new ObjectId(id))))
+              .first();
+    } catch (Exception e) {
+      e.printStackTrace();
       return null;
     }
+
+    if (chat == null || !chat.containsKey("messages")) {
+      return null;
+    }
+
+    Document message = (Document) chat.get("messages", List.class).get(0);
 
     return DBActions.documentToMessage(message, chat.getObjectId("_id"));
   }
+  
+  /**
+   * Get list of messages of a chat.
+   *
+   * @param chatId
+   * @param limit
+   * @param skip
+   * @return
+   * @throws ChatDoesNotExistException
+   * @throws database.chat.exceptions.UserNotInPartyException
+   */
+  public static List<Message> getMessages(String chatId, int limit, int skip) throws // I DONT LIKE IT! int, integer wtf
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    if (!DBActions.chatExist(chatId)) {
+      throw new ChatDoesNotExistException();
+    }
 
-  public static Message getMessageById_v2(String id) {
-    // TODO: Test This shiet
-    // > db.party.find({"msg._id": 1}, {"msg": {$elemMatch: {_id: 1}}})
-    // Perque cal tenir 1 missatge en concret? No bastaria amb retornar un subset?
-    // A mes de separar els missatges a una classe apart...
-    Document message = null;
+    Document chat;
 
-    try (DBConnection connection = new DBConnection();) {
+    try (DBConnection connection = new DBConnection()) {
       connection.open();
-
       MongoDatabase db = connection.getDatabase();
-      message = db.getCollection(
-              DBProperties.COLL
-      ).find(
-              eq("messages._id", new ObjectId(id))
-      ).projection(
-              elemMatch("messages", eq("_id", new ObjectId(id)))
-      ).first();
-      // message is like:
-      // { _id: "foo",
-      //   message: {_id: "msgfoo", ...} <- this field might exist, or not
-      // }
-      if (message == null || !message.containsKey("messages")) {
-        return null;
-      }
+
+      chat = db.getCollection(DBProperties.COLL).find(
+              eq("_id", new ObjectId(chatId)))
+              .sort(descending("messages._id"))
+              .projection(slice("messages", limit, skip))
+              .first();
     } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
-    return DBActions.documentToMessage((Document) message.get("messages"), message.getObjectId("_id"));
+
+    List<Message> messages = new ArrayList<>();
+
+    if (chat != null) {
+      for (Object doc : chat.get("messages", List.class)) {
+        Message messageDocument = DBActions.documentToMessage((Document) doc, new ObjectId(chatId));
+        messages.add(messageDocument);
+      }
+    }
+
+    return messages;
   }
 
-  public static Chat getChatById(String id) {
-    try (DBConnection connection = new DBConnection();) {
-      connection.open();
+  /**
+   * Get list of messages by user point of view.
+   *
+   * @param chatId
+   * @param limit
+   * @param unread
+   * @param userId
+   * @param skip
+   * @return
+   * @throws ChatDoesNotExistException
+   * @throws database.chat.exceptions.UserNotInPartyException
+   * @throws database.www.exceptions.UserDoesNotExistException
+   */
+  public static List<Message> getMessages(String chatId, Integer userId, boolean unread, int limit, int skip) throws // I DONT LIKE IT! int, integer wtf
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    if (!DBActions.chatExist(chatId)) {
+      throw new ChatDoesNotExistException();
+    }
 
+    if (!database.www.DBActions.userExists(userId)) {
+      throw new UserDoesNotExistException();
+    }
+
+    if (!userInParty(chatId, userId)) {
+      throw new UserNotInPartyException();
+    }
+
+    try (DBConnection connection = new DBConnection()) {
+      connection.open();
       MongoDatabase db = connection.getDatabase();
-      Document chat = db.getCollection(
-              DBProperties.COLL
-      ).find(
-              eq("_id", new ObjectId(id))
-      ).first();
-      if (chat == null) {
-        return null;
+
+      List list = new ArrayList<>();
+
+      list.add(match(eq("_id", new ObjectId(chatId))));
+//      list.add(new Document("$project", new Document("$elemMatch", eq("party.user_id", userId)))); // project on aggregates are not working properly
+      list.add(sort(descending("messages._id")));
+      list.add(new Document("$unwind", "$messages"));
+      list.add(match(ne("messages.user_id", userId)));
+
+      if (unread) {
+        ObjectId lastReadMessage = db.getCollection(DBProperties.COLL).find(
+                eq("_id", new ObjectId(chatId)))
+                .projection(fields(
+                        elemMatch("party", eq("user_id", userId))))
+                .first().getObjectId("party.last_read_message");
+
+        if (lastReadMessage != null) {
+          list.add(match(lt("messages._id", lastReadMessage)));
+        }
       }
 
-      return DBActions.documentToChat(chat);
+      list.add(limit(limit));
+      list.add(skip(skip));
+      AggregateIterable<Document> iterator = db.getCollection(DBProperties.COLL).aggregate(list);
+
+      List<Message> messages = new ArrayList<>();
+
+      if (iterator != null) {
+        for (Document doc : iterator) {
+          Document msg = doc.get("messages", Document.class);
+          Message messageDocument = DBActions.documentToMessage(msg, new ObjectId(chatId));
+          messages.add(messageDocument);
+        }
+      }
+
+      return messages;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
+  }
+
+  /**
+   * Get list of chat party.
+   *
+   * @param id
+   * @param limit
+   * @return
+   * @throws database.chat.exceptions.ChatDoesNotExistException
+   */
+  public static List<Party> getPartiesByChatId(String id, int limit) throws ChatDoesNotExistException {
+    if (!DBActions.chatExist(id)) {
+      throw new ChatDoesNotExistException();
+    }
+
+    Document chat;
+
+    try (DBConnection connection = new DBConnection()) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      chat = db.getCollection(DBProperties.COLL).find(
+              eq("_id", new ObjectId(id)))
+              .projection(slice("party", limit))
+              .first();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    List<Party> parties = new ArrayList<>();
+    List<Object> partiesDocument = chat.get("party", List.class);
+
+    if (partiesDocument != null) {
+      for (Object doc : partiesDocument) {
+        Party partyDocument = DBActions.documentToParty((Document) doc, new ObjectId(id));
+        parties.add(partyDocument);
+      }
+    }
+
+    return parties;
+  }
+  
+  /**
+   *
+   * @param userId
+   * @return
+   * @throws UserDoesNotExistException
+   * @throws ChatDoesNotExistException
+   * @throws UserNotInPartyException
+   */
+  public static List<Chat> getChatsByUserId(int userId) throws
+          UserDoesNotExistException,
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    if (!database.www.DBActions.userExists(userId)) {
+      throw new UserDoesNotExistException();
+    }
+
+    FindIterable<Document> iterator;
+
+    try (DBConnection connection = new DBConnection()) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      iterator = db.getCollection(DBProperties.COLL).find(eq("party.user_id", userId));
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    List<Chat> chats = new ArrayList<>();
+
+    if (iterator != null) {
+      for (Document doc : iterator) {
+        Chat chat = DBActions.documentToChat(doc);
+        chats.add(chat);
+      }
+    }
+
+    return chats;
   }
 
   /////////////////////////////////
   //// Query Conditions!!!
   /////////////////////////////////
-  public static Boolean userInParty(String chat_id, int user_id) {
+  
+  /**
+   *
+   * @param chatId
+   * @param userId
+   * @return
+   */
+  public static Boolean userInParty(String chatId, int userId) {
     Document party = null;
+    
     try (DBConnection connection = new DBConnection();) {
       connection.open();
-
-      Document query = new Document(
-              "_id", new ObjectId(chat_id)
-      ).append(
-              "party.user_id", user_id
-      );
-
       MongoDatabase db = connection.getDatabase();
+
+      Document query = new Document("_id", new ObjectId(chatId)).
+              append("party.user_id", userId);
+
       party = db.getCollection(DBProperties.COLL).find(query).limit(1).first();
     } catch (Exception e) {
       e.printStackTrace();
@@ -245,47 +520,90 @@ public class DBActions {
     return party != null;
   }
 
-  public static Boolean chatExists(String chat_id) {
+  /**
+   *
+   * @param chatId
+   * @return
+   */
+  public static Boolean chatExist(String chatId) {
     Document chat = null;
+
     try (DBConnection connection = new DBConnection();) {
       connection.open();
-
-      Document query = new Document("_id", new ObjectId(chat_id));
-
       MongoDatabase db = connection.getDatabase();
-      chat = db.getCollection(DBProperties.COLL).find(query).first();
+
+      chat = db.getCollection(DBProperties.COLL).find(
+              eq("_id", new ObjectId(chatId)))
+              .first();
     } catch (Exception e) {
       e.printStackTrace();
     }
 
     return chat != null;
   }
+  
+  /**
+   *
+   * @param messageId
+   * @return
+   */
+  public static Boolean messageExist(String messageId) {
+    Document chat = null;
+    
+    try (DBConnection connection = new DBConnection();) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
 
+      chat = db.getCollection(DBProperties.COLL).find(
+              eq("messages._id", new ObjectId(messageId)))
+              .first();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return chat != null;
+  }
+  
+  /**
+   *
+   * @param chatId
+   * @param messageId
+   * @return
+   */
+  public static Boolean isMessagePartOfChat(String chatId, String messageId) {
+    Document chat = null;
+    
+    try (DBConnection connection = new DBConnection();) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      chat = db.getCollection(DBProperties.COLL).find(
+              and(
+                      eq("_id", new ObjectId(chatId)),
+                      eq("messages._id", new ObjectId(messageId)))).first();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return chat != null;
+  }
+  
   /////////////////////////////////
   //// Entity Parsers!!!
   /////////////////////////////////
-  private static Chat documentToChat(Document document) {
+  private static Chat documentToChat(Document document) throws 
+          ChatDoesNotExistException,
+          UserNotInPartyException {
     ObjectId id = document.getObjectId("_id");
-    Boolean isDeleted = document.getBoolean("is_deleted");
 
-    List<Party> parties = new ArrayList<>(100);
+    List<Party> parties = DBActions.getPartiesByChatId(id.toString(), Party.LIMIT);
 
-    for (Object doc : document.get("party", ArrayList.class)) {
-      Party party = DBActions.documentToParty((Document) doc, id);
-      parties.add(party);
-    }
+    List<Message> messages = null;
 
-    List<Message> messages = new ArrayList<>(100); // 100... hem de fer un limit per algún lloc
-
-    for (Object doc : document.get("messages", ArrayList.class)) {
-      Message message = DBActions.documentToMessage((Document) doc, id);
-      messages.add(message);
-    }
-
-    return new Chat(id, isDeleted, parties, messages);
+    return new Chat(id, parties, messages);
   }
 
-  private static Party documentToParty(Document document, ObjectId parentId) {
+  private static Party documentToParty(Document document, ObjectId parentId) throws ChatDoesNotExistException {
     int userId = document.getInteger("user_id");
     ObjectId lastReadMessage = document.getObjectId("last_read_message");
 
@@ -322,31 +640,29 @@ public class DBActions {
   private static ObjectId retrieveParentDocumentByMessageId(ObjectId id) {
     try (DBConnection connection = new DBConnection();) {
       connection.open();
-
       MongoDatabase db = connection.getDatabase();
-      Document parent = db.getCollection(DBProperties.COLL).find(new Document("messages._id", id)).first();
+
+      Document parent = db.getCollection(DBProperties.COLL).find(eq("messages._id", id)).first();
+
       if (parent == null) {
-        // Create a new empty Document
+        // throw new exception
       }
+
       return parent.getObjectId("_id");
     }
   }
 
-  /**
-   *
-   * @param id
-   * @return Document (might be empty)
-   */
   private static ObjectId retrieveParentDocumentByUserId(int id) {
     try (DBConnection connection = new DBConnection();) {
       connection.open();
-
       MongoDatabase db = connection.getDatabase();
-      Document parent = db.getCollection(DBProperties.COLL).find(new Document("party.user_id", id)).first();
-      // first() returns the first element or null
+
+      Document parent = db.getCollection(DBProperties.COLL).find(eq("party.user_id", id)).first();
+
       if (parent == null) {
-        // Create a new empty Doument
+        // throw new exception
       }
+
       return parent.getObjectId("_id");
     }
   }

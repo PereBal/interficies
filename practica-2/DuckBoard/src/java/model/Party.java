@@ -1,10 +1,15 @@
 package model;
 
-import database.chat.DBActions;
 import java.util.List;
+import database.chat.DBActions;
 import org.bson.types.ObjectId;
+import database.chat.exceptions.UserNotInPartyException;
+import database.www.exceptions.UserDoesNotExistException;
+import database.chat.exceptions.ChatDoesNotExistException;
 
 public class Party {
+
+  public final static int LIMIT = 2;
 
   private final User user;
   private final ObjectId chatId;
@@ -24,30 +29,31 @@ public class Party {
     return lastReadMessage;
   }
 
-  // TO DO
-  public void setLastReadMessage(Message message) {
-    //String chat_id    = this.chat_id.toString();
-    //String message_id = message.getId().toString();
-    //int user_id       = this.user.getId();
+  public void setLastReadMessage(Message message) throws
+          ChatDoesNotExistException,
+          UserDoesNotExistException,
+          UserNotInPartyException {
+    String messageId = message.getId().toString();
 
-    //DBActions.updateLastReadMessage(chat_id, message_id, user_id);
+    DBActions.updateLastReadMessage(this.chatId.toString(), this.user.getId(), messageId);
     this.lastReadMessage = message;
   }
 
-  // TO DO
   public List<Message> getUnreadMessages() {
     return null;
   }
 
-  public String getChatId() {
+  public ObjectId getChatId() {
     if (this.chatId == null) {
       return null;
     }
 
-    return this.chatId.toString();
+    return this.chatId;
   }
 
-  public Chat getChat() {
+  public Chat getChat() throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
     if (this.chatId == null) {
       return null;
     }
@@ -58,8 +64,7 @@ public class Party {
   ///////////////////////////////////
   /////   Wrappering DBActions!!!
   ///////////////////////////////////
-  // TO DO
-  public static List<Party> retrieveByChatPk(String chat_id) {
-    return null;
+  public static List<Party> retrieveByChatPk(String chatId) throws ChatDoesNotExistException {
+    return DBActions.getPartiesByChatId(chatId, Party.LIMIT);
   }
 }

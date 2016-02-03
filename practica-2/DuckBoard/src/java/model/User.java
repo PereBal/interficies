@@ -1,6 +1,10 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
+import database.chat.DBActions;
+import database.chat.exceptions.UserNotInPartyException;
+import database.www.exceptions.UserDoesNotExistException;
+import database.chat.exceptions.ChatDoesNotExistException;
 
 public class User {
 
@@ -49,14 +53,25 @@ public class User {
     return authToken;
   }
 
-  // TO DO
-  public ArrayList<Chat> getChats() {
-    return null; //database.chat.DBActions.getUserChats(id);
+  public List<Chat> getChats() throws
+          UserDoesNotExistException,
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    return database.chat.DBActions.getChatsByUserId(id);
   }
 
-  // TO DO
-  public ArrayList<Message> getUnreadMessages(String chat_id) {
-    return null;
+  public List<Message> getUnreadMessages(String chatId) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, 0);
+  }
+
+  public List<Message> getUnreadMessages(String chatId, int skip) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, skip);
   }
 
   public boolean isAdmin() {
