@@ -17,15 +17,15 @@ import java.util.Base64;
 public class Utils {
 
   public static String cleanEmail(String email) {
-    return email;
+    return email.replaceAll("[^A-Za-z0-9@.]", "");
   }
 
   public static String cleanName(String name) {
-    return name;
+    return name.toUpperCase().replaceAll("[^A-Z0-9]", "");
   }
 
   public static String cleanLastName(String lastName) {
-    return lastName;
+    return lastName.toUpperCase().replaceAll("[^A-Z0-9]", "");
   }
 
   public static String cleanPwd(String pwd) {

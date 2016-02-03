@@ -47,46 +47,19 @@ public class Graphs extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     try {
+      JSONArray graph;
       int graphId = Integer.parseInt(request.getPathInfo().replaceAll("[^0-9]", ""));
 
-      String qs = request.getQueryString();
-      if (qs == null) {
-        throw new Exception();
-      }
-
-      JSONArray graph;
-      String[] args = qs.toLowerCase().replaceAll("[^a-z0-9=&]", "").split("&");
-      if (args.length > 2) {
-        throw new Exception();
-
-      } else if (args.length == 2) {
-        int year;
-        int month;
-        args = args[0].concat("=").concat(args[1]).split("=");
-        switch (args[0]) {
-          case "year":
-            year = Integer.parseInt(args[1]);
-            month = toMonthNumber(args[3]);
-            break;
-          case "month":
-            month = toMonthNumber(args[1]);
-            year = Integer.parseInt(args[3]);
-            break;
-          default:
-            throw new Exception();
-        }
-        // 2 args call
-        database.highcharts.DBActions db = new database.highcharts.DBActions();
-        graph = db.getGraph(graphId, year, month);
+      String dirtyMonth = request.getParameter("month");
+      int year = Integer.parseInt(request.getParameter("year").replaceAll("[^0-9]", ""));
+      
+      database.highcharts.DBActions db = new database.highcharts.DBActions();
+      if (dirtyMonth == null) {
+        graph = db.getGraph(graphId, year);
       } else {
-        args = args[0].split("=");
-        if (!args[0].equals("year")) {
-          throw new Exception();
-        }
-
-        database.highcharts.DBActions db = new database.highcharts.DBActions();
-        graph = db.getGraph(graphId, Integer.parseInt(args[1]));
+        graph = db.getGraph(graphId, year, toMonthNumber(dirtyMonth.toLowerCase().replaceAll("[^a-z]", "")));
       }
+      
       response.setContentType("application/json;charset=UTF-8");
       try (PrintWriter out = response.getWriter()) {
         out.println(graph.toString());
@@ -95,11 +68,14 @@ public class Graphs extends HttpServlet {
       java.util.logging.Logger.getLogger(Graphs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       response.setContentType("text/plain;charset=UTF-8");
       try (PrintWriter out = response.getWriter()) {
-        out.println("##::: #::: #####::: #####::: #####");
-        out.println("# #:: #::: #.. #::: #.. #::: #... ");
-        out.println("#: #: #::: #.. #::: #####::: #### ");
-        out.println("#:: # #::: #.. #::: #::::::: #... ");
-        out.println("#::: ##::: #####::: #::::::: #####");
+
+        out.println("###:::: ##:::  #####:::: ######:::: ######");
+        out.println("####::: ##::: ##.. ##::: ##.. ##::: ##... ");
+        out.println("## ##:: ##::: ##.. ##::: ##.. ##::: ##... ");
+        out.println("##: ##: ##::: ##.. ##::: ######:::: ##### ");
+        out.println("##:: ## ##::: ##.. ##::: ##:::::::: ##... ");
+        out.println("##::: ####::: ##.. ##::: ##:::::::: ##... ");
+        out.println("##:::: ###:::  #####:::: ##:::::::: ######");
       }
     }
 
