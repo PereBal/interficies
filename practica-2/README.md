@@ -128,31 +128,39 @@ Chat::Agg
 #### highcharts
 ```java
 public class DBProperties {
-  public static final String host = "localhost";
-  public static final String port = "3306";
-  public static final String db   = "highcharts";
-  public static final String user = "root";
-  public static final String pass = "";
+
+  public static final String HOST = "localhost";
+  public static final String PORT = "3306";
+  public static final String DB   = "highcharts";
+  public static final String USER = "interficies";
+  public static final String PWD  = "living-on-the-edge";
 }
 ```
 
 #### www
 ```java
 public class DBProperties {
-  public static final String host = "localhost";
-  public static final String port = "3306";
-  public static final String db   = "www";
-  public static final String user = "root";
-  public static final String pass = "";
+
+    public static final String HOST = "localhost";
+    public static final String PORT = "3306";
+    public static final String DB   = "www";
+    public static final String USER = "interficies";
+    public static final String PWD  = "living-on-the-edge";
 }
 ```
 
 #### chats
 ```java
 public class DBProperties {
-  public static final String host = "localhost";
-  public static final String port = "27017";
-  public static final String db   = "chat";
-  public static final String coll = "chats";
+
+  public static final String HOST = "localhost";
+  public static final String PORT = "27017";
+  public static final String DB   = "chat";
+  public static final String COLL = "chats";
+  public static final String OPTS = "";
+
+  public static final String OPTS() {
+    return (OPTS.equals("")) ? "" : "?" + OPTS;
+  }
 }
 ```
