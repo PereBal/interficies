@@ -308,7 +308,7 @@ public class DBActions {
    * @throws ChatDoesNotExistException
    * @throws database.chat.exceptions.UserNotInPartyException
    */
-  public static List<Message> getMessages(String chatId, int limit, int skip) throws // I DONT LIKE IT! int, integer wtf
+  public static List<Message> getMessages(String chatId, int limit, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
     if (!DBActions.chatExist(chatId)) {

@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Path;
 
+@Path("/chat/{id}/messages/*") // prova jax
 @WebServlet(name = "Messages", urlPatterns = {"/chat/messages/*"}) // magradaria fer un canvi, pero me pareix que no podrem
 public class Messages extends HttpServlet {
 
