@@ -266,20 +266,16 @@
     <script type="text/javascript">
       $(document).ready(function () {
         // Activate Dropdown menu
-        $(".dropdown-button").dropdown({
-          hover: false
-        });
+        $(".dropdown-button").dropdown();
         // Activate button-collapse for mobile
         $(".button-collapse").sideNav();
-        // ****************************
-        // ***** RAFA QUE ES ESTO *****
-        $('.collapsible').collapsible({
-          // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-          accordion: false
-        });
-        $('ul.tabs').tabs();
-        // ****************************
-      });
+        /*
+         $('.collapsible').collapsible({
+         // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+         accordion: false
+         });
+         $('ul.tabs').tabs();
+         */      });
     </script>
   </body>
 </html>
