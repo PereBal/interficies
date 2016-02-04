@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Starter Template - Materialize</title>
-    <!--Import Google & Font Awesome Icon Font-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <!--Import materialize.css, style.css and duckboard.css-->
-    <link rel="stylesheet" href="css/materialize.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/duckboard.css"/>
-  </head>
+  <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
@@ -273,16 +261,8 @@
         </div>
       </div>
     </main>
-    <footer class="page-footer orange ">
-      <div class="footer-copyright">
-        <div class="container">
-          Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-        </div>
-      </div>
-    </footer>
-    <!--Import scripts-->
-    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <jsp:include page="footer.jsp"/>
+    <jsp:include page="scripts.jsp"/>
     <script type="text/javascript">
       $(document).ready(function () {
         // Activate Dropdown menu
