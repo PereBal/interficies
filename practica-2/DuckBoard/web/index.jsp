@@ -12,23 +12,23 @@
       <div class="container">
 
         <div id="login" class="row linear-transition" style="display:none;">
-          <form class="col s8 offset-s2">
+          <form class="col s8 offset-s2" method="POST" action="/login">
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
                 <span class="card-title">Login</span>
                 <div class="input-field">
-                  <input id="user_name" type="text" class="validate">
-                  <label for="user_name">Username</label>
+                  <input id="email" type="text" class="validate" name="email">
+                  <label for="email">Username</label>
                 </div>
                 <div class="input-field">
-                  <input id="password" type="password" class="validate">
+                  <input id="password" type="password" class="validate" name="password">
                   <label for="password">Password</label>
                 </div>
               </div>
               <div class="card-action">
                 <div class="">
                   <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
-                  <a href="#" class="btn">Entrar</a>
+                  <button href="#" class="btn" type="submit">Entrar</button>
                 </div>
               </div>
             </div> 
@@ -72,7 +72,7 @@
             </div>
           </div>
 
-         
+
 
           <div class="row">
             <div class="col s12">
@@ -134,6 +134,25 @@
     <jsp:include page="scripts.jsp"/>
 
     <script type="text/javascript">
+
+      /*********************************/
+      /****** LOGIN FUNCTIONS **********/
+      /*********************************/
+
+      $('#loginButton').click(function (e) {
+
+        $('#login').show("slow", function () {
+          // animation complete
+        });
+      });
+
+      $('#cancelLogin').click(function (e) {
+
+        $('#login').hide("slow", function () {
+          // animation complete
+        });
+      });
+
 
       /*********************************/
       /******** IMAGE CAROUSEL *********/

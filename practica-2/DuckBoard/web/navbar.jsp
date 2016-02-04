@@ -1,6 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="servlets.tools.Helper"%>
-<%boolean isLogged = Helper.isLogged(request);%>
+<%--boolean isLogged = Helper.isLogged(request);--%>
 <!-- LOGGED -->
 <c:choose>
   <c:when test="${isLogged}">
@@ -35,7 +35,7 @@
         <a href="#!" class="brand-logo">DuckBoard</a>
         <a href="#!" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#!" class="waves-effect waves-light">Login</a></li>
+          <li><a id="loginButton" href="#!" class="waves-effect waves-light">Login</a></li>
           <li><a href="#!" class="waves-effect waves-light">Register</a></li>
         </ul>
         <ul class="side-nav" id="mobile-navbar">
