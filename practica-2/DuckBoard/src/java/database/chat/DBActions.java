@@ -29,6 +29,8 @@ import static com.mongodb.client.model.Projections.slice;
 import database.chat.exceptions.ChatDoesNotExistException;
 import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Indexes.descending;
+import database.chat.exceptions.MessageDoesNotExistException;
+import database.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class DBActions {
 
@@ -183,11 +185,15 @@ public class DBActions {
    * @throws ChatDoesNotExistException
    * @throws UserDoesNotExistException
    * @throws UserNotInPartyException
+   * @throws MessageDoesNotExistException
+   * @throws MessageIsNotPartOfThisChatException
    */
   public static void updateLastReadMessage(String chatId, int userId, String messageId) throws
           ChatDoesNotExistException,
           UserDoesNotExistException,
-          UserNotInPartyException {
+          UserNotInPartyException,
+          MessageDoesNotExistException,
+          MessageIsNotPartOfThisChatException {
     if (!chatExist(chatId)) {
       throw new ChatDoesNotExistException();
     }
@@ -201,11 +207,11 @@ public class DBActions {
     }
 
     if (!messageExist(messageId)) {
-      //throw new ;
+      throw new MessageDoesNotExistException();
     }
 
     if (!isMessagePartOfChat(chatId, messageId)) {
-      //throw new ;
+      throw new MessageIsNotPartOfThisChatException();
     }
 
     try (DBConnection connection = new DBConnection()) {
@@ -318,7 +324,7 @@ public class DBActions {
       chat = db.getCollection(DBProperties.COLL).find(
               eq("_id", new ObjectId(chatId)))
               .sort(descending("messages._id"))
-              .projection(slice("messages", limit, skip))
+              .projection(slice("messages", skip, limit))
               .first();
     } catch (Exception e) {
       e.printStackTrace();
@@ -327,7 +333,7 @@ public class DBActions {
 
     List<Message> messages = new ArrayList<>();
 
-    if (chat != null) {
+    if (chat != null && chat.containsKey("messages")) {
       for (Object doc : chat.get("messages", List.class)) {
         Message messageDocument = DBActions.documentToMessage((Document) doc, new ObjectId(chatId));
         messages.add(messageDocument);
@@ -474,22 +480,26 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      iterator = db.getCollection(DBProperties.COLL).find(eq("party.user_id", userId));
+      iterator = db.getCollection(DBProperties.COLL).find(
+              eq("party.user_id", userId))
+              .projection(elemMatch("party", eq("user_id", userId)))
+              .sort(descending("party.last_read_message"))
+              .sort(descending("_id"));
+
+      List<Chat> chats = new ArrayList<>();
+
+      if (iterator != null) {
+        for (Document doc : iterator) {
+          Chat chat = documentToChat(doc);
+          chats.add(chat);
+        }
+      }
+
+      return chats;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
-
-    List<Chat> chats = new ArrayList<>();
-
-    if (iterator != null) {
-      for (Document doc : iterator) {
-        Chat chat = DBActions.documentToChat(doc);
-        chats.add(chat);
-      }
-    }
-
-    return chats;
   }
 
   /////////////////////////////////
@@ -645,7 +655,7 @@ public class DBActions {
       Document parent = db.getCollection(DBProperties.COLL).find(eq("messages._id", id)).first();
 
       if (parent == null) {
-        // throw new exception
+        return null;
       }
 
       return parent.getObjectId("_id");
@@ -660,7 +670,7 @@ public class DBActions {
       Document parent = db.getCollection(DBProperties.COLL).find(eq("party.user_id", id)).first();
 
       if (parent == null) {
-        // throw new exception
+        return null;
       }
 
       return parent.getObjectId("_id");

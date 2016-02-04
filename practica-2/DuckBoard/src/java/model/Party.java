@@ -6,6 +6,8 @@ import org.bson.types.ObjectId;
 import database.chat.exceptions.UserNotInPartyException;
 import database.www.exceptions.UserDoesNotExistException;
 import database.chat.exceptions.ChatDoesNotExistException;
+import database.chat.exceptions.MessageDoesNotExistException;
+import database.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class Party {
 
@@ -32,7 +34,9 @@ public class Party {
   public void setLastReadMessage(Message message) throws
           ChatDoesNotExistException,
           UserDoesNotExistException,
-          UserNotInPartyException {
+          UserNotInPartyException,
+          MessageDoesNotExistException,
+          MessageIsNotPartOfThisChatException {
     String messageId = message.getId().toString();
 
     DBActions.updateLastReadMessage(this.chatId.toString(), this.user.getId(), messageId);

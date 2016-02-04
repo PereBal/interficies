@@ -22,7 +22,8 @@ public class DBConnection implements java.lang.AutoCloseable {
                 + "/" + database.chat.DBProperties.DB + database.chat.DBProperties.OPTS());
       }
       if (client == null) {
-        client = new MongoClient(con);
+        //client = new MongoClient(con); // No me tira, no he cercat tampoc
+        client = new MongoClient("localhost", 27017);
       }
     } catch (Exception ex) {
       ex.printStackTrace();

@@ -59,6 +59,12 @@ public class Message {
 
     return DBActions.getChatById(this.chatId.toString());
   }
+  
+  @Override
+  public String toString() {
+    return this.id.toString();
+  }
+
 
   ///////////////////////////////////
   /////   Wrappering DBActions!!!

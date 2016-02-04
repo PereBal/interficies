@@ -7,6 +7,8 @@ import database.chat.DBActions;
 import database.chat.exceptions.UserNotInPartyException;
 import database.www.exceptions.UserDoesNotExistException;
 import database.chat.exceptions.ChatDoesNotExistException;
+import database.chat.exceptions.MessageDoesNotExistException;
+import database.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class Chat {
 
@@ -33,27 +35,34 @@ public class Chat {
   public List<Message> getMessages() throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return DBActions.getMessages(this.id.toString(), Message.LIMIT, 0);
+    return DBActions.getMessages(toString(), Message.LIMIT, 0);
   }
 
   public List<Message> getMessages(int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return DBActions.getMessages(this.id.toString(), Message.LIMIT, skip);
+    return DBActions.getMessages(toString(), Message.LIMIT, skip);
+  }
+  
+  public int countUnreadMessages(int userId) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT * 5, 0).size();
   }
 
   public List<Message> getUnreadMessages(int userId) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(this.id.toString(), userId, true, Message.LIMIT, 0);
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT, 0);
   }
 
   public List<Message> getUnreadMessages(int userId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(this.id.toString(), userId, true, Message.LIMIT, skip);
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT, skip);
   }
 
   public void setMessages(List<Message> messages) throws
@@ -61,7 +70,7 @@ public class Chat {
           UserNotInPartyException,
           ChatDoesNotExistException {
     for (Message message : messages) {
-      Message msg = DBActions.createMessage(this.id.toString(), message.getUser().getId(), message.getText());
+      Message msg = DBActions.createMessage(toString(), message.getUser().getId(), message.getText());
       this.messages.add(msg);
     }
   }
@@ -70,18 +79,25 @@ public class Chat {
           ChatDoesNotExistException,
           UserDoesNotExistException,
           UserNotInPartyException {
-    DBActions.updateLastReadMessage(this.id.toString(), userId);
+    DBActions.updateLastReadMessage(toString(), userId);
   }
 
   public void setLastReadMessage(int userId, String messageId) throws
           ChatDoesNotExistException,
           UserDoesNotExistException,
-          UserNotInPartyException {
-    DBActions.updateLastReadMessage(this.id.toString(), userId, messageId);
+          UserNotInPartyException,
+          MessageDoesNotExistException,
+          MessageIsNotPartOfThisChatException {
+    DBActions.updateLastReadMessage(toString(), userId, messageId);
   }
 
   public Date getCreatedAt() {
     return createdAt;
+  }
+  
+  @Override
+  public String toString() {
+    return this.id.toString();
   }
 
   ///////////////////////////////////

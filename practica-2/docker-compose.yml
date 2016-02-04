@@ -1,0 +1,17 @@
+maria:
+  image: mariadb:10.1
+  environment:
+    - MYSQL_ROOT_PASSWORD=supersecret-password
+    - MYSQL_USER=interficies
+    - MYSQL_PASSWORD=living-on-the-edge
+  volumes:
+    - /opt/interficies/mysql:/var/lib/mysql
+  ports:
+    - 3306:3306
+
+mongo:
+  image: mongo:3.2
+  volumes:
+    - /opt/interficies/mysql:/data/db
+  ports:
+    - 27017:27017
