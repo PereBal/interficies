@@ -43,15 +43,15 @@ public class Graph03 implements Graph {
       while (rs.next()) {
         cpolar = rs.getString("polaridad");
         if (prpolar != null && !cpolar.equals(prpolar)) {
-          week_polarity.put(prpolar, week);
+          week_polarity.put("name", prpolar).put("data", week);
           polarity.put(week_polarity);
           week_polarity = new JSONObject();
           week = new JSONArray();
         }
-        week.put(new JSONObject().put(rs.getString("dia_sem"), rs.getInt("cnt_dia_sem")));
+        week.put(rs.getInt("cnt_dia_sem"));
         prpolar = cpolar;
       }
-      week_polarity.put(prpolar, week);
+      week_polarity.put("name", prpolar).put("data", week);
       polarity.put(week_polarity);
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(Graph03.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

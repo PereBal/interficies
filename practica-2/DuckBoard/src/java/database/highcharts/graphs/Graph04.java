@@ -50,15 +50,15 @@ public class Graph04 implements Graph {
       while (rs.next()) {
         cseason = rs.getString("estacion");
         if (prseason != null && !cseason.equals(prseason)) {
-          seasonMap.put(prseason, seasonValues);
+          seasonMap.put("name", prseason).put("data", seasonValues);
           seasons.put(seasonMap);
           seasonMap = new JSONObject();
           seasonValues = new JSONArray();
         }
-        seasonValues.put(new JSONObject().put(rs.getString("isla"), rs.getInt("cnt_isla")));
+        seasonValues.put(rs.getInt("cnt_isla"));
         prseason = cseason;
       }
-      seasonMap.put(prseason, seasonValues);
+      seasonMap.put("name", prseason).put("data", seasonValues);
       seasons.put(seasonMap);
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(Graph04.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

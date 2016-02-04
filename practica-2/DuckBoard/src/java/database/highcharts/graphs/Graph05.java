@@ -52,7 +52,7 @@ public class Graph05 implements Graph {
         while (rs.next()) {
           val = (rs.getDouble("cnt_isla") / max_val) * 100.0;
           val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-          island.put(new JSONObject().put(rs.getString("isla"), val));
+          island.put(new JSONObject().put("name", rs.getString("isla")).put("data", new JSONArray().put(val)));
         }
       }
     } catch (SQLException ex) {

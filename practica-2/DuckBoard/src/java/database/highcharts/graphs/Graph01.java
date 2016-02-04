@@ -47,7 +47,7 @@ public class Graph01 implements Graph {
     try {
       if (rs.next()) {
         for (String fname : FIELDS) {
-          tend.put(new JSONObject().put(fname, rs.getInt(fname)));
+          tend.put(new JSONObject().put("name", fname).put("data", rs.getInt(fname)));
         }
       }
     } catch (SQLException ex) {
