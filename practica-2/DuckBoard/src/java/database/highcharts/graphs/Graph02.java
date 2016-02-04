@@ -46,7 +46,7 @@ public class Graph02 implements Graph {
       while (rs.next()) {
         val = rs.getDouble("cnt_idioma") / max_count * 100.0;
         val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        langs.put(new JSONObject().put("name", rs.getString("idioma")).put("data", val));
+        langs.put(new JSONObject().put("name", rs.getString("idioma")).put("data", new JSONArray().put(val)));
       }
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(Graph02.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
