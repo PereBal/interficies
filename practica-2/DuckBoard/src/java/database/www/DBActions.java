@@ -4,9 +4,11 @@ import model.User;
 import database.tools.Utils;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class DBActions {
@@ -36,15 +38,15 @@ public class DBActions {
     @Override
     public User toUser(ResultSet rs) throws SQLException {
       return new User(
-              rs.getInt("id"),
-              rs.getString("email"),
-              rs.getString("name"),
-              rs.getBoolean("admin"));
+              rs.getInt(1),
+              rs.getString(2),
+              rs.getString(3),
+              rs.getString(4).charAt(0));
     }
 
     @Override
     public String fields() {
-      return "id, email, name, admin";
+      return "id, email, name, sex";
     }
   };
 
@@ -52,17 +54,20 @@ public class DBActions {
     @Override
     public User toUser(ResultSet rs) throws SQLException {
       return new User(
-              rs.getInt("id"),
-              rs.getString("email"),
-              rs.getString("name"),
-              rs.getString("last_name"),
-              rs.getBoolean("admin"),
-              rs.getString("auth_token"));
+              rs.getInt(1),
+              rs.getString(2),
+              rs.getString(3),
+              rs.getString(4),
+              rs.getString(5).charAt(0),
+              rs.getString(6),
+              rs.getDate(7).toLocalDate(),
+              rs.getString(8)
+      );
     }
 
     @Override
     public String fields() {
-      return "id, email, name, last_name, admin, auth_token";
+      return "id, email, name, last_name, sex, auth_token, birth_day, quote";
     }
   };
 
@@ -74,24 +79,8 @@ public class DBActions {
     return getUser(advancedFactory, "id=" + userId);
   }
 
-  public User getUserByEmail(String email, String password) {
-    try {
-      return getUser(advancedFactory, "email='" + Utils.cleanEmail(email) + "'"
-              + "AND pwd='" + Utils.encrypt(password) + "'");
-    } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
-      ex.printStackTrace();
-      return null;
-    }
-  }
-
-  public User getUserByName(String name, String password) {
-    try {
-      return getUser(advancedFactory, "name='" + Utils.cleanName(name) + "'"
-              + " AND pwd='" + Utils.encrypt(password) + "'");
-    } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
-      ex.printStackTrace();
-      return null;
-    }
+  public static User getUserByEmail(String email) {
+    return getUser(advancedFactory, "email='" + Utils.cleanEmail(email) + "'");
   }
 
   private static User getUser(UserFactory factory, String filter) {
@@ -102,8 +91,8 @@ public class DBActions {
       if (rs.next()) {
         return factory.toUser(rs);
       }
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (Exception ex) {
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     return null;
   }
@@ -123,33 +112,101 @@ public class DBActions {
       }
 
     } catch (Exception ex) {
-      ex.printStackTrace();
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     return userList;
   }
 
-  public boolean insertUser(String email, String name, String password, String isAdmin) {
-    return insertUser(email, name, null, password, isAdmin, null);
-  }
-
-  public boolean insertUser(String email, String name, String lastName, String password, String isAdmin, String authToken) {
+  /**
+   * Inserts an user into the DB.
+   *
+   * @param newUser
+   * @param password
+   * @return true|false
+   */
+  public static boolean insertUser(User newUser, String password) {
     try (DBConnection con = new DBConnection();) {
       con.open();
       Statement st = con.getConection().createStatement();
 
-      String Query = "INSERT INTO user (email, name, last_name, password, admin) VALUES"
+      String query = "INSERT INTO user (email, name, last_name, pwd, sex, auth_token, birth_day, quote) VALUES "
               + "("
-              + "'" + Utils.cleanEmail(email) + "',"
-              + "'" + Utils.cleanName(name) + "',"
-              + "'" + Utils.cleanLastName(lastName) + "',"
+              + "'" + Utils.cleanEmail(newUser.getEmail()) + "',"
+              + "'" + Utils.cleanName(newUser.getName()) + "',"
+              + "'" + Utils.cleanLastName(newUser.getLastName()) + "',"
               + "'" + Utils.encrypt(password) + "',"
-              + Utils.cleanAdmin(isAdmin) + ","
-              + "'" + Utils.cleanAuthToken(authToken) + "'"
+              + "'" + Utils.cleanSex(newUser.getSex()) + "',"
+              + "'" + Utils.cleanAuthToken(newUser.getAuthToken()) + "',"
+              + "'" + Utils.cleanBirthDay(newUser.getBirthDay().format(DateTimeFormatter.ISO_DATE)) + "',"
+              + "'" + Utils.cleanQuote(newUser.getQuote()) + "'"
               + ");";
-      st.executeUpdate(Query);
+      st.executeUpdate(query);
       return true;
     } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
-      ex.printStackTrace();
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      return false;
+    }
+  }
+
+  public static boolean updateUser(User newUser) {
+    return update(newUser, null);
+  }
+
+  public static boolean uptadeUser(User newUser, String newPwd) {
+    return update(newUser, newPwd);
+  }
+
+  private static boolean update(User newUser, String newPwd) {
+    try (DBConnection conn = new DBConnection();) {
+      conn.open();
+
+      Statement st = conn.getConection().createStatement();
+
+      String query = "UPDATE user SET"
+              + "email='" + Utils.cleanEmail(newUser.getEmail()) + "',"
+              + "name='" + Utils.cleanName(newUser.getName()) + "',"
+              + "last_name='" + Utils.cleanLastName(newUser.getLastName()) + "',"
+              + "sex='" + newUser.getSex() + "',"
+              + "auth_token='" + Utils.cleanAuthToken(newUser.getAuthToken()) + "',"
+              + "birth_day='" + Utils.cleanBirthDay(newUser.getBirthDay().format(DateTimeFormatter.ISO_DATE)) + "',"
+              + "quote='" + Utils.cleanQuote(newUser.getQuote()) + "' ";
+      if (newPwd != null) {
+        query += ",pwd='" + Utils.encrypt(newPwd) + "' ";
+      }
+      query += "WHERE id=" + newUser.getId() + ";";
+
+      st.executeUpdate(query);
+      return true;
+    } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      return false;
+    }
+  }
+
+  public static boolean deleteUser(int id) {
+    return delete("id=" + id);
+  }
+
+  public static boolean deleteUser(String email) {
+    return delete("email='" + Utils.cleanEmail(email) + "'");
+  }
+
+  public static boolean deleteUser(User u) {
+    return delete("id=" + u.getId());
+  }
+
+  private static boolean delete(String filter) {
+    try (DBConnection conn = new DBConnection();) {
+      conn.open();
+
+      Statement st = conn.getConection().createStatement();
+
+      String query = "DELETE FROM user WHERE " + filter + ";";
+
+      st.executeUpdate(query);
+      return true;
+    } catch (SQLException ex) {
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       return false;
     }
   }

@@ -7,6 +7,7 @@ package database.www;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,11 +23,12 @@ public class DBConnection implements java.lang.AutoCloseable {
 
   public void open() {
     try {
+      Class.forName("com.mysql.jdbc.Driver");
       con = DriverManager.getConnection("jdbc:mysql://"
               + DBProperties.HOST + ":" + DBProperties.PORT
               + "/" + DBProperties.DB, DBProperties.USER, DBProperties.PWD);
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (ClassNotFoundException | SQLException ex) {
+      java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
   }
 
@@ -35,7 +37,7 @@ public class DBConnection implements java.lang.AutoCloseable {
     try {
       con.close();
     } catch (Exception ex) {
-      ex.printStackTrace();
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
   }
 

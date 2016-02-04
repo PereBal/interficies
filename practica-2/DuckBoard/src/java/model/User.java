@@ -5,6 +5,7 @@ import database.chat.DBActions;
 import database.chat.exceptions.UserNotInPartyException;
 import database.www.exceptions.UserDoesNotExistException;
 import database.chat.exceptions.ChatDoesNotExistException;
+import java.time.LocalDate;
 
 public class User {
 
@@ -12,25 +13,31 @@ public class User {
   private final String email;
   private final String name;
   private String lastName;
-  private final boolean isAdmin;
+  private final char sex;
+  private LocalDate birthDay;
+  private String quote;
   private String authToken;
 
-  public User(int id, String email, String name, boolean isAdmin) {
+  public User(int id, String email, String name, char sex) {
     this.id = id;
     this.email = email;
     this.name = name;
-    this.isAdmin = isAdmin;
+    this.sex = sex;
     this.lastName = "";
     this.authToken = null;
+    this.birthDay = null;
+    this.quote = "";
   }
 
-  public User(int id, String email, String name, String lastName, boolean isAdmin, String authToken) {
+  public User(int id, String email, String name, String lastName, char sex, String authToken, LocalDate birthDay, String quote) {
     this.id = id;
     this.email = email;
     this.name = name;
+    this.sex = sex;
     this.lastName = lastName;
-    this.isAdmin = isAdmin;
     this.authToken = authToken;
+    this.birthDay = birthDay;
+    this.quote = quote;
   }
 
   public int getId() {
@@ -51,6 +58,18 @@ public class User {
 
   public String getAuthToken() {
     return authToken;
+  }
+
+  public LocalDate getBirthDay() {
+    return birthDay;
+  }
+
+  public String getQuote() {
+    return quote;
+  }
+
+  public char getSex() {
+    return this.sex;
   }
 
   public List<Chat> getChats() throws
@@ -74,7 +93,9 @@ public class User {
     return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, skip);
   }
 
-  public boolean isAdmin() {
-    return isAdmin;
+  @Override
+  public String toString() {
+    return "User{" + "id=" + id + ", email=" + email + ", name=" + name + ", lastName=" + lastName + ", sex=" + sex + ", birthDay=" + birthDay + ", quote=" + quote + ", authToken=" + authToken + '}';
   }
+
 }

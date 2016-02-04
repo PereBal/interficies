@@ -97,15 +97,17 @@ Tendrem 3 bases de dades:
   * `chats` → Dades de la missatgeria **NO** instatània
 
 ### Www - MariaDB
-| vname      | type            |
-| ---------- | --------------- |
-| id         | integer (PK)    |
-| email      | string (unique) |
-| name       | string          |
-| last_name  | string          |
-| admin      | bool            |
-| pwd        | string          |
-| auth_token | string          |
+| vname      | type                             |
+| ---------- | -------------------------------- |
+| id         | **integer** auto_increment PK    |
+| email      | **varchar** (64) bunique         |
+| name       | **varchar** (32) not null        |
+| last_name  | **varchar** (128) default null   |
+| sex        | **char** (1) in {H, M} not null  |
+| pwd        | **varchar** (128) not null       |
+| auth_token | **varchar** (64) default null    |
+| birth_day  | **date** default null            |
+| quote      | **varchar** (256) default null   |
 
 ### Chats - MongoDB
 ```
