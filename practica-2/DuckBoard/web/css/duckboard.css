@@ -139,3 +139,17 @@ main {
 .alert-success {
   background-color: green;
 }
+
+.err-page-message{
+  border-radius: 3em;
+  border-bottom-left-radius: 0px;
+  border: 1px solid #424242;
+}
+
+.err-page-number{
+  font-size: 256px;
+}
+
+.err-page-error{
+  font-size: 40px;
+}

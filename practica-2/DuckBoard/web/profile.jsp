@@ -193,6 +193,17 @@
       });
 
     });
+    
+          $(document).ready(function () {
+        $(".button-collapse").sideNav();
+        var $calendar = $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 160, // Creates a dropdown of 80 years to control year
+          clear: false
+        });
+
+        $('select').material_select();
+      });
 
 
 
