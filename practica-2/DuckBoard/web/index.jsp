@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
@@ -58,21 +58,19 @@
                   <img src="http://lorempixel.com/580/250/people/3"> <!-- random image -->
                   <div class="caption right-align">
                     <h3>"Have no fear of perfeciton, you'll never reach it."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Salvador Dal√≠.</h5>
+                    <h5 class="light grey-text text-lighten-3">- Salvador DalÌ≠.</h5>
                   </div>
                 </li>
                 <li>
                   <img src="http://lorempixel.com/580/250/people/4"> <!-- random image -->
                   <div class="caption center-align">
-                    <h3> ‚ÄúDesign is not just what it looks like and feels like. Design is how it works.‚Äù</h3>
+                    <h3> "Design is not just what it looks like and feels like. Design is how it works."</h3>
                     <h5 class="light grey-text text-lighten-3">- Steve Jobs.</h5>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-
-
 
           <div class="row">
             <div class="col s6" style="height:29em;margin-top: 1em; ">

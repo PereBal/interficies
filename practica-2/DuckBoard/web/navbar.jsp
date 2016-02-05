@@ -10,7 +10,7 @@
       <li class="divider"></li>
       <li><a href="#!"><i class="material-icons left">settings_power</i>DuckBoardut</a></li>
     </ul>
-    <nav class="light-blue lighten-1">
+    <nav class="blue-grey lighten-1">
       <div class="nav-wrapper container">
         <a href="#!" class="brand-logo">DuckBoard</a>
         <a href="#!" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -30,7 +30,7 @@
   </c:when>
   <c:otherwise>
     <!-- NOT LOGGED -->
-    <nav class="light-blue lighten-1">
+    <nav class="blue-grey lighten-1">
       <div class="nav-wrapper container">
         <a href="#!" class="brand-logo">DuckBoard</a>
         <a href="#!" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
