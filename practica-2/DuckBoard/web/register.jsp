@@ -31,7 +31,7 @@
                     <label for="name">Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input name="birth_day" type="date" class="datepicker" value="09/08/2027">
+                    <input name="birth_day" type="date" class="datepicker" value="19-01-1994">
                     <label for="birth_day">Birthday</label>
                   </div>
                   <div class="input-field col s10">
@@ -60,8 +60,8 @@
                 <div class="col s10 offset-s1 grey-text text-darken-3">
 
                   <div class="input-field col s6">
-                    <input name="psw" type="password" class="validate" length="32" required value="a">
-                    <label for="psw">Password</label>
+                    <input name="pwd" type="password" class="validate" length="32" required value="a">
+                    <label for="pwd">Password</label>
                   </div>
                   <!--              IMAGENES
                                     <div class="file-field input-field col s6">
@@ -74,8 +74,8 @@
                                     </div>
                   -->
                   <div class="input-field col s6">
-                    <input name="psw2" type="password" class="validate" length="32" required value="a">
-                    <label for="psw2">Repeat password</label>
+                    <input name="pwd2" type="password" class="validate" length="32" required value="a">
+                    <label for="pwd2">Repeat password</label>
                   </div>
 
                   <div class="input-field col s12">
@@ -107,8 +107,10 @@
         var $calendar = $('.datepicker').pickadate({
           selectMonths: true, // Creates a dropdown to control month
           selectYears: 160, // Creates a dropdown of 80 years to control year
+          format: 'dd-mm-yyyy',
           clear: false
         });
+        
 
         $('select').material_select();
       });

@@ -2,11 +2,11 @@ package model;
 
 import java.util.Date;
 import java.util.List;
-import database.chat.DBActions;
+import db.chat.DBActions;
 import org.bson.types.ObjectId;
-import database.chat.exceptions.UserNotInPartyException;
-import database.www.exceptions.UserDoesNotExistException;
-import database.chat.exceptions.ChatDoesNotExistException;
+import db.chat.exceptions.UserNotInPartyException;
+import db.www.exceptions.UserDoesNotExistException;
+import db.chat.exceptions.ChatDoesNotExistException;
 
 public class Message {
 

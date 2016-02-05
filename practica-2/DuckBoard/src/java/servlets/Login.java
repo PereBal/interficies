@@ -2,7 +2,7 @@ package servlets;
 
 import model.User;
 import java.io.IOException;
-import database.www.DBActions;
+import db.www.DBActions;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;

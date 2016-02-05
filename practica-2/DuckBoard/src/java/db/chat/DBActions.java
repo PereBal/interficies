@@ -1,4 +1,4 @@
-package database.chat;
+package db.chat;
 
 import model.User;
 import model.Chat;
@@ -21,16 +21,16 @@ import static com.mongodb.client.model.Aggregates.skip;
 import static com.mongodb.client.model.Aggregates.sort;
 import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Aggregates.limit;
-import database.chat.exceptions.UserNotInPartyException;
+import db.chat.exceptions.UserNotInPartyException;
 import static com.mongodb.client.model.Updates.addToSet;
-import database.www.exceptions.UserDoesNotExistException;
+import db.www.exceptions.UserDoesNotExistException;
 import static com.mongodb.client.model.Filters.elemMatch;
 import static com.mongodb.client.model.Projections.slice;
-import database.chat.exceptions.ChatDoesNotExistException;
+import db.chat.exceptions.ChatDoesNotExistException;
 import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Indexes.descending;
-import database.chat.exceptions.MessageDoesNotExistException;
-import database.chat.exceptions.MessageIsNotPartOfThisChatException;
+import db.chat.exceptions.MessageDoesNotExistException;
+import db.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class DBActions {
 
@@ -54,7 +54,7 @@ public class DBActions {
    * @throws UserDoesNotExistException
    */
   public static Chat createChat(int userId1, int userId2) throws UserDoesNotExistException {
-    if (!database.www.DBActions.userExists(userId1) || !database.www.DBActions.userExists(userId1)) {
+    if (!db.www.DBActions.userExists(userId1) || !db.www.DBActions.userExists(userId1)) {
       throw new UserDoesNotExistException();
     }
 
@@ -100,7 +100,7 @@ public class DBActions {
       throw new ChatDoesNotExistException();
     }
 
-    if (!database.www.DBActions.userExists(userId)) {
+    if (!db.www.DBActions.userExists(userId)) {
       throw new UserDoesNotExistException();
     }
 
@@ -149,7 +149,7 @@ public class DBActions {
       throw new ChatDoesNotExistException();
     }
 
-    if (!database.www.DBActions.userExists(userId)) {
+    if (!db.www.DBActions.userExists(userId)) {
       throw new UserDoesNotExistException();
     }
 
@@ -198,7 +198,7 @@ public class DBActions {
       throw new ChatDoesNotExistException();
     }
 
-    if (!database.www.DBActions.userExists(userId)) {
+    if (!db.www.DBActions.userExists(userId)) {
       throw new UserDoesNotExistException();
     }
 
@@ -235,8 +235,8 @@ public class DBActions {
    *
    * @param id
    * @return Chat entity
-   * @throws database.chat.exceptions.ChatDoesNotExistException
-   * @throws database.chat.exceptions.UserNotInPartyException
+   * @throws db.chat.exceptions.ChatDoesNotExistException
+   * @throws db.chat.exceptions.UserNotInPartyException
    */
   public static Chat getChatById(String id) throws
           ChatDoesNotExistException,
@@ -267,7 +267,7 @@ public class DBActions {
    *
    * @param id
    * @return
-   * @throws database.chat.exceptions.ChatDoesNotExistException
+   * @throws db.chat.exceptions.ChatDoesNotExistException
    */
   public static Message getMessageById(String id) throws ChatDoesNotExistException {
     if (!DBActions.chatExist(id)) {
@@ -306,7 +306,7 @@ public class DBActions {
    * @param skip
    * @return
    * @throws ChatDoesNotExistException
-   * @throws database.chat.exceptions.UserNotInPartyException
+   * @throws db.chat.exceptions.UserNotInPartyException
    */
   public static List<Message> getMessages(String chatId, int limit, int skip) throws
           ChatDoesNotExistException,
@@ -353,8 +353,8 @@ public class DBActions {
    * @param skip
    * @return
    * @throws ChatDoesNotExistException
-   * @throws database.chat.exceptions.UserNotInPartyException
-   * @throws database.www.exceptions.UserDoesNotExistException
+   * @throws db.chat.exceptions.UserNotInPartyException
+   * @throws db.www.exceptions.UserDoesNotExistException
    */
   public static List<Message> getMessages(String chatId, Integer userId, boolean unread, int limit, int skip) throws // I DONT LIKE IT! int, integer wtf
           ChatDoesNotExistException,
@@ -364,7 +364,7 @@ public class DBActions {
       throw new ChatDoesNotExistException();
     }
 
-    if (!database.www.DBActions.userExists(userId)) {
+    if (!db.www.DBActions.userExists(userId)) {
       throw new UserDoesNotExistException();
     }
 
@@ -423,7 +423,7 @@ public class DBActions {
    * @param id
    * @param limit
    * @return
-   * @throws database.chat.exceptions.ChatDoesNotExistException
+   * @throws db.chat.exceptions.ChatDoesNotExistException
    */
   public static List<Party> getPartiesByChatId(String id, int limit) throws ChatDoesNotExistException {
     if (!DBActions.chatExist(id)) {
@@ -470,7 +470,7 @@ public class DBActions {
           UserDoesNotExistException,
           ChatDoesNotExistException,
           UserNotInPartyException {
-    if (!database.www.DBActions.userExists(userId)) {
+    if (!db.www.DBActions.userExists(userId)) {
       throw new UserDoesNotExistException();
     }
 
@@ -617,7 +617,7 @@ public class DBActions {
     int userId = document.getInteger("user_id");
     ObjectId lastReadMessage = document.getObjectId("last_read_message");
 
-    User user = database.www.DBActions.getUserById(userId);
+    User user = db.www.DBActions.getUserById(userId);
 
     Message message = null;
 
@@ -636,7 +636,7 @@ public class DBActions {
     ObjectId id = document.getObjectId("_id");
 
     int userId = document.getInteger("user_id");
-    User user = database.www.DBActions.getUserById(userId);
+    User user = db.www.DBActions.getUserById(userId);
 
     String text = document.getString("text");
 

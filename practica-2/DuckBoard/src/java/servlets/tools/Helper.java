@@ -1,8 +1,8 @@
 package servlets.tools;
 
-import database.www.DBActions;
 import java.io.IOException;
 import java.util.ArrayList;
+import db.www.DBActions;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

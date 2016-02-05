@@ -1,13 +1,15 @@
-package database.www;
+package db.www;
 
 import model.User;
-import database.tools.Utils;
+import db.tools.Utils;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,7 +63,7 @@ public class DBActions {
               rs.getString(4),
               rs.getString(5).charAt(0),
               rs.getString(6),
-              rs.getDate(7),
+              LocalDate.from((TemporalAccessor) rs.getDate(7)),
               rs.getString(8)
       );
     }

@@ -1,5 +1,9 @@
 package servlets;
 
+import db.chat.exceptions.ChatDoesNotExistException;
+import db.chat.exceptions.UserNotInPartyException;
+import db.www.DBActions;
+import db.www.exceptions.UserDoesNotExistException;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,9 +20,7 @@ import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import servlets.tools.Helper;
-import database.www.exceptions.UserDoesNotExistException;
-import database.chat.exceptions.UserNotInPartyException;
-import database.chat.exceptions.ChatDoesNotExistException;
+
 
 @WebServlet(name = "Chats", urlPatterns = {"/chats/*"})
 public class Chats extends HttpServlet {

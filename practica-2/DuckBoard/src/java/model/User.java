@@ -1,10 +1,10 @@
 package model;
 
 import java.util.List;
-import database.chat.DBActions;
-import database.chat.exceptions.UserNotInPartyException;
-import database.www.exceptions.UserDoesNotExistException;
-import database.chat.exceptions.ChatDoesNotExistException;
+import db.chat.DBActions;
+import db.chat.exceptions.UserNotInPartyException;
+import db.www.exceptions.UserDoesNotExistException;
+import db.chat.exceptions.ChatDoesNotExistException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -30,14 +30,14 @@ public class User {
     this.quote = "";
   }
 
-  public User(int id, String email, String name, String lastName, char sex, String authToken, java.sql.Date birthDay, String quote) {
+  public User(int id, String email, String name, String lastName, char sex, String authToken, LocalDate birthDay, String quote) {
     this.id = id;
     this.email = email;
     this.name = name;
     this.sex = sex;
     this.lastName = lastName;
     this.authToken = authToken;
-    //this.birthDay = LocalDate.parse(birthDay, DateTimeFormatter.ISO_DATE);
+    this.birthDay = birthDay;
     this.quote = quote;
   }
 
@@ -87,7 +87,7 @@ public class User {
           UserDoesNotExistException,
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return database.chat.DBActions.getChatsByUserId(id);
+    return db.chat.DBActions.getChatsByUserId(id);
   }
 
   public List<Message> getUnreadMessages(String chatId) throws

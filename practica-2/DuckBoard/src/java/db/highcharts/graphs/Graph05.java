@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.highcharts.graphs;
+package db.highcharts.graphs;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class Graph05 implements Graph {
   private final String q;
 
   public Graph05() {
-    q = "SELECT isla, COUNT(isla) AS cnt_isla, anyo, mes_num FROM " + database.highcharts.DBProperties.DB + ".sm_procesados "
+    q = "SELECT isla, COUNT(isla) AS cnt_isla, anyo, mes_num FROM " + db.highcharts.DBProperties.DB + ".sm_procesados "
             + "GROUP BY isla ";
   }
 
@@ -52,7 +52,7 @@ public class Graph05 implements Graph {
         while (rs.next()) {
           val = (rs.getDouble("cnt_isla") / max_val) * 100.0;
           val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-          island.put(new JSONObject().put("name", rs.getString("isla")).put("data", new JSONArray().put(val)));
+          island.put(new JSONObject().put("name", rs.getString("isla")).put("y", val));
         }
       }
     } catch (SQLException ex) {

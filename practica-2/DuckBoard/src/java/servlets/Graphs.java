@@ -53,7 +53,7 @@ public class Graphs extends HttpServlet {
       String dirtyMonth = request.getParameter("month");
       int year = Integer.parseInt(request.getParameter("year").replaceAll("[^0-9]", ""));
       
-      database.highcharts.DBActions db = new database.highcharts.DBActions();
+      db.highcharts.DBActions db = new db.highcharts.DBActions();
       if (dirtyMonth == null) {
         graph = db.getGraph(graphId, year);
       } else {

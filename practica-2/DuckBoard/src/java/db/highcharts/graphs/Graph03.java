@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.highcharts.graphs;
+package db.highcharts.graphs;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class Graph03 implements Graph {
 
   private String q = "SELECT polaridad, dia_sem, count(dia_sem) AS cnt_dia_sem, anyo, mes_num "
-          + "FROM " + database.highcharts.DBProperties.DB + ".sm_procesados "
+          + "FROM " + db.highcharts.DBProperties.DB + ".sm_procesados "
           + "GROUP BY polaridad, dia_sem "
           + "HAVING polaridad IS NOT NULL ";
 
