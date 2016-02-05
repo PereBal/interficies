@@ -1,8 +1,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page import="servlets.tools.Helper"%>
+<%@page import="servlets.tools.Helper, model.User"%>
 <%
   pageContext.setAttribute("isLogged", Helper.isLogged(request));
-  pageContext.setAttribute("username", Helper.getCurrentUser(request).getName());%>
+  pageContext.setAttribute("user", Helper.getCurrentUser(request));
+%>
 <c:choose>
   <c:when test="${isLogged}">
     <!-- Dropdown Structure -->
@@ -18,16 +19,16 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="/chats" class="waves-effect waves-light"><i class="material-icons left">comment</i>Chat</a></li>
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="#!" data-activates="navbar-dropdown">{{user}}<i class="material-icons right">arrow_drop_down</i></a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-navbar">
-          <li><a href="chat.html" class="waves-effect waves-light"><i class="material-icons left">comment</i>Chat</a></li>
-          <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="#!"><i class="material-icons left">settings_power</i>Logout</a></li>
-        </ul>
-      </div>
-    </nav>
+          <li><a class="dropdown-button" href="#!" data-activates="navbar-dropdown"><c:out value="${user.name}"></c:out><i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-navbar">
+            <li><a href="chat.html" class="waves-effect waves-light"><i class="material-icons left">comment</i>Chat</a></li>
+            <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>
+            <li class="divider"></li>
+            <li><a href="#!"><i class="material-icons left">settings_power</i>Logout</a></li>
+          </ul>
+        </div>
+      </nav>
   </c:when>
   <c:otherwise>
     <nav class="blue-grey lighten-1">
@@ -45,11 +46,3 @@
     </nav>
   </c:otherwise>
 </c:choose>
-<script type="text/javascript">
-  $(document).ready(function () {
-    // Activate Dropdown menu
-    $(".dropdown-button").dropdown();
-    // Activate button-collapse for mobile
-    $(".button-collapse").sideNav();
-  });
-</script>

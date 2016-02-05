@@ -43,10 +43,6 @@ public class Party {
     this.lastReadMessage = message;
   }
 
-  public List<Message> getUnreadMessages() {
-    return null;
-  }
-
   public ObjectId getChatId() {
     if (this.chatId == null) {
       return null;
