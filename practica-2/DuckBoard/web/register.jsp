@@ -13,7 +13,7 @@
         <!--FORM REGISTER-->
         <div class="row login" >
           <div class="card col s12 ">
-            <form class="col s12" method="POST" action="/blabla.jsp">
+            <form class="col s12" method="POST" action="">
               <div class="row">
                 <div class="input-field col s12">
                   <h5><i class="material-icons prefix" style="position: relative;top: 0.2em;">account_circle</i>Información personal:</h5>
@@ -79,11 +79,12 @@
                 </div> <!--End of user information-->
               </div>
 
-              <button style=" margin-bottom:1.75em;" class="btn waves-effect waves-light col s3 offset-s4" 
-                      type="button" onclick="ValidarRegistro()">Register
-                <i class="material-icons">send</i>
-              </button>
-
+              <div class="card-action">
+                <button  class="btn waves-effect waves-light light-blue darken-1" 
+                        type="button">REGISTRARSE
+                </button>
+              </div>
+              
             </form>
 
           </div>

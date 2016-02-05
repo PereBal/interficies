@@ -13,9 +13,9 @@
 
         <div id="login" class="row linear-transition" style="display:none;">
           <form class="col s8 offset-s2" method="POST" action="/login">
-            <div class="card blue-grey darken-1">
+            <div class="card">
               <div class="card-content white-text">
-                <span class="card-title">Login</span>
+                <span class="card-title grey-text text-darken-2">Login</span>
                 <div class="input-field">
                   <input id="email" type="text" class="validate" name="email">
                   <label for="email">Username</label>
@@ -28,7 +28,7 @@
               <div class="card-action">
                 <div class="">
                   <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
-                  <button href="#" class="btn" type="submit">Entrar</button>
+                  <button href="#" class="btn waves-effect waves-light light-blue darken-1 " type="submit">Entrar</button>
                 </div>
               </div>
             </div> 
@@ -184,14 +184,14 @@
 
       $('#loginButton').click(function (e) {
 
-        $('#login').show("slow", function () {
+        $('#login').show(400, function () {
           // animation complete
         });
       });
 
       $('#cancelLogin').click(function (e) {
 
-        $('#login').hide("slow", function () {
+        $('#login').hide(400, function () {
           // animation complete
         });
       });
