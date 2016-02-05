@@ -1,9 +1,10 @@
 package model;
 
-import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
 import org.bson.types.ObjectId;
 import database.chat.DBActions;
+import java.time.format.DateTimeFormatter;
 import database.chat.exceptions.UserNotInPartyException;
 import database.www.exceptions.UserDoesNotExistException;
 import database.chat.exceptions.ChatDoesNotExistException;
@@ -15,13 +16,13 @@ public class Chat {
   private final ObjectId id;
   private final List<Party> parties;
   private final List<Message> messages;
-  private final Date createdAt;
+  private final LocalDate createdAt;
 
   public Chat(ObjectId id, List<Party> parties, List<Message> messages) {
     this.id = id;
     this.parties = parties;
     this.messages = messages;
-    this.createdAt = id.getDate(); //revisar el format del date object id
+    this.createdAt = LocalDate.parse(id.getDate().toString(), DateTimeFormatter.ISO_DATE_TIME);
   }
 
   public ObjectId getId() {
@@ -43,12 +44,12 @@ public class Chat {
           UserNotInPartyException {
     return DBActions.getMessages(toString(), Message.LIMIT, skip);
   }
-  
+
   public int countUnreadMessages(int userId) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(toString(), userId, true, Message.LIMIT * 5, 0).size();
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT * 50, 0).size();
   }
 
   public List<Message> getUnreadMessages(int userId) throws
@@ -91,10 +92,10 @@ public class Chat {
     DBActions.updateLastReadMessage(toString(), userId, messageId);
   }
 
-  public Date getCreatedAt() {
+  public LocalDate getCreatedAt() {
     return createdAt;
   }
-  
+
   @Override
   public String toString() {
     return this.id.toString();

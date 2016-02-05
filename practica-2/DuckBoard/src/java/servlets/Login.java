@@ -3,15 +3,18 @@ package servlets;
 import model.User;
 import java.io.IOException;
 import database.www.DBActions;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> default: Chat servlet finished, added logout and more fucking functions on Helper
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import servlets.tools.Flash;
+import servlets.tools.Helper;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
@@ -35,10 +38,7 @@ public class Login extends HttpServlet {
     HttpSession session = request.getSession();
 
     if (user == null) {
-      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-      List<Flash> flash = new ArrayList<>();
-      flash.add(new Flash("El usuario no existe o has introducido mal el correo", Flash.ERROR));
-      session.setAttribute("flash", flash);
+      Helper.setErrorFlash(request, "El usuario no existe o has introducido mal el correo");
     } else {
       session.setAttribute("userId", user.getId());
       session.setMaxInactiveInterval(600);
@@ -46,6 +46,22 @@ public class Login extends HttpServlet {
 
     response.sendRedirect("/duckboard");
   }
+
+  /**
+   * Handles the HTTP <code>DELETE</code> method.
+   *
+   * @param request servlet request
+   * @param response servlet response
+   * @throws ServletException if a servlet-specific error occurs
+   * @throws IOException if an I/O error occurs
+   */
+  @Override
+  protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    request.getSession().invalidate();
+    response.sendRedirect("/duckboard");
+  }
+
 
   /**
    * Returns a short description of the servlet.
