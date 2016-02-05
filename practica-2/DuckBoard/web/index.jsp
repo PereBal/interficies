@@ -75,10 +75,11 @@
 
 
           <div class="row">
-            <div class="col s12">
-              <iframe id="player" type="text/html"
+            <div class="col s6" style="height:29em;margin-top: 1em; ">
+              <iframe id="player" type="video/html"
                       src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
-                      frameborder="0"></iframe>
+                      frameborder="0" width="100%" height="100%" allowfullscreen>                       
+              </iframe>
             </div>
             <div class="col s12 m3">
               <div class="card">
@@ -106,6 +107,50 @@
               <div class="card">
                 <div class="card-image">
                   <img src="http://lorempixel.com/400/250/people/10">
+                  <span class="card-title">Card Title</span>
+                </div>
+                <div class="card-action">
+                  <a href="#">View</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="http://lorempixel.com/400/250/people/9">
+                  <span class="card-title">Card Title</span>
+                </div>
+                <div class="card-action">
+                  <a href="#">View</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="http://lorempixel.com/400/250/people/9">
+                  <span class="card-title">Card Title</span>
+                </div>
+                <div class="card-action">
+                  <a href="#">View</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="http://lorempixel.com/400/250/people/9">
+                  <span class="card-title">Card Title</span>
+                </div>
+                <div class="card-action">
+                  <a href="#">View</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="http://lorempixel.com/400/250/people/9">
                   <span class="card-title">Card Title</span>
                 </div>
                 <div class="card-action">
