@@ -3,11 +3,6 @@ package servlets;
 import model.User;
 import java.io.IOException;
 import database.www.DBActions;
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-=======
->>>>>>> default: Chat servlet finished, added logout and more fucking functions on Helper
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
