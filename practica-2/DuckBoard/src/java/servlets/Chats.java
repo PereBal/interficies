@@ -2,6 +2,7 @@ package servlets;
 
 import database.chat.exceptions.ChatDoesNotExistException;
 import database.chat.exceptions.UserNotInPartyException;
+import database.www.DBActions;
 import database.www.exceptions.UserDoesNotExistException;
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Chat;
 import model.Message;
+import model.User;
 import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +32,6 @@ public class Chats extends HttpServlet {
         return new ObjectId(path[1]);
       }
     } catch (NullPointerException e) {}
-      
     return null;
   }
 
@@ -62,18 +63,21 @@ public class Chats extends HttpServlet {
     
     if (Helper.isAjax(request)) {
       try {
-        int userId = 1; // get userid of the session
-        // add getParameterers unread and focus
+        User user = Helper.getCurrentUser(request);
+
+        String unread = request.getParameter("unread");
+        String skip   = request.getParameter("skip");
+
         
         JSONArray JSONChats = new JSONArray();
         
-        List<Chat> chats = Chat.retrieveChatsByUserPk(userId);
+        List<Chat> chats = Chat.retrieveChatsByUserPk(user.getId());
         for (Chat chat : chats) {
           JSONObject object = new JSONObject();
           
           String [] attrs = new String[2];
           
-          attrs[0] = Integer.toString(chat.countUnreadMessages(userId));
+          attrs[0] = Integer.toString(chat.countUnreadMessages(user.getId()));
           object.put("count", attrs[0]);
           
           List<Message> messages = chat.getMessages();
@@ -90,8 +94,24 @@ public class Chats extends HttpServlet {
       } catch (UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
         Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
       }
-    } else {
-      //ObjectId chatId = getChatId(request);
+    } else {      
+      try {
+        User user = Helper.getCurrentUser(request);
+        List<Chat> chats = user.getChats();
+        request.setAttribute("chats", chats);
+
+        Chat currentChat = null;
+        ObjectId chatId = getChatId(request);
+        if (chatId != null) {
+          currentChat = Chat.retrieveByPk(chatId.toString());
+        }
+        request.setAttribute("currentChat", currentChat);
+      } catch (UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
+        Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
+        response.sendError(404, "BITCHHHHHH LA URL NO ESTA BEN FORMADA O EL CHAT NO EXISTEIS O ALGO");
+      }
+      
+      request.getRequestDispatcher("/chats.jsp").forward(request, response);
     }
   }
 

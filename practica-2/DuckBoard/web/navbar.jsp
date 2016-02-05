@@ -1,9 +1,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="servlets.tools.Helper"%>
-<%//boolean isLogged = Helper.isLogged(request);%>
+<%boolean isLogged = Helper.isLogged(request);%>
+
+<% out.print(isLogged); %>
 <!-- LOGGED -->
 <c:choose>
-  <c:when test="${isLogged}">
+  <c:when test="isLogged">
     <!-- Dropdown Structure -->
     <ul id="navbar-dropdown" class="dropdown-content">
       <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>

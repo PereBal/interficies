@@ -1,16 +1,15 @@
 package servlets;
 
-import database.www.DBActions;
+import model.User;
 import java.io.IOException;
-import java.net.URLEncoder;
+import database.www.DBActions;
+import javax.servlet.http.Cookie;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
@@ -31,16 +30,16 @@ public class Login extends HttpServlet {
 
     User user = DBActions.getUserByEmail(email, password);
     
-    if (user != null) {
+    if (user != null) { // aixo es al reves
       response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
       response.addCookie(new Cookie("flash", "El usuario no existe o has introducido mal el correo"));
     } else {
       HttpSession session = request.getSession();   
-      session.setAttribute("userId", 1);
+      session.setAttribute("userId", 1); // aqui va una id
       session.setMaxInactiveInterval(3600);    
     }
     
-    response.sendRedirect("/");
+    response.sendRedirect("/duckboard");
   }
 
   /**
