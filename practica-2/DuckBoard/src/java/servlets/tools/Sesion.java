@@ -120,17 +120,16 @@ public class Sesion {
 
   public void autenticate(String email) {
     setUser(db.www.DBActions.getUserByEmail(email));
-    if (user.getAuthToken() != null) {
-      setAuthToken(user.getAuthToken());
-    } else {
-      String authToken = java.util.UUID.randomUUID().toString();
-      db.www.DBActions.setAuthToken(email, authToken);
-      setAuthToken(authToken);
-    }
+    String authToken = java.util.UUID.randomUUID().toString();
+    db.www.DBActions.setAuthToken(email, authToken);
+    setAuthToken(authToken);
   }
 
   public void autenticate(model.User u) {
-    autenticate(u.getEmail());
+    setUser(u);
+    String authToken = java.util.UUID.randomUUID().toString();
+    db.www.DBActions.setAuthToken(u.getEmail(), authToken);
+    setAuthToken(authToken);
   }
 
   public void invalidate() {

@@ -11,13 +11,11 @@ public class Helper {
   }
 
   public static boolean isLogged(HttpServletRequest request) {
-    Sesion s = new Sesion(request.getSession());
-    return s.isValid();
+    return Sesion.isAutenticated(new Sesion(request.getSession()));
   }
 
   public static model.User getCurrentUser(HttpServletRequest request) {
-    Sesion s = new Sesion(request.getSession());
-    return s.getUser();
+    return (new Sesion(request.getSession())).getUser();
   }
 
   public static boolean authenticate(Sesion s, HttpServletResponse response) throws IOException {
