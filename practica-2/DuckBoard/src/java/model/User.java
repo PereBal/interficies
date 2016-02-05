@@ -6,6 +6,7 @@ import database.chat.exceptions.UserNotInPartyException;
 import database.www.exceptions.UserDoesNotExistException;
 import database.chat.exceptions.ChatDoesNotExistException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class User {
 
@@ -29,14 +30,14 @@ public class User {
     this.quote = "";
   }
 
-  public User(int id, String email, String name, String lastName, char sex, String authToken, LocalDate birthDay, String quote) {
+  public User(int id, String email, String name, String lastName, char sex, String authToken, java.sql.Date birthDay, String quote) {
     this.id = id;
     this.email = email;
     this.name = name;
     this.sex = sex;
     this.lastName = lastName;
     this.authToken = authToken;
-    this.birthDay = birthDay;
+    //this.birthDay = LocalDate.parse(birthDay, DateTimeFormatter.ISO_DATE);
     this.quote = quote;
   }
 
@@ -59,9 +60,15 @@ public class User {
   public String getAuthToken() {
     return authToken;
   }
-
-  public LocalDate getBirthDay() {
+  
+  public LocalDate getBirthDate() {
     return birthDay;
+  }
+
+  public String getBirthDay() {
+    if (birthDay == null)
+      return null;
+    return birthDay.format(DateTimeFormatter.ISO_DATE);
   }
 
   public String getQuote() {
@@ -70,6 +77,10 @@ public class User {
 
   public char getSex() {
     return this.sex;
+  }
+  
+  public void setAuthToken(String token) {
+    this.authToken = token;
   }
 
   public List<Chat> getChats() throws

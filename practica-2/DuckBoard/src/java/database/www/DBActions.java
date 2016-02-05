@@ -4,12 +4,13 @@ import model.User;
 import database.tools.Utils;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBActions {
 
@@ -60,7 +61,7 @@ public class DBActions {
               rs.getString(4),
               rs.getString(5).charAt(0),
               rs.getString(6),
-              rs.getDate(7).toLocalDate(),
+              rs.getDate(7),
               rs.getString(8)
       );
     }
@@ -79,15 +80,26 @@ public class DBActions {
     return getUser(advancedFactory, "id=" + userId);
   }
 
-  public static User getUserByEmail(String email) {
-    return getUser(advancedFactory, "email='" + Utils.cleanEmail(email) + "'");
+  public static User getUserByEmail(String email, String password) {
+    try {
+      return getUser(advancedFactory, "email=" + Utils.cleanEmail(email) + " AND pwd=" + Utils.encrypt(password));
+    } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      return null;
+    }
+  }
+
+  public static User getUserByToken(String email, String token) {
+    return getUser(advancedFactory, "email=" + Utils.cleanEmail(email) + " AND auth_token=" + Utils.cleanAuthToken(token));
   }
 
   private static User getUser(UserFactory factory, String filter) {
     try (DBConnection con = new DBConnection();) {
       con.open();
       Statement st = con.getConection().createStatement();
-      ResultSet rs = st.executeQuery("SELECT " + factory.fields() + " FROM user WHERE " + filter + ";");
+
+      String query = "SELECT " + factory.fields() + " FROM user WHERE " + filter + ";";
+      ResultSet rs = st.executeQuery(query);
       if (rs.next()) {
         return factory.toUser(rs);
       }
@@ -131,14 +143,14 @@ public class DBActions {
 
       String query = "INSERT INTO user (email, name, last_name, pwd, sex, auth_token, birth_day, quote) VALUES "
               + "("
-              + "'" + Utils.cleanEmail(newUser.getEmail()) + "',"
-              + "'" + Utils.cleanName(newUser.getName()) + "',"
-              + "'" + Utils.cleanLastName(newUser.getLastName()) + "',"
-              + "'" + Utils.encrypt(password) + "',"
-              + "'" + Utils.cleanSex(newUser.getSex()) + "',"
-              + "'" + Utils.cleanAuthToken(newUser.getAuthToken()) + "',"
-              + "'" + Utils.cleanBirthDay(newUser.getBirthDay().format(DateTimeFormatter.ISO_DATE)) + "',"
-              + "'" + Utils.cleanQuote(newUser.getQuote()) + "'"
+              + Utils.cleanEmail(newUser.getEmail()) + ","
+              + Utils.cleanName(newUser.getName()) + ","
+              + Utils.cleanLastName(newUser.getLastName()) + ","
+              + Utils.encrypt(password) + ","
+              + Utils.cleanSex(newUser.getSex()) + ","
+              + Utils.cleanAuthToken(newUser.getAuthToken()) + ","
+              + Utils.cleanBirthDay(newUser.getBirthDay()) + ","
+              + Utils.cleanQuote(newUser.getQuote())
               + ");";
       st.executeUpdate(query);
       return true;
@@ -163,15 +175,15 @@ public class DBActions {
       Statement st = conn.getConection().createStatement();
 
       String query = "UPDATE user SET"
-              + "email='" + Utils.cleanEmail(newUser.getEmail()) + "',"
-              + "name='" + Utils.cleanName(newUser.getName()) + "',"
-              + "last_name='" + Utils.cleanLastName(newUser.getLastName()) + "',"
-              + "sex='" + newUser.getSex() + "',"
-              + "auth_token='" + Utils.cleanAuthToken(newUser.getAuthToken()) + "',"
-              + "birth_day='" + Utils.cleanBirthDay(newUser.getBirthDay().format(DateTimeFormatter.ISO_DATE)) + "',"
-              + "quote='" + Utils.cleanQuote(newUser.getQuote()) + "' ";
+              + "email=" + Utils.cleanEmail(newUser.getEmail()) + ","
+              + "name=" + Utils.cleanName(newUser.getName()) + ","
+              + "last_name=" + Utils.cleanLastName(newUser.getLastName()) + ","
+              + "sex=" + Utils.cleanSex(newUser.getSex()) + ","
+              + "auth_token=" + Utils.cleanAuthToken(newUser.getAuthToken()) + ","
+              + "birth_day=" + Utils.cleanBirthDay(newUser.getBirthDay()) + ","
+              + "quote=" + Utils.cleanQuote(newUser.getQuote()) + " ";
       if (newPwd != null) {
-        query += ",pwd='" + Utils.encrypt(newPwd) + "' ";
+        query += ",pwd=" + Utils.encrypt(newPwd) + " ";
       }
       query += "WHERE id=" + newUser.getId() + ";";
 
@@ -188,7 +200,7 @@ public class DBActions {
   }
 
   public static boolean deleteUser(String email) {
-    return delete("email='" + Utils.cleanEmail(email) + "'");
+    return delete("email=" + Utils.cleanEmail(email));
   }
 
   public static boolean deleteUser(User u) {
@@ -207,6 +219,43 @@ public class DBActions {
       return true;
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      return false;
+    }
+  }
+
+  public static String setAuthToken(String email, String token) {
+    String auth = token;
+    try (DBConnection conn = new DBConnection();) {
+      conn.open();
+
+      Statement st = conn.getConection().createStatement();
+
+      String query = "UPDATE user SET auth_token=" + Utils.cleanAuthToken(token) + " "
+              + "WHERE "
+              + "email=" + Utils.cleanEmail(email) + ";";
+      st.executeUpdate(query);
+      return auth;
+    } catch (SQLException ex) {
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      return null;
+    }
+  }
+
+  public static boolean destroyAuthToken(String email, String token) {
+    try (DBConnection conn = new DBConnection()) {
+      conn.open();
+
+      Statement st = conn.getConection().createStatement();
+
+      String query = "UPDATE user SET auth_token=" + null + " "
+              + "WHERE "
+              + "email=" + Utils.cleanEmail(email) + " AND "
+              + "auth_token=" + Utils.cleanAuthToken(token) + ";";
+
+      st.executeUpdate(query);
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
       return false;
     }
   }

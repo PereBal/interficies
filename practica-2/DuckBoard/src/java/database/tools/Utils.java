@@ -8,7 +8,6 @@ package database.tools;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.regex.Pattern;
 
@@ -19,17 +18,17 @@ import java.util.regex.Pattern;
 public class Utils {
 
   public static String cleanEmail(String email) {
-    return email.replaceAll("[^A-Za-z0-9@.]", "");
+    return "'" + email.replaceAll("[^A-Za-z0-9@.]", "") + "'";
   }
 
   public static String cleanName(String name) {
-    return name.toUpperCase().replaceAll("[^A-Z0-9]", "");
+    return "'" + name.toUpperCase().replaceAll("[^A-Z0-9]", "") + "'";
   }
 
   public static String cleanLastName(String lastName) {
     if (lastName == null)
       return null;
-    return lastName.toUpperCase().replaceAll("[^A-Z0-9]", "");
+    return "'" + lastName.toUpperCase().replaceAll("[^A-Z0-9]", "") + "'";
   }
 
   public static String cleanPwd(String pwd) {
@@ -37,18 +36,22 @@ public class Utils {
   }
 
   public static String cleanAuthToken(String authToken) {
-    return authToken;
+    if (authToken == null)
+      return null;
+    return "'" + authToken + "'";
   }
 
-  public static char cleanSex(char sex) {
+  public static String cleanSex(char sex) {
     if (sex == '\0')
-      return '\0';
+      return null;
     char sexClean = Character.toUpperCase(sex);
-    return (sexClean != 'H' && sexClean != 'M') ? '\0' : sexClean;
+    return (sexClean != 'H' && sexClean != 'M') ? null : "'" + sexClean + "'";
   }
 
-  public static char cleanSex(String sex) {
-    return sex.toUpperCase().replaceAll("[^HM]", "").charAt(0);
+  public static String cleanSex(String sex) {
+    if (sex == null)
+      return null;
+    return "'" + sex.toUpperCase().replaceAll("[^HM]", "").charAt(0) + "'";
   }
 
   public static String cleanBirthDay(String birthDay) {
@@ -56,13 +59,13 @@ public class Utils {
     if (birthDay == null || !Pattern.matches("[0-9]{4,4}(-[0-9]{2,2}){2,2}", birthDay)) {
       return null;
     }
-    return birthDay;
+    return "'" + birthDay + "'";
   }
 
   public static String cleanQuote(String quote) {
     if (quote == null)
       return null;
-    return quote.replaceAll("[^A-Za-z0-9.,:-_]", "");
+    return "'" + quote.replaceAll("[^A-Za-z0-9.,:-_]", "") + "'";
   }
 
   public static String encrypt(String pwd) throws UnsupportedEncodingException, NoSuchAlgorithmException {
@@ -74,8 +77,8 @@ public class Utils {
      * Source: MessageDigest class on javaApi
      */
     MessageDigest md = MessageDigest.getInstance("SHA-256");
-    md.update(Utils.cleanPwd(pwd).getBytes("UTF-8"));
+    md.update(cleanPwd(pwd).getBytes("UTF-8"));
     String spwd = Base64.getEncoder().encodeToString(md.digest());
-    return spwd;
+    return "'" + spwd + "'";
   }
 }
