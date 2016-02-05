@@ -35,16 +35,16 @@ _**CRUD**_ sobre usuaris
   * 401 → `index.jsp`, URI: `/`
 
 ## Chat
-* `GET /chats[/:cid]`
-  * 200 → `chat.jsp`, Ordered by time
+* `GET /chats?cid=` → Pintar toda la pantalla. (chatId opcional) si cid puesto se pinta el chat.
+  * 200 → `chats.jsp`, Ordered by time
     * *Comentari per experts* Els nulls tenen preferència
 
 
-* `POST /chats?party=uid`
-  * 302 → `chat.jsp`, URI: `/chats/:cid`
+* `POST /chats?party=uid` → Obligatorio userId. Crea un chat i redirecciona a `/chats?cid=`.
+  * 302 → `chat.jsp`, URI: `/chats?cid=`
 
 
-* `GET /chats/messages/:cid?unread=&begin=`
+* `GET /chats/messages?cid=&unread=&begin=` → Obligatorio chatId. Devuelve los mensajes de a conversación.
   * 200 → `Ajax`, Ordered by time
   ```json
   {
@@ -59,7 +59,7 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `GET /chats?unread=&skip=:cid`
+* `GET /chats?unread=&skip=cid` → Devuelve la información del sidebaro de las conversaciones.
   * 200 → `Ajax`
   ```json
     {
@@ -71,7 +71,7 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `POST /chats/messages/:cid`
+* `POST /chats/messages?cid=` → Crea un mensaja de una chat. El chatId es obligatorio.
   * 200 → `Ajax`
 
 
