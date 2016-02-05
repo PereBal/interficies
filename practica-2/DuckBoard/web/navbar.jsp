@@ -1,14 +1,15 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="servlets.tools.Helper"%>
-<%boolean isLogged = Helper.isLogged(request);%>
-<% out.print(isLogged); %>
+<%
+  pageContext.setAttribute("isLogged", Helper.isLogged(request));
+  pageContext.setAttribute("username", Helper.getCurrentUser(request).getName());%>
 <c:choose>
-  <c:when test="isLogged">
+  <c:when test="${isLogged}">
     <!-- Dropdown Structure -->
     <ul id="navbar-dropdown" class="dropdown-content">
       <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>
       <li class="divider"></li>
-      <li><a href="#!"><i class="material-icons left">settings_power</i>DuckBoardut</a></li>
+      <li><a href="#!"><i class="material-icons left">settings_power</i>Logout</a></li>
     </ul>
     <nav class="blue-grey lighten-1">
       <div class="nav-wrapper container">
@@ -23,7 +24,7 @@
           <li><a href="chat.html" class="waves-effect waves-light"><i class="material-icons left">comment</i>Chat</a></li>
           <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>
           <li class="divider"></li>
-          <li><a href="#!"><i class="material-icons left">settings_power</i>DuckBoardut</a></li>
+          <li><a href="#!"><i class="material-icons left">settings_power</i>Logout</a></li>
         </ul>
       </div>
     </nav>

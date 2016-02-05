@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import model.User;
 
 public class Helper {
-  
+
   public static boolean isAjax(HttpServletRequest request) {
     return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
   }
@@ -15,7 +15,7 @@ public class Helper {
     if (request == null) {
       return false;
     }
-   
+
     return request.getSession(false).getAttribute("userId") != null;
   }
   
@@ -28,7 +28,7 @@ public class Helper {
       int userId = (int) request.getSession().getAttribute("userId");
       return DBActions.getUserById(userId);
     }
-    
+
     return null;
   }
 }
