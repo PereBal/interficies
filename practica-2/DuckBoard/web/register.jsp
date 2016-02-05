@@ -25,7 +25,7 @@
                   <h5><i class="material-icons prefix" style="position: relative;top: 0.2em;">account_circle</i>Información personal:</h5>
                 </div>
 
-                <div class="col s10 offset-s1">
+                <div class="col s10 offset-s1 grey-text text-darken-3">
                   <div class="input-field col s6">
                     <input name="name" type="text" class="validate" required value="a">
                     <label for="name">Name</label>
@@ -57,7 +57,7 @@
                 <div class="input-field col s12">
                   <h5><i class="material-icons prefix" style="position: relative;top: 0.2em;">perm_identity</i>Información de usuario:</h5>
                 </div>
-                <div class="col s10 offset-s1">
+                <div class="col s10 offset-s1 grey-text text-darken-3">
 
                   <div class="input-field col s6">
                     <input name="psw" type="password" class="validate" length="32" required value="a">

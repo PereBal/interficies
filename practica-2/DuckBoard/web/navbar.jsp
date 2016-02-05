@@ -14,7 +14,7 @@
     </ul>
     <nav class="blue-grey lighten-1">
       <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo">DuckBoard</a>
+        <a href="#!" class="brand-logo"><img style="width:1em;" src="http://www.iconarchive.com/download/i24289/martin-berube/animal/duck.ico"></img>DuckBoard</a>
         <a href="#!" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="/chats" class="waves-effect waves-light"><i class="material-icons left">comment</i>Chat</a></li>
@@ -33,7 +33,7 @@
   <c:otherwise>
     <nav class="blue-grey lighten-1">
       <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo">DuckBoard</a>
+        <a href="#!" class="brand-logo"><img style="width:1em;" src="http://www.iconarchive.com/download/i24289/martin-berube/animal/duck.ico"></img>DuckBoard</a>
         <a href="#!" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a id="loginButton" href="#!" class="waves-effect waves-light">Login</a></li>

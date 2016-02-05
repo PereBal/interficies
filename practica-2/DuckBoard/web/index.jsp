@@ -20,8 +20,8 @@
         
         <div id="login" class="row linear-transition" style="display:none;">
           <form class="col s8 offset-s2" method="POST" action="/duckboard/login">
-            <div class="card blue-grey darken-1">
-              <div class="card-content white-text">
+            <div class="card white">
+              <div class="card-content grey-text text-darken-3">
                 <span class="card-title grey-text text-darken-2">Login</span>
                 <div class="input-field">
                   <input id="email" type="text" class="validate" name="email">
