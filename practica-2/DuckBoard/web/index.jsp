@@ -25,7 +25,7 @@
                 <span class="card-title grey-text text-darken-2">Login</span>
                 <div class="input-field">
                   <input id="email" type="text" class="validate" name="email">
-                  <label for="email">Username</label>
+                  <label for="email">Email</label>
                 </div>
                 <div class="input-field">
                   <input id="password" type="password" class="validate" name="password">
@@ -194,7 +194,7 @@
 
       $('#loginButton').click(function (e) {
 
-      $('#login').show(400, function () {
+      $('#login').toggle(400, function () {
       // animation complete
       });
       });
@@ -209,10 +209,13 @@
       /*********************************/
 
       $('.slider').slider({full_width: true});
+      
+      
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
 
+      
       // this is JavaScript code written in the JSP
       var flashes = [
         <c:forEach var="flash" items="${flashes}" varStatus="loop">
@@ -224,23 +227,8 @@
         </c:forEach>
       ]
       
-      flashes.forEach(function(index) {
-        
-        var cssClass = undefined;
-        
-        if (index.clazz === 'error') {
-          
-          cssClass = 'alert-error';
-        } else {
-          
-          cssClass = 'alert-success';
-        }
-        
-        Materialize.toast(index.clazz + ', ' + index.message, 4000, cssClass)
-      });
-      
-      <% %>
-      
+      showFlashes(flashes);
+         
       });
 
     </script>

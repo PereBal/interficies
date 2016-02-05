@@ -171,41 +171,7 @@
           // animation complete
         });
       });
-
-      $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 160, // Creates a dropdown of 80 years to control year
-      });
-
-      $('select').material_select();
-
-      $('#deleteAccount').ajax({
-        
-        url: '/duckboard/users',
-        type: 'GET',
-        data: ({'id': }),
-        success: function (result) {
-
-          
-          };
-        },
-        error: function (error) {}
-      });
-
     });
-    
-          $(document).ready(function () {
-        $(".button-collapse").sideNav();
-        var $calendar = $('.datepicker').pickadate({
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 160, // Creates a dropdown of 80 years to control year
-          clear: false
-        });
-
-        $('select').material_select();
-      });
-
-
 
   </script>
 

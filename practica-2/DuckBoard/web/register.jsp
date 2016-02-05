@@ -27,15 +27,15 @@
 
                 <div class="col s10 offset-s1 grey-text text-darken-3">
                   <div class="input-field col s6">
-                    <input name="name" type="text" class="validate" required value="a">
+                    <input name="name" type="text" class="validate" required>
                     <label for="name">Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input name="birth_day" type="date" class="datepicker" value="19-01-1994">
+                    <input name="birth_day" type="date" class="datepicker">
                     <label for="birth_day">Birthday</label>
                   </div>
                   <div class="input-field col s10">
-                    <input name="last_name" type="text" class="validate" required value="a">
+                    <input name="last_name" type="text" class="validate" required>
                     <label for="last_name">Surname</label>
                   </div>
                   <div class="input-field col s2">
@@ -49,7 +49,7 @@
                     </p>
                   </div>
                   <div class="input-field col s12">
-                    <input name="email" type="email" class="validate" required value="a@email.com">
+                    <input name="email" type="email" class="validate" required>
                     <label for="email" data-error="invalid email">Correo electrónico</label>
                   </div> 
                 </div> <!--End of personal information-->
@@ -60,7 +60,7 @@
                 <div class="col s10 offset-s1 grey-text text-darken-3">
 
                   <div class="input-field col s6">
-                    <input name="pwd" type="password" class="validate" length="32" required value="a">
+                    <input name="pwd" type="password" class="validate" length="32" required>
                     <label for="pwd">Password</label>
                   </div>
                   <!--              IMAGENES
@@ -74,18 +74,19 @@
                                     </div>
                   -->
                   <div class="input-field col s6">
-                    <input name="pwd2" type="password" class="validate" length="32" required value="a">
+                    <input name="pwd2" type="password" class="validate" length="32" required>
                     <label for="pwd2">Repeat password</label>
                   </div>
 
                   <div class="input-field col s12">
-                    <textarea name="quote" class="materialize-textarea" length="256" value="a"></textarea>
+                    <textarea name="quote" class="materialize-textarea" length="256"></textarea>
                     <label for="quote">Favourite quote</label>
                   </div>
                 </div> <!--End of user information-->
               </div>
 
               <div class="card-action">
+                <a href="/duckboard">VOLVER</a>
                 <button  class="btn waves-effect waves-light light-blue darken-1" type="submit"
                          type="button">REGISTRARSE
                 </button>
@@ -103,16 +104,25 @@
     <script type="text/javascript">
 
       $(document).ready(function () {
-        $(".button-collapse").sideNav();
-        var $calendar = $('.datepicker').pickadate({
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 160, // Creates a dropdown of 80 years to control year
-          format: 'dd-mm-yyyy',
-          clear: false
-        });
-        
+           
+      /*********************************/
+      /******** TOAST MSGS *************/
+      /*********************************/
 
-        $('select').material_select();
+      
+      // this is JavaScript code written in the JSP
+      var flashes = [
+        <c:forEach var="flash" items="${flashes}" varStatus="loop">
+            {
+              clazz : "${flash.clazz}",
+              message   : "${flash.message}",
+            }<c:if test="${!loop.last}">,</c:if>
+            
+        </c:forEach>
+      ]
+      
+      showFlashes(flashes);
+        
       });
 
     </script>

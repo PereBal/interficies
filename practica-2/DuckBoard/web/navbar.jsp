@@ -10,7 +10,7 @@
     <ul id="navbar-dropdown" class="dropdown-content">
       <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>
       <li class="divider"></li>
-      <li><a href="#!"><i class="material-icons left">settings_power</i>Logout</a></li>
+      <li><a href="/duckboard/logout"><i class="material-icons left">settings_power</i>Logout</a></li>
     </ul>
     <nav class="blue-grey lighten-1">
       <div class="nav-wrapper container">
@@ -25,7 +25,7 @@
             <li><a href="chat.html" class="waves-effect waves-light"><i class="material-icons left">comment</i>Chat</a></li>
             <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>
             <li class="divider"></li>
-            <li><a href="#!"><i class="material-icons left">settings_power</i>Logout</a></li>
+            <li><a href="/duckboard/logout"><i class="material-icons left">settings_power</i>Logout</a></li>
           </ul>
         </div>
       </nav>
