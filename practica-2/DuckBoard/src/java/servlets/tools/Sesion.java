@@ -68,7 +68,7 @@ public class Sesion {
     if (authToken != null) {
       return authToken;
     } else if (session.getAttribute("auth_token") != null) {
-      authToken = (String) session.getAttribute("user_id");
+      authToken = (String) session.getAttribute("auth_token");
       return authToken;
     } else {
       return null;
@@ -124,15 +124,24 @@ public class Sesion {
       setAuthToken(user.getAuthToken());
     } else {
       String authToken = java.util.UUID.randomUUID().toString();
-      setAuthToken(authToken);
       db.www.DBActions.setAuthToken(email, authToken);
+      setAuthToken(authToken);
     }
   }
-  
+
   public void autenticate(model.User u) {
     autenticate(u.getEmail());
   }
-  
+
+  public void invalidate() {
+    db.www.DBActions.destroyAuthToken(getUserId());
+    session.invalidate();
+    userId = -1;
+    user = null;
+    flash = null;
+    authToken = null;
+  }
+
   public javax.servlet.http.HttpSession conf() {
     return session;
   }

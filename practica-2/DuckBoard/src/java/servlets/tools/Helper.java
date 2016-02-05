@@ -1,15 +1,23 @@
 package servlets.tools;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
 
 public class Helper {
 
   public static boolean isAjax(HttpServletRequest request) {
     return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+  }
+
+  public static boolean isLogged(HttpServletRequest request) {
+    Sesion s = new Sesion(request.getSession());
+    return s.isValid();
+  }
+
+  public static model.User getCurrentUser(HttpServletRequest request) {
+    Sesion s = new Sesion(request.getSession());
+    return s.getUser();
   }
 
   public static boolean authenticate(Sesion s, HttpServletResponse response) throws IOException {
@@ -18,6 +26,11 @@ public class Helper {
       return false;
     }
     return true;
+  }
+
+  public static java.util.List<Flash> getFlash(HttpServletRequest request) {
+    Sesion s = new Sesion(request.getSession(false));
+    return s.getFlash();
   }
 
   public static void setErrorFlash(Sesion s, String msg) {

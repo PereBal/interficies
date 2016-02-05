@@ -217,7 +217,7 @@
       
       // this is JavaScript code written in the JSP
       var flashes = [
-        <c:forEach var="flash" items="${flashes}" varStatus="loop">
+        <c:forEach var="flash" items="${sesion.getFlash}" varStatus="loop">
             {
               clazz : "${flash.clazz}",
               message   : "${flash.message}",

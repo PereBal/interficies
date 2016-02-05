@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servlets.tools.Sesion;
 
 @WebServlet(name = "Index", urlPatterns = {"/duckboard"})
 public class Index extends HttpServlet {
@@ -22,6 +23,8 @@ public class Index extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     response.setContentType("text/plain;charset=UTF-8");
+    Sesion s = new Sesion(request.getSession());
+    request.setAttribute("sesion", s);
     request.getRequestDispatcher("/index.jsp").forward(request, response);
   }
 

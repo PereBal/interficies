@@ -248,7 +248,7 @@ public class DBActions {
     }
   }
 
-  public static boolean destroyAuthToken(String email, String token) {
+  public static boolean destroyAuthToken(int userId) {
     try (DBConnection conn = new DBConnection()) {
       conn.open();
 
@@ -256,8 +256,7 @@ public class DBActions {
 
       String query = "UPDATE user SET auth_token=" + null + " "
               + "WHERE "
-              + "email=" + Utils.cleanEmail(email) + " AND "
-              + "auth_token=" + Utils.cleanAuthToken(token) + ";";
+              + "id=" + userId + ";";
 
       st.executeUpdate(query);
       return true;
