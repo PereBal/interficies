@@ -72,7 +72,7 @@ public class Users extends HttpServlet {
     char sex = request.getParameter("sex").charAt(0);
     String authToken = java.util.UUID.randomUUID().toString();
     request.getSession().setAttribute("auth_token", authToken);
-    LocalDate birthDay = LocalDate.parse(request.getParameter("birth_day"), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    String birthDay = LocalDate.parse(request.getParameter("birth_day"), DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
     String quote = request.getParameter("quote");
     String pwd = request.getParameter("pwd");
     

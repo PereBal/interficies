@@ -63,7 +63,7 @@ public class DBActions {
               rs.getString(4),
               rs.getString(5).charAt(0),
               rs.getString(6),
-              LocalDate.from((TemporalAccessor) rs.getDate(7)),
+              rs.getDate(7).toString(),
               rs.getString(8)
       );
     }

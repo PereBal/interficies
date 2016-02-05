@@ -15,7 +15,7 @@ public class User {
   private final String name;
   private String lastName;
   private final char sex;
-  private LocalDate birthDay;
+  private String birthDay;
   private String quote;
   private String authToken;
 
@@ -30,7 +30,7 @@ public class User {
     this.quote = "";
   }
 
-  public User(int id, String email, String name, String lastName, char sex, String authToken, LocalDate birthDay, String quote) {
+  public User(int id, String email, String name, String lastName, char sex, String authToken, String birthDay, String quote) {
     this.id = id;
     this.email = email;
     this.name = name;
@@ -60,15 +60,9 @@ public class User {
   public String getAuthToken() {
     return authToken;
   }
-  
-  public LocalDate getBirthDate() {
-    return birthDay;
-  }
 
   public String getBirthDay() {
-    if (birthDay == null)
-      return null;
-    return birthDay.format(DateTimeFormatter.ISO_DATE);
+    return birthDay;
   }
 
   public String getQuote() {
