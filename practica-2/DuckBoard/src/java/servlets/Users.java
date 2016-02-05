@@ -43,10 +43,10 @@ public class Users extends HttpServlet {
       
     } else if (Helper.isLogged(request)) {
       
-      request.getRequestDispatcher("/register.jsp").forward(request, response);
+      request.getRequestDispatcher("/profile.jsp").forward(request, response);
     } else {
       
-      request.getRequestDispatcher("/profile.jsp").forward(request, response);
+      request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
   }
 
