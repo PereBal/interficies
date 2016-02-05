@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html lang="es">
   <jsp:include page="head.jsp"/>
-
-
-  <%
-    pageContext.setAttribute("flashes", Helper.getFlash(request));
-  %>
+  
+     <% 
+       pageContext.setAttribute("flashes", Helper.getFlash(request));
+     %>
 
   <body>
     <jsp:include page="navbar.jsp"/>
@@ -209,8 +208,8 @@
       /*********************************/
 
       $('.slider').slider({full_width: true});
-      
-      
+         
+         
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
@@ -227,8 +226,7 @@
         </c:forEach>
       ]
       
-      showFlashes(flashes);
-         
+      showFlashes(flashes);   
       });
 
     </script>

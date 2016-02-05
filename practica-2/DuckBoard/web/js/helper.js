@@ -11,8 +11,6 @@
  */
 var showFlashes = function (flashes) {
 
-  console.log('hello');
-
   flashes.forEach(function (index) {
 
     var cssClass = undefined;

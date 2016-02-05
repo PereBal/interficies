@@ -1,4 +1,6 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="servlets.tools.Helper"%>
 <%-- 
     Document   : profile
     Created on : Feb 4, 2016, 7:18:25 PM
@@ -7,6 +9,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
+  <%
+    pageContext.setAttribute("flashes", Helper.getFlash(request));
+    pageContext.setAttribute("user", Helper.getCurrentUser(request));
+  %>
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
@@ -27,29 +34,31 @@
 
                 <div class="col s10 offset-s1">
                   <div class="input-field col s6">
-                    <input name="name" type="text" class="validate" required>
+                    <input name="name" type="text" class="validate" required value="${user.name}">
                     <label for="name">Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input name="birth_day" type="date" class="datepicker">
+                    <input name="birth_day" type="date" class="datepicker" value="${user.birthDay}">
                     <label for="birth_day">Birthday</label>
                   </div>
                   <div class="input-field col s10">
-                    <input name="last_name" type="text" class="validate" required>
+                    <input name="last_name" type="text" class="validate" required value="${user.lastName}">
                     <label for="last_name">Surname</label>
                   </div>
                   <div class="input-field col s2">
                     <p>
-                      <input class="with-gap" name="sex" type="radio" value="H" id="test1" checked required/>
+                      <input class="with-gap" name="sex" type="radio" value="H" id="test1" 
+                        <c:if test="${user.sex == 'H'}">checked</c:if> required/>
                       <label for="test1">Male</label>
                     </p>
                     <p>
-                      <input class="with-gap" name="sex" type="radio" value="M" id="test2" required/>
+                      <input class="with-gap" name="sex" type="radio" value="M" id="test2" 
+                             <c:if test="${user.sex == 'M'}">checked</c:if> required/>
                       <label for="test2">Female</label>
                     </p>
                   </div>
                   <div class="input-field col s12">
-                    <input name="email" type="email" class="validate" required>
+                    <input name="email" type="email" class="validate" required value="${user.email}">
                     <label for="email" data-error="invalid email">Correo electrónico</label>
                   </div> 
                 </div> <!--End of personal information-->
@@ -60,8 +69,8 @@
                 <div class="col s10 offset-s1">
 
                   <div class="input-field col s6">
-                    <input name="psw" type="password" class="validate" length="32" required>
-                    <label for="psw">Password</label>
+                    <input name="pwd" type="password" class="validate" length="32" required>
+                    <label for="pwd">Password</label>
                   </div>
                   <!--              IMAGENES
                                     <div class="file-field input-field col s6">
@@ -74,12 +83,12 @@
                                     </div>
                   -->
                   <div class="input-field col s6">
-                    <input name="psw2" type="password" class="validate" length="32" required>
-                    <label for="psw2">Repeat password</label>
+                    <input name="pwd2" type="password" class="validate" length="32" required>
+                    <label for="pwd2">Repeat password</label>
                   </div>
 
                   <div class="input-field col s12">
-                    <textarea name="quote" class="materialize-textarea" length="256"></textarea>
+                    <textarea name="quote" class="materialize-textarea" length="256" >${user.quote}</textarea>
                     <label for="quote">Favourite quote</label>
                   </div>
                 </div> <!--End of user information-->
@@ -107,31 +116,34 @@
             <div class="card-content">
               <div class="row">
                 <div class="col s4">
-                  <b>Nombre: </b>nombre
+                  <b>Nombre: </b>${user.name}
                 </div>
                 <div class="col s5">
-                  <b>Apellidos: </b>Apellido1 Apellido2
+                  <b>Apellidos: </b>${user.lastName}
                 </div>
               </div>
               <div class="row">
                 <div class="col s4">
-                  <b>Email: </b>email@email.com
+                  <b>Email: </b>${user.email}
                 </div>
                 <div class="col s5">
-                  <b>Fecha de nacimiento: </b>cumpleañosfeliiiiz
+                  <b>Fecha de nacimiento: </b>${user.birthDay}
                 </div>
               </div>
               <div class="row">
                 <div class="col s2">
-                  <b>Sexo: </b>Hombre <i class="fa fa-mars"></i>
+                  <b>Sexo: </b>
+                  <c:choose>
+                    <c:when test="${user.sex == 'H'}"><i class="fa fa-mars"></i></c:when>
+                    <c:when test="${user.sex == 'M'}"><i class="fa fa-venus"></i></c:when>
+                  </c:choose>
                 </div>
               </div>
               <div class="row">
                 <div class="col s12">
                   <p>
                     <b>Cita: <br/></b>
-                    <b>"</b>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de l
-                    as industrias desde el año <b>"</b></p>
+                    <b>"</b>${user.quote} <b>"</b></p>
                 </div>
               </div>
             </div>
@@ -171,6 +183,25 @@
           // animation complete
         });
       });
+      
+      /*********************************/
+      /******** TOAST MSGS *************/
+      /*********************************/
+
+      
+      // this is JavaScript code written in the JSP
+      var flashes = [
+        <c:forEach var="flash" items="${flashes}" varStatus="loop">
+            {
+              clazz : "${flash.clazz}",
+              message   : "${flash.message}",
+            }<c:if test="${!loop.last}">,</c:if>
+            
+        </c:forEach>
+      ]
+      
+      showFlashes(flashes);
+      
     });
 
   </script>

@@ -3,6 +3,7 @@ package servlets.tools;
 import java.io.IOException;
 import java.util.ArrayList;
 import db.www.DBActions;
+import java.util.AbstractList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,17 @@ public class Helper {
   }
 
   public static List<Flash> getFlash(HttpServletRequest request) {
-    List<Flash> list = (List<Flash>) request.getSession(false).getAttribute("flash");
+    
+    List<Flash> list;
+    
+    if (request.getSession(false).getAttribute("flash") != null) {
+      
+      list = (List<Flash>) request.getSession(false).getAttribute("flash");
+    } else {
+      
+      list = new ArrayList<>();
+    }
+    
     request.getSession(false).removeAttribute("flash");
 
     return list;

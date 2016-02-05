@@ -3,13 +3,12 @@
     Created on : Feb 4, 2016, 7:19:14 PM
     Author     : Rafa Cuart 8
 --%>
+<%@page import="servlets.tools.Helper"%>
 <!DOCTYPE html>
 <html lang="en">
-
   <%
-    pageContext.setAttribute("flashes", session.getAttribute("flash"));
+    pageContext.setAttribute("flashes", Helper.getFlash(request));
   %>
-
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
@@ -104,7 +103,7 @@
     <script type="text/javascript">
 
       $(document).ready(function () {
-           
+        
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
@@ -122,7 +121,7 @@
       ]
       
       showFlashes(flashes);
-        
+           
       });
 
     </script>

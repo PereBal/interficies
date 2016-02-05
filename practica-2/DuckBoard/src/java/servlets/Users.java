@@ -41,12 +41,19 @@ public class Users extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    
+    HttpSession session = request.getSession();
+    
+    List<Flash> flash = new ArrayList<>();
+    
     if (Helper.isAjax(request)) {
       
     } else if (Helper.isLogged(request)) {
       
       request.getRequestDispatcher("/profile.jsp").forward(request, response);
     } else {
+      flash.add(new Flash("Has sido registrado correctamente, loggeate paradisfrutar!.", Flash.SUCCESS));
+      session.setAttribute("flash", flash);
       request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
   }
