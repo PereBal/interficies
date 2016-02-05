@@ -44,7 +44,7 @@ _**CRUD**_ sobre usuaris
   * 302 → `chat.jsp`, URI: `/chats/:cid`
 
 
-* `GET /chats/:cid/messages?unread=&begin=`
+* `GET /chats/messages/:cid?unread=&begin=`
   * 200 → `Ajax`, Ordered by time
   ```json
   {
@@ -71,7 +71,7 @@ _**CRUD**_ sobre usuaris
   ```
 
 
-* `POST /chats/:cid/messages`
+* `POST /chats/messages/:cid`
   * 200 → `Ajax`
 
 
