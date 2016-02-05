@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import servlets.tools.Helper;
+import servlets.tools.Sesion;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
@@ -27,16 +28,16 @@ public class Login extends HttpServlet {
           throws ServletException, IOException {
     String email    = request.getParameter("email");
     String password = request.getParameter("password");
+    
+    Sesion session = new Sesion(request.getSession());
 
     User user = DBActions.getUserByEmail(email, password);
 
-    HttpSession session = request.getSession();
-
     if (user == null) {
-      Helper.setErrorFlash(request, "El usuario no existe o has introducido mal el correo");
+      Helper.setNewErrorFlash(session, "El usuario no existe o has introducido mal el correo");
     } else {
-      session.setAttribute("userId", user.getId());
-      session.setMaxInactiveInterval(600);
+      session.setUser(user);
+      session.conf().setMaxInactiveInterval(600);
     }
 
     response.sendRedirect("/duckboard");

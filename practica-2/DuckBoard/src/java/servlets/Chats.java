@@ -20,6 +20,7 @@ import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import servlets.tools.Helper;
+import servlets.tools.Sesion;
 
 
 @WebServlet(name = "Chats", urlPatterns = {"/chats/*"})
@@ -53,14 +54,16 @@ public class Chats extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    if (!Helper.authenticate(request, response)) {
+    
+    Sesion session = new Sesion(request.getSession(false));
+    if (!Sesion.isAutenticated(session)) {
       return ;
     }
 
     if (Helper.isAjax(request)) {
       response.setContentType("application/json;charset=UTF-8");
       try {
-        User user = Helper.getCurrentUser(request);
+        User user = session.getUser();
 
         String unread = request.getParameter("unread");
         String skip   = request.getParameter("skip");
@@ -104,7 +107,7 @@ public class Chats extends HttpServlet {
       }
     } else {
       try {
-        User user = Helper.getCurrentUser(request);
+        User user = session.getUser();
         List<Chat> chats = user.getChats();
         request.setAttribute("chats", chats);
 
@@ -134,15 +137,16 @@ public class Chats extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    if (!Helper.authenticate(request, response)) {
+    Sesion session = new Sesion(request.getSession(false));
+    if (!Sesion.isAutenticated(session)) {
       return ;
     }
 
-    User user     = Helper.getCurrentUser(request);
+    User user     = session.getUser();
     String userId = request.getParameter("party");
 
     if (userId == null) {
-      Helper.setErrorFlash(request, "Hablar solo, esta guay, pero aquí nos gusta hablar con otras personas!!!");
+      Helper.setErrorFlash(session, "Hablar solo, esta guay, pero aquí nos gusta hablar con otras personas!!!");
       response.sendRedirect("/duckboard/chats"); return;
     }
 
@@ -150,7 +154,7 @@ public class Chats extends HttpServlet {
       Chat currentChat = Chat.create(user.getId(), Integer.parseInt(userId));
       response.sendRedirect("/duckboard/chats/" + currentChat);
     } catch (NumberFormatException | UserDoesNotExistException e) {
-      Helper.setErrorFlash(request, "El usuario no existe");
+      Helper.setErrorFlash(session, "El usuario no existe");
       response.sendRedirect("/duckboard/chats");
     }
   }

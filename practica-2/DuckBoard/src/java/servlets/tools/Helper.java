@@ -1,9 +1,6 @@
 package servlets.tools;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import db.www.DBActions;
-import java.util.AbstractList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,66 +12,27 @@ public class Helper {
     return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
   }
 
-  public static boolean isLogged(HttpServletRequest request) {
-    if (request == null) {
-      return false;
-    }
-
-    return request.getSession(false).getAttribute("userId") != null;
-  }
-
-  public static List<Flash> getFlash(HttpServletRequest request) {
-    
-    List<Flash> list;
-    
-    if (request.getSession(false).getAttribute("flash") != null) {
-      
-      list = (List<Flash>) request.getSession(false).getAttribute("flash");
-    } else {
-      
-      list = new ArrayList<>();
-    }
-    
-    request.getSession(false).removeAttribute("flash");
-
-    return list;
-  }
-
-  public static User getCurrentUser(HttpServletRequest request) {
-    if (isLogged(request)) {
-      int userId = (int) request.getSession().getAttribute("userId");
-      return DBActions.getUserById(userId);
-    }
-
-    return null;
-  }
-
-  public static boolean authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    if (!isLogged(request)) {
+  public static boolean authenticate(Sesion s, HttpServletResponse response) throws IOException {
+    if (!s.isValid()) {
       response.sendRedirect("/duckboard");
       return false;
     }
-    
     return true;
   }
 
-  public static void setErrorFlash(HttpServletRequest request, String msg) {
-    setFlash(request, msg, Flash.ERROR);
+  public static void setErrorFlash(Sesion s, String msg) {
+    s.setFlash(new Flash(msg, Flash.ERROR), false);
   }
 
-  public static void setSuccessFlash(HttpServletRequest request, String msg) {
-    setFlash(request, msg, Flash.SUCCESS);
+  public static void setSuccessFlash(Sesion s, String msg) {
+    s.setFlash(new Flash(msg, Flash.SUCCESS), false);
   }
-  
-  private static void setFlash(HttpServletRequest request, String msg, String claz) {
-    if (request.getSession(false).getAttribute("flash") == null) {
-      List<Flash> flash = new ArrayList<>();
-      flash.add(new Flash(msg, claz));
-      
-      request.getSession(false).setAttribute("flash", flash);
-    } else {
-      List<Flash> list = (List<Flash>) request.getSession(false).getAttribute("flash");
-      list.add(new Flash(msg, claz));
-    }
+
+  public static void setNewErrorFlash(Sesion s, String msg) {
+    s.setFlash(new Flash(msg, Flash.ERROR), true);
+  }
+
+  public static void setNewSuccessFlash(Sesion s, String msg) {
+    s.setFlash(new Flash(msg, Flash.SUCCESS), true);
   }
 }

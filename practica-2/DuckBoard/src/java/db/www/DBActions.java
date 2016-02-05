@@ -7,9 +7,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,8 +75,16 @@ public class DBActions {
     return getUser(basicFactory, "id=" + userId) != null;
   }
 
+  public static Boolean userExists(int userId, String authToken) {
+    return getUser(basicFactory, "id=" + userId + " AND auth_token=" + Utils.cleanAuthToken(authToken)) != null;
+  }
+
   public static User getUserById(int userId) {
     return getUser(advancedFactory, "id=" + userId);
+  }
+
+  public static User getUserByEmail(String email) {
+    return getUser(advancedFactory, "email=" + Utils.cleanEmail(email));
   }
 
   public static User getUserByEmail(String email, String password) {
@@ -166,7 +171,7 @@ public class DBActions {
     return update(newUser, null);
   }
 
-  public static boolean uptadeUser(User newUser, String newPwd) {
+  public static boolean updateUser(User newUser, String newPwd) {
     return update(newUser, newPwd);
   }
 
