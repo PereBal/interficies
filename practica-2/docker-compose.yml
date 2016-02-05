@@ -2,8 +2,6 @@ maria:
   image: mariadb:10.1
   environment:
     - MYSQL_ROOT_PASSWORD=supersecret-password
-    - MYSQL_USER=interficies
-    - MYSQL_PASSWORD=living-on-the-edge
   volumes:
     - /opt/interficies/mysql:/var/lib/mysql
   ports:

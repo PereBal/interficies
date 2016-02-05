@@ -1,5 +1,3 @@
-
-
 -- MySQL dump 10.16  Distrib 10.1.11-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: www
@@ -32,12 +30,14 @@ CREATE TABLE `user` (
   `email` varchar(64) NOT NULL,
   `name` varchar(32) NOT NULL,
   `last_name` varchar(128) DEFAULT NULL,
-  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `sex` char(1) NOT NULL,
   `pwd` varchar(128) NOT NULL,
   `auth_token` varchar(64) DEFAULT NULL,
+  `birth_day` date DEFAULT NULL,
+  `quote` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-04 17:16:23
+-- Dump completed on 2016-02-04 19:29:13

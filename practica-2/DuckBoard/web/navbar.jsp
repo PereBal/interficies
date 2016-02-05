@@ -1,6 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="servlets.tools.Helper"%>
-<%--boolean isLogged = Helper.isLogged(request);--%>
+<%boolean isLogged = Helper.isLogged(request);%>
 <!-- LOGGED -->
 <c:choose>
   <c:when test="${isLogged}">
