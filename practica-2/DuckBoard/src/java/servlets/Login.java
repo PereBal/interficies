@@ -27,23 +27,17 @@ public class Login extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     String email     = request.getParameter("email");
+    String password  = request.getParameter("password");
 
-    User user = DBActions.getUserByEmail(email);
+    User user = DBActions.getUserByEmail(email, password);
     
     if (user != null) {
       response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
       response.addCookie(new Cookie("flash", "El usuario no existe o has introducido mal el correo"));
     } else {
-      String password  = request.getParameter("password");
-      
-      if (true) {
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.addCookie(new Cookie("flash", URLEncoder.encode("Has introducido mal la contraseña", "UTF-8")));
-      } else {
-        HttpSession session = request.getSession();   
-        session.setAttribute("userId", 1);
-        session.setMaxInactiveInterval(3600);
-      }     
+      HttpSession session = request.getSession();   
+      session.setAttribute("userId", 1);
+      session.setMaxInactiveInterval(3600);    
     }
     
     response.sendRedirect("/");
