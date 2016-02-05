@@ -41,19 +41,6 @@ public class Chats extends HttpServlet {
   }
 
   /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-   *
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    Helper.authenticate(request, response);
-  }
-
-  /**
    * Handles the HTTP <code>GET</code> method.
    *
    * @param request servlet request
@@ -64,7 +51,9 @@ public class Chats extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
+    if (!Helper.authenticate(request, response)) {
+      return ;
+    }
 
     if (Helper.isAjax(request)) {
       response.setContentType("application/json;charset=UTF-8");
@@ -123,9 +112,9 @@ public class Chats extends HttpServlet {
           currentChat = Chat.retrieveByPk(chatId.toString());
         }
         request.setAttribute("currentChat", currentChat);
-      } catch (UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
+      } catch (NullPointerException | UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
         Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
-        response.sendRedirect("/duckboard");
+        response.sendRedirect("/duckboard"); return;
       }
 
       request.getRequestDispatcher("/chats.jsp").forward(request, response);
@@ -143,14 +132,16 @@ public class Chats extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
+    if (!Helper.authenticate(request, response)) {
+      return ;
+    }
 
     User user     = Helper.getCurrentUser(request);
     String userId = request.getParameter("party");
 
     if (userId == null) {
-      Helper.setErrorFlash(request, "Hablar solo esta guay, pero aquí nos gusta hablar con otras personas!!!");
-      response.sendRedirect("/duckboard/chats");
+      Helper.setErrorFlash(request, "Hablar solo, esta guay, pero aquí nos gusta hablar con otras personas!!!");
+      response.sendRedirect("/duckboard/chats"); return;
     }
 
     try {
