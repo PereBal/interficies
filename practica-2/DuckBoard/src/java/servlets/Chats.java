@@ -68,7 +68,6 @@ public class Chats extends HttpServlet {
         String unread = request.getParameter("unread");
         String skip   = request.getParameter("skip");
 
-        
         JSONArray JSONChats = new JSONArray();
         
         List<Chat> chats = Chat.retrieveChatsByUserPk(user.getId());
@@ -78,13 +77,19 @@ public class Chats extends HttpServlet {
           String [] attrs = new String[2];
           
           attrs[0] = Integer.toString(chat.countUnreadMessages(user.getId()));
-          object.put("count", attrs[0]);
           
-          List<Message> messages = chat.getMessages();
-          attrs[1] = messages.size() > 0 ? messages.get(0).getText() : "";
-          object.put("last_msg", attrs[1]);
+          if (unread == null || unread.equals("false")) {          
+            object.put("count", attrs[0]);
+
+            List<Message> messages = chat.getMessages();
+            attrs[1] = messages.size() > 0 ? messages.get(0).getText() : "";
+            object.put("last_msg", attrs[1]);
+          } else if (unread.equals("true")) {
+            // shan de fer coses
+          }
           
           JSONObject JSONChat = new JSONObject().put(chat.toString(), object);
+          
           JSONChats.put(JSONChat);
         }
         

@@ -3,6 +3,8 @@ package servlets;
 import model.User;
 import java.io.IOException;
 import database.www.DBActions;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servlets.tools.Flash;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
@@ -29,14 +32,17 @@ public class Login extends HttpServlet {
     String password  = request.getParameter("password");
 
     User user = DBActions.getUserByEmail(email, password);
+      
+    HttpSession session = request.getSession();     
     
-    if (user != null) { // aixo es al reves
+    if (user == null) {
       response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-      response.addCookie(new Cookie("flash", "El usuario no existe o has introducido mal el correo"));
+      List<Flash> flash = new ArrayList<>();
+      flash.add(new Flash("El usuario no existe o has introducido mal el correo", Flash.ERROR));      
+      session.setAttribute("flash", flash);
     } else {
-      HttpSession session = request.getSession();   
-      session.setAttribute("userId", 1); // aqui va una id
-      session.setMaxInactiveInterval(3600);    
+      session.setAttribute("userId", user.getId()); // aqui va una id
+      session.setMaxInactiveInterval(600);    
     }
     
     response.sendRedirect("/duckboard");
