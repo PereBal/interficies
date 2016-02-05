@@ -153,23 +153,13 @@ public class Chats extends HttpServlet {
       response.sendRedirect("/duckboard/chats");
     }
 
-    Chat currentChat = null;
-    List<Chat> chats = null;
     try {
-      currentChat = Chat.create(user.getId(), Integer.parseInt(userId));
-      chats = user.getChats();
+      Chat currentChat = Chat.create(user.getId(), Integer.parseInt(userId));
+      response.sendRedirect("/duckboard/chats/" + currentChat);
     } catch (NumberFormatException | UserDoesNotExistException e) {
       Helper.setErrorFlash(request, "El usuario no existe");
       response.sendRedirect("/duckboard/chats");
-    } catch (ChatDoesNotExistException | UserNotInPartyException ex) {
-      Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
-      response.sendRedirect("/duckboard/chats");
-    } finally {
-      request.setAttribute("chats", chats);
-      request.setAttribute("currentChat", chats);
     }
-
-    request.getRequestDispatcher("/chats.jsp").forward(request, response);
   }
 
   /**
