@@ -114,9 +114,9 @@ main {
 }
 
 .chat-bubble-text{
-    padding: 2px;
-    margin-right: 8px;
-    margin-left: 8px;   
+  padding: 2px;
+  margin-right: 8px;
+  margin-left: 8px;   
 }
 
 .inner-padding {
@@ -128,7 +128,6 @@ main {
 }
 
 .dynamic-height{
-  height: 100%;
   overflow: auto;
 }
 

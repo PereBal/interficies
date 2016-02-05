@@ -43,6 +43,27 @@ public class Party {
     this.lastReadMessage = message;
   }
 
+  public int countUnreadMessages() throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0).size();
+  }
+
+  public List<Message> getUnreadMessages() throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0);
+  }
+
+  public List<Message> getUnreadMessages(int skip) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, skip);
+  }
+
   public ObjectId getChatId() {
     if (this.chatId == null) {
       return null;

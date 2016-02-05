@@ -1,11 +1,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="servlets.tools.Helper, model.User"%>
 <%
-  pageContext.setAttribute("isLogged", Helper.isLogged(request));
+  pageContext.setAttribute("logged", Helper.isLogged(request));
   pageContext.setAttribute("user", Helper.getCurrentUser(request));
 %>
 <c:choose>
-  <c:when test="${isLogged}">
+  <c:when test="${logged}">
     <!-- Dropdown Structure -->
     <ul id="navbar-dropdown" class="dropdown-content">
       <li><a href="#!"><i class="material-icons left">perm_identity</i>Profile</a></li>

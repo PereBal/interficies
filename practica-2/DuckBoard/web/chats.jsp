@@ -1,4 +1,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="servlets.tools.Helper"%>
+<%
+  pageContext.setAttribute("current-user", Helper.getCurrentUser(request));
+  pageContext.setAttribute("chats", request.getParameter("chats"));
+  pageContext.setAttribute("current-chat", request.getParameter("currentChat"));
+%>
 <!DOCTYPE html>
 <html>
   <jsp:include page="head.jsp"/>
@@ -20,17 +26,84 @@
               </div>
             </nav> 
             <ul id="contact-list" class="collection" style="overflow-y: auto">
-              <c:forEach var="user" items="${users}">
-                <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="loadChat()">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title"><c:out value="${user.username}"/></span>
-                  <span class="new badge"><c:out value="${user.unread}"/></span>
-                  <p><c:out value="${user.last.message}"/></p>
+              <c:forEach var="chat" items="${chats}">
+                <li id="li" class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                  <i class="material-icons circle">contacts</i>
+                  <c:forEach var="party" items="${chat.parties}">
+                    <c:if test="current-user.id ne party.user.id">
+                      <span class="title"><c:out value="${party.user.name}"/></span>
+                      <span class="new badge"><c:out value="${party.countUnreadMessages()}"/></span>
+                      <p><c:out value="${party.lastReadMessage.text}"/></p>
+                    </c:if>
+                  </c:forEach>
                 </li>
               </c:forEach>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="loadChat()">
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
                 <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">folder</i>
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
+                <span class="title">Username</span>
+                <span class="new badge">4</span>
+                <p>@last-msg</p>
+              </li>
+              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
+                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
+                <i class="material-icons circle">contacts</i>
                 <span class="title">Username</span>
                 <span class="new badge">4</span>
                 <p>@last-msg</p>
@@ -44,19 +117,5 @@
     <jsp:include page="footer.jsp"/>
     <jsp:include page="scripts.jsp"/>
     <script type="text/javascript" src="js/resize.js"></script>
-    <script type="text/javascript">
-                // Set interval update every 5s
-                setInterval(refresh(), 5000);
-                function refresh() {
-                  // Request unread messages
-                  $.ajax({
-                    type: "POST",
-                    url: "/chats?unread=&skip=:cid",
-                    data: data,
-                    success: success,
-                    dataType: dataType
-                  });
-                }
-    </script>
   </body>
 </html>

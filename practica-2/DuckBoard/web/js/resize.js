@@ -6,4 +6,5 @@ $(window).resize(resize());
 // Common resize function
 function resize() {
   $(".dynamic-height").css({"max-height": $(window).height() - 184});
+  $(".dynamic-height").css({"height": $(window).height() - 184});
 }
