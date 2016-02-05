@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.highcharts.graphs;
+package db.highcharts.graphs;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class Graph02 implements Graph {
 
   private final String q = "SELECT idioma, COUNT(idioma) AS cnt_idioma, anyo, mes_num "
-          + "FROM " + database.highcharts.DBProperties.DB + ".sm_procesados GROUP BY idioma ";
+          + "FROM " + db.highcharts.DBProperties.DB + ".sm_procesados GROUP BY idioma ";
 
   @Override
   public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {
@@ -31,6 +31,17 @@ public class Graph02 implements Graph {
             + "AND mes_num=" + month + ";");
   }
 
+  /*
+   {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2,
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+
+  */
+  
   @Override
   public JSONArray toJSON(ResultSet rs) {
     JSONArray langs = new JSONArray();
@@ -46,7 +57,7 @@ public class Graph02 implements Graph {
       while (rs.next()) {
         val = rs.getDouble("cnt_idioma") / max_count * 100.0;
         val = new BigDecimal(Double.toString(val)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        langs.put(new JSONObject().put("name", rs.getString("idioma")).put("data", new JSONArray().put(val)));
+        langs.put(new JSONArray().put(rs.getString("idioma")).put(val));
       }
     } catch (SQLException ex) {
       java.util.logging.Logger.getLogger(Graph02.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

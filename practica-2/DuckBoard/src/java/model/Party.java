@@ -1,13 +1,13 @@
 package model;
 
 import java.util.List;
-import database.chat.DBActions;
+import db.chat.DBActions;
 import org.bson.types.ObjectId;
-import database.chat.exceptions.UserNotInPartyException;
-import database.www.exceptions.UserDoesNotExistException;
-import database.chat.exceptions.ChatDoesNotExistException;
-import database.chat.exceptions.MessageDoesNotExistException;
-import database.chat.exceptions.MessageIsNotPartOfThisChatException;
+import db.chat.exceptions.UserNotInPartyException;
+import db.www.exceptions.UserDoesNotExistException;
+import db.chat.exceptions.ChatDoesNotExistException;
+import db.chat.exceptions.MessageDoesNotExistException;
+import db.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class Party {
 
@@ -41,6 +41,27 @@ public class Party {
 
     DBActions.updateLastReadMessage(this.chatId.toString(), this.user.getId(), messageId);
     this.lastReadMessage = message;
+  }
+
+  public int countUnreadMessages() throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0).size();
+  }
+
+  public List<Message> getUnreadMessages() throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0);
+  }
+
+  public List<Message> getUnreadMessages(int skip) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, skip);
   }
 
   public ObjectId getChatId() {

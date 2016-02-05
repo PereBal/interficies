@@ -1,4 +1,4 @@
-package database.chat;
+package db.chat;
 
 public class DBProperties {
 

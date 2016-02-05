@@ -1,8 +1,8 @@
 package servlets.tools;
 
-import database.www.DBActions;
 import java.io.IOException;
 import java.util.ArrayList;
+import db.www.DBActions;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,10 +38,13 @@ public class Helper {
     return null;
   }
 
-  public static void authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public static boolean authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException {
     if (!isLogged(request)) {
       response.sendRedirect("/duckboard");
+      return false;
     }
+    
+    return true;
   }
 
   public static void setErrorFlash(HttpServletRequest request, String msg) {

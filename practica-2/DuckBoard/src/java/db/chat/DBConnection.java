@@ -1,4 +1,4 @@
-package database.chat;
+package db.chat;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -18,8 +18,8 @@ public class DBConnection implements java.lang.AutoCloseable {
     try {
       if (con == null) {
         con = new MongoClientURI("mongodb://"
-                + "@" + database.chat.DBProperties.HOST + ":" + database.chat.DBProperties.PORT
-                + "/" + database.chat.DBProperties.DB + database.chat.DBProperties.OPTS());
+                + "@" + db.chat.DBProperties.HOST + ":" + db.chat.DBProperties.PORT
+                + "/" + db.chat.DBProperties.DB + db.chat.DBProperties.OPTS());
       }
       if (client == null) {
         //client = new MongoClient(con); // No me tira, no he cercat tampoc

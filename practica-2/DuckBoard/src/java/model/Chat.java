@@ -3,13 +3,13 @@ package model;
 import java.util.List;
 import java.time.LocalDate;
 import org.bson.types.ObjectId;
-import database.chat.DBActions;
+import db.chat.DBActions;
+import db.chat.exceptions.UserNotInPartyException;
+import db.www.exceptions.UserDoesNotExistException;
+import db.chat.exceptions.ChatDoesNotExistException;
+import db.chat.exceptions.MessageDoesNotExistException;
+import db.chat.exceptions.MessageIsNotPartOfThisChatException;
 import java.time.format.DateTimeFormatter;
-import database.chat.exceptions.UserNotInPartyException;
-import database.www.exceptions.UserDoesNotExistException;
-import database.chat.exceptions.ChatDoesNotExistException;
-import database.chat.exceptions.MessageDoesNotExistException;
-import database.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class Chat {
 
@@ -118,6 +118,6 @@ public class Chat {
           UserDoesNotExistException,
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return database.chat.DBActions.getChatsByUserId(id);
+    return db.chat.DBActions.getChatsByUserId(id);
   }
 }

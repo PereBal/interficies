@@ -4,9 +4,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.highcharts;
+package db.highcharts;
 
-import database.highcharts.graphs.Graph;
+import db.highcharts.graphs.Graph;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,11 +20,11 @@ import org.json.JSONArray;
 public class DBActions {
 
   private final Graph[] graphs = new Graph[]{
-    new database.highcharts.graphs.Graph01(),
-    new database.highcharts.graphs.Graph02(),
-    new database.highcharts.graphs.Graph03(),
-    new database.highcharts.graphs.Graph04(),
-    new database.highcharts.graphs.Graph05()};
+    new db.highcharts.graphs.Graph01(),
+    new db.highcharts.graphs.Graph02(),
+    new db.highcharts.graphs.Graph03(),
+    new db.highcharts.graphs.Graph04(),
+    new db.highcharts.graphs.Graph05()};
 
   public JSONArray getGraph(int graphId, int year) {
     return createGraph(graphId, year, -1);
