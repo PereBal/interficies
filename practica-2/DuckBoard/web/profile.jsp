@@ -14,6 +14,9 @@
 
       <div class="container">
 
+        <div class="section no-pad-bot" id="index-banner"></div>
+
+
         <div class="row linear-transition" id="updateForm" style="display:none;">
           <div class="card col s12 ">
             <form class="col s12" method="POST" action="">
@@ -134,6 +137,7 @@
             </div>
 
             <div class="card-action">
+              <a id="deleteAccount" class="red-text">BORRAR CUENTA</a>
               <button  id="editButton" class="btn waves-effect waves-light light-blue darken-1">Editar
                 <i class="fa fa-edit fa-2x"></i>
               </button>
@@ -152,19 +156,45 @@
 
   <script type="text/javascript">
 
-    $('#editButton').click(function (e) {
+    $(document).ready(function () {
 
-      $('#updateForm').show(400, function () {
-        // animation complete
+      $('#editButton').click(function (e) {
+
+        $('#updateForm').show(400, function () {
+          // animation complete
+        });
       });
+
+      $('#cancelUpdate').click(function (e) {
+
+        $('#updateForm').hide(400, function () {
+          // animation complete
+        });
+      });
+
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 160, // Creates a dropdown of 80 years to control year
+      });
+
+      $('select').material_select();
+
+      $('#deleteAccount').ajax({
+        
+        url: '/duckboard/users',
+        type: 'GET',
+        data: ({'id': }),
+        success: function (result) {
+
+          
+          };
+        },
+        error: function (error) {}
+      });
+
     });
 
-    $('#cancelUpdate').click(function (e) {
 
-      $('#updateForm').hide(400, function () {
-        // animation complete
-      });
-    });
 
   </script>
 

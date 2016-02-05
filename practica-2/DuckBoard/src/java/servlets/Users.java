@@ -25,10 +25,7 @@ public class Users extends HttpServlet {
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    // Logged and administrator check, if not redirect to /
-    // ojo si es ajax nomes logged
-    //response.setContentType("text/html;charset=UTF-8");
-    //response.getWriter().println("Dali Cebes");
+    Helper.isLogged(request);
   }
 
   /**
@@ -42,20 +39,14 @@ public class Users extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
-
-    HttpSession session = request.getSession();
-
-    response.setContentType("text/html;charset=UTF-8");
-
-    if (Helper.isAjax(request) && request.getRequestURI().equals("/duckboard/users")) {
-      // cercador usuaris
-      String parameter = request.getParameter("q");
-      response.getWriter().println("Parametre: " + parameter);
-
-    } else {
-      //
+    if (Helper.isAjax(request)) {
+      
+    } else if (Helper.isLogged(request)) {
+      
       request.getRequestDispatcher("/register.jsp").forward(request, response);
+    } else {
+      
+      request.getRequestDispatcher("/profile.jsp").forward(request, response);
     }
   }
 
