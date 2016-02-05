@@ -110,6 +110,7 @@
               </li>
             </ul>
           </div>
+            <!-- Conversation -->
           <div class="col s8 dynamic-height"></div>
         </div>
       </div>
