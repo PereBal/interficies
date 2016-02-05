@@ -1,7 +1,7 @@
 <footer class="page-footer blue-grey ">
   <div class="footer-copyright">
-    <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://pornhub.com">6 sick guys drinking beer. :)</a>
+    <div class="container center">
+      <h6 class="white-color"><small>Todos los derechos reservados a</small> DuckBoard&reg;</h6>
     </div>
   </div>
 </footer>
