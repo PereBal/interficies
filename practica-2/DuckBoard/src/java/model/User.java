@@ -83,6 +83,18 @@ public class User {
           UserNotInPartyException {
     return db.chat.DBActions.getChatsByUserId(id);
   }
+  
+  public List<Message> getMessages(String chatId) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    return DBActions.getMessages(toString(), Message.LIMIT, 0);
+  }
+
+  public List<Message> getMessages(String chatId, int skip) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException {
+    return DBActions.getMessages(chatId, Message.LIMIT, skip);
+  }
 
   public List<Message> getUnreadMessages(String chatId) throws
           ChatDoesNotExistException,

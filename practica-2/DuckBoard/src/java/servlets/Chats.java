@@ -2,7 +2,6 @@ package servlets;
 
 import db.chat.exceptions.ChatDoesNotExistException;
 import db.chat.exceptions.UserNotInPartyException;
-import db.www.DBActions;
 import db.www.exceptions.UserDoesNotExistException;
 import java.io.IOException;
 import java.util.List;
@@ -23,25 +22,8 @@ import servlets.tools.Helper;
 import servlets.tools.Sesion;
 
 
-@WebServlet(name = "Chats", urlPatterns = {"/chats/*"})
+@WebServlet(name = "Chats", urlPatterns = {"/chats"})
 public class Chats extends HttpServlet {
-
-  /**
-   *
-   * @param request
-   * @return
-   */
-  protected ObjectId getChatId(HttpServletRequest request) {
-    try { // rewrite all this bullshit
-      String  [] path = request.getPathInfo().split("/");
-
-      if (path.length == 2) {
-        return new ObjectId(path[1]);
-      }
-    } catch (NullPointerException e) {}
-
-    return null;
-  }
 
   /**
    * Handles the HTTP <code>GET</code> method.
@@ -68,7 +50,7 @@ public class Chats extends HttpServlet {
         String unread = request.getParameter("unread");
         String skip   = request.getParameter("skip");
 
-        JSONArray JSONChats = new JSONArray();
+        JSONArray jsonChats = new JSONArray();
         List<Chat> chats = Chat.retrieveChatsByUserPk(user.getId());
 
         if (skip != null) {
@@ -95,12 +77,12 @@ public class Chats extends HttpServlet {
           String lastMessage = messages.size() > 0 ? messages.get(0).getText() : "";
           object.put("last_msg", lastMessage);
 
-          JSONObject JSONChat = new JSONObject().put(chat.toString(), object);
-          JSONChats.put(JSONChat);
+          JSONObject jsonChat = new JSONObject().put(chat.toString(), object);
+          jsonChats.put(jsonChat);
         }
 
-        JSONChats.write(response.getWriter());
-		    response.getWriter().close();
+        jsonChats.write(response.getWriter());
+        response.getWriter().close();
       } catch (UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
         Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
         response.sendRedirect("/duckboard");
@@ -112,8 +94,9 @@ public class Chats extends HttpServlet {
         request.setAttribute("chats", chats);
 
         Chat currentChat = null;
-        ObjectId chatId = getChatId(request);
-        if (chatId != null) {
+        String chatIdP = request.getParameter("cid");
+        if (chatIdP != null) {
+          ObjectId chatId = new ObjectId();
           currentChat = Chat.retrieveByPk(chatId.toString());
         }
         request.setAttribute("currentChat", currentChat);
@@ -152,7 +135,7 @@ public class Chats extends HttpServlet {
 
     try {
       Chat currentChat = Chat.create(user.getId(), Integer.parseInt(userId));
-      response.sendRedirect("/duckboard/chats/" + currentChat);
+      response.sendRedirect("/duckboard/chats?cid=" + currentChat);
     } catch (NumberFormatException | UserDoesNotExistException e) {
       Helper.setErrorFlash(session, "El usuario no existe");
       response.sendRedirect("/duckboard/chats");
