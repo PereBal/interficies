@@ -18,11 +18,14 @@ public class Helper {
 
     return request.getSession(false).getAttribute("userId") != null;
   }
-  
+
   public static List<Flash> getFlash(HttpServletRequest request) {
-    return (List<Flash>) request.getSession(false).getAttribute("flash");
+    List<Flash> list = (List<Flash>) request.getSession(false).getAttribute("flash");
+    request.getSession(false).removeAttribute("flash");
+
+    return list;
   }
-  
+
   public static User getCurrentUser(HttpServletRequest request) {
     if (isLogged(request)) {
       int userId = (int) request.getSession().getAttribute("userId");

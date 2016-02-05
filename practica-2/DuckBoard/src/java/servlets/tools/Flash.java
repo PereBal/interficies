@@ -6,18 +6,18 @@ public class Flash {
   public static final String SUCCESS = "success";
   
   private final String message;
-  private final String claz;
+  private final String clazz;
   
-  public Flash(String message, String claz) {
+  public Flash(String message, String clazz) {
     this.message = message;
-    this.claz    = claz;
+    this.clazz    = clazz;
   }
 
   public String getMessage() {
     return message;
   }
 
-  public String getClaz() {
-    return claz;
+  public String getClazz() {
+    return clazz;
   }
 }

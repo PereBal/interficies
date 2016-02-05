@@ -25,7 +25,7 @@
                   <i class="material-icons circle">folder</i>
                   <span class="title"><c:out value="${user.username}"/></span>
                   <span class="new badge"><c:out value="${user.unread}"/></span>
-                  <p><c:out value="${user.last-msg}"/></p>
+                  <p><c:out value="${user.last.message}"/></p>
                 </li>
               </c:forEach>
               <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="loadChat()">

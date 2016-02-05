@@ -37,7 +37,7 @@
         <a href="#!" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a id="loginButton" href="#!" class="waves-effect waves-light">Login</a></li>
-          <li><a href="#!" class="waves-effect waves-light">Register</a></li>
+          <li><a href="/duckboard/users" class="waves-effect waves-light">Register</a></li>
         </ul>
         <ul class="side-nav" id="mobile-navbar">
           <li><a href="#!">Login</a></li>

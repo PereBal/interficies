@@ -5,15 +5,21 @@
 --%>
 <!DOCTYPE html>
 <html lang="en">
+
+  <%
+    pageContext.setAttribute("flashes", session.getAttribute("flash"));
+  %>
+
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
       <div class="container">
         <!--FORM REGISTER-->
+        <h4>Registro de usuario</h4>
         <div class="row login" >
           <div class="card col s12 ">
-            <form class="col s12" method="POST" action="">
+            <form class="col s12" method="POST" action="/duckboard/users">
               <div class="row">
                 <div class="input-field col s12">
                   <h5><i class="material-icons prefix" style="position: relative;top: 0.2em;">account_circle</i>Información personal:</h5>
@@ -21,15 +27,15 @@
 
                 <div class="col s10 offset-s1">
                   <div class="input-field col s6">
-                    <input name="name" type="text" class="validate" required>
+                    <input name="name" type="text" class="validate" required value="a">
                     <label for="name">Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input name="birth_day" type="date" class="datepicker">
+                    <input name="birth_day" type="date" class="datepicker" value="09/08/2027">
                     <label for="birth_day">Birthday</label>
                   </div>
                   <div class="input-field col s10">
-                    <input name="last_name" type="text" class="validate" required>
+                    <input name="last_name" type="text" class="validate" required value="a">
                     <label for="last_name">Surname</label>
                   </div>
                   <div class="input-field col s2">
@@ -43,7 +49,7 @@
                     </p>
                   </div>
                   <div class="input-field col s12">
-                    <input name="email" type="email" class="validate" required>
+                    <input name="email" type="email" class="validate" required value="a@email.com">
                     <label for="email" data-error="invalid email">Correo electrónico</label>
                   </div> 
                 </div> <!--End of personal information-->
@@ -54,7 +60,7 @@
                 <div class="col s10 offset-s1">
 
                   <div class="input-field col s6">
-                    <input name="psw" type="password" class="validate" length="32" required>
+                    <input name="psw" type="password" class="validate" length="32" required value="a">
                     <label for="psw">Password</label>
                   </div>
                   <!--              IMAGENES
@@ -68,23 +74,23 @@
                                     </div>
                   -->
                   <div class="input-field col s6">
-                    <input name="psw2" type="password" class="validate" length="32" required>
+                    <input name="psw2" type="password" class="validate" length="32" required value="a">
                     <label for="psw2">Repeat password</label>
                   </div>
 
                   <div class="input-field col s12">
-                    <textarea name="quote" class="materialize-textarea" length="256"></textarea>
+                    <textarea name="quote" class="materialize-textarea" length="256" value="a"></textarea>
                     <label for="quote">Favourite quote</label>
                   </div>
                 </div> <!--End of user information-->
               </div>
 
               <div class="card-action">
-                <button  class="btn waves-effect waves-light light-blue darken-1" 
-                        type="button">REGISTRARSE
+                <button  class="btn waves-effect waves-light light-blue darken-1" type="submit"
+                         type="button">REGISTRARSE
                 </button>
               </div>
-              
+
             </form>
 
           </div>

@@ -10,4 +10,6 @@
   <link rel="stylesheet" href="css/materialize.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/duckboard.css"/>
+  <link rel="stylesheet" href="font/roboto/Roboto-Bold.eot.css"/> 
+  
 </head>

@@ -1,16 +1,23 @@
+<%@page import="servlets.tools.Helper"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
   <jsp:include page="head.jsp"/>
+
+
+  <%
+    pageContext.setAttribute("flashes", Helper.getFlash(request));
+  %>
+
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
-      <div class="section no-pad-bot" id="index-banner">
-
-      </div>
-
-
       <div class="container">
-
+        
+        <div class="section no-pad-bot" id="index-banner"></div>
+        
+        <div id="toastMessages"></div>
+        
         <div id="login" class="row linear-transition" style="display:none;">
           <form class="col s8 offset-s2" method="POST" action="/duckboard/login">
             <div class="card blue-grey darken-1">
@@ -179,34 +186,62 @@
 
     <script type="text/javascript">
 
+      $(document).ready(function () {
+
       /*********************************/
       /****** LOGIN FUNCTIONS **********/
       /*********************************/
 
       $('#loginButton').click(function (e) {
 
-        $('#login').show(400, function () {
-          // animation complete
-        });
+      $('#login').show(400, function () {
+      // animation complete
       });
-
+      });
       $('#cancelLogin').click(function (e) {
 
-        $('#login').hide(400, function () {
-          // animation complete
-        });
+      $('#login').hide(400, function () {
+      // animation complete
       });
-
-
+      });
       /*********************************/
       /******** IMAGE CAROUSEL *********/
       /*********************************/
 
-      $(document).ready(function () {
+      $('.slider').slider({full_width: true});
+      /*********************************/
+      /******** TOAST MSGS *************/
+      /*********************************/
 
-        $('.slider').slider({full_width: true});
+      // this is JavaScript code written in the JSP
+      var flashes = [
+        <c:forEach var="flash" items="${flashes}" varStatus="loop">
+            {
+              clazz : "${flash.clazz}",
+              message   : "${flash.message}",
+            }<c:if test="${!loop.last}">,</c:if>
+            
+        </c:forEach>
+      ]
+      
+      flashes.forEach(function(index) {
+        
+        var cssClass = undefined;
+        
+        if (index.clazz === 'error') {
+          
+          cssClass = 'alert-error';
+        } else {
+          
+          cssClass = 'alert-success';
+        }
+        
+        Materialize.toast(index.clazz + ', ' + index.message, 4000, cssClass)
       });
-
+      
+      <% %>
+      
+      });
 
     </script>
 

@@ -1,14 +1,18 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import servlets.tools.Flash;
 import servlets.tools.Helper;
 
-@WebServlet(name = "Users", urlPatterns = {"/admin/users/*", "/users"})
+@WebServlet(name = "Users", urlPatterns = {"/users"})
 public class Users extends HttpServlet {
 
   /**
@@ -39,18 +43,19 @@ public class Users extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     processRequest(request, response);
-    
-    
-    
+
+    HttpSession session = request.getSession();
+
     response.setContentType("text/html;charset=UTF-8");
-    
-    if (Helper.isAjax(request) && request.getRequestURI().equals("/users")) {
+
+    if (Helper.isAjax(request) && request.getRequestURI().equals("/duckboard/users")) {
       // cercador usuaris
       String parameter = request.getParameter("q");
       response.getWriter().println("Parametre: " + parameter);
+
     } else {
-      //llistat de usuaris per l'admin
-      response.getWriter().println("Super listado loco");
+      //
+      request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
   }
 
@@ -66,8 +71,24 @@ public class Users extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     processRequest(request, response);
+
+    HttpSession session = request.getSession();
+
+    boolean registered = true;
+    List<Flash> flash = new ArrayList<>();
+
+    if (registered) {
+
+      flash.add(new Flash("Has sido registrado correctamente, loggeate paradisfrutar!.", Flash.SUCCESS));
+      session.setAttribute("flash", flash);
+    } else {
+
+    }
+
+    response.sendRedirect("/duckboard");
+
   }
-  
+
   /**
    * Handles the HTTP <code>PUT</code> method.
    *
@@ -81,7 +102,7 @@ public class Users extends HttpServlet {
           throws ServletException, IOException {
     processRequest(request, response);
   }
-  
+
   /**
    * Handles the HTTP <code>Delete</code> method.
    *

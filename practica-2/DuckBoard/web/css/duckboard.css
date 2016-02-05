@@ -131,3 +131,11 @@ main {
   height: 100%;
   overflow: auto;
 }
+
+.alert-error {
+  background-color: red;
+}
+
+.alert-success {
+  background-color: green;
+}
