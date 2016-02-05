@@ -23,7 +23,7 @@
               <div class="card-content grey-text text-darken-3">
                 <span class="card-title grey-text text-darken-2">Login</span>
                 <div class="input-field">
-                  <input id="email" type="text" class="validate" name="email">
+                  <input id="email" type="email" class="validate" name="email">
                   <label for="email">Email</label>
                 </div>
                 <div class="input-field">
