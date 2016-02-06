@@ -14,7 +14,7 @@
 
               <div class="col s12">
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr1A">
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
                     <option value="2013">2013</option>
@@ -25,7 +25,7 @@
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr1M">
                     <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
@@ -43,7 +43,7 @@
                   <label>Mes</label>
                 </div>
                 <div class="input-field col s2">
-                  <a class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
+                  <a onClick="graphColumn('#graph1', '', [], 'tuits', '',$('#gr1A').val(), $('#gr1M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
               <div id="graph1" class="col s12">
@@ -65,7 +65,7 @@
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr2A">
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
                     <option value="2013">2013</option>
@@ -76,7 +76,7 @@
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr2M">
                     <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
@@ -94,7 +94,7 @@
                   <label>Mes</label>
                 </div>
                 <div class="input-field col s2">
-                  <a class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
+                  <a onClick="graphSemiCircle('#graph2', '', $('#gr2A').val(), $('#gr2M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
               <div id="graph2" class="col s12">
@@ -116,7 +116,7 @@
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr4A">
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
                     <option value="2013">2013</option>
@@ -127,10 +127,10 @@
                   <label>Año</label>
                 </div>
                 <div class="input-field col s2">
-                  <a class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
+                  <a onClick="graphPolar('#graph4', '', ['Fuera de Baleares','Ibiza','Formentera','Unknown','Mallorca','Menorca'], 'tuits', '', $('#gr4A').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div id="graph4" class="col s12">
+              <div  id="graph4" class="col s12">
 
               </div>
             </div>
@@ -149,7 +149,7 @@
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
-                  <select id="g3A">
+                  <select id="gr3A">
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
                     <option value="2013">2013</option>
@@ -160,7 +160,7 @@
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
-                  <select id="g3M">
+                  <select id="gr3M">
                     <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
@@ -178,7 +178,7 @@
                   <label>Mes</label>
                 </div>
                 <div class="input-field col s2">
-                  <a class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
+                  <a onClick="graphLine('#graph3', '', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 'tuits', '',$('#gr3A').val(), $('#gr3M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
               <div id="graph3" class="col s12 ">
@@ -200,7 +200,7 @@
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr5A">
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
                     <option value="2013">2013</option>
@@ -211,7 +211,7 @@
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
-                  <select>
+                  <select id="gr5M">
                     <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
@@ -229,7 +229,7 @@
                   <label>Mes</label>
                 </div>
                 <div class="input-field col s2">
-                  <a class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
+                  <a onClick="graphPieLegend('#graph5', '', $('#gr5A').val(), $('#gr5M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
               <div id="graph5" class="col s12">
@@ -253,13 +253,13 @@
           <div class="col s3"  id="cardsRow">
             <div class="row">
               <div class="col s12">
-                <div class="card">
+                <div class="center card">
                   <div class="card-image">
-                    <img src="http://lorempixel.com/400/250/people/10">
-                    <span class="card-title">Tendencias</span>
+                    <img class="img-graph" src="img/gr01.png">
+                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Tendencias</span>
                   </div>
                   <div class="card-action">
-                    <a onClick="ver('#g1')">Ver gráfica</a>
+                    <a onClick="ver('#g1')"  class="blue-text text-darken-1">Ver gráfica</a>
                   </div>
                 </div>
               </div>
@@ -267,13 +267,13 @@
 
             <div class="row">
               <div class="col s12">
-                <div class="card">
+                <div class="card center ">
                   <div class="card-image">
-                    <img src="http://lorempixel.com/400/250/people/9">
-                    <span class="card-title">Idiomas</span>
+                    <img class="img-graph" src="img/gr02.png">
+                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Idiomas</span>
                   </div>
                   <div class="card-action">
-                    <a onClick="ver('#g2')" href="#">Ver gráfica</a>
+                    <a onClick="ver('#g2')" class="blue-text text-darken-1" href="#">Ver gráfica</a>
                   </div>
                 </div>
               </div>
@@ -283,13 +283,14 @@
 
 
           <div class="col s6">
-            <div class="card">
-              <div class="card-image blue-grey lighten-1" id="centerCardBody">
-                <i class="white-text fa fa-area-chart fa-5x"></i>
-                <span class="orange-text text-darken-1 card-title">Distribución geográfica</span>
+            <div class="card center ">
+              <div class="card-image">         
+                <img class="img-graph" src="img/gr04.png"></img>
+                <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Distribución geográfica</span>
+                
               </div>
               <div class="card-action" id="centerCardAction">
-                <a onClick="ver('#g4')" href="#">Ver gráfica</a>
+                <a onClick="ver('#g4')" class="blue-text text-darken-1" href="#">Ver gráfica</a>
               </div>
             </div>
           </div>
@@ -299,13 +300,13 @@
 
             <div class="row">
               <div class="col s12">
-                <div class="card">
+                <div class="card center ">
                   <div class="card-image">
-                    <img src="http://lorempixel.com/400/250/people/10">
-                    <span class="card-title">Polaridad</span>
+                    <img class="img-graph" src="img/gr03.png">
+                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Polaridad</span>
                   </div>
                   <div class="card-action">
-                    <a onClick="ver('#g3')" href="#">Ver gráfica</a>
+                    <a onClick="ver('#g3')" class="blue-text text-darken-1" href="#">Ver gráfica</a>
                   </div>
                 </div>
               </div>
@@ -313,13 +314,13 @@
 
             <div class="row">
               <div class="col s12">
-                <div class="card">
+                <div class="card center ">
                   <div class="card-image">
-                    <img src="http://lorempixel.com/400/250/people/9">
-                    <span class="card-title">Actividad en Baleares</span>
+                    <img class="img-graph" src="img/gr05.png">
+                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Actividad balear</span>
                   </div>
                   <div class="card-action">
-                    <a onClick="ver('#g5')" href="#">Ver gráfica</a>
+                    <a onClick="ver('#g5')" class="blue-text text-darken-1" class="blue-text text-darken-1" href="#">Ver gráfica</a>
                   </div>
                 </div>
               </div>
@@ -344,7 +345,7 @@
       graphColumn('#graph1', '', [], 'tuits', '', 2015, 'ALL');
       graphSemiCircle('#graph2', '', 2015, 'ALL');
       graphLine('#graph3', '', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 'tuits', '', 2015, 'ALL');
-      graphPolar('#graph4', '', [], '', '', 2015);
+      graphPolar('#graph4', '', ['Fuera de Baleares','Ibiza','Formentera','Unknown','Mallorca','Menorca'], 'tuits', '', 2015);
       graphPieLegend('#graph5', '', 2015, 'ALL');
 
 

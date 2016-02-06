@@ -5,6 +5,10 @@ body {
   flex-direction: column;
 }
 
+html{
+  background: #FAFAFA;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -176,4 +180,9 @@ main {
 
 .col-fit{
   padding: 0px !important;
+}
+
+.img-graph{
+  padding:2.5em !important;
+  padding-top: 0.5em !important;
 }

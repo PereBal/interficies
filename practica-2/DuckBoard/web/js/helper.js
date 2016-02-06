@@ -256,6 +256,7 @@ function graphLine(id, title, xCategories, yText, yScale, year, month) {
         'year': year
       }),
       success: function (data) {
+        
         graph3(data);
       }
     });
@@ -418,13 +419,15 @@ function graphPieLegend(id, title, year, month) {
         'year': year
       }),
       success: function (data) {
-        var fdb = data[0]['y'];
-        data[0]=data[3];
-        data[0]['y']+=fdb;
-        data[3]=data[4];
-        data[4]=data[5];
-        delete data[5];
-
+        if(data[0]!==undefined){
+          var fdb = data[0]['y'];
+          data[0]=data[3];
+          data[0]['y']+=fdb;
+          data[3]=data[4];
+          data[4]=data[5];
+          delete data[5];
+        }
+        
         graph5(data);
       }
     });
@@ -441,12 +444,14 @@ function graphPieLegend(id, title, year, month) {
         'month': month
       }),
       success: function (data) {
-        var fdb = data[0]['y'];
-        data[0]=data[3];
-        data[0]['y']+=fdb;
-        data[3]=data[4];
-        data[4]=data[5];
-        delete data[5];
+        if(data[0]!==undefined){
+          var fdb = data[0]['y'];
+          data[0]=data[3];
+          data[0]['y']+=fdb;
+          data[3]=data[4];
+          data[4]=data[5];
+          delete data[5];
+        }
 
         graph5(data);
       }
