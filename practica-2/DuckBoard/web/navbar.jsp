@@ -44,6 +44,7 @@
           <li>
             <a href="/duckboard/graphs"><i class="material-icons left">dashboard</i>Dashboard</a>
           </li>
+          <li class="divider"></li>
           <li>
             <a href="/duckboard/users"><i class="material-icons left">contacts</i>Usuarios</a>
           </li>
@@ -81,9 +82,9 @@
         </ul>
         <ul class="side-nav" id="mobile-navbar">
           <c:if test="${path == false}">
-          <li>
-            <a href="#" class="loginButton waves-effect waves-light"><i class="material-icons left">input</i>Acceder</a>
-          </li>
+            <li>
+              <a href="#" class="loginButton waves-effect waves-light"><i class="material-icons left">input</i>Acceder</a>
+            </li>
           </c:if>
           <li>
             <a href="/duckboard/users?id=-1" class="waves-effect waves-light">
