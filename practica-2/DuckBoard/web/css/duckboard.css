@@ -68,7 +68,6 @@ main {
 
 .chat-contacts{
   height: 100%;
-  max-height: 380px !important;
   overflow: auto;
 }
 
