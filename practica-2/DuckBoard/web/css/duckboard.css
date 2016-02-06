@@ -186,3 +186,8 @@ main {
   padding:2.5em !important;
   padding-top: 0.5em !important;
 }
+
+.parallax-img{
+  width: 6em;
+  heigh: 6em;
+}

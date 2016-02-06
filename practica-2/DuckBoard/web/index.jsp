@@ -1,216 +1,124 @@
-<%@page import="servlets.tools.Helper"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="es">
+<html>
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
-      <div class="container">
-        
-        <div class="section no-pad-bot" id="index-banner"></div>
-        
-        <div id="toastMessages"></div>
-        
-        <div id="login" class="row linear-transition" style="display:none;">
-          <form class="col s8 offset-s2" method="POST" action="/duckboard/login">
-            <div class="card white">
-              <div class="card-content grey-text text-darken-3">
-                <span class="card-title grey-text text-darken-2">Login</span>
-                <div class="input-field">
-                  <input id="email" type="email" class="validate" name="email">
-                  <label for="email">Email</label>
-                </div>
-                <div class="input-field">
-                  <input id="password" type="password" class="validate" name="password">
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div class="card-action right-align">
-                <div class="">
-                  <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
-                  <button href="#" class="btn waves-effect waves-light light-blue darken-1 " type="submit">Entrar</button>
-                </div>
-              </div>
-            </div> 
-          </form>     
+      <div class="parallax-container">
+        <div class="parallax"><img src="img/parallax1.png"></div>
+        <ul id="staggered-test">
+          <li>
+            <h1 style="margin-left:2em;" >
+              Bienvenido!
+              <h4 style="margin-left:2.8em;">Haz scroll para descubrir más!</h4>
+            </h1>
+          </li>
+        </ul>
+      </div>
+      <div class="section white" id="staggered-test2">
+        <div class="row container">
+          <h2 class="header"><img style="width:1em" src="img/favicon.png"/>DuckBoard</h2>
+          <p class="grey-text text-darken-3 lighten-3">DuckBoard es un dashboard diseñado por un grupo de estudiantes de la <a href="https://www.uib.es/">Universidad de las Islas Baleares <img style="width:1em" src="img/logo-uib.jpg"/></a>.
+            <br>En él podrás consultar gráficos dinámicos sobre la actividad en <a href="https://twitter.com/?lang=es">twitter <i class="blue-text fa fa-twitter"></i></a>, además de
+          disfrutar de un servicio de mensajería instantanea entre los usuarios y un apartado de noticias de actualidad y motivación.</p>
         </div>
-
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="col s12">           
-            <iframe src="https://embed.spotify.com/?uri=spotify:user:spotify_espa%C3%B1a:playlist:2JIAFFwXL4tAGF0sZFIklk" width="100%" height="100rem" frameborder="0" allowtransparency="true"></iframe>
-            <div class="slider">
-              <ul class="slides">
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/1"> <!-- random image -->
-                  <div class="caption center-align">
-                    <h3>"If you cannot do great things, do small things in a great way."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Napoleon Hill</h5>
-                  </div>
-                </li>
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/2"> <!-- random image -->
-                  <div class="caption left-align">
-                    <h3>"Everything should be made as simple as possible, but not simpler."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Albert Einsten</h5>
-                  </div>
-                </li>
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/3"> <!-- random image -->
-                  <div class="caption right-align">
-                    <h3>"Have no fear of perfeciton, you'll never reach it."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Salvador Dalí­.</h5>
-                  </div>
-                </li>
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/4"> <!-- random image -->
-                  <div class="caption center-align">
-                    <h3> "Design is not just what it looks like and feels like. Design is how it works."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Steve Jobs.</h5>
-                  </div>
-                </li>
-              </ul>
+      </div>
+      <div class="parallax-container">
+        <div class="parallax"><img src="img/parallax2.jpg"></div>
+      </div>
+      <div class="section white" id="staggered-test3">
+        <div class="row container">
+          <h2 class="header">Conócenos <i class="grey-text text-lighten-1 fa fa-hand-peace-o" ></i></h2>
+          <p class="grey-text text-darken-3 lighten-3">Aquí puedes ver información sobre los desarrolladores de DuckBoard&reg;</p>
+          <div  class="row">
+            <div class="col s2 center">
+              <img class="parallax-img circle" src="img/user-pd.png" />
+              <h6>Rafael Cuart</h6>
+              <span class="grey-text text-lighten-1">Ing. de sistemas<br></span>
+              <span>
+                <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
+                <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
+                <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
+              </span>
             </div>
+            <div class="col s2 center">
+              <img class="parallax-img circle" src="img/user-pd.png" />
+              <h6>Francesc Bisquerra</h6>
+              <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
+              <span>
+                <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
+                <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
+                <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
+              </span>
+            </div>
+            <div class="col s2 center">
+              <img class="parallax-img circle" src="img/user-pd.png" />
+              <h6>Lucas Martorell</h6>
+              <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
+              <span>
+                <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
+                <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
+                <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
+              </span>
+            </div>
+            <div class="col s2 center">
+              <img class="parallax-img circle" src="img/user-pd.png" />
+              <h6>Pere Balaguer</h6>
+              <span class="grey-text text-lighten-1">Ing. de computación<br></span>
+              <span>
+                <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
+                <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
+                <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
+              </span>
+            </div>
+            <div class="col s2 center">
+              <img class="parallax-img circle" src="img/user-pd.png" />
+              <h6>Tomeu Crespí</h6>
+              <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
+              <span>
+                <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
+                <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
+                <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
+              </span>
+            </div>
+            <div class="col s2 center">
+              <img class="parallax-img circle" src="img/user-pd.png" />
+              <h6>Guillem Barceló</h6>
+              <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
+              <span>
+                <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
+                <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
+                <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
+              </span>
+            </div>
+            
           </div>
-
-          <div class="row">
-            <div class="col s6" style="height:29em;margin-top: 1em; ">
-              <iframe id="player" type="video/html"
-                      src="https://www.youtube.com/embed/26U_seo0a1g"
-                      frameborder="0" width="100%" height="100%" allowfullscreen>                       
-              </iframe>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/2">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/3">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/4">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/5">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/6">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/7">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/8">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/9">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">View</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end for -->
         </div>
-
+      </div>
+      <div class="parallax-container">
+        <div class="parallax"><img src="img/parallax3.jpg"></div>
+      </div>
     </main>
-
     <jsp:include page="footer.jsp"/>
     <jsp:include page="scripts.jsp"/>
-
     <script type="text/javascript">
-
-      $(document).ready(function () {
-
-      /*********************************/
-      /****** LOGIN FUNCTIONS **********/
-      /*********************************/
-
-      $('.loginButton').click(function (e) {
-
-      $('#login').toggle(400, function () {
-      // animation complete
-      });
-      });
-      $('#cancelLogin').click(function (e) {
-
-      $('#login').hide(400, function () {
-      // animation complete
-      });
-      });
-      /*********************************/
-      /******** IMAGE CAROUSEL *********/
-      /*********************************/
-
-      $('.slider').slider({full_width: true});
-         
-         
-      /*********************************/
-      /******** TOAST MSGS *************/
-      /*********************************/
-      });
-
+       $(document).ready(function(){
+        $('.parallax').parallax();
+       });
+        Materialize.showStaggeredList('#staggered-test');
+        var options = [
+          {selector: '#staggered-test2', offset: 550, callback: 'Materialize.toast("¿Ya sabes que hacemos?", 1500 )' },
+          {selector: '#staggered-test3', offset: 675, callback: 'Materialize.toast("Si! Estos somos nostros!", 1500 )' }
+          ];
+        
+  Materialize.scrollFire(options);
     </script>
-
   </body>
 </html>

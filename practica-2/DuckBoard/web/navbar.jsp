@@ -30,7 +30,7 @@
         <a href="#" class="light-blue-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
       </li>
     </ul>
-    <nav class="blue-grey">
+    <nav class="blue-grey darken-1">
       <div class="nav-wrapper container">
         <a href="/duckboard" class="brand-logo"><img style="width:1em" src="img/favicon.png"/> DuckBoard</a>
         <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -81,7 +81,7 @@
     </nav>
   </c:when>
   <c:otherwise>
-    <nav class="blue-grey lighten-1">
+    <nav class="blue-grey darken-1">
       <div class="nav-wrapper container">
         <a href="/duckboard" class="brand-logo"><img style="width:1em" src="img/favicon.png"/> DuckBoard</a>
         <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
