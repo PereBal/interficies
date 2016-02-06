@@ -87,9 +87,9 @@ public class Users extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 
+    Sesion session = new Sesion(request.getSession());
     String pwd = request.getParameter("pwd");
     String authToken = java.util.UUID.randomUUID().toString();
-    Sesion session = new Sesion(request.getSession());
 
     model.User u = getUserData(request);
     u.setAuthToken(authToken);
@@ -142,6 +142,19 @@ public class Users extends HttpServlet {
   @Override
   protected void doDelete(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    Sesion session = new Sesion(request.getSession());
+    if (Sesion.isAutenticated(session)) {
+      if (db.www.DBActions.deleteUser(session.getUserId())) {
+        Helper.setNewSuccessFlash(session, "Go fund yourself!");
+      } else {
+        Helper.setNewErrorFlash(session, "HAW! HAW! LOOOOSER!!!");
+      }
+    } else {
+      Helper.setNewErrorFlash(session, "HAW! HAW! LOOOOSER!!!");
+    }
+    session.invalidate();
+    response.sendRedirect("/duckboard");
+
   }
 
   /**
