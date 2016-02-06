@@ -191,7 +191,7 @@
       /****** LOGIN FUNCTIONS **********/
       /*********************************/
 
-      $('#loginButton').click(function (e) {
+      $('.loginButton').click(function (e) {
 
       $('#login').toggle(400, function () {
       // animation complete

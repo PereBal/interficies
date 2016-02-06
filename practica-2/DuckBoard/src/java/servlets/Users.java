@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import servlets.tools.Helper;
 import servlets.tools.Sesion;
 
-@WebServlet(name = "Users", urlPatterns = {"/users"})
+@WebServlet(name = "Users", urlPatterns = {"/users", "/users/list"})
 public class Users extends HttpServlet {
 
   private model.User getUserData(HttpServletRequest request) {
@@ -40,13 +40,37 @@ public class Users extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+          	
     Sesion session = new Sesion(request.getSession());
 
-    if (Helper.isAjax(request)) {
-      
-    } else if (Sesion.isAutenticated(session)) {
-      request.getRequestDispatcher("/profile.jsp").forward(request, response);
+    String id = request.getParameter("id");
+
+    int uid = id != null ? Integer.parseInt(id) : -2014;
+
+    if (Sesion.isAutenticated(session)) {
+
+      if (Helper.isAjax(request)) {
+
+        if (uid > -1) {
+
+          // get User
+          
+        } else {
+
+          // get User
+        }
+      } else {
+        
+        if (uid > -1) {
+        
+        request.getRequestDispatcher("/profile.jsp").forward(request, response);
+        } else {
+        
+          request.getRequestDispatcher("/users.jsp").forward(request, response);
+        }
+      }
     } else {
+
       request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
   }
