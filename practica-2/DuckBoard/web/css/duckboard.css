@@ -96,6 +96,12 @@ main {
   overflow: auto;
 }
 
+.chat-conversations{
+  overflow-y: auto;
+  margin-left: -1em;
+  margin-right: -0.8em;
+}
+
 .chat-timestamp{
   font-size: x-small;
   margin-left: 1em;

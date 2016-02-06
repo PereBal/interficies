@@ -11,10 +11,10 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
-      <div class="container" style="padding-top: 10px">
-        <div class="row z-depth-3 dynamic-height">
-          <div class="col s4 dynamic-height">
-            <nav style="box-shadow: none !important">
+      <div id="scrolldiv3" class="container" style="padding-top: 10px">
+        <div id="scrolldiv2" class="row z-depth-3 dynamic-height">
+          <div id="scrolldiv" class="col s4 dynamic-height">
+            <nav id="scrollvariable" style="box-shadow: none !important">
               <div class="nav-wrapper" style="background-color: white !important">
                 <form>
                   <div class="input-field">
@@ -25,7 +25,7 @@
                 </form>
               </div>
             </nav> 
-            <ul id="contact-list" class="collection" style="overflow-y: auto">
+            <ul id="contact-list" class="collection chat-conversations">
               <c:forEach var="chat" items="${chats}">
                 <li id="li" class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
                   <i class="material-icons circle">contacts</i>
@@ -55,6 +55,7 @@
             </ul>
           </div>
           <!-- Conversation -->
+
           <div class="col s8 dynamic-overflow chat-border col-fit">
             <div class="dynamic-height-messages" style="overflow-y: auto">
               <div class="row row-fit">
@@ -246,12 +247,29 @@
                 <a class="waves-effect waves-light send-height" name="send">Enviar</a>
               </div>
             </form>
+              
+          <div class="col s8 dynamic-height" style="border-left: 1px solid #e0e0e0">
           </div>
         </div>
       </div>
-    </main>
-    <jsp:include page="footer.jsp"/>
-    <jsp:include page="scripts.jsp"/>
-    <script type="text/javascript" src="js/resize.js"></script>
-  </body>
+  </main>
+  <jsp:include page="footer.jsp"/>
+  <jsp:include page="scripts.jsp"/>
+  <script type="text/javascript" src="js/resize.js">
+    
+    
+      
+      $('#scrolldiv').scroll( function() {
+      /*var max= ('#scrolldiv').position()['top']; 
+      var actual=('#scrollvariable').position()['top'];
+      alert('el menos llego');
+      if(max==actual){
+        alert("LLUC CABRON");
+      }else{
+        alert("u scrolled !");
+      }*/
+    alert('qwerty');
+    });
+  </script>
+</body>
 </html>

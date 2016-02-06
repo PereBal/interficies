@@ -231,10 +231,10 @@ function graphLine(id, title, xCategories, yText, yScale, year, month) {
  * @param {string} yText
  * @param {string} yScale
  * @param {string} year
- * @param {string} month
+ * @param {string} month NOPE
  * @returns {undefined}
  */
-function graphPolar(id, title, xCategories, yText, yScale, year, month) {
+function graphPolar(id, title, xCategories, yText, yScale, year/*, month*/) {
   function graph4(data) {
     $(id).highcharts({
       chart: {
@@ -292,8 +292,8 @@ function graphPolar(id, title, xCategories, yText, yScale, year, month) {
       async: true,
       dataType: "json",
       data: ({
-        'year': year,
-        'month': month
+        'year': year/*,
+        'month': month*/
       }),
       success: function (data) {
         graph4(data);
