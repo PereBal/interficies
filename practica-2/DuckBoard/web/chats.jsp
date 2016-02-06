@@ -1,11 +1,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@page import="servlets.tools.Helper"%>
 <%
-  pageContext.setAttribute("current-user", Helper.getCurrentUser(request));
-  System.out.println("Chats: " + request.getParameter("chats"));
+  pageContext.setAttribute("cuser", Helper.getCurrentUser(request));
   pageContext.setAttribute("chats", request.getParameter("chats"));
-  pageContext.setAttribute("current-chat", request.getParameter("currentChat"));
+  pageContext.setAttribute("cchat", request.getParameter("currentChat"));
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@
             </nav> 
             <ul id="contact-list" class="collection" style="overflow-y: auto">
               <c:choose>
-                <c:when test="${chat == null}">
+                <c:when test="${empty chat}">
                   <li class="valign-wrapper">
                     <h5 class="valign">This should be vertically aligned</h5>
                   </li>
@@ -39,7 +39,7 @@
                     <li id="li" class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
                       <i class="material-icons circle">contacts</i>
                       <c:forEach var="party" items="${chat.parties}">
-                        <c:if test="current-user.id ne party.user.id">
+                        <c:if test="${current-user.id != party.user.id}">
                           <span class="title"><c:out value="${party.user.name}"/></span>
                           <span class="new badge"><c:out value="${party.countUnreadMessages()}"/></span>
                           <p><c:out value="${party.lastReadMessage.text}"/></p>
@@ -49,25 +49,11 @@
                   </c:forEach>
                 </c:otherwise>
               </c:choose>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
             </ul>
           </div>
           <!-- Conversation -->
           <c:choose>
-            <c:when test="${current-chat == null}">
+            <c:when test="${empty cchat}">
               <div class="col s8 col-fit chat-border">
                 <div class="valign-wrapper">
                   <h5 class="valign">This should be vertically aligned</h5>
@@ -77,9 +63,9 @@
             <c:otherwise>
               <div class="col s8 col-fit chat-border dynamic-overflow">
                 <div class="dynamic-height-messages" style="overflow-y: auto">
-                  <c:forEach var="msg" items="${current-chat.messages}">
+                  <c:forEach var="msg" items="${cchat.messages}">
                     <c:choose>
-                      <c:when test="${msg.user.id != current-user.id}">
+                      <c:when test="${msg.user.id != cuser.id}">
                         <div class="row row-fit">
                           <div class="chat-bubble blue-grey lighten-5 left">
                             <div class="chat-bubble-text"><c:out value="${msg.text}"/>
@@ -122,17 +108,17 @@
     <jsp:include page="scripts.jsp"/>
     <script type="text/javascript" src="js/resize.js"></script>
     <script type="text/javascript">
-      $('#scrolldiv').scroll(function () {
-        /*var max= ('#scrolldiv').position()['top']; 
-         var actual=('#scrollvariable').position()['top'];
-         alert('el menos llego');
-         if(max==actual){
-         alert("LLUC CABRON");
-         }else{
-         alert("u scrolled !");
-         }*/
-        alert('qwerty');
-      });
+                      $('#scrolldiv').scroll(function () {
+                        /*var max= ('#scrolldiv').position()['top']; 
+                         var actual=('#scrollvariable').position()['top'];
+                         alert('el menos llego');
+                         if(max==actual){
+                         alert("LLUC CABRON");
+                         }else{
+                         alert("u scrolled !");
+                         }*/
+                        alert('qwerty');
+                      });
     </script>
   </body>
 </html>

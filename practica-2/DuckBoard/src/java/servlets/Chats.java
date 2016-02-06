@@ -37,7 +37,7 @@ public class Chats extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     response.setContentType("application/text-plain;charset=UTF-8");
-    Sesion s = new Sesion(request.getSession(false));
+    Sesion s = new Sesion(request.getSession());
     if (!Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return ;
     }
@@ -122,7 +122,7 @@ public class Chats extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     response.setContentType("application/text-plain;charset=UTF-8");
-    Sesion s = new Sesion(request.getSession(false));
+    Sesion s = new Sesion(request.getSession());
     if (!Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return;
     }

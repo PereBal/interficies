@@ -105,10 +105,10 @@ public class Chat {
     return createdAt;
   }
 
-  @Override
-  public String toString() {
-    return this.id.toString();
-  }
+//  @Override
+//  public String toString() {
+//    return this.id.toString();
+//  }
 
   ///////////////////////////////////
   /////   Wrappering DBActions!!!
