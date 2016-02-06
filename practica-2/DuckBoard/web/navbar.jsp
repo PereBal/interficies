@@ -27,7 +27,7 @@
       </li>
       <li class="divider"></li>
       <li>
-        <a href="#" class="light-blue-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
+        <a href="/duckboard/newsletter" class="light-blue-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
       </li>
     </ul>
     <nav class="blue-grey darken-1">
@@ -70,7 +70,7 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a href="#" class="waves-effect waves-light right"><i class="material-icons left">Motivacional</i>Chat</a>
+            <a href="/duckboard/newsletter" class="waves-effect waves-light right"><i class="material-icons left">Motivacional</i>Chat</a>
           </li>
            <li class="divider"></li>
           <li>
