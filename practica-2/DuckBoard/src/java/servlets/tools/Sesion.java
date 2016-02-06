@@ -82,10 +82,14 @@ public class Sesion {
 
   public List<Flash> getFlash() {
     if (flash != null) {
-      return flash;
+      List<Flash> f = flash;
+      flash = null;
+      session.removeAttribute("flash");
+      return f;
     } else if (session.getAttribute("flash") != null) {
-      flash = (List<Flash>) session.getAttribute("flash");
-      return flash;
+      List<Flash> f = (List<Flash>) session.getAttribute("flash");
+      session.removeAttribute("flash");
+      return f;
     } else {
       return new ArrayList<>();
     }

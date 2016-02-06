@@ -33,9 +33,6 @@ public class Messages extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    if (!Helper.authenticate(request, response)) {
-      return;
-    }
 
     if (Helper.isAjax(request)) {
       User user = Helper.getCurrentUser(request);
@@ -103,9 +100,6 @@ public class Messages extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    if (!Helper.authenticate(request, response)) {
-      return;
-    }
 
     if (Helper.isAjax(request)) {
       User user = Helper.getCurrentUser(request);
