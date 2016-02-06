@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import db.chat.exceptions.UserNotInPartyException;
 import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
+import java.util.Collections;
 
 public class Message {
 
@@ -84,6 +85,8 @@ public class Message {
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(chatId, userId, true, Message.LIMIT, 0);
+    List<Message> list = DBActions.getMessages(chatId, userId, true, Message.LIMIT, 0);
+    Collections.reverse(list);
+    return list;
   }
 }

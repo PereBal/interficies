@@ -8,6 +8,7 @@ import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
 import db.chat.exceptions.MessageDoesNotExistException;
 import db.chat.exceptions.MessageIsNotPartOfThisChatException;
+import java.util.Collections;
 
 public class Party {
 
@@ -54,14 +55,18 @@ public class Party {
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0);
+    List<Message> list = DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0);
+    Collections.reverse(list);
+    return list;
   }
 
   public List<Message> getUnreadMessages(int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, skip);
+    List<Message> list = DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, skip);
+    Collections.reverse(list);
+    return list;
   }
 
   public ObjectId getChatId() {

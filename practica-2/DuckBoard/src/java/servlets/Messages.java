@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Chat;
 import model.Message;
 import model.User;
 import org.json.JSONArray;
@@ -34,6 +35,7 @@ public class Messages extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    response.setContentType("application/text-plain;charset=UTF-8");
     Sesion s = new Sesion(request.getSession());
     if (Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return;
@@ -90,6 +92,12 @@ public class Messages extends HttpServlet {
       jsonMessages.write(response.getWriter());
       response.setContentType("application/json;charset=UTF-8");
       response.getWriter().close();
+      
+      try {
+        Chat.retrieveByPk(chatId).setLastReadMessage(user.getId());
+      } catch (ChatDoesNotExistException | UserNotInPartyException | UserDoesNotExistException ex) {
+        Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
+      }
     } else {
       response.sendRedirect("/duckboard/chats");
     }
@@ -106,6 +114,7 @@ public class Messages extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    response.setContentType("application/text-plain;charset=UTF-8");
     Sesion s = new Sesion(request.getSession());
     if (Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return;

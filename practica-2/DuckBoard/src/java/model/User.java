@@ -5,8 +5,7 @@ import db.chat.DBActions;
 import db.chat.exceptions.UserNotInPartyException;
 import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 
 public class User {
 
@@ -72,7 +71,7 @@ public class User {
   public char getSex() {
     return this.sex;
   }
-  
+
   public void setAuthToken(String token) {
     this.authToken = token;
   }
@@ -83,31 +82,39 @@ public class User {
           UserNotInPartyException {
     return db.chat.DBActions.getChatsByUserId(id);
   }
-  
+
   public List<Message> getMessages(String chatId) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return DBActions.getMessages(toString(), Message.LIMIT, 0);
+    List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, 0);
+    Collections.reverse(list);
+    return list;
   }
 
   public List<Message> getMessages(String chatId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return DBActions.getMessages(chatId, Message.LIMIT, skip);
+    List<Message> list = DBActions.getMessages(chatId, Message.LIMIT, skip);
+    Collections.reverse(list);
+    return list;
   }
 
   public List<Message> getUnreadMessages(String chatId) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, 0);
+    List<Message> list = DBActions.getMessages(chatId, this.id, true, Message.LIMIT, 0);
+    Collections.reverse(list);
+    return list;
   }
 
   public List<Message> getUnreadMessages(String chatId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, skip);
+    List<Message> list = DBActions.getMessages(chatId, this.id, true, Message.LIMIT, skip);
+    Collections.reverse(list);
+    return list;
   }
 
   @Override

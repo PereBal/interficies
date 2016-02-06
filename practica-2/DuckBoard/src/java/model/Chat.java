@@ -10,6 +10,7 @@ import db.chat.exceptions.ChatDoesNotExistException;
 import db.chat.exceptions.MessageDoesNotExistException;
 import db.chat.exceptions.MessageIsNotPartOfThisChatException;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 
 public class Chat {
 
@@ -36,13 +37,17 @@ public class Chat {
   public List<Message> getMessages() throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return DBActions.getMessages(toString(), Message.LIMIT, 0);
+    List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, 0);
+    Collections.reverse(list);
+    return list;
   }
 
   public List<Message> getMessages(int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    return DBActions.getMessages(toString(), Message.LIMIT, skip);
+    List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, skip);
+    Collections.reverse(list);
+    return list;
   }
 
   public int countUnreadMessages(int userId) throws
@@ -56,14 +61,18 @@ public class Chat {
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(toString(), userId, true, Message.LIMIT, 0);
+    List<Message> list = DBActions.getMessages(toString(), userId, true, Message.LIMIT, 0);
+    Collections.reverse(list);
+    return list;
   }
 
   public List<Message> getUnreadMessages(int userId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    return DBActions.getMessages(toString(), userId, true, Message.LIMIT, skip);
+    List<Message> list = DBActions.getMessages(toString(), userId, true, Message.LIMIT, skip);
+    Collections.reverse(list);
+    return list;
   }
 
   public void setMessages(List<Message> messages) throws

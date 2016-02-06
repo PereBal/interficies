@@ -36,9 +36,10 @@ public class Chats extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    response.setContentType("application/text-plain;charset=UTF-8");
     Sesion s = new Sesion(request.getSession(false));
     if (!Sesion.isAutenticated(s)) {
-      return ;
+      response.sendRedirect("/duckboard"); return ;
     }
 
     if (Helper.isAjax(request)) {
@@ -97,6 +98,7 @@ public class Chats extends HttpServlet {
         if (chatIdP != null) {
           ObjectId chatId = new ObjectId();
           currentChat = Chat.retrieveByPk(chatId.toString());
+          currentChat.setLastReadMessage(user.getId());
         }
         request.setAttribute("currentChat", currentChat);
       } catch (NullPointerException | UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
@@ -119,9 +121,10 @@ public class Chats extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    response.setContentType("application/text-plain;charset=UTF-8");
     Sesion s = new Sesion(request.getSession(false));
     if (!Sesion.isAutenticated(s)) {
-      return;
+      response.sendRedirect("/duckboard"); return;
     }
 
     User user     = s.getUser();
