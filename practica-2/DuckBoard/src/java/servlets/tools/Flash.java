@@ -20,4 +20,12 @@ public class Flash {
   public String getClazz() {
     return clazz;
   }
+  
+  public org.json.JSONObject toJSON() {
+    return new org.json.JSONObject().put(
+            "message", message
+    ).put(
+            "clazz", clazz
+    );
+  }
 }

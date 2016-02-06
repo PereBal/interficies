@@ -17,7 +17,7 @@ public class Sesion {
   private int userId = -1;
   private String authToken = null;
   private model.User user = null;
-  private List<Flash> flash = null;
+  private org.json.JSONArray flash = null;
   private final javax.servlet.http.HttpSession session;
 
   public Sesion(javax.servlet.http.HttpSession session) {
@@ -80,32 +80,33 @@ public class Sesion {
     this.session.setAttribute("auth_token", authToken);
   }
 
-  public List<Flash> getFlash() {
+  public org.json.JSONArray getFlash() {
     if (flash != null) {
-      List<Flash> f = flash;
+      org.json.JSONArray f = flash;
       flash = null;
       session.removeAttribute("flash");
       return f;
     } else if (session.getAttribute("flash") != null) {
-      List<Flash> f = (List<Flash>) session.getAttribute("flash");
+      org.json.JSONArray f = (org.json.JSONArray) session.getAttribute("flash");
       session.removeAttribute("flash");
       return f;
     } else {
-      return new ArrayList<>();
+      return new org.json.JSONArray();
     }
   }
 
   public void setFlash(Flash f, boolean create) {
+    org.json.JSONObject jsonFlash = f.toJSON();
     if (flash != null) {
       if (!create) {
-        flash.add(f);
+        flash.put(jsonFlash);
       } else {
-        flash = new ArrayList<>();
-        flash.add(f);
+        flash = new org.json.JSONArray();
+        flash.put(jsonFlash);
       }
     } else {
-      flash = new ArrayList<>();
-      flash.add(f);
+      flash = new org.json.JSONArray();
+      flash.put(jsonFlash);
     }
     session.setAttribute("flash", flash);
   }

@@ -26,7 +26,7 @@ public class Helper {
     return true;
   }
 
-  public static java.util.List<Flash> getFlash(HttpServletRequest request) {
+  public static org.json.JSONArray getFlash(HttpServletRequest request) {
     Sesion s = new Sesion(request.getSession(false));
     return s.getFlash();
   }
