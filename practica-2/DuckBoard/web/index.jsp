@@ -31,7 +31,7 @@
                   <label for="password">Password</label>
                 </div>
               </div>
-              <div class="card-action">
+              <div class="card-action right-align">
                 <div class="">
                   <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
                   <button href="#" class="btn waves-effect waves-light light-blue darken-1 " type="submit">Entrar</button>

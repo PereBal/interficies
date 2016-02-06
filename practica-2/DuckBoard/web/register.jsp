@@ -84,7 +84,7 @@
                 </div> <!--End of user information-->
               </div>
 
-              <div class="card-action">
+              <div class="card-action right-align">
                 <a href="/duckboard">VOLVER</a>
                 <button  class="btn waves-effect waves-light light-blue darken-1" type="submit"
                          type="button">REGISTRARSE

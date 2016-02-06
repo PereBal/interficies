@@ -7,7 +7,7 @@
       <div class="container top-row-buffer">
         <div class="row">
           <div class="col s12">
-            <h4>Users</h4>
+            <h4>Usuarios</h4>
           </div>
         </div>
 
@@ -53,12 +53,15 @@
           $.each(collapsibleHeaders, function(index, collapsible){
             
             var toAppend = '<li>'+
-                                '<div class="collapsible-header" onclick="appendCollapsibleBody(\'collapsible-'+ collapsible.id +'\');">'+
-                                  '<i class="material-icons">perm_identity</i>'+
-                                    'Nombre: ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
-                                '</div>'+
-                                '<div id="collapsible-'+ collapsible.id +'" class="collapsible-body inner-padding grey-text text-darken-2">'+ 
-                                '</div>'+
+                              '<div class="collapsible-header" onclick="appendCollapsibleBody(\'collapsible-'+ collapsible.id +'\');">'+
+                                '<i class="material-icons">perm_identity</i>'+
+                                'Nombre: ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
+                                '<a class="waves-effect waves-light right" href="/duckboard/chats?id='+ collapsible.id +'">'+
+                                  '<i class="material-icons right-align">comment</i>' + 
+                                '</a>'+
+                                '</div>' +
+                              '<div id="collapsible-'+ collapsible.id +'" class="collapsible-body inner-padding grey-text text-darken-2">'+ 
+                              '</div>'+
                             '</li>'
               
             collapsibleList.append(toAppend);
@@ -72,9 +75,7 @@
        */
       var appendCollapsibleBody = function(collapsible) {
                   
-          id = collapsible.split('-')[1];
-          
-          console.log(id)
+          var id = collapsible.split('-')[1];
            // ajax query
           
           $.ajax({
@@ -88,8 +89,6 @@
             success: function (data) {
               
                 paintCollapsibleBody(data);
-                
-                console.log(data)
             },
             error: function (){}
           }); 
@@ -119,7 +118,7 @@
                             '<p><b>Nombre: </b>'+collapsibleBody.name+'</p>'+
                           '</div>'+
                           '<div class="col s5">'+
-                            '<p><b>Apellidos: </b>'+collapsibleBody.lastName+'</p>'+
+                            '<p><b>Apellidos: </b>'+collapsibleBody.last_name+'</p>'+
                           '</div>'+
                         '</div>'+
                         '<div class="row">'+
@@ -127,7 +126,7 @@
                             '<p><b>Email: </b>'+ collapsibleBody.email+'</p>'+
                           '</div>'+
                           '<div class="col s5">'+
-                            '<p><b>Fecha de nacimiento: </b>'+collapsibleBody.birthDay+'</p>'+
+                            '<p><b>Fecha de nacimiento: </b>'+collapsibleBody.birth_day+'</p>'+
                           '</div>'+
                         '</div>'+
                         '<div class="row">'+

@@ -1,5 +1,5 @@
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="servlets.tools.Helper"%>
 <%-- 
     Document   : profile
@@ -148,8 +148,8 @@
               </div>
             </div>
 
-            <div class="card-action">
-              <a id="deleteAccount" class="red-text">BORRAR CUENTA</a>
+            <div class="card-action right-align">
+                <a id="deleteAccount" class="red-text" style="cursor:pointer;">BORRAR CUENTA</a>
               <button  id="editButton" class="btn waves-effect waves-light light-blue darken-1">Editar
                 <i class="fa fa-edit fa-2x"></i>
               </button>

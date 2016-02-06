@@ -11,6 +11,7 @@
           <div class="card-content">
             <h4 class="card-title">Cantidad de tuits por tendencia</h4>
             <div class="row">
+
               <div class="col s12">
                 <div class="input-field col s5">
                   <select>
@@ -246,72 +247,87 @@
     </div>
     <div class="container">
       <div class="section">
-        <!-- Information cards -->
-        <!-- for card in cards -->
+
         <div class="row">
-          <div class="col s3">
-            <div class="col s12">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/10">
-                  <span class="card-title">Tendencias</span>
-                </div>
-                <div class="card-action">
-                  <a onClick="ver('#g1')">Ver gráfica</a>
+
+          <div class="col s3"  id="cardsRow">
+            <div class="row">
+              <div class="col s12">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="http://lorempixel.com/400/250/people/10">
+                    <span class="card-title">Tendencias</span>
+                  </div>
+                  <div class="card-action">
+                    <a onClick="ver('#g1')">Ver gráfica</a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="col s12">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/9">
-                  <span class="card-title">Idiomas</span>
-                </div>
-                <div class="card-action">
-                  <a onClick="ver('#g2')" href="#">Ver gráfica</a>
+            <div class="row">
+              <div class="col s12">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="http://lorempixel.com/400/250/people/9">
+                    <span class="card-title">Idiomas</span>
+                  </div>
+                  <div class="card-action">
+                    <a onClick="ver('#g2')" href="#">Ver gráfica</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div> 
-          <div class="col s6" style="margin-top:1.5em">
+
+          </div>
+
+
+          <div class="col s6">
             <div class="card">
-              <div class="card-image blue-grey lighten-1">
+              <div class="card-image blue-grey lighten-1" id="centerCardBody">
                 <i class="white-text fa fa-area-chart fa-5x"></i>
                 <span class="orange-text text-darken-1 card-title">Distribución geográfica</span>
               </div>
-              <div class="card-action">
+              <div class="card-action" id="centerCardAction">
                 <a onClick="ver('#g4')" href="#">Ver gráfica</a>
               </div>
             </div>
           </div>
+
+
           <div class="col s3">
-            <div class="col s12">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/10">
-                  <span class="card-title">Polaridad</span>
-                </div>
-                <div class="card-action">
-                  <a onClick="ver('#g3')" href="#">Ver gráfica</a>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="http://lorempixel.com/400/250/people/10">
+                    <span class="card-title">Polaridad</span>
+                  </div>
+                  <div class="card-action">
+                    <a onClick="ver('#g3')" href="#">Ver gráfica</a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="col s12">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/9">
-                  <span class="card-title">Actividad en Baleares</span>
-                </div>
-                <div class="card-action">
-                  <a onClick="ver('#g5')" href="#">Ver gráfica</a>
+            <div class="row">
+              <div class="col s12">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="http://lorempixel.com/400/250/people/9">
+                    <span class="card-title">Actividad en Baleares</span>
+                  </div>
+                  <div class="card-action">
+                    <a onClick="ver('#g5')" href="#">Ver gráfica</a>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
-        <!-- end for -->
+
       </div>
     </div>
   </main>
@@ -319,14 +335,34 @@
   <jsp:include page="scripts.jsp"/>
   <!--Scripts-->
   <script type="text/javascript">
-    
-  $(document).ready(function() {    
-    graphColumn('#graph1', '', [], 'tuits', '', 2015, 'ALL');
-    graphSemiCircle('#graph2', '', 2015,'ALL');
-    graphLine('#graph3', '', ['Lunes','Martes','Miercoles','Jueves','Viernes','Sábado','Domingo'], 'tuits', '', 2015, 'ALL');
-    graphPolar('#graph4', '', [], '', '', 2015);
-    graphPieLegend('#graph5', '', 2015, 'ALL');
+
+    var centerRow = $('#cardsRow');
+    var centerCardBody = $('#centerCardBody');
+    var centerCardAction = $('#centerCardAction');
+
+    $(document).ready(function () {
+      graphColumn('#graph1', '', [], 'tuits', '', 2015, 'ALL');
+      graphSemiCircle('#graph2', '', 2015, 'ALL');
+      graphLine('#graph3', '', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 'tuits', '', 2015, 'ALL');
+      graphPolar('#graph4', '', [], '', '', 2015);
+      graphPieLegend('#graph5', '', 2015, 'ALL');
+
+
+      setHeight();
     });
+
+    $(window).resize(function () {
+
+      setHeight();
+    });
+    
+    var setHeight = function () {
+
+      var rowHeight = centerRow.height() - centerCardAction.height();
+      console.log(centerRow.height())
+      console.log(centerCardAction.height())
+      centerCardBody.css({height: rowHeight});
+    }
 
     function ver(id) {
       $(id).toggle(400, function () {
@@ -339,6 +375,7 @@
         // animation complete
       });
     }
+
 
 
   </script>

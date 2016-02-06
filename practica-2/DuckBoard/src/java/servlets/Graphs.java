@@ -51,7 +51,6 @@ public class Graphs extends HttpServlet {
     if (Helper.isAjax(request)) {
       try {
         JSONArray graph;
-        
         int graphId = Integer.parseInt(request.getParameter("id"));
 
         String dirtyMonth = request.getParameter("month");
