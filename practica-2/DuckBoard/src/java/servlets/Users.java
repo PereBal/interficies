@@ -43,7 +43,7 @@ public class Users extends HttpServlet {
     Sesion session = new Sesion(request.getSession());
 
     if (Helper.isAjax(request)) {
-
+      
     } else if (Sesion.isAutenticated(session)) {
       request.getRequestDispatcher("/profile.jsp").forward(request, response);
     } else {
@@ -91,7 +91,7 @@ public class Users extends HttpServlet {
   protected void doPut(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 
-    Sesion session = new Sesion(request.getSession(false));
+    Sesion session = new Sesion(request.getSession());
     String pwd = request.getParameter("pwd");
 
     if (Sesion.isAutenticated(session)) {

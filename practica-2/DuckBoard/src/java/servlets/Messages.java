@@ -18,6 +18,7 @@ import model.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import servlets.tools.Helper;
+import servlets.tools.Sesion;
 
 @WebServlet(name = "Messages", urlPatterns = {"/chat/messages"})
 public class Messages extends HttpServlet {
@@ -33,17 +34,20 @@ public class Messages extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    Sesion s = new Sesion(request.getSession());
+    if (Sesion.isAutenticated(s)) {
+      response.sendRedirect("/duckboard"); return;
+    }
 
     if (Helper.isAjax(request)) {
-      User user = Helper.getCurrentUser(request);
+      User user = s.getUser();
 
       String chatId = request.getParameter("cid");
       String unread = request.getParameter("unread");
-      String skip = request.getParameter("skip");
+      String skip   = request.getParameter("skip");
 
       if (chatId == null) {
-        response.sendRedirect("/duckboard/chats");
-        return;
+        response.sendRedirect("/duckboard/chats"); return;
       }
 
       int skipMessages;
@@ -65,7 +69,8 @@ public class Messages extends HttpServlet {
           messages = user.getMessages(chatId, skipMessages);
         }
       } catch (ChatDoesNotExistException | UserNotInPartyException | UserDoesNotExistException e) {
-        response.sendRedirect("/duckboard/chats");
+        Helper.setNewErrorFlash(s, "A esta conversación le pasa algo... Jopetis!");
+        response.sendRedirect("/duckboard/chats"); return;
       }
 
       JSONObject object = new JSONObject();
@@ -83,6 +88,7 @@ public class Messages extends HttpServlet {
       object.put("messages", jsonMessages);
 
       jsonMessages.write(response.getWriter());
+      response.setContentType("application/json;charset=UTF-8");
       response.getWriter().close();
     } else {
       response.sendRedirect("/duckboard/chats");
@@ -100,22 +106,28 @@ public class Messages extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    Sesion s = new Sesion(request.getSession());
+    if (Sesion.isAutenticated(s)) {
+      response.sendRedirect("/duckboard"); return;
+    }
 
     if (Helper.isAjax(request)) {
-      User user = Helper.getCurrentUser(request);
+      User user = s.getUser();
 
       String chatId = request.getParameter("cid");
       String text = request.getParameter("text");
-      
+
       if (chatId == null || text == null ) {
+        Helper.setNewErrorFlash(s, "Mensaje infectado... no hagas magia negra!!!");
         response.sendRedirect("/duckboard/chats"); return;
       }
-      
+
       try {
         Message.create(chatId, user.getId(), text);
       } catch (ChatDoesNotExistException | UserDoesNotExistException | UserNotInPartyException ex) {
         Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
-        response.sendRedirect("/duckboard/chats"); return;
+        Helper.setNewErrorFlash(s, "No se ha podido enviar el mensaje! Nuestros devOps deben estar haciendo cosas de devOps!");
+        response.sendRedirect("/duckboard/chats");
       }
     } else {
       response.sendRedirect("/duckboard/chats");
