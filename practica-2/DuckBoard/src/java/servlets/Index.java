@@ -23,8 +23,6 @@ public class Index extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     response.setContentType("text/plain;charset=UTF-8");
-    Sesion s = new Sesion(request.getSession());
-    request.setAttribute("sesion", s);
     request.getRequestDispatcher("/index.jsp").forward(request, response);
   }
 
