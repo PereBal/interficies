@@ -6,7 +6,8 @@
 <script type="text/javascript">
   $(document).ready(function () {
     // Activate Dropdown menu
-    $(".dropdown-button").dropdown();
+    $('.dropdown-button').dropdown();
+    $('.dropdown-enterprise').dropdown();
     // Activate button-collapse for mobile
     $(".button-collapse").sideNav();
 
@@ -20,5 +21,23 @@
 
 
     $('select').material_select();
+    
+     /*********************************/
+      /******** TOAST MSGS *************/
+      /*********************************/
+
+      
+      // this is JavaScript code written in the JSP
+      var flashes = [
+        <c:forEach var="flash" items="${flashes}" varStatus="loop">
+            {
+              clazz : "${flash.clazz}",
+              message   : "${flash.message}",
+            }<c:if test="${!loop.last}">,</c:if>
+            
+        </c:forEach>
+      ]
+      
+      showFlashes(flashes);  
   });
 </script>
