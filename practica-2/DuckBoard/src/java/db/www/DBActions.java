@@ -1,5 +1,6 @@
 package db.www;
 
+import com.mysql.jdbc.Messages;
 import model.User;
 import db.tools.Utils;
 import java.io.UnsupportedEncodingException;
@@ -10,6 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class DBActions {
 
@@ -266,4 +269,40 @@ public class DBActions {
     }
   }
 
+  public static JSONArray getJSONUsers(String q) {
+    JSONArray res = new JSONArray();
+    try(DBConnection conn = new DBConnection()) {
+      conn.open();
+      
+      Statement st = conn.getConection().createStatement();
+      
+      String query = "SELECT "
+              + "id,"
+              + "email,"
+              + "name "
+              + "FROM user ";
+      
+      if (q != null) {
+        query += "WHERE email LIKE " + q.toLowerCase().replaceAll("[^a-z0-9]", "") + "% LIMIT 5;";
+      } else {
+        query += "LIMIT 40;";
+      }
+      
+      ResultSet rs = st.executeQuery(query);
+      
+      while (rs.next()) {
+        res.put(new JSONObject().put(
+                "id", rs.getInt(0)
+        ).put(
+                "email", rs.getString(1)
+        ).put(
+                "name", rs.getString(2)
+        ));
+      }
+    } catch (SQLException ex) {
+      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    return res;
+  }
+  
 }

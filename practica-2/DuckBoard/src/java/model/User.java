@@ -122,4 +122,22 @@ public class User {
     return "User{" + "id=" + id + ", email=" + email + ", name=" + name + ", lastName=" + lastName + ", sex=" + sex + ", birthDay=" + birthDay + ", quote=" + quote + ", authToken=" + authToken + '}';
   }
 
+  public org.json.JSONObject toJSON() {
+    return new org.json.JSONObject().put(
+            "id", id
+    ).put(
+            "email", email
+    ).put(
+            "name", name
+    ).put(
+            "last_name", lastName
+    ).put(
+            "sex", sex
+    ).put(
+            "birth_day", birthDay
+    ).put(
+            "quote", quote
+    );
+  }
+
 }

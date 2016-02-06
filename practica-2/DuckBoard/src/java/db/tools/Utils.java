@@ -65,7 +65,7 @@ public class Utils {
   public static String cleanQuote(String quote) {
     if (quote == null)
       return null;
-    return "'" + quote.replaceAll("[^A-Za-z0-9.,:-_]", "") + "'";
+    return "'" + quote.replaceAll("[^A-Za-z0-9.,:-_ ]", "") + "'";
   }
 
   public static String encrypt(String pwd) throws UnsupportedEncodingException, NoSuchAlgorithmException {

@@ -40,7 +40,7 @@ public class Users extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-          	
+
     Sesion session = new Sesion(request.getSession());
 
     String id = request.getParameter("id");
@@ -48,29 +48,27 @@ public class Users extends HttpServlet {
     int uid = id != null ? Integer.parseInt(id) : -2014;
 
     if (Sesion.isAutenticated(session)) {
-
       if (Helper.isAjax(request)) {
-
+        response.setContentType("application/json;charset=UTF-8");
         if (uid > -1) {
-
           // get User
-          
+          org.json.JSONObject res = session.getUser().toJSON();
+          try (java.io.PrintWriter out = response.getWriter()) {
+            out.println(res.toString());
+          }
         } else {
-
-          // get User
+          // get Users
+          org.json.JSONArray res = db.www.DBActions.getJSONUsers(request.getParameter("q"));
+          try (java.io.PrintWriter out = response.getWriter()) {
+            out.println(res.toString());
+          }
         }
-      } else {
-        
-        if (uid > -1) {
-        
+      } else if (uid > -1) {
         request.getRequestDispatcher("/profile.jsp").forward(request, response);
-        } else {
-        
-          request.getRequestDispatcher("/users.jsp").forward(request, response);
-        }
+      } else {
+        request.getRequestDispatcher("/users.jsp").forward(request, response);
       }
     } else {
-
       request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
   }
