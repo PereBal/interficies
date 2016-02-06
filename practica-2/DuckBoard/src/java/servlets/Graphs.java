@@ -35,7 +35,6 @@ public class Graphs extends HttpServlet {
     throw new Exception();
   }
 
-  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
   /**
    * Handles the HTTP <code>GET</code> method. Maps all gets to: /graphs/:graphId?year=&month=
    *

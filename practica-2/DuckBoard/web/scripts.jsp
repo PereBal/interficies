@@ -21,23 +21,9 @@
 
 
     $('select').material_select();
-    
-     /*********************************/
-      /******** TOAST MSGS *************/
-      /*********************************/
 
-      
-      // this is JavaScript code written in the JSP
-      var flashes = [
-        <c:forEach var="flash" items="${flashes}" varStatus="loop">
-            {
-              clazz : "${flash.clazz}",
-              message   : "${flash.message}",
-            }<c:if test="${!loop.last}">,</c:if>
-            
-        </c:forEach>
-      ]
-      
-      showFlashes(flashes);  
+    var flashes = <% out.println(servlets.tools.Helper.getFlash(request).toString()); %>;
+    showFlashes(flashes);
+
   });
 </script>

@@ -11,7 +11,6 @@
 <html lang="en">
 
   <%
-    pageContext.setAttribute("flashes", Helper.getFlash(request));
     pageContext.setAttribute("user", Helper.getCurrentUser(request));
   %>
   <jsp:include page="head.jsp"/>
@@ -202,21 +201,6 @@
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
-
-
-      // this is JavaScript code written in the JSP
-      var flashes = [
-    <c:forEach var="flash" items="${flashes}" varStatus="loop">
-      {
-      clazz : "${flash.clazz}",
-              message   : "${flash.message}",
-      }<c:if test="${!loop.last}">,</c:if>
-
-    </c:forEach>
-      ]
-
-              showFlashes(flashes);
-
     });
 
   </script>

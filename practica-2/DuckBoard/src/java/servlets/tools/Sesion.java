@@ -27,9 +27,8 @@ public class Sesion {
     this.session = session;
     this.userId = getUserId();
     this.authToken = getAuthToken();
-    this.flash = getFlash();
   }
-
+  
   public model.User getUser() {
     if (user != null && getUserId() == user.getId()) {
       return user;

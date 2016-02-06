@@ -6,9 +6,6 @@
 <%@page import="servlets.tools.Helper"%>
 <!DOCTYPE html>
 <html lang="en">
-  <%
-    pageContext.setAttribute("flashes", Helper.getFlash(request));
-  %>
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
@@ -106,19 +103,6 @@
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
-      
-      // this is JavaScript code written in the JSP
-      var flashes = [
-        <c:forEach var="flash" items="${flashes}" varStatus="loop">
-            {
-              clazz : "${flash.clazz}",
-              message   : "${flash.message}",
-            }<c:if test="${!loop.last}">,</c:if>
-            
-        </c:forEach>
-      ]
-      
-      showFlashes(flashes);
 
       var pwd = document.getElementById('pwd');
       var pwd2 = document.getElementById('pwd2');

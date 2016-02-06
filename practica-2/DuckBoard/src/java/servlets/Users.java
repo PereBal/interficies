@@ -117,7 +117,11 @@ public class Users extends HttpServlet {
       if (db.www.DBActions.insertUser(user, pwd)) {
 
         session.autenticate(user.getEmail());
-        Helper.setNewSuccessFlash(session, "Has sido registrado correctamente, loggeate para disfrutar!.");
+        if (user.getSex() == 'H') {
+          Helper.setNewSuccessFlash(session, "Has sido registrado correctamente, se bienvenido " + user.getName() + "!.");
+        } else {
+          Helper.setNewSuccessFlash(session, "Has sido registrada correctamente, se bienvenida " + user.getName() + "!.");
+        }
       } else {
 
         Helper.setNewErrorFlash(session, "Ha ocurrido un error");

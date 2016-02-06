@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
     User user = DBActions.getUserByEmail(email, password);
 
     if (user == null) {
-      Helper.setNewErrorFlash(session, "El usuario no existe o has introducido mal el correo");
+      Helper.setNewErrorFlash(session, "El usuario no existe o el correo ha sido mal introducido");
     } else {
       session.autenticate(user);
       session.conf().setMaxInactiveInterval(600);

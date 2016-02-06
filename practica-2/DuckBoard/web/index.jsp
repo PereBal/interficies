@@ -3,11 +3,6 @@
 <!DOCTYPE html>
 <html lang="es">
   <jsp:include page="head.jsp"/>
-  
-     <% 
-       pageContext.setAttribute("flashes", Helper.getFlash(request));
-     %>
-
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
@@ -213,20 +208,6 @@
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
-
-      
-      // this is JavaScript code written in the JSP
-      var flashes = [
-        <c:forEach var="flash" items="${flashes}" varStatus="loop">
-            {
-              clazz : "${flash.clazz}",
-              message   : "${flash.message}",
-            }<c:if test="${!loop.last}">,</c:if>
-            
-        </c:forEach>
-      ]
-      
-      showFlashes(flashes);   
       });
 
     </script>

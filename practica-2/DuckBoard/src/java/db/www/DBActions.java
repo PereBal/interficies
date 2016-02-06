@@ -210,7 +210,7 @@ public class DBActions {
         subQuery += "pwd=" + Utils.encrypt(newPwd) + ",";
       }
       if (!subQuery.equals("")) {
-        subQuery = subQuery.substring(0, subQuery.length()-1);
+        subQuery = subQuery.substring(0, subQuery.length() - 1);
         subQuery = "UPDATE user SET " + subQuery + " WHERE id=" + newUser.getId() + ";";
         System.out.println(subQuery);
         st.executeUpdate(subQuery);
@@ -300,13 +300,12 @@ public class DBActions {
               + "FROM user ";
 
       if (q != null) {
-        query += "WHERE email LIKE '" + q.toLowerCase().replaceAll("[^a-z0-9]", "") + "%' LIMIT 5;";
-      } else {
-        query += "LIMIT 5;";
+        query += "WHERE "
+                + "LOWER(email) LIKE '" + q.toLowerCase().replaceAll("[^a-z0-9@.]", "") + "%' OR "
+                + "name LIKE '" + q.toUpperCase().replaceAll("[^A-Z0-9]", "") + "%' ";
       }
-
-      System.out.println(query);
-
+      query += "LIMIT 8;";
+      
       ResultSet rs = st.executeQuery(query);
 
       while (rs.next()) {
