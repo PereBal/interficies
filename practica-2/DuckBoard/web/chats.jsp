@@ -13,6 +13,10 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
+      <form method="POST" action="/duckboard/chats">
+        <input hidden name="party" value="4">
+        <button type="submit">Crear un chat</button>
+      </form>
       <div class="container" style="padding-top: 10px">
         <div class="row z-depth-3 dynamic-height">
           <div id="scrolldiv" class="col s4 col-fit dynamic-height">

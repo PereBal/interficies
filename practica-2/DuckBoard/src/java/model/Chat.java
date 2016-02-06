@@ -9,21 +9,21 @@ import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
 import db.chat.exceptions.MessageDoesNotExistException;
 import db.chat.exceptions.MessageIsNotPartOfThisChatException;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.Date;
 
 public class Chat {
 
   private final ObjectId id;
   private final List<Party> parties;
   private final List<Message> messages;
-  private final LocalDate createdAt;
+  private final Date createdAt;
 
   public Chat(ObjectId id, List<Party> parties, List<Message> messages) {
     this.id = id;
     this.parties = parties;
     this.messages = messages;
-    this.createdAt = LocalDate.parse(id.getDate().toString(), DateTimeFormatter.ISO_DATE_TIME);
+    this.createdAt = id.getDate();
   }
 
   public ObjectId getId() {
@@ -101,14 +101,14 @@ public class Chat {
     DBActions.updateLastReadMessage(toString(), userId, messageId);
   }
 
-  public LocalDate getCreatedAt() {
+  public Date getCreatedAt() {
     return createdAt;
   }
 
-//  @Override
-//  public String toString() {
-//    return this.id.toString();
-//  }
+  @Override
+  public String toString() {
+    return this.id.toString();
+  }
 
   ///////////////////////////////////
   /////   Wrappering DBActions!!!
