@@ -141,7 +141,6 @@ public class Sesion {
     session.invalidate();
     userId = -1;
     user = null;
-    flash = null;
     authToken = null;
   }
 

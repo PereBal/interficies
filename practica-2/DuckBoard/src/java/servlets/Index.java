@@ -10,6 +10,10 @@ import servlets.tools.Sesion;
 
 @WebServlet(name = "Index", urlPatterns = {"/duckboard"})
 public class Index extends HttpServlet {
+  
+  /**
+   * Just serve the goddam page!!
+   */
 
   /**
    * Handles the HTTP <code>GET</code> method.
@@ -21,6 +25,27 @@ public class Index extends HttpServlet {
    */
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    response.setContentType("text/plain;charset=UTF-8");
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+  }
+  
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    response.setContentType("text/plain;charset=UTF-8");
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+  }
+  
+  @Override
+  protected void doPut(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    response.setContentType("text/plain;charset=UTF-8");
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+  }
+  
+  @Override
+  protected void doDelete(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     response.setContentType("text/plain;charset=UTF-8");
     request.getRequestDispatcher("/index.jsp").forward(request, response);

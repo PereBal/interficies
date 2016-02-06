@@ -48,17 +48,17 @@
                   <div class="input-field col s2">
                     <p>
                       <input class="with-gap" name="sex" type="radio" value="H" id="test1" 
-                        <c:if test="${user.sex == 'H'}">checked</c:if> required/>
-                      <label for="test1">Male</label>
-                    </p>
-                    <p>
-                      <input class="with-gap" name="sex" type="radio" value="M" id="test2" 
-                             <c:if test="${user.sex == 'M'}">checked</c:if> required/>
-                      <label for="test2">Female</label>
-                    </p>
-                  </div>
-                  <div class="input-field col s12">
-                    <input name="email" type="email" class="validate" required value="${user.email}">
+                             <c:if test="${user.sex == 'H'}">checked</c:if> required/>
+                             <label for="test1">Male</label>
+                      </p>
+                      <p>
+                        <input class="with-gap" name="sex" type="radio" value="M" id="test2" 
+                        <c:if test="${user.sex == 'M'}">checked</c:if> required/>
+                        <label for="test2">Female</label>
+                      </p>
+                    </div>
+                    <div class="input-field col s12">
+                      <input name="email" type="email" class="validate" required value="${user.email}">
                     <label for="email" data-error="invalid email">Correo electrónico</label>
                   </div> 
                 </div> <!--End of personal information-->
@@ -148,9 +148,10 @@
               </div>
             </div>
 
-            <div class="card-action right-align">
-                <a id="deleteAccount" class="red-text" style="cursor:pointer;">BORRAR CUENTA</a>
-              <button  id="editButton" class="btn waves-effect waves-light light-blue darken-1">Editar
+            <div class="card-action">
+              <a id="deleteAccount" class="red-text">ELIMINAR</a>
+              <button  id="editButton" class="btn waves-effect waves-light light-blue darken-1">
+                EDITAR
                 <i class="fa fa-edit fa-2x"></i>
               </button>
             </div>
@@ -170,6 +171,20 @@
 
     $(document).ready(function () {
 
+      $('#deleteAccount').click(function (e) {
+        $.ajax({
+          url: '/duckboard/users',
+          type: 'DELETE',
+          success: function (data) {
+            // very safe, much wow...
+            window.location.replace('/duckboard');
+          },
+          error: function (err) {
+            window.location.replace('/duckboard');
+          }
+        });
+      });
+
       $('#editButton').click(function (e) {
 
         $('#updateForm').show(400, function () {
@@ -183,25 +198,25 @@
           // animation complete
         });
       });
-      
+
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
 
-      
+
       // this is JavaScript code written in the JSP
       var flashes = [
-        <c:forEach var="flash" items="${flashes}" varStatus="loop">
-            {
-              clazz : "${flash.clazz}",
+    <c:forEach var="flash" items="${flashes}" varStatus="loop">
+      {
+      clazz : "${flash.clazz}",
               message   : "${flash.message}",
-            }<c:if test="${!loop.last}">,</c:if>
-            
-        </c:forEach>
+      }<c:if test="${!loop.last}">,</c:if>
+
+    </c:forEach>
       ]
-      
-      showFlashes(flashes);
-      
+
+              showFlashes(flashes);
+
     });
 
   </script>

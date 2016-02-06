@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import servlets.tools.Helper;
 import servlets.tools.Sesion;
 
-@WebServlet(name = "Users", urlPatterns = {"/users", "/users/list"})
+@WebServlet(name = "Users", urlPatterns = {"/users"})
 public class Users extends HttpServlet {
 
   private model.User getUserData(HttpServletRequest request) {
@@ -95,9 +95,10 @@ public class Users extends HttpServlet {
 
       if (Sesion.isAutenticated(session)) {
 
-        user = session.getUser();
+        user = getUserData(session.getUserId(), request);
         if (db.www.DBActions.updateUser(user, pwd)) {
 
+          session.setUser(user);
           Helper.setNewSuccessFlash(session, "Actualización completada :D.");
 
         } else {
@@ -126,22 +127,6 @@ public class Users extends HttpServlet {
   }
 
   /**
-   * Handles the HTTP <code>PUT</code> method.
-   *
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
-  @Override
-  protected void doPut(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-
-    Sesion session = new Sesion(request.getSession());
-
-  }
-
-  /**
    * Handles the HTTP <code>Delete</code> method.
    *
    * @param request servlet request
@@ -163,8 +148,8 @@ public class Users extends HttpServlet {
       Helper.setNewErrorFlash(session, "HAW! HAW! LOOOOSER!!!");
     }
     session.invalidate();
+    // even if on /duckboard is a doDelete method, this shiet keeps fucking up...
     response.sendRedirect("/duckboard");
-
   }
 
   /**
