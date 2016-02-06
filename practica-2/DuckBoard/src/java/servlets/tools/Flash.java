@@ -2,8 +2,8 @@ package servlets.tools;
 
 public class Flash {
   
-  public static final String ERROR = "Rayos y centellas";
-  public static final String SUCCESS = "YAY!!";
+  public static final String ERROR = "Error";
+  public static final String SUCCESS = "Genial";
   
   private final String message;
   private final String clazz;

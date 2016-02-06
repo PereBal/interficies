@@ -15,7 +15,7 @@ var showFlashes = function (flashes) {
 
     var cssClass = undefined;
 
-    if (index.clazz === 'error') {
+    if (index.clazz === 'Error') {
 
       cssClass = 'alert-error';
     } else {

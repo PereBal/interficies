@@ -81,7 +81,7 @@ public class Graphs extends HttpServlet {
         }
       }
     } else {
-      
+
       request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 

@@ -1,6 +1,5 @@
 package db.www;
 
-import com.mysql.jdbc.Messages;
 import model.User;
 import db.tools.Utils;
 import java.io.UnsupportedEncodingException;
@@ -74,12 +73,16 @@ public class DBActions {
     }
   };
 
-  public static Boolean userExists(int userId) {
+  public static boolean userExists(int userId) {
     return getUser(basicFactory, "id=" + userId) != null;
   }
 
-  public static Boolean userExists(int userId, String authToken) {
+  public static boolean userExists(int userId, String authToken) {
     return getUser(basicFactory, "id=" + userId + " AND auth_token=" + Utils.cleanAuthToken(authToken)) != null;
+  }
+  
+  public static boolean emailExists(String email) {
+    return getUser(basicFactory, "email=" + Utils.cleanEmail(email)) != null;
   }
 
   public static User getUserById(int userId) {
@@ -119,25 +122,25 @@ public class DBActions {
     return null;
   }
 
-  public ArrayList<User> getUsers() {
-    // OJO al límit
-    final int lim = 20;
-    ArrayList<User> userList = null;
-    try (DBConnection con = new DBConnection();) {
-      con.open();
-      Statement st = con.getConection().createStatement();
-      ResultSet rs = st.executeQuery("SELECT " + basicFactory.fields() + " FROM user LIMIT " + lim + ";");
-
-      userList = new ArrayList<>(lim);
-      while (rs.next()) {
-        userList.add(basicFactory.toUser(rs));
-      }
-
-    } catch (Exception ex) {
-      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    return userList;
-  }
+//  public ArrayList<User> getUsers() {
+//    // OJO al límit
+//    final int lim = 20;
+//    ArrayList<User> userList = null;
+//    try (DBConnection con = new DBConnection();) {
+//      con.open();
+//      Statement st = con.getConection().createStatement();
+//      ResultSet rs = st.executeQuery("SELECT " + basicFactory.fields() + " FROM user LIMIT " + lim + ";");
+//
+//      userList = new ArrayList<>(lim);
+//      while (rs.next()) {
+//        userList.add(basicFactory.toUser(rs));
+//      }
+//
+//    } catch (Exception ex) {
+//      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    }
+//    return userList;
+//  }
 
   /**
    * Inserts an user into the DB.
