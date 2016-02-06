@@ -28,7 +28,7 @@ public class Utils {
   public static String cleanLastName(String lastName) {
     if (lastName == null)
       return null;
-    return "'" + lastName.toUpperCase().replaceAll("[^A-Z0-9]", "") + "'";
+    return "'" + lastName.toUpperCase().replaceAll("[^A-Z0-9 ]", "") + "'";
   }
 
   public static String cleanPwd(String pwd) {

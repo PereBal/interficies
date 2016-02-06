@@ -14,7 +14,7 @@
     var $calendar = $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 160, // Creates a dropdown of 80 years to control year
-      format: 'dd-mm-yyyy',
+      format: 'yyyy-mm-dd',
       clear: false
     });
 

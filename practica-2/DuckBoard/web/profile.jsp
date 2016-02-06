@@ -26,7 +26,7 @@
 
         <div class="row linear-transition" id="updateForm" style="display:none;">
           <div class="card col s12 ">
-            <form class="col s12" method="POST" action="">
+            <form class="col s12" method="POST" action="/duckboard/users?id=${user.id}">
               <div class="row">
                 <div class="input-field col s12">
                   <h5><i class="material-icons prefix" style="position: relative;top: 0.2em;">account_circle</i>Información personal:</h5>
@@ -69,7 +69,7 @@
                 <div class="col s10 offset-s1">
 
                   <div class="input-field col s6">
-                    <input name="pwd" type="password" class="validate" length="32" required>
+                    <input name="pwd" type="password" class="validate" length="32">
                     <label for="pwd">Password</label>
                   </div>
                   <!--              IMAGENES
@@ -83,7 +83,7 @@
                                     </div>
                   -->
                   <div class="input-field col s6">
-                    <input name="pwd2" type="password" class="validate" length="32" required>
+                    <input name="pwd2" type="password" class="validate" length="32">
                     <label for="pwd2">Repeat password</label>
                   </div>
 
@@ -97,7 +97,7 @@
               <div class="card-action">
                 <a id="cancelUpdate" style="cursor: pointer;">CANCELAR</a>
                 <button class="btn waves-effect waves-light light-blue darken-1" 
-                        type="button">ACTUALIZAR
+                        type="submit">ACTUALIZAR
                 </button>
               </div>
 

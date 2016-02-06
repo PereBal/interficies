@@ -184,25 +184,42 @@ public class DBActions {
 
       Statement st = conn.getConection().createStatement();
 
-      String query = "UPDATE user SET"
-              + "email=" + Utils.cleanEmail(newUser.getEmail()) + ","
-              + "name=" + Utils.cleanName(newUser.getName()) + ","
-              + "last_name=" + Utils.cleanLastName(newUser.getLastName()) + ","
-              + "sex=" + Utils.cleanSex(newUser.getSex()) + ","
-              + "auth_token=" + Utils.cleanAuthToken(newUser.getAuthToken()) + ","
-              + "birth_day=" + Utils.cleanBirthDay(newUser.getBirthDay()) + ","
-              + "quote=" + Utils.cleanQuote(newUser.getQuote()) + " ";
-      if (newPwd != null) {
-        query += ",pwd=" + Utils.encrypt(newPwd) + " ";
+      String subQuery = "";
+      if (newUser.getEmail() != null) {
+        subQuery += "email=" + Utils.cleanEmail(newUser.getEmail()) + ",";
       }
-      query += "WHERE id=" + newUser.getId() + ";";
-
-      st.executeUpdate(query);
-      return true;
+      if (newUser.getName() != null) {
+        subQuery += "name=" + Utils.cleanName(newUser.getName()) + ",";
+      }
+      if (newUser.getLastName() != null) {
+        subQuery += "last_name=" + Utils.cleanLastName(newUser.getLastName()) + ",";
+      }
+      if (newUser.getSex() != '\0') {
+        subQuery += "sex=" + Utils.cleanSex(newUser.getSex()) + ",";
+      }
+      if (newUser.getAuthToken() != null) {
+        subQuery += "auth_token=" + Utils.cleanAuthToken(newUser.getAuthToken()) + ",";
+      }
+      if (newUser.getBirthDay() != null) {
+        subQuery += "birth_day=" + Utils.cleanBirthDay(newUser.getBirthDay()) + ",";
+      }
+      if (newUser.getQuote() != null) {
+        subQuery += "quote=" + Utils.cleanQuote(newUser.getQuote()) + ",";
+      }
+      if (newPwd != null) {
+        subQuery += "pwd=" + Utils.encrypt(newPwd) + ",";
+      }
+      if (!subQuery.equals("")) {
+        subQuery = subQuery.substring(0, subQuery.length()-1);
+        subQuery = "UPDATE user SET " + subQuery + " WHERE id=" + newUser.getId() + ";";
+        System.out.println(subQuery);
+        st.executeUpdate(subQuery);
+        return true;
+      }
     } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
       java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      return false;
     }
+    return false;
   }
 
   public static boolean deleteUser(int id) {
@@ -271,27 +288,27 @@ public class DBActions {
 
   public static JSONArray getJSONUsers(String q) {
     JSONArray res = new JSONArray();
-    try(DBConnection conn = new DBConnection()) {
+    try (DBConnection conn = new DBConnection()) {
       conn.open();
-      
+
       Statement st = conn.getConection().createStatement();
-      
+
       String query = "SELECT "
               + "id,"
               + "email,"
               + "name "
               + "FROM user ";
-      
+
       if (q != null) {
         query += "WHERE email LIKE '" + q.toLowerCase().replaceAll("[^a-z0-9]", "") + "%' LIMIT 5;";
       } else {
         query += "LIMIT 5;";
       }
-      
+
       System.out.println(query);
-      
+
       ResultSet rs = st.executeQuery(query);
-      
+
       while (rs.next()) {
         res.put(new JSONObject().put(
                 "id", rs.getInt(1)
@@ -306,5 +323,5 @@ public class DBActions {
     }
     return res;
   }
-  
+
 }

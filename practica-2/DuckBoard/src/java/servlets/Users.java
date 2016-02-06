@@ -23,7 +23,7 @@ public class Users extends HttpServlet {
     String name = request.getParameter("name");
     String lastName = request.getParameter("last_name");
     char sex = request.getParameter("sex").charAt(0);
-    String birthDay = LocalDate.parse(request.getParameter("birth_day"), DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
+    String birthDay = LocalDate.parse(request.getParameter("birth_day"), DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
     String quote = request.getParameter("quote");
 
     return new model.User(userId, email, name, lastName, sex, null, birthDay, quote);
@@ -89,16 +89,40 @@ public class Users extends HttpServlet {
     String pwd = request.getParameter("pwd");
     String authToken = java.util.UUID.randomUUID().toString();
 
-    model.User u = getUserData(request);
-    u.setAuthToken(authToken);
+    model.User user;
 
-    if (db.www.DBActions.insertUser(u, pwd)) {
-      session.autenticate(u.getEmail());
-      Helper.setNewSuccessFlash(session, "Has sido registrado correctamente, loggeate para disfrutar!.");
+    if (request.getParameter("id") != null) {
+
+      if (Sesion.isAutenticated(session)) {
+
+        user = session.getUser();
+        if (db.www.DBActions.updateUser(user, pwd)) {
+
+          Helper.setNewSuccessFlash(session, "Actualización completada :D.");
+
+        } else {
+
+          Helper.setNewErrorFlash(session, "Se ha producido un error :'(");
+        }
+      } else {
+
+        Helper.setNewErrorFlash(session, "Sesion invalida -_-!!");
+      }
+      response.sendRedirect("/duckboard/users?id=" + session.getUserId());
     } else {
-      Helper.setNewErrorFlash(session, "Ha ocurrido un error");
+
+      user = getUserData(request);
+      user.setAuthToken(authToken);
+      if (db.www.DBActions.insertUser(user, pwd)) {
+
+        session.autenticate(user.getEmail());
+        Helper.setNewSuccessFlash(session, "Has sido registrado correctamente, loggeate para disfrutar!.");
+      } else {
+
+        Helper.setNewErrorFlash(session, "Ha ocurrido un error");
+      }
+      response.sendRedirect("/duckboard");
     }
-    response.sendRedirect("/duckboard");
   }
 
   /**
@@ -114,19 +138,7 @@ public class Users extends HttpServlet {
           throws ServletException, IOException {
 
     Sesion session = new Sesion(request.getSession());
-    String pwd = request.getParameter("pwd");
 
-    if (Sesion.isAutenticated(session)) {
-      model.User u = session.getUser();
-      if (db.www.DBActions.updateUser(u, pwd)) {
-        Helper.setNewSuccessFlash(session, "Actualización completada :D.");
-      } else {
-        Helper.setNewErrorFlash(session, "Se ha producido un error :'(");
-      }
-    } else {
-      Helper.setNewErrorFlash(session, "Sesion invalida -_-!!");
-      response.sendRedirect("/duckboard");
-    }
   }
 
   /**
