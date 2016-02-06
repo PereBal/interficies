@@ -1,0 +1,15 @@
+# run docker-compose
+docker-compose up -d
+docker-compose ps
+dokcer-compose stop
+
+# kill or remove docker-compose
+docker-compose kill
+docker-compose rm -f
+
+# git block/unblock files
+git update-index --assume-unchanged <file>
+git update-index --no-assume-unchanged <file>
+
+# list --assume-unchanged
+git ls-files -v|grep '^h'
