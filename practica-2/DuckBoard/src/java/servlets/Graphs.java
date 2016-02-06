@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
+import servlets.tools.Helper;
 
 /**
  *
@@ -46,37 +47,43 @@ public class Graphs extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    try {
-      JSONArray graph;
-      int graphId = Integer.parseInt(request.getPathInfo().replaceAll("[^0-9]", ""));
 
-      String dirtyMonth = request.getParameter("month");
-      int year = Integer.parseInt(request.getParameter("year").replaceAll("[^0-9]", ""));
-      
-      db.highcharts.DBActions db = new db.highcharts.DBActions();
-      if (dirtyMonth == null) {
-        graph = db.getGraph(graphId, year);
-      } else {
-        graph = db.getGraph(graphId, year, toMonthNumber(dirtyMonth.toLowerCase().replaceAll("[^a-z]", "")));
-      }
-      
-      response.setContentType("application/json;charset=UTF-8");
-      try (PrintWriter out = response.getWriter()) {
-        out.println(graph.toString());
-      }
-    } catch (Exception ex) {
-      java.util.logging.Logger.getLogger(Graphs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      response.setContentType("text/plain;charset=UTF-8");
-      try (PrintWriter out = response.getWriter()) {
+    if (Helper.isAjax(request)) {
+      try {
+        JSONArray graph;
+        int graphId = Integer.parseInt(request.getPathInfo().replaceAll("[^0-9]", ""));
 
-        out.println("###:::: ##:::  #####:::: ######:::: ######");
-        out.println("####::: ##::: ##.. ##::: ##.. ##::: ##... ");
-        out.println("## ##:: ##::: ##.. ##::: ##.. ##::: ##... ");
-        out.println("##: ##: ##::: ##.. ##::: ######:::: ##### ");
-        out.println("##:: ## ##::: ##.. ##::: ##:::::::: ##... ");
-        out.println("##::: ####::: ##.. ##::: ##:::::::: ##... ");
-        out.println("##:::: ###:::  #####:::: ##:::::::: ######");
+        String dirtyMonth = request.getParameter("month");
+        int year = Integer.parseInt(request.getParameter("year").replaceAll("[^0-9]", ""));
+
+        db.highcharts.DBActions db = new db.highcharts.DBActions();
+        if (dirtyMonth == null) {
+          graph = db.getGraph(graphId, year);
+        } else {
+          graph = db.getGraph(graphId, year, toMonthNumber(dirtyMonth.toLowerCase().replaceAll("[^a-z]", "")));
+        }
+
+        response.setContentType("application/json;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+          out.println(graph.toString());
+        }
+      } catch (Exception ex) {
+        java.util.logging.Logger.getLogger(Graphs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        response.setContentType("text/plain;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+          out.println("###:::: ##:::  #####:::: ######:::: ######");
+          out.println("####::: ##::: ##.. ##::: ##.. ##::: ##... ");
+          out.println("## ##:: ##::: ##.. ##::: ##.. ##::: ##... ");
+          out.println("##: ##: ##::: ##.. ##::: ######:::: ##### ");
+          out.println("##:: ## ##::: ##.. ##::: ##:::::::: ##... ");
+          out.println("##::: ####::: ##.. ##::: ##:::::::: ##... ");
+          out.println("##:::: ###:::  #####:::: ##:::::::: ######");
+        }
       }
+    } else {
+      
+      request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 
   }

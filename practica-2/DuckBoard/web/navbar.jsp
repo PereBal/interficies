@@ -23,6 +23,9 @@
         <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li>
+            <a href="/duckboard/graphs"><i class="material-icons left">dashboard</i>Dashboard</a>
+          </li>
+          <li>
             <a href="/duckboard/users" class="waves-effect waves-light right"><i class="material-icons left">contacts</i>Usuarios</a>
           </li>
           <li>
@@ -38,6 +41,9 @@
           </li>
         </ul>
         <ul class="side-nav" id="mobile-navbar">
+          <li>
+            <a href="/duckboard/graphs"><i class="material-icons left">dashboard</i>Dashboard</a>
+          </li>
           <li>
             <a href="/duckboard/users"><i class="material-icons left">contacts</i>Usuarios</a>
           </li>
