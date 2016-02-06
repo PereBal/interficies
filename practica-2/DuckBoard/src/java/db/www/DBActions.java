@@ -283,7 +283,7 @@ public class DBActions {
               + "FROM user ";
       
       if (q != null) {
-        query += "WHERE email LIKE " + q.toLowerCase().replaceAll("[^a-z0-9]", "") + "% LIMIT 5;";
+        query += "WHERE email LIKE '" + q.toLowerCase().replaceAll("[^a-z0-9]", "") + "%' LIMIT 5;";
       } else {
         query += "LIMIT 40;";
       }
