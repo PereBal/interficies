@@ -10,7 +10,7 @@
     <!-- Dropdown Structure -->
     <ul id="navbar-dropdown" class="dropdown-content">
       <li>
-        <a href="/duckboard/users?id=${user.id}"><i class="material-icons left">perm_identity</i>Perfil</a>
+        <a href="/duckboard/users?id=${user.id}"><i class="material-icons left">assignment_ind</i>Perfil</a>
       </li>
       <li class="divider"></li>
       <li>
@@ -73,8 +73,10 @@
             </li>
           </c:if>
           <li>
-            <a href="/duckboard/users?id=-1" class="waves-effect waves-light"><i class="material-icons left">assignment_ind
-</i>Registrar</a>
+            <a href="/duckboard/users?id=-1" class="waves-effect waves-light">
+              <i class="material-icons left">assignment_ind</i>
+              Registrar
+            </a>
           </li>
         </ul>
         <ul class="side-nav" id="mobile-navbar">
@@ -84,8 +86,10 @@
           </li>
           </c:if>
           <li>
-            <a href="/duckboard/users?id=-1" class="waves-effect waves-light"><i class="material-icons left">assignment_ind
-</i>Registrar</a>
+            <a href="/duckboard/users?id=-1" class="waves-effect waves-light">
+              <i class="material-icons left">assignment_ind</i>
+              Registrar
+            </a>
           </li> 
         </ul>
       </div>
