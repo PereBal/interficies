@@ -59,7 +59,7 @@
                 <div class="col s10 offset-s1 grey-text text-darken-3">
 
                   <div class="input-field col s6">
-                    <input name="pwd" type="password" class="validate" length="32" required>
+                    <input id="pwd" name="pwd" type="password" length="32" required>
                     <label for="pwd">Password</label>
                   </div>
                   <!--              IMAGENES
@@ -73,7 +73,7 @@
                                     </div>
                   -->
                   <div class="input-field col s6">
-                    <input name="pwd2" type="password" class="validate" length="32" required>
+                    <input id="pwd2" name="pwd2" type="password" length="32" required>
                     <label for="pwd2">Repeat password</label>
                   </div>
 
@@ -102,12 +102,10 @@
 
     <script type="text/javascript">
 
-      $(document).ready(function () {
-        
+      $(document).ready(function () {        
       /*********************************/
       /******** TOAST MSGS *************/
       /*********************************/
-
       
       // this is JavaScript code written in the JSP
       var flashes = [
@@ -121,11 +119,30 @@
       ]
       
       showFlashes(flashes);
-           
+
+      var pwd = document.getElementById('pwd');
+      var pwd2 = document.getElementById('pwd2');
+      $('#pwd').keypress(function (event) {
+        if (event.which === 13) {
+          event.preventDefault();
+        }
+        pwdcheck();
+      });
+      $('#pwd2').keypress(function (event) {
+        if (event.which === 13) {
+          event.preventDefault();
+        }
+        pwdcheck();
       });
 
+      function pwdcheck() {
+        if (pwd.value !== pwd2.value) {
+          // Wrong label
+          document.getElementById('');
+        } else {
+          // Matches label
+        }
+      };
     </script>
-
   </body>
 </html>
-

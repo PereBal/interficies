@@ -52,66 +52,201 @@
                 <span class="new badge">4</span>
                 <p>@last-msg</p>
               </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
-              <li class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
-                <!--<img src="images/yuna.jpg" alt="" class="circle">-->
-                <i class="material-icons circle">contacts</i>
-                <span class="title">Username</span>
-                <span class="new badge">4</span>
-                <p>@last-msg</p>
-              </li>
             </ul>
           </div>
-            <!-- Conversation -->
-          <div class="col s8 dynamic-height"></div>
+          <!-- Conversation -->
+          <div class="col s8 dynamic-overflow chat-border col-fit">
+            <div class="dynamic-height-messages" style="overflow-y: auto">
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 left">
+                  <div class="chat-bubble-text">Hola guapo
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:41
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-fit">
+                <div class="chat-bubble blue-grey lighten-5 right">
+                  <div class="chat-bubble-text">Mierda!
+                    <span class="chat-timestamp grey-text text-darken-1">
+                      <i class="fa fa-clock-o"></i>10:42
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form action="#" class="send-height">
+              <div class="col s9 col-fit">
+                <textarea id="message" class="text-area send-height" placeholder="Escribir un mensaje..."></textarea>
+              </div>
+              <div class="col s3 col-fit center">
+                <a class="waves-effect waves-light send-height" name="send">Enviar</a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </main>
