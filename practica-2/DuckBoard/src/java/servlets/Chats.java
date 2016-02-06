@@ -95,17 +95,21 @@ public class Chats extends HttpServlet {
 
         Chat currentChat = null;
         String chatIdP = request.getParameter("cid");
+        
         if (chatIdP != null) {
-          ObjectId chatId = new ObjectId();
+          ObjectId chatId = new ObjectId(chatIdP);
           currentChat = Chat.retrieveByPk(chatId.toString());
-          currentChat.setLastReadMessage(user.getId());
+          
+          if (!currentChat.getMessages().isEmpty()) {
+            currentChat.setLastReadMessage(user.getId());
+          }
         }
         request.setAttribute("currentChat", currentChat);
       } catch (NullPointerException | UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
         Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
         response.sendRedirect("/duckboard"); return;
       }
-
+         
       request.getRequestDispatcher("/chats.jsp").forward(request, response);
     }
   }

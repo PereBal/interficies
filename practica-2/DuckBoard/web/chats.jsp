@@ -1,22 +1,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@page import="servlets.tools.Helper"%>
-<%
-  pageContext.setAttribute("cuser", Helper.getCurrentUser(request));
-  pageContext.setAttribute("chats", request.getParameter("chats"));
-  pageContext.setAttribute("cchat", request.getParameter("currentChat"));
-%>
+<%pageContext.setAttribute("user", Helper.getCurrentUser(request));%>
 <!DOCTYPE html>
 <html>
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
-    <main>
-      <form method="POST" action="/duckboard/chats">
-        <input hidden name="party" value="4">
-        <button type="submit">Crear un chat</button>
-      </form>
+    <main>      
       <div class="container" style="padding-top: 10px">
         <div class="row z-depth-3 dynamic-height">
           <div id="scrolldiv" class="col s4 col-fit dynamic-height">
@@ -33,7 +24,7 @@
             </nav> 
             <ul id="contact-list" class="collection" style="overflow-y: auto">
               <c:choose>
-                <c:when test="${empty chat}">
+                <c:when test="${empty chats}">
                   <li class="valign-wrapper">
                     <h5 class="valign">This should be vertically aligned</h5>
                   </li>
@@ -43,7 +34,7 @@
                     <li id="li" class="collection-li collection-item avatar" style="cursor: pointer" onclick="refresh()">
                       <i class="material-icons circle">contacts</i>
                       <c:forEach var="party" items="${chat.parties}">
-                        <c:if test="${current-user.id != party.user.id}">
+                        <c:if test="${user.id != party.user.id}">
                           <span class="title"><c:out value="${party.user.name}"/></span>
                           <span class="new badge"><c:out value="${party.countUnreadMessages()}"/></span>
                           <p><c:out value="${party.lastReadMessage.text}"/></p>
@@ -57,7 +48,7 @@
           </div>
           <!-- Conversation -->
           <c:choose>
-            <c:when test="${empty cchat}">
+            <c:when test="${empty currentChat}">
               <div class="col s8 col-fit chat-border">
                 <div class="valign-wrapper">
                   <h5 class="valign">This should be vertically aligned</h5>
@@ -67,7 +58,7 @@
             <c:otherwise>
               <div class="col s8 col-fit chat-border dynamic-overflow">
                 <div class="dynamic-height-messages" style="overflow-y: auto">
-                  <c:forEach var="msg" items="${cchat.messages}">
+                  <c:forEach var="msg" items="${currentChat.messages}">
                     <c:choose>
                       <c:when test="${msg.user.id != cuser.id}">
                         <div class="row row-fit">
@@ -94,7 +85,7 @@
                     </c:choose>
                   </c:forEach>
                 </div>
-                <form action="#" class="send-height">
+                <form method="POST" action="#" class="send-height">
                   <div class="col s9 col-fit">
                     <textarea id="message" class="text-area send-height" placeholder="Escribir un mensaje..."></textarea>
                   </div>
