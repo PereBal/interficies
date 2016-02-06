@@ -38,7 +38,7 @@
                     <label for="name">Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input name="birth_day" type="date" class="datepicker" value="${user.birthDay}">
+                    <input name="birth_day" type="date" class="datepicker" value="${user.birthDay}" required>
                     <label for="birth_day">Birthday</label>
                   </div>
                   <div class="input-field col s10">

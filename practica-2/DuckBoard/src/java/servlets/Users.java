@@ -52,7 +52,7 @@ public class Users extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         if (uid > -1) {
           // get User
-          org.json.JSONObject res = session.getUser().toJSON();
+          org.json.JSONObject res = db.www.DBActions.getUserById(uid).toJSON();
           try (java.io.PrintWriter out = response.getWriter()) {
             out.println(res.toString());
           }

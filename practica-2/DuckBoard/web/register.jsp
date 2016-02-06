@@ -30,7 +30,7 @@
                     <label for="name">Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input name="birth_day" type="date" class="datepicker">
+                    <input name="birth_day" type="date" class="datepicker" required>
                     <label for="birth_day">Birthday</label>
                   </div>
                   <div class="input-field col s10">

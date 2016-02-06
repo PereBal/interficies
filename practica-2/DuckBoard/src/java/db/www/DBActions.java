@@ -285,18 +285,20 @@ public class DBActions {
       if (q != null) {
         query += "WHERE email LIKE '" + q.toLowerCase().replaceAll("[^a-z0-9]", "") + "%' LIMIT 5;";
       } else {
-        query += "LIMIT 40;";
+        query += "LIMIT 5;";
       }
+      
+      System.out.println(query);
       
       ResultSet rs = st.executeQuery(query);
       
       while (rs.next()) {
         res.put(new JSONObject().put(
-                "id", rs.getInt(0)
+                "id", rs.getInt(1)
         ).put(
-                "email", rs.getString(1)
+                "email", rs.getString(2)
         ).put(
-                "name", rs.getString(2)
+                "name", rs.getString(3)
         ));
       }
     } catch (SQLException ex) {
