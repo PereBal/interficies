@@ -64,6 +64,7 @@
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
                 <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://es.linkedin.com/"><i class="blue-text text-darken-3 fa fa-linkedin-square"></i></a>
                 <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
                 <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
               </span>
@@ -75,6 +76,7 @@
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
                 <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://es.linkedin.com/"><i class="blue-text text-darken-3 fa fa-linkedin-square"></i></a>
                 <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
                 <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
               </span>
@@ -86,6 +88,7 @@
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
                 <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://es.linkedin.com/"><i class="blue-text text-darken-3 fa fa-linkedin-square"></i></a>
                 <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
                 <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
               </span>
@@ -97,6 +100,7 @@
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
                 <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://es.linkedin.com/"><i class="blue-text text-darken-3 fa fa-linkedin-square"></i></a>
                 <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
                 <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
               </span>
@@ -108,6 +112,7 @@
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
                 <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://es.linkedin.com/"><i class="blue-text text-darken-3 fa fa-linkedin-square"></i></a>
                 <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
                 <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
               </span>
@@ -119,6 +124,7 @@
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
                 <a href="https://es-es.facebook.com/"><i class="blue-text text-darken-4 fa fa-facebook-official"></i></a>
+                <a href="https://es.linkedin.com/"><i class="blue-text text-darken-3 fa fa-linkedin-square"></i></a>
                 <a href="https://github.com/"><i class="black-text fa fa-github"></i></a>
                 <a href="https://plus.google.com/"><i class="red-text fa fa-google-plus"></i></a>
               </span>

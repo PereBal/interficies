@@ -8,7 +8,7 @@
 
       <div id="g1" class="container" style="display:none">
         <div class="card">
-          <div class="card-content">
+          <div  class="card-content">
             <h4 class="card-title">Cantidad de tuits por tendencia</h4>
             <div class="row">
 
@@ -46,7 +46,7 @@
                   <a onClick="graphColumn('#graph1', '', [], 'tuits', '',$('#gr1A').val(), $('#gr1M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div id="graph1" class="col s12">
+              <div style="min-height:400px !important" id="graph1" class="col s12">
 
               </div>
             </div>
@@ -60,7 +60,7 @@
 
       <div id="g2" class="container" style="display:none">
         <div class="card">
-          <div class="card-content">
+          <div  class="card-content">
             <h4 class="card-title">Porcentaje de uso de idiomas</h4>
             <div class="row">
               <div class="col s12">
@@ -97,7 +97,7 @@
                   <a onClick="graphSemiCircle('#graph2', '', $('#gr2A').val(), $('#gr2M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div id="graph2" class="col s12">
+              <div style="min-height:400px !important" id="graph2" class="col s12">
 
               </div>
             </div>
@@ -111,7 +111,7 @@
 
       <div id="g4" class="container" style="display:none">
         <div class="card">
-          <div class="card-content">
+          <div  class="card-content">
             <h4 class="card-title">Cantidad de tuits por isla y estación del año</h4>
             <div class="row">
               <div class="col s12">
@@ -130,9 +130,10 @@
                   <a onClick="graphPolar('#graph4', '', ['Fuera de Baleares','Ibiza','Formentera','Unknown','Mallorca','Menorca'], 'tuits', '', $('#gr4A').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div  id="graph4" class="col s12">
+              <div style="min-height:400px !important" id="graph4" class="col s12">
 
               </div>
+       
             </div>
 
             <div class="card-action">
@@ -144,7 +145,7 @@
 
       <div id="g3" class="container" style="display:none">
         <div class="card">
-          <div class="card-content">
+          <div  class="card-content">
             <h4 class="card-title">Polaridad por día de la semana</h4>
             <div class="row">
               <div class="col s12">
@@ -181,7 +182,7 @@
                   <a onClick="graphLine('#graph3', '', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 'tuits', '',$('#gr3A').val(), $('#gr3M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div id="graph3" class="col s12 ">
+              <div style="min-height:400px !important" id="graph3" class="col s12 ">
 
               </div>
             </div>
@@ -195,7 +196,7 @@
 
       <div id="g5" class="container" style="display:none">
         <div class="card">
-          <div class="card-content">
+          <div  class="card-content">
             <h4 class="card-title">Las islas son tendencia!</h4>
             <div class="row">
               <div class="col s12">
@@ -232,7 +233,7 @@
                   <a onClick="graphPieLegend('#graph5', '', $('#gr5A').val(), $('#gr5M').val());" class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div id="graph5" class="col s12">
+              <div style="min-height:400px !important" id="graph5" class="col s12">
 
               </div>
             </div>
@@ -293,6 +294,11 @@
                 <a onClick="ver('#g4')" class="blue-text text-darken-1" href="#">Ver gráfica</a>
               </div>
             </div>
+            <!--
+            <div class="card center col s12">
+              <div class="col s5 offset-s1"><a>VER TODO</a></div>
+              <div class="col s5 offset-s1"><a class="orange-text text-darken-1 ">CERRAR TODO</a></div>
+            </div>-->
           </div>
 
 
@@ -306,7 +312,7 @@
                     <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Polaridad</span>
                   </div>
                   <div class="card-action">
-                    <a onClick="ver('#g3')" class="blue-text text-darken-1" href="#">Ver gráfica</a>
+                    <a onClick="ver('#g3');" class="blue-text text-darken-1" href="#">Ver gráfica</a>
                   </div>
                 </div>
               </div>
@@ -342,13 +348,7 @@
     var centerCardAction = $('#centerCardAction');
 
     $(document).ready(function () {
-      graphColumn('#graph1', '', [], 'tuits', '', 2015, 'ALL');
-      graphSemiCircle('#graph2', '', 2015, 'ALL');
-      graphLine('#graph3', '', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 'tuits', '', 2015, 'ALL');
-      graphPolar('#graph4', '', ['Fuera de Baleares','Ibiza','Formentera','Unknown','Mallorca','Menorca'], 'tuits', '', 2015);
-      graphPieLegend('#graph5', '', 2015, 'ALL');
-
-
+ 
       setHeight();
     });
 
@@ -364,11 +364,30 @@
       console.log(centerCardAction.height())
       centerCardBody.css({height: rowHeight});
     }
+   
 
     function ver(id) {
       $(id).toggle(400, function () {
         // animation complete
+        switch(id){
+        case '#g1':
+          graphColumn('#graph1', '', [], 'tuits', '', 2015, 'ALL');
+          break;
+        case '#g2':
+          graphSemiCircle('#graph2', '', 2015, 'ALL');
+          break;
+        case '#g3':
+          graphLine('#graph3', '', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 'tuits', '', 2015, 'ALL');
+          break;
+        case '#g4':
+           graphPolar('#graph4', '', ['Fuera de Baleares','Ibiza','Formentera','Unknown','Mallorca','Menorca'], 'tuits', '', 2015);
+          break;
+        case '#g5':
+          graphPieLegend('#graph5', '', 2015, 'ALL');
+          break;       
+      }  
       });
+            
     }
 
     function cerrar(id) {
