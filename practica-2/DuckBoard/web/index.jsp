@@ -9,11 +9,36 @@
         <div class="parallax"><img src="img/parallax1.png"></div>
         <ul id="staggered-test">
           <li>
-            <h1 style="margin-left:2em;" >
+            <h1 class="center">
               Bienvenido!
-              <h4 style="margin-left:2.8em;">Haz scroll para descubrir más!</h4>
             </h1>
           </li>
+          <li>
+            <h4 class="center">Haz scroll para descubrir más!</h4>
+          </li>
+          <div id="login" class="row linear-transition" style="display:none;">
+            <form class="col s6 offset-s3" method="POST" action="/duckboard/login">
+              <div class="card white">
+                <div class="card-content grey-text text-darken-3">
+                  <span class="card-title grey-text text-darken-2">Login</span>
+                  <div class="input-field">
+                    <input id="email" type="email" class="validate" name="email">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field">
+                    <input id="password" type="password" class="validate" name="password">
+                    <label for="password">Password</label>
+                  </div>
+                </div>
+                <div class="card-action right-align">
+                  <div class="">
+                    <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
+                    <button href="#" class="btn waves-effect waves-light light-blue darken-1 " type="submit">Entrar</button>
+                  </div>
+                </div>
+              </div> 
+            </form>     
+          </div>
         </ul>
       </div>
       <div class="section white" id="staggered-test2">
@@ -111,14 +136,32 @@
     <script type="text/javascript">
        $(document).ready(function(){
         $('.parallax').parallax();
-       });
         Materialize.showStaggeredList('#staggered-test');
+       });
+        
         var options = [
           {selector: '#staggered-test2', offset: 550, callback: 'Materialize.toast("¿Ya sabes que hacemos?", 1500 )' },
           {selector: '#staggered-test3', offset: 675, callback: 'Materialize.toast("Si! Estos somos nostros!", 1500 )' }
-          ];
+          ]
+        Materialize.scrollFire(options);
         
-  Materialize.scrollFire(options);
+             /*********************************/
+              /****** LOGIN FUNCTIONS **********/
+              /*********************************/
+
+        $('.loginButton').click(function (e) {
+
+        $('#login').toggle(400, function () {
+        // animation complete
+        });
+        });
+        $('#cancelLogin').click(function (e) {
+
+        $('#login').hide(400, function () {
+        // animation complete
+        });
+      });
+      
     </script>
   </body>
 </html>
