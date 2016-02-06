@@ -14,18 +14,18 @@
               <div class="col s12">
                 <div class="input-field col s5">
                   <select>
-                    <option class="blue-text text-darken-1" value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
                     <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
                   </select>
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
                   <select>
-                    <option value="">Media anual</option>
+                    <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
                     <option value="marzo">Marzo</option>
@@ -65,18 +65,18 @@
               <div class="col s12">
                 <div class="input-field col s5">
                   <select>
-                    <option class="blue-text text-darken-1" value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
                     <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
                   </select>
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
                   <select>
-                    <option value="">Media anual</option>
+                    <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
                     <option value="marzo">Marzo</option>
@@ -116,12 +116,12 @@
               <div class="col s12">
                 <div class="input-field col s5">
                   <select>
-                    <option class="blue-text text-darken-1" value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
                     <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
                   </select>
                   <label>Año</label>
                 </div>
@@ -148,19 +148,19 @@
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
-                  <select>
-                    <option class="blue-text text-darken-1" value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
+                  <select id="g3A">
                     <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
                   </select>
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
-                  <select>
-                    <option value="">Media anual</option>
+                  <select id="g3M">
+                    <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
                     <option value="marzo">Marzo</option>
@@ -180,7 +180,7 @@
                   <a class="blue darken-1 waves-effect waves-light btn"><i class="fa fa-refresh"></i></a>
                 </div>
               </div>
-              <div id="graph3" class="col s12">
+              <div id="graph3" class="col s12 ">
 
               </div>
             </div>
@@ -200,18 +200,18 @@
               <div class="col s12">
                 <div class="input-field col s5">
                   <select>
-                    <option class="blue-text text-darken-1" value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
                     <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
                   </select>
                   <label>Año</label>
                 </div>
                 <div class="input-field col s5">
                   <select>
-                    <option value="">Media anual</option>
+                    <option value="ALL">Media anual</option>
                     <option value="enero">Enero</option>
                     <option value="febrero">Febrero</option>
                     <option value="marzo">Marzo</option>
@@ -319,6 +319,14 @@
   <jsp:include page="scripts.jsp"/>
   <!--Scripts-->
   <script type="text/javascript">
+    
+  $(document).ready(function() {    
+    graphColumn('#graph1', '', [], 'tuits', '', 2015, 'ALL');
+    graphSemiCircle('#graph2', '', 2015,'ALL');
+    graphLine('#graph3', '', ['Lunes','Martes','Miercoles','Jueves','Viernes','Sábado','Domingo'], 'tuits', '', 2015, 'ALL');
+    graphPolar('#graph4', '', [], '', '', 2015);
+    graphPieLegend('#graph5', '', 2015, 'ALL');
+    });
 
     function ver(id) {
       $(id).toggle(400, function () {

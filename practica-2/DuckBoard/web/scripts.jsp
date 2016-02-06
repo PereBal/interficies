@@ -2,6 +2,7 @@
 <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/helper.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     // Activate Dropdown menu

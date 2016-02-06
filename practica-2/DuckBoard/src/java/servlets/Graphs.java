@@ -19,7 +19,7 @@ import servlets.tools.Helper;
  *
  * @author pere
  */
-@WebServlet(name = "Graphs", urlPatterns = {"/graphs/*"})
+@WebServlet(name = "Graphs", urlPatterns = {"/graphs"})
 public class Graphs extends HttpServlet {
 
   private int toMonthNumber(String monthName) throws Exception {
@@ -51,7 +51,8 @@ public class Graphs extends HttpServlet {
     if (Helper.isAjax(request)) {
       try {
         JSONArray graph;
-        int graphId = Integer.parseInt(request.getPathInfo().replaceAll("[^0-9]", ""));
+        
+        int graphId = Integer.parseInt(request.getParameter("id"));
 
         String dirtyMonth = request.getParameter("month");
         int year = Integer.parseInt(request.getParameter("year").replaceAll("[^0-9]", ""));

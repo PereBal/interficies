@@ -39,6 +39,7 @@ var showFlashes = function (flashes) {
  * @returns {undefined}
  */
 function graphColumn(id, title, xCategories, yText, yScale, year, month) {
+
   function graph1(data) {
     $(id).highcharts({
       chart: {
@@ -48,9 +49,9 @@ function graphColumn(id, title, xCategories, yText, yScale, year, month) {
         text: title
       },
       xAxis: {
-        categories: [
+        categories: 
           xCategories
-        ],
+        ,
         crosshair: true
       },
       yAxis: {
@@ -78,19 +79,37 @@ function graphColumn(id, title, xCategories, yText, yScale, year, month) {
     });
   }
   $(document).ready(function () {
-    $.ajax({
+    if (month==="ALL") {
+          $.ajax({
       type: 'GET',
-      url: '/DuckBoard/graphs/1',
+      url: '/duckboard/graphs',
       async: true,
       dataType: "json",
       data: ({
+        'id': 1,
+        'year': year
+      }),
+      success: function (data) {
+        graph1(data);
+      }
+    });
+    }else{
+    $.ajax({
+      type: 'GET',
+      url: '/duckboard/graphs',
+      async: true,
+      dataType: "json",
+      data: ({
+        'id': 1,
         'year': year,
         'month': month
       }),
       success: function (data) {
         graph1(data);
       }
-    });
+    }); 
+    }
+
   });
 }
 
@@ -145,12 +164,28 @@ function graphSemiCircle(id, title, year, month) {
     });
   }
   $(document).ready(function () {
-    $.ajax({
+    if (month==="ALL") {
+      $.ajax({
       type: 'GET',
-      url: '/DuckBoard/graphs/2',
+      url: '/duckboard/graphs',
       async: true,
       dataType: "json",
       data: ({
+        'id':2,
+        'year': year
+      }),
+      success: function (data) {
+        graph2(data);
+      }
+    });
+    }else {
+          $.ajax({
+      type: 'GET',
+      url: '/duckboard/graphs',
+      async: true,
+      dataType: "json",
+      data: ({
+        'id':2,
         'year': year,
         'month': month
       }),
@@ -158,6 +193,9 @@ function graphSemiCircle(id, title, year, month) {
         graph2(data);
       }
     });
+    }
+
+
   });
 }
 
@@ -207,12 +245,28 @@ function graphLine(id, title, xCategories, yText, yScale, year, month) {
     });
   }
   $(document).ready(function () {
-    $.ajax({
+    if (month==="ALL") {
+         $.ajax({
       type: 'GET',
-      url: '/DuckBoard/graphs/3',
+      url: '/duckboard/graphs',
       async: true,
       dataType: "json",
       data: ({
+        'id': 3,
+        'year': year
+      }),
+      success: function (data) {
+        graph3(data);
+      }
+    });
+    }else {
+         $.ajax({
+      type: 'GET',
+      url: '/duckboard/graphs',
+      async: true,
+      dataType: "json",
+      data: ({
+        'id': 3,
         'year': year,
         'month': month
       }),
@@ -220,6 +274,9 @@ function graphLine(id, title, xCategories, yText, yScale, year, month) {
         graph3(data);
       }
     });
+    }
+
+ 
   });
 }
 
@@ -234,7 +291,7 @@ function graphLine(id, title, xCategories, yText, yScale, year, month) {
  * @param {string} month NOPE
  * @returns {undefined}
  */
-function graphPolar(id, title, xCategories, yText, yScale, year/*, month*/) {
+function graphPolar(id, title, xCategories, yText, yScale, year) {
   function graph4(data) {
     $(id).highcharts({
       chart: {
@@ -286,14 +343,15 @@ function graphPolar(id, title, xCategories, yText, yScale, year/*, month*/) {
     });
   }
   $(document).ready(function () {
+    
     $.ajax({
       type: 'GET',
-      url: '/DuckBoard/graphs/4',
+      url: '/duckboard/graphs',
       async: true,
       dataType: "json",
       data: ({
-        'year': year/*,
-        'month': month*/
+        'id': 4,
+        'year': year
       }),
       success: function (data) {
         graph4(data);
@@ -348,19 +406,53 @@ function graphPieLegend(id, title, year, month) {
     });
   }
   $(document).ready(function () {
-    $.ajax({
+    if(month==="ALL"){
+          $.ajax({
       type: 'GET',
-      url: '/DuckBoard/graphs/5',
+      url: '/duckboard/graphs',
       async: true,
       dataType: "json",
+      
       data: ({
+        'id': 5,
+        'year': year
+      }),
+      success: function (data) {
+        var fdb = data[0]['y'];
+        data[0]=data[3];
+        data[0]['y']+=fdb;
+        data[3]=data[4];
+        data[4]=data[5];
+        delete data[5];
+
+        graph5(data);
+      }
+    });
+    }else{
+         $.ajax({
+      type: 'GET',
+      url: '/duckboard/graphs',
+      async: true,
+      dataType: "json",
+      
+      data: ({
+        'id': 5,
         'year': year,
         'month': month
       }),
       success: function (data) {
+        var fdb = data[0]['y'];
+        data[0]=data[3];
+        data[0]['y']+=fdb;
+        data[3]=data[4];
+        data[4]=data[5];
+        delete data[5];
+
         graph5(data);
       }
-    });
+    }); 
+    }
+
   });
 }
 
