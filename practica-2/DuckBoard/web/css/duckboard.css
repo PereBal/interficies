@@ -190,3 +190,9 @@ main {
   width: 8em;
   heigh: 8em;
 }
+
+.duckboard-textaera {
+  border: none;
+  resize: none;
+  outline:none;
+}

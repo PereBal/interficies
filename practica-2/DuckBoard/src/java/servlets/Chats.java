@@ -41,8 +41,8 @@ public class Chats extends HttpServlet {
     if (!Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return ;
     }
-
-    if (Helper.isAjax(request)) {
+    
+    if (Helper.isAjax(request) && request.getParameter("hell") == null) {
       try {
         User user = s.getUser();
 
@@ -136,7 +136,6 @@ public class Chats extends HttpServlet {
 
     if (userId == null) {
       Helper.setErrorFlash(s, "Hablar solo, esta guay, pero aquí nos gusta hablar con otras personas!!!");
-      response.sendRedirect("/duckboard/chats"); return;
     }
 
     try {

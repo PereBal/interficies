@@ -360,8 +360,6 @@
     var setHeight = function () {
 
       var rowHeight = centerRow.height() - centerCardAction.height();
-      console.log(centerRow.height())
-      console.log(centerCardAction.height())
       centerCardBody.css({height: rowHeight});
     }
    

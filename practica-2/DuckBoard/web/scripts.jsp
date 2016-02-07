@@ -3,8 +3,16 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/helper.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
 <script type="text/javascript">
+  var niceScrollConf = {
+    cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+    cursorwidth: "10px"
+  }
   $(document).ready(function () {
+
+    $('html').niceScroll(niceScrollConf);
+
     // Activate Dropdown menu
     $('.dropdown-button').dropdown();
     $('.dropdown-enterprise').dropdown();
@@ -22,7 +30,7 @@
 
     $('select').material_select();
 
-    var flashes = <% out.println(servlets.tools.Helper.getFlash(request).toString()); %>;
+    var flashes = <% out.println(servlets.tools.Helper.getFlash(request).toString());%>;
     showFlashes(flashes);
 
   });

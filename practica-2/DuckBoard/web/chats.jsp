@@ -1,3 +1,7 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page import="servlets.tools.Helper"%>
+<%pageContext.setAttribute("user", Helper.getCurrentUser(request));%>
 <!DOCTYPE html>
 <html>
   <jsp:include page="head.jsp"/>
@@ -12,148 +16,80 @@
               <ul class="collapsible" data-collapsible="accordion">
                 <div class="chat row">
                   <div class="col s4 contacts">
-                    <div class="chat-contacts" id="test2">
+                    <div id="contactsList" class="chat-contacts" id="test2">
                       <ul class="collection">
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">4</span>
-                          </a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">4</span>
-                          </a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">4</span>
-                          </a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">4</span>
-                          </a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">4</span>
-                          </a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/2/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">1</span>
-                          </a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/3/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content"></a>
-                        </li>
-                        <li class="collection-item avatar conversation-li">
-                          <img src="http://lorempixel.com/42/42/people/4/" alt="" class="circle"/>
-                          <span class="title">Steve Jobs</span>
-                          <p>@applestevejobs</p>
-                          <a href="#!" class="secondary-content">
-                            <span class="new badge conversation-span red accent-4">4</span>
-                          </a>
-                        </li>
-                        <li></li>
+
+                        <c:choose>
+                          <c:when test="${empty chats}">
+                            no hay conversaciones
+                          </c:when>
+                          <c:otherwise>
+                            <c:forEach var="chat" items="${chats}">
+                              <li class="collection-item avatar conversation-li">
+                                <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
+                                <span class="title">Steve Jobs</span>
+                                <p>@applestevejobs</p>
+                                <a href="#!" class="secondary-content">
+                                  <span class="new badge conversation-span red accent-4">4</span>
+                                </a>
+                              </li>
+                            </c:forEach>
+                          </c:otherwise>
+                        </c:choose>
+
                       </ul>
                     </div>
                   </div>
+
+
                   <div class="col s8 conversation">
-                    <div class="chat-conversation">
-                      <div class="row row-fit">
-                        <div class="chat-bubble light-green lighten-4 right">
-                          <div class="chat-bubble-text">Hola<span class="chat-timestamp grey-text text-darken-1">
-                              <i class="fa fa-clock-o"></i>10:00</span>
-                          </div>
+                    <c:choose>
+                      <c:when test="${empty currentChat}">
+                        no hay chats
+                      </c:when>
+                      <c:otherwise>
+                        <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
+                          <c:forEach var="msg" items="${currentChat.messages}">
+                            <c:choose>
+                              <c:when test="${msg.user.id != cuser.id}">
+                                <div class="row row-fit">
+                                  <div class="chat-bubble blue-grey lighten-5 left">
+                                    <div class="chat-bubble-text"><c:out value="${msg.text}"/>
+                                      <span class="chat-timestamp grey-text text-darken-1">
+                                        <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </c:when>
+                              <c:otherwise>
+                                <div class="row row-fit">
+                                  <div class="chat-bubble light-green lighten-4 right">
+                                    <div class="chat-bubble-text"><c:out value="${msg.text}"/>
+                                      <span class="chat-timestamp grey-text text-darken-1">
+                                        <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </c:otherwise>
+                            </c:choose>
+                          </c:forEach>
+
                         </div>
-                      </div>
-                      <div class="row row-fit">
-                        <div class="chat-bubble blue-grey lighten-5 left">
-                          <div class="chat-bubble-text"> Hola ;)<span class="chat-timestamp grey-text text-darken-1">
-                              <i class="fa fa-clock-o"></i>10:05</span>
+
+                      </c:otherwise>
+                    </c:choose>
+                    <div class="grey lighten-5">
+                      <form class="col s12" style="padding-top: 1.5em;">
+                        <div class="row">
+                          <div class="col s10">
+                            <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="escribe aqu� tu mensaje..."></textarea>
                           </div>
+                          <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1"
+                             style="padding: inherit;">Enviar</a>
                         </div>
-                      </div>
-                      <div class="row row-fit">
-                        <div class="chat-bubble light-green lighten-4 right">
-                          <div class="chat-bubble-text">¿Qué tal?<span class="chat-timestamp grey-text text-darken-1">
-                              <i class="fa fa-clock-o"></i>10:12</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row row-fit">
-                        <div class="chat-bubble blue-grey lighten-5 left">
-                          <div class="chat-bubble-text"> Muy bien, programando.<br>y tu?</br>
-                            <span class="chat-timestamp grey-text text-darken-1">
-                              <i class="fa fa-clock-o"></i>10:33
-                            </span>
-                          </div>
-                        </div>
-                        <div class="row row-fit">
-                          <div class="chat-bubble light-green lighten-4 right">
-                            <div class="chat-bubble-text">Mirando porno, como de costumbre! jajajajaja
-                              <span class="chat-timestamp grey-text text-darken-1">
-                                <i class="fa fa-clock-o"></i>10:34
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row row-fit">
-                          <div class="chat-bubble blue-grey lighten-5 left">
-                            <div class="chat-bubble-text"> jajaja<br>XD</br>
-                              <span class="chat-timestamp grey-text text-darken-1">
-                                <i class="fa fa-clock-o"></i>10:41
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row row-fit">
-                          <div class="chat-bubble light-green lighten-4 right">
-                            <div class="chat-bubble-text">Pues igual deberías dejar de machacartela y estudiar un poco.<br>Ya pareces Francesc! XD</br>
-                              <span class="chat-timestamp grey-text text-darken-1">
-                                <i class="fa fa-clock-o"></i>10:43
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row row-fit">
-                          <div class="chat-bubble blue-grey lighten-5 left">
-                            <div class="chat-bubble-text">Tampoco te pases tio, yo tengo el pelo largo...
-                              <span class="chat-timestamp grey-text text-darken-1">
-                                <i class="fa fa-clock-o"></i>10:44
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="conversation-text-area grey lighten-5">
-                      <textarea class="col s10 text-area" placeholder="Escribir un mensaje..."></textarea>
-                      <div class="input-field col s1" style="margin-top: 2em; margin-left: 5px;">
-                        <a style="vertical-align:top;" name="action">Enviar <i class="material-icons"></i></a>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -166,18 +102,22 @@
     <jsp:include page="footer.jsp"/>
     <jsp:include page="scripts.jsp"/>
     <script type="text/javascript">
+
+      var niceScrollConf = {
+        cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+        cursorwidth: "10px"
+      }
+
       $(document).ready(function () {
         // Activate Dropdown menu
         $(".dropdown-button").dropdown();
         // Activate button-collapse for mobile
         $(".button-collapse").sideNav();
-        /*
-         $('.collapsible').collapsible({
-         // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-         accordion: false
-         });
-         $('ul.tabs').tabs();
-         */      });
+
+        $('#contactsList').niceScroll(niceScrollConf);
+        $('#chatText').niceScroll(niceScrollConf);
+        $('#conversation').niceScroll(niceScrollConf);
+      });
     </script>
   </body>
 </html>

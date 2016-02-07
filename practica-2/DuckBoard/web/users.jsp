@@ -55,8 +55,8 @@
             var toAppend = '<li class="white">'+
                               '<div class="collapsible-header" onclick="appendCollapsibleBody(\'collapsible-'+ collapsible.id +'\');">'+
                                 '<i class="material-icons">perm_identity</i>'+
-                                ' ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
-                                '<a class="waves-effect waves-light right" href="/duckboard/chats?id='+ collapsible.id +'">'+
+                                'Nombre: ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
+                                '<a class="waves-effect waves-light right" onclick="startChat('+ collapsible.id +')">'+
                                   '<i class="material-icons right-align">comment</i>' + 
                                 '</a>'+
                                 '</div>' +
@@ -157,6 +157,34 @@
           target.empty();
           
           target.append(toAppend);
+        };
+    
+// LLLLUUUUC SHIT 
+        function superHackerFunction(action, method, input) {
+          'use strict';
+           var form;
+           form = $('<form />', {
+            action: action,
+            method: method,
+            style: 'display: none;'
+           });
+          if (typeof input !== 'undefined' && input !== null) {
+          $.each(input, function (name, value) {
+            $('<input />', {
+                type: 'hidden',
+                name: name,
+                value: value
+            }).appendTo(form);
+          });
+          }
+          form.appendTo('body').submit();
+        }
+  // LLLLUUUUC SHIT
+          
+        var startChat = function(uid){
+          superHackerFunction('/duckboard/chats', 'post', {
+           party: uid,
+          });
         };
       
       
