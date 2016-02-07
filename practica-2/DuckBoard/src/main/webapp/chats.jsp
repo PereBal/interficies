@@ -26,24 +26,25 @@
                           </c:when>
                           <c:otherwise>
                             <c:forEach var="chat" items="${chats}">
-                              <li class="collection-item avatar conversation-li">
-                                <img src="http://lorempixel.com/42/42/people/1/" alt="" class="circle"/>
                                 <%
-                                  Chat chat = (Chat) pageContext.getAttribute("chat");
-                                  User user = (User) pageContext.getAttribute("user");
+                                 Chat chat = (Chat) pageContext.getAttribute("chat");
+                                 User user = (User) pageContext.getAttribute("user");
 
-                                  pageContext.setAttribute("nameChat", chat.getChatName(user.getId()));
-                                  pageContext.setAttribute("emailChat", chat.getChatEmail(user.getId()));
-                                  pageContext.setAttribute("haveUnreadMessages", chat.haveUnreadMessages(user.getId()));
-                                  pageContext.setAttribute("unreadMessages", chat.countUnreadMessages(user.getId()));
-                                %>
+                                 pageContext.setAttribute("nameChat", chat.getChatName(user.getId()));
+                                 pageContext.setAttribute("emailChat", chat.getChatEmail(user.getId()));
+                                 pageContext.setAttribute("haveUnreadMessages", chat.haveUnreadMessages(user.getId()));
+                                 pageContext.setAttribute("unreadMessages", chat.countUnreadMessages(user.getId()));
+                               %>
+                              <li class="collection-item avatar conversation-li" onclick="retrieveConversation('${chat}')" style="cursor: pointer;">
+                                <img src="" alt="" class="circle"/>
+                               
                                 <span class="title"><c:out value="${nameChat}"/></span>
                                 <div class="row">
                                   <div class="col s-9">
                                     <p><c:out value="${emailChat}"/></p>
                                   </div>
                                   <div class="col s3">
-                                    <a href="/duckboard/chats/delete?cid=${chat}">
+                                      <a href="/duckboard/chats/delete?cid=${chat}" onclick="function(event){e.stopPopagation();}">
                                       <i class="material-icons red-text right">delete</i>
                                     </a>
                                   </div>
@@ -65,43 +66,9 @@
                   <div class="col s8 conversation">
                     <div>    
 
-                      <c:choose>
-                        <c:when test="${empty currentChat}">
-                          <p>No hay mensajes</p>
-                        </c:when>
-                        <c:otherwise>
-                          <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
-                            <c:forEach var="msg" items="${currentChat.messages}">
-                              <c:choose>
-                                <c:when test="${msg.user.id != cuser.id}">
-                                  <div class="row row-fit">
-                                    <div class="chat-bubble blue-grey lighten-5 left">
-                                      <div class="chat-bubble-text"><c:out value="${msg.text}"/>
-                                        <span class="chat-timestamp grey-text text-darken-1">
-                                          <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </c:when>
-                                <c:otherwise>
-                                  <div class="row row-fit">
-                                    <div class="chat-bubble light-green lighten-4 right">
-                                      <div class="chat-bubble-text"><c:out value="${msg.text}"/>
-                                        <span class="chat-timestamp grey-text text-darken-1">
-                                          <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </c:otherwise>
-                              </c:choose>
-                            </c:forEach>
+                        <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
+                        </div>
 
-                          </div>
-
-                        </c:otherwise>
-                      </c:choose>
                       <div class="grey lighten-5">
                         <form class="col s12" style="padding-top: 1.5em;">
                           <div class="row">
@@ -126,21 +93,97 @@
     <jsp:include page="footer.jsp"/>
     <jsp:include page="scripts.jsp"/>
     <script type="text/javascript">
+      /* GLOBAL VARIABLES */  
+      var openChats = $('#contacts');
+      var conversation = $('#conversation');
 
       var niceScrollConf = {
         cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
         cursorwidth: "8px"
       }
+      
+      /* SUPPORT FUNCTIONS */
+      
+    /**
+     * Appends messages to the conversation div
+     */
+    var buildConversation = function(data) {
+            
+       var toAppend;
+       
+       conversation.empty(); 
+       
+       if (!$.empty('data.messages')){
+        
+        $.each(data.messages, function (message, userId) {
+            
 
+            if (message.user_id ===  userId) { // current user msg
+
+               
+            toAppend = '<div class="row row-fit">'+
+                        '<div class="chat-bubble blue-grey lighten-5 left">'+
+                          '<div class="chat-bubble-text">' + message.text + '</>'+
+                            '<span class="chat-timestamp grey-text text-darken-1">'+
+                              '<i class="fa fa-clock-o">' + message.created_at + '</i>'+
+                            '</span>'+
+                          '</div>'+
+                        '</div>'+
+                      '</div>';
+
+            } else {
+
+               
+            toAppend = '<div class="row row-fit">'+
+                        '<div class="chat-bubble light-green lighten-4 right">'+
+                          '<div class="chat-bubble-text">' + message.text + '</>'+
+                            '<span class="chat-timestamp grey-text text-darken-1">'+
+                              '<i class="fa fa-clock-o">' + message.created_at + '</i>'+
+                            '</span>'+
+                          '</div>'+
+                        '</div>'+
+                      '</div>';
+            }
+            
+            conversation.append(toAppend);
+        }); 
+      } else {
+          conversation.append('No hay mensajes');
+      }
+    };
+    
+    /**
+     * Gets conversation messages
+     */
+    var retrieveConversation = function(chatId) {
+        
+        $.ajax({
+            type: 'GET',
+            url: '/duckboard/chats/messages',
+            async: true,
+            dataType: "json",
+            data: ({
+              'cid'    : chatId,
+              'unread' : true,
+              'begin'  : 0
+            }),
+            success: function (data) {
+              
+              buildConversation(data);  
+            },
+            error: function (){}
+          }); 
+    };
+      
       $(document).ready(function () {
         // Activate Dropdown menu
         $(".dropdown-button").dropdown();
         // Activate button-collapse for mobile
         $(".button-collapse").sideNav();
 
-        $('#contactsList').niceScroll(niceScrollConf);
+        openChats.niceScroll(niceScrollConf);
         $('#chatText').niceScroll(niceScrollConf);
-        $('#conversation').niceScroll(niceScrollConf);
+        conversation.niceScroll(niceScrollConf);
       });
     </script>
   </body>

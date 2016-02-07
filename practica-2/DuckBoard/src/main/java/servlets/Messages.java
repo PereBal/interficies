@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import servlets.tools.Helper;
 import servlets.tools.Sesion;
 
-@WebServlet(name = "Messages", urlPatterns = {"/chat/messages"})
+@WebServlet(name = "Messages", urlPatterns = {"/chats/messages"})
 public class Messages extends HttpServlet {
 
   /**

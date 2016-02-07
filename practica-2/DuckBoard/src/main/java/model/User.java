@@ -128,7 +128,7 @@ public class User {
 
   @Override
   public String toString() {
-    return "User{" + "id=" + id + ", email=" + email + ", name=" + name + ", lastName=" + lastName + ", sex=" + sex + ", birthDay=" + birthDay + ", quote=" + quote + ", authToken=" + authToken + '}';
+    return "User{" + "id=" + id + ", email=" + email + ", name=" + name + ", lastName=" + lastName + ", sex=" + sex + ", birthDay=" + birthDay + ", quote=" + quote + ", authToken=" + authToken + ", gravatarUrl=" + getGravatarUrl() + "}";
   }
 
   public org.json.JSONObject toJSON() {
@@ -146,6 +146,8 @@ public class User {
             "birth_day", birthDay
     ).put(
             "quote", quote
+    ).put(
+            "gravatarUrl", getGravatarUrl()
     );
   }
 
