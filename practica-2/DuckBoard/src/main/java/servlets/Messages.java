@@ -135,7 +135,16 @@ public class Messages extends HttpServlet {
       }
 
       try {
-        Message.create(chatId, user.getId(), text);
+        Message message = Message.create(chatId, user.getId(), text);
+        
+        JSONObject jsonMessage = new JSONObject();
+        jsonMessage.put("user_id", message.getUser().getId());
+        jsonMessage.put("text", message.getText());
+        jsonMessage.put("created_at", message.getCreatedAt());
+        
+        jsonMessage.write(response.getWriter());
+        response.setContentType("application/json;charset=UTF-8");
+        response.getWriter().close();
       } catch (ChatDoesNotExistException | UserDoesNotExistException | UserNotInPartyException ex) {
         Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
         Helper.setNewErrorFlash(s, "No se ha podido enviar el mensaje! Nuestros devOps deben estar haciendo cosas de devOps!");
