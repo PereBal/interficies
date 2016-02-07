@@ -33,9 +33,15 @@ public class Chat {
   }
 
   public String getChatName(int userId) {
+    int ownChat = 0;
     for (Party party : parties) {
       if (party.getUser().getId() != userId) {
-       return party.getUser().getName() + " " + party.getUser().getLastName();
+        return party.getUser().getName() + " " + party.getUser().getLastName();
+      }else if(party.getUser().getId() == userId){
+        ownChat++;
+        if (ownChat == 2){
+          return party.getUser().getName() + " " + party.getUser().getLastName();
+        }
       }
     }
 
