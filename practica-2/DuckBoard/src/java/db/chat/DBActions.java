@@ -599,6 +599,25 @@ public class DBActions {
   }
   
   /////////////////////////////////
+  //// Delete Parsers!!!
+  /////////////////////////////////
+  
+  /**
+   * 
+   * @param id 
+   */
+  public static void delete(String id) {
+    try (DBConnection connection = new DBConnection();) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      db.getCollection(DBProperties.COLL).deleteMany(eq("_id", new ObjectId(id)));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  /////////////////////////////////
   //// Entity Parsers!!!
   /////////////////////////////////
   private static Chat documentToChat(Document document) throws 

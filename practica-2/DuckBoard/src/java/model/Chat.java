@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.time.LocalDate;
 import org.bson.types.ObjectId;
 import db.chat.DBActions;
 import db.chat.exceptions.UserNotInPartyException;
@@ -136,7 +135,11 @@ public class Chat {
   public String toString() {
     return this.id.toString();
   }
-
+  
+  public void delete() {
+    DBActions.delete(this.id.toString());
+  } 
+  
   ///////////////////////////////////
   /////   Wrappering DBActions!!!
   ///////////////////////////////////

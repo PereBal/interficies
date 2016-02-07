@@ -146,6 +146,41 @@ public class Chats extends HttpServlet {
       response.sendRedirect("/duckboard/chats");
     }
   }
+  
+  /**
+   * Handles the HTTP <code>DELETE</code> method.
+   *
+   * @param request servlet request
+   * @param response servlet response
+   * @throws ServletException if a servlet-specific error occurs
+   * @throws IOException if an I/O error occurs
+   */
+  @Override
+  protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    response.setContentType("application/text-plain;charset=UTF-8");
+    Sesion s = new Sesion(request.getSession());
+    if (!Sesion.isAutenticated(s)) {
+      response.sendRedirect("/duckboard"); return;
+    }
+
+    String chatId = request.getParameter("cid");
+
+    if (chatId == null) {
+      Helper.setErrorFlash(s, "¿No puedes no borrar un chat?");
+      response.sendRedirect("/duckboard/chats");
+    }
+
+    try {
+      Chat chat = Chat.retrieveByPk(chatId);
+      chat.delete();
+    } catch (ChatDoesNotExistException | UserNotInPartyException ex) {
+      Helper.setErrorFlash(s, "No hemos sido capaces de borrar tu conversación :(");
+      Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+      response.sendRedirect("/duckboard/chats");
+    }
+  }
 
   /**
    * Returns a short description of the servlet.

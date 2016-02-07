@@ -6,6 +6,8 @@ import db.chat.exceptions.UserNotInPartyException;
 import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
 import java.util.Collections;
+import jgravatar.Gravatar;
+import jgravatar.GravatarDefaultImage;
 
 public class User {
 
@@ -74,6 +76,13 @@ public class User {
 
   public void setAuthToken(String token) {
     this.authToken = token;
+  }
+  
+  public String getGravatarUrl() {
+    Gravatar gravatar = new Gravatar();
+    gravatar.setSize(420);
+    gravatar.setDefaultImage(GravatarDefaultImage.IDENTICON);
+    return gravatar.getUrl(this.email);
   }
 
   public List<Chat> getChats() throws
