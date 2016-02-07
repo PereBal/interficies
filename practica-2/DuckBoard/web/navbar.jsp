@@ -48,7 +48,7 @@
           <!-- Dropdown Trigger -->
           <li>
             <a class="dropdown-button" href="#!" data-activates="navbar-dropdown">
-              <i class="material-icons left">perm_identity</i>
+              <img style="width: 2.5em;vertical-align: middle;" class="circle" <c:out value="src=${user.quote}"/>  />
               <c:out value="${user.name}"/>
               <i class="material-icons right">arrow_drop_down</i>
             </a>

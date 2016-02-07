@@ -27,6 +27,7 @@ public class User {
     this.authToken = null;
     this.birthDay = null;
     this.quote = "";
+    //hola lluc, y el gravatar cabron?
   }
 
   public User(int id, String email, String name, String lastName, char sex, String authToken, String birthDay, String quote) {
@@ -37,7 +38,8 @@ public class User {
     this.lastName = lastName;
     this.authToken = authToken;
     this.birthDay = birthDay;
-    this.quote = quote;
+    //this.quote= quote; //esta es la buena
+    this.quote = "https://pbs.twimg.com/profile_images/671042998403231744/TG_XZttU.jpg"; //METE EL PUTO GRAVATARURL
   }
 
   public int getId() {

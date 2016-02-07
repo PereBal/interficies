@@ -1,7 +1,7 @@
 <%-- 
     Document   : register
     Created on : Feb 4, 2016, 7:19:14 PM
-    Author     : Rafa Cuart 8
+    Author     : Rafa Cuart 
 --%>
 <%@page import="servlets.tools.Helper"%>
 <!DOCTYPE html>
@@ -54,21 +54,11 @@
                   <h5><i class="material-icons prefix" style="position: relative;top: 0.2em;">perm_identity</i>Información de usuario:</h5>
                 </div>
                 <div class="col s10 offset-s1 grey-text text-darken-3">
-
                   <div class="input-field col s6">
                     <input id="pwd" name="pwd" type="password" length="32" required>
                     <label for="pwd">Password</label>
                   </div>
-                  <!--              IMAGENES
-                                    <div class="file-field input-field col s6">
-                                      <input class="file-path validate" type="text" name="img"/><input type="file" />
-                                      <label >Imagen</label>
-                                    </div>
-                                    <div class="file-field input-field col s6">
-                                      <input class="validate" type="url" name="url">
-                                      <label >Imagen (URL)</label>
-                                    </div>
-                  -->
+
                   <div class="input-field col s6">
                     <input id="pwd2" name="pwd2" type="password" length="32" required>
                     <label for="pwd2">Repeat password</label>

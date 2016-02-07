@@ -52,10 +52,10 @@
           // Paint collapsible list
           $.each(collapsibleHeaders, function(index, collapsible){
             
-            var toAppend = '<li>'+
+            var toAppend = '<li class="white">'+
                               '<div class="collapsible-header" onclick="appendCollapsibleBody(\'collapsible-'+ collapsible.id +'\');">'+
                                 '<i class="material-icons">perm_identity</i>'+
-                                'Nombre: ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
+                                ' ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
                                 '<a class="waves-effect waves-light right" href="/duckboard/chats?id='+ collapsible.id +'">'+
                                   '<i class="material-icons right-align">comment</i>' + 
                                 '</a>'+
@@ -107,40 +107,51 @@
           
           if (collapsibleBody.sex = 'H') {
             
-            sex = 'Hombre <i class="fa fa-mars"></i>'
+            sex = 'Hombre <i class="blue-text fa fa-mars"></i>'
           } else {
             
-            sex = 'Mujer <i class="fa fa-venus"></i>'
+            sex = 'Mujer <i class="pink-text fa fa-venus"></i>'
           }
           
-          var toAppend = '<div class="row">'+
-                          '<div class="col s4">'+
-                            '<p><b>Nombre: </b>'+collapsibleBody.name+'</p>'+
+          var toAppend ='<div class="row">'+
+                          '<div class="col s3">'+
+                            '<div class="row">'+
+                              '<div class="col s12">'+
+                                '<img style="width: 100%; border-radius: 3px;" src="'+collapsibleBody.quote+'"/>'+
+                              '</div>'+
+                            '</div>'+
                           '</div>'+
-                          '<div class="col s5">'+
-                            '<p><b>Apellidos: </b>'+collapsibleBody.last_name+'</p>'+
+                          '<div class="col s9">'+
+                            '<div class="row">'+
+                              '<div class="col s4">'+
+                                '<p><b>Nombre: </b>'+collapsibleBody.name+'</p>'+
+                              '</div>'+
+                              '<div class="col s5">'+
+                                '<p><b>Apellidos: </b>'+collapsibleBody.last_name+'</p>'+
+                              '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                              '<div class="col s4">'+
+                                '<p><b>Email: </b>'+ collapsibleBody.email+'</p>'+
+                              '</div>'+
+                              '<div class="col s5">'+
+                                '<p><b>Fecha de nacimiento: </b>'+collapsibleBody.birth_day+'</p>'+
+                              '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                              '<div class="col s3">'+
+                                '<p><b>Sexo: </b>'+sex+'</p>'+
+                              '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                              '<div class="col s12">'+
+                                '<p>'+
+                                  '<b>Cita: <br/></b>'+
+                                  '<b>"</b>'+collapsibleBody.quote+'<b>"</b></p>'+
+                              '</div>'+
+                            '</div>'+
                           '</div>'+
-                        '</div>'+
-                        '<div class="row">'+
-                          '<div class="col s4">'+
-                            '<p><b>Email: </b>'+ collapsibleBody.email+'</p>'+
-                          '</div>'+
-                          '<div class="col s5">'+
-                            '<p><b>Fecha de nacimiento: </b>'+collapsibleBody.birth_day+'</p>'+
-                          '</div>'+
-                        '</div>'+
-                        '<div class="row">'+
-                          '<div class="col s2">'+
-                            '<p><b>Sexo: </b>'+sex+'</p>'+
-                          '</div>'+
-                        '</div>'+
-                        '<div class="row">'+
-                          '<div class="col s12">'+
-                            '<p>'+
-                              '<b>Cita: <br/></b>'+
-                              '<b>"</b>'+collapsibleBody.quote+'<b>"</b></p>'+
-                          '</div>'+
-                        '</div>'
+                       '</div>'
           
           // Empty collapsible list
           target.empty();

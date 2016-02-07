@@ -1,4 +1,10 @@
+<%@page import="servlets.tools.Helper"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+  <%
+    pageContext.setAttribute("logged", Helper.isLogged(request));
+    pageContext.setAttribute("user", Helper.getCurrentUser(request));
+    %>
 <!DOCTYPE html>
 <html>
   <jsp:include page="head.jsp"/>
@@ -9,9 +15,18 @@
         <div class="parallax"><img src="img/parallax1.png"></div>
         <ul id="staggered-test">
           <li>
+            <c:choose>
+            <c:when test="${!logged}">
             <h1 class="center">
               Bienvenido!
             </h1>
+            </c:when>
+            <c:otherwise>
+              <h1 class="center">
+                Hola de nuevo, ${user.name}!
+            </c:otherwise>
+            </c:choose>
+            
           </li>
           <li>
             <h4 class="center">Haz scroll para descubrir más!</h4>

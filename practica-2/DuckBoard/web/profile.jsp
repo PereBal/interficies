@@ -114,37 +114,49 @@
           <div class="card grey-text text-darken-2">
             <div class="card-content">
               <div class="row">
-                <div class="col s4">
-                  <b>Nombre: </b>${user.name}
+                <div class="col s3">
+                  <div class="row">
+                    <div class="col s12">
+                      <img style="width: 100%; border-radius: 3px;" <c:out value="src=${user.quote}"/>/>
+                    </div>
+                  </div>
                 </div>
-                <div class="col s5">
-                  <b>Apellidos: </b>${user.lastName}
+                <div class="col s9">
+                  <div class="row">
+                    <div class="col s4">
+                      <b>Nombre: </b>${user.name}
+                    </div>
+                    <div class="col s5">
+                      <b>Apellidos: </b>${user.lastName}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s4">
+                      <b>Email: </b>${user.email}
+                    </div>
+                    <div class="col s5">
+                      <b>Fecha de nacimiento: </b>${user.birthDay}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s2">
+                      <b>Sexo: </b>
+                      <c:choose>
+                        <c:when test="${user.sex == 'H'}">Hombre <i class="blue-text fa fa-mars"></i></c:when>
+                        <c:when test="${user.sex == 'M'}">Mujer <i class="pink-text fa fa-venus"></i></c:when>
+                      </c:choose>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <p>
+                        <b>Cita: <br/></b>
+                        <b>"</b><i>${user.quote} </i><b>"</b></p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col s4">
-                  <b>Email: </b>${user.email}
-                </div>
-                <div class="col s5">
-                  <b>Fecha de nacimiento: </b>${user.birthDay}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s2">
-                  <b>Sexo: </b>
-                  <c:choose>
-                    <c:when test="${user.sex == 'H'}"><i class="fa fa-mars"></i></c:when>
-                    <c:when test="${user.sex == 'M'}"><i class="fa fa-venus"></i></c:when>
-                  </c:choose>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12">
-                  <p>
-                    <b>Cita: <br/></b>
-                    <b>"</b>${user.quote} <b>"</b></p>
-                </div>
-              </div>
+
             </div>
 
             <div class="card-action">
