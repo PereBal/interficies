@@ -26,3 +26,5 @@
 **/*.sw[po]
 **/*.DS_Store
 **/*.lock
+**/DuckBoard2/target/
+/practica-2/DuckBoard/target/

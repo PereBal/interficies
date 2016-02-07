@@ -1,0 +1,198 @@
+/* Footer Adhesivo */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+html{
+  background: #FAFAFA;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.linear-transition{
+  transition: visibility 0s, opacity 0.2s linear;
+}
+
+/* Chat decoration */
+.contact{
+  margin-bottom:0.5em;
+}
+
+.contacts{
+  height:100%;
+  padding-right: 0px !important;
+  border-right: 1px solid #DDD;
+}
+
+.contact-menu{
+  border-top: 1px solid #DDD;
+  height: 100%;
+  max-height:85.4px;  
+}
+
+.conversation{
+  padding-left: 0px !important;
+}
+
+.collection-li{
+  min-height: 60px !important;
+  max-height: 60px !important;
+}
+
+.conversation-span{
+  margin-right: -2em !important;
+  border-radius: 2em !important;
+}
+
+.conversation-text-area{
+  border-top: 1px solid #DDD;
+  height: 85.4px;
+  max-height:85.4px;
+}
+
+.text-area{
+  background: white;
+  border-radius: 4px;
+  resize: none;
+  border: 1px solid #DDD;
+  color: #757575;
+}
+
+.chat{
+  height: 31em;
+}
+
+.chat-contacts{
+  height: 100%;
+  overflow: auto;
+}
+
+.chat-tabs{
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  font-size: x-small;
+  background-color: #FAFAFA;
+  overflow: hidden !important;
+}
+
+.chat-tab{
+  height: 100% !important;
+}
+
+.active{
+  color: #039be5 !important;
+}
+
+.chat-tab-icon{
+  margin-top: 0.35em;
+}
+
+.chat-conversation{
+  height: 380px;
+  max-height: 380px !important;
+  padding-left: 0px !important;
+  overflow: auto;
+}
+
+.chat-conversations{
+  overflow-y: auto;
+  margin-left: -1em;
+  margin-right: -0.8em;
+}
+
+.chat-timestamp{
+  font-size: x-small;
+  margin-left: 1em;
+  float: right;
+  margin-top: 8px;
+}
+.row-fit{
+  margin: 5px !important;
+}
+
+.chat-bubble{
+  border-radius: 1em;
+  min-height: 25px;
+}
+
+.chat-bubble-text{
+  padding: 2px;
+  margin-right: 8px;
+  margin-left: 8px;   
+}
+
+.inner-padding {
+  margin: 20px;
+}
+
+.inner-padding  p {
+  padding: 0px;  
+}
+
+.dynamic-overflow{
+  overflow-y: auto;
+}
+
+.dynamic-height{
+}
+
+.dynamic-height-messages{
+}
+
+.alert-error {
+  background-color: red;
+}
+
+.alert-success {
+  background-color: green;
+}
+
+.err-page-message{
+  border-radius: 3em;
+  border-bottom-left-radius: 0px;
+  border: 1px solid #424242;
+}
+
+.err-page-number{
+  font-size: 256px;
+}
+
+.err-page-error{
+  font-size: 40px;
+}
+
+.send-height{
+  max-height: 50px;
+  height: 50px;
+}
+
+.chat-border{
+  border-radius: 4px;
+  border: 1px solid #DDD;
+  color: #757575;
+}
+
+.col-fit{
+  padding: 0px !important;
+}
+
+.img-graph{
+  padding:2.5em !important;
+  padding-top: 0.5em !important;
+}
+
+.parallax-img{
+  width: 8em;
+  heigh: 8em;
+}
+
+.duckboard-textaera {
+  border: none;
+  resize: none;
+  outline:none;
+}

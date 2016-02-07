@@ -1,0 +1,23 @@
+/* Custom Stylesheet:
+ *
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ */
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+.tabs .indicator{
+  background-color: #039be5;
+}
+
+.tabs .tab {
+  line-height: 1px;
+  text-transform: none;
+  letter-spacing: 0.8px;
+  font-size: 1.2em;
+}
