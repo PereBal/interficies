@@ -21,3 +21,7 @@
   letter-spacing: 0.8px;
   font-size: 1.2em;
 }
+
+blockquote{
+    border-left: 5px solid #546E7A !important;
+}

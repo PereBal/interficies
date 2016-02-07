@@ -9,7 +9,7 @@
       <div id="g1" class="container" style="display:none">
         <div class="card">
           <div  class="card-content">
-            <h4 class="card-title">Cantidad de tuits por tendencia</h4>
+            <h4 class="purple-text text-darken-4 card-title">Cantidad de tuits por tendencia</h4>
             <div class="row">
 
               <div class="col s12">
@@ -61,7 +61,7 @@
       <div id="g2" class="container" style="display:none">
         <div class="card">
           <div  class="card-content">
-            <h4 class="card-title">Porcentaje de uso de idiomas</h4>
+            <h4 class="blue-text text-darken-4 card-title">Porcentaje de uso de idiomas</h4>
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
@@ -112,7 +112,7 @@
       <div id="g4" class="container" style="display:none">
         <div class="card">
           <div  class="card-content">
-            <h4 class="card-title">Cantidad de tuits por isla y estación del año</h4>
+            <h4 class="teal-text text-darken-4 card-title">Cantidad de tuits por isla y estación del año</h4>
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
@@ -146,7 +146,7 @@
       <div id="g3" class="container" style="display:none">
         <div class="card">
           <div  class="card-content">
-            <h4 class="card-title">Polaridad por día de la semana</h4>
+            <h4 class="lime-text text-darken-4 card-title">Polaridad por día de la semana</h4>
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
@@ -197,7 +197,7 @@
       <div id="g5" class="container" style="display:none">
         <div class="card">
           <div  class="card-content">
-            <h4 class="card-title">Las islas son tendencia!</h4>
+            <h4 class="orange-text text-darken-4 card-title">Las islas son tendencia!</h4>
             <div class="row">
               <div class="col s12">
                 <div class="input-field col s5">
@@ -256,8 +256,8 @@
               <div class="col s12">
                 <div class="center card">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr01.png">
-                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Tendencias</span>
+                    <img class="img-graph" src="img/gr001.png">
+                    <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Tendencias</span>
                   </div>
                   <div class="card-action">
                     <a onClick="ver('#g1')"  class="blue-text text-darken-1">Ver gráfica</a>
@@ -270,8 +270,8 @@
               <div class="col s12">
                 <div class="card center ">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr02.png">
-                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Idiomas</span>
+                    <img class="img-graph" src="img/gr002.png">
+                    <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Idiomas</span>
                   </div>
                   <div class="card-action">
                     <a onClick="ver('#g2')" class="blue-text text-darken-1" href="#">Ver gráfica</a>
@@ -286,8 +286,8 @@
           <div class="col s6">
             <div class="card center ">
               <div class="card-image">         
-                <img class="img-graph" src="img/gr04.png"></img>
-                <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Distribución geográfica</span>
+                <img class="img-graph" src="img/gr004.png"></img>
+                <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Distribución geográfica</span>
                 
               </div>
               <div class="card-action" id="centerCardAction">
@@ -308,8 +308,8 @@
               <div class="col s12">
                 <div class="card center ">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr03.png">
-                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Polaridad</span>
+                    <img class="img-graph" src="img/gr003.png">
+                    <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Polaridad</span>
                   </div>
                   <div class="card-action">
                     <a onClick="ver('#g3');" class="blue-text text-darken-1" href="#">Ver gráfica</a>
@@ -322,8 +322,8 @@
               <div class="col s12">
                 <div class="card center ">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr05.png">
-                    <span style="padding-bottom: 0px;" class="card-title orange-text text-darken-2">Actividad balear</span>
+                    <img class="img-graph" src="img/gr005.png">
+                    <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Actividad balear</span>
                   </div>
                   <div class="card-action">
                     <a onClick="ver('#g5')" class="blue-text text-darken-1" class="blue-text text-darken-1" href="#">Ver gráfica</a>

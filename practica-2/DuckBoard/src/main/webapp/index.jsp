@@ -60,8 +60,8 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
           <h2 class="header"><img style="width:1em" src="img/favicon.png"/>DuckBoard</h2>
           <p class="grey-text text-darken-3 lighten-3">DuckBoard es un dashboard diseñado por un grupo de estudiantes de la <a href="https://www.uib.es/">Universidad de las Islas Baleares <img style="width:1em" src="img/logo-uib.jpg"/></a>.
             <br>En él podrás consultar gráficos dinámicos sobre la actividad en <a href="https://twitter.com/?lang=es">twitter <i class="blue-text fa fa-twitter"></i></a>, además de
-          disfrutar de un servicio de mensajería instantanea entre los usuarios y un apartado de noticias de actualidad y motivación.
-          <br><i class="yellow-text text-darken-3 fa fa-exclamation-circle"></i> Ahora también con integración con <a href="https://es.gravatar.com/">gravatar</a>
+          disfrutar de un servicio de mensajería instantanea entre todos los usuarios de la aplicación web, y un apartado de noticias de actualidad y motivación.          
+          <br><br><i class="yellow-text text-darken-3 fa fa-exclamation-circle"></i> Ahora también con integración con <a href="https://es.gravatar.com/">gravatar</a>
            para poder utilizar tu avatar preferido desde tu correo!</p>
         </div>
       </div>

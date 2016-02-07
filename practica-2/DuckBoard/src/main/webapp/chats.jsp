@@ -25,6 +25,7 @@
                             <p>No hay conversaciones</p>
                           </c:when>
                           <c:otherwise>
+                              
                             <c:forEach var="chat" items="${chats}">
                                 <%
                                  Chat chat = (Chat) pageContext.getAttribute("chat");
@@ -65,8 +66,43 @@
                   </div>
 
 
-                  <div class="col s8 conversation">
-                    <div>
+                  <div  class="col s8 conversation">
+                    <div>    
+
+                      <c:choose>
+                        <c:when test="${empty currentChat}">
+                               <p>No hay mensajes</p>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="center" id="spin"><i class=" fa fa-circle-o-notch fa-spin"></i></span>
+                          <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
+                            <c:forEach var="msg" items="${currentChat.messages}">
+                              <c:choose>
+                                <c:when test="${msg.user.id != cuser.id}">
+                                  <div id="message" class="row row-fit">
+                                    <div class="chat-bubble blue-grey lighten-5 left">
+                                      <div class="chat-bubble-text"><c:out value="${msg.text}"/>
+                                        <span class="chat-timestamp grey-text text-darken-1">
+                                          <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </c:when>
+                                <c:otherwise>
+                                  <div class="row row-fit">
+                                    <div class="chat-bubble light-green lighten-4 right">
+                                      <div class="chat-bubble-text"><c:out value="${msg.text}"/>
+                                        <span class="chat-timestamp grey-text text-darken-1">
+                                          <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:forEach>
+
 
                         <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
                         </div>
@@ -291,6 +327,26 @@
         // });
         console.log("hola");
       };*/
+      
+      $('#conversation').scroll(function () {
+          /* con message (sin el spin)
+        var max= $('#conversation').position()['top']; 
+        var actual= $('#message').position()['top'];
+        console.log("max: "+max+" - actual: "+actual);
+         if((max-actual)<=0.5){
+         //Aquí va la función que carga mensajes.
+         console.log('putoamo');
+        }*/
+        
+        var max= $('#conversation').offset()['top'];
+        var spin= $('#spin').offset()['top'];
+        console.log("max: "+max+" - spin: "+spin);
+         if(spin>=max){
+         //Aquí va la función que carga mensajes.
+         
+        }
+     
+      });
     </script>
   </body>
 </html>

@@ -10,24 +10,28 @@
     <!-- Dropdown Structure -->
     <ul id="navbar-dropdown" class="dropdown-content">
       <li>
-        <a href="/duckboard/users?id=${user.id}" class="light-blue-text text-darken-1"><i class="material-icons left">assignment_ind</i>Perfil</a>
+        <a href="/duckboard/users?id=${user.id}" class="blue-grey-text text-darken-1"><i class="material-icons left">assignment_ind</i>Perfil</a>
       </li>
       <li class="divider"></li>
       <li>
-        <a href="/duckboard/logout" class="light-blue-text text-darken-1"><i class="material-icons left">settings_power</i>Salir</a>
+        <a href="/duckboard/logout" class="blue-grey-text text-darken-1"><i class="red-text text-darken-3 material-icons left">settings_power</i>Salir</a>
       </li>
     </ul>
     <ul id="dropdown-enterprise" class="dropdown-content">
       <li>
-        <a href="/duckboard/users" class="light-blue-text text-darken-1"><i class="material-icons left">contacts</i>Usuarios</a>
+        <a href="/duckboard/users" class="blue-grey-text text-darken-1"><i class="material-icons left">contacts</i>Usuarios</a>
       </li>
       <li class="divider"></li>
       <li>
-        <a href="/duckboard/chats" class="light-blue-text text-darken-1"><i class="material-icons left">forum</i>Chat</a>
+        <a href="/duckboard/chats" class="blue-grey-text text-darken-1"><i class="material-icons left">forum</i>Chat</a>
       </li>
       <li class="divider"></li>
       <li>
-        <a href="/duckboard/newsletter" class="light-blue-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
+        <a href="/duckboard/newsletter" class="blue-grey-text text-darken-1"><i class="material-icons left">library_books</i>Noticias</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="/duckboard/motivational" class="blue-grey-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
       </li>
     </ul>
     <nav class="blue-grey darken-1">
@@ -40,8 +44,8 @@
           </li>
            <li>
             <a class="dropdown-button" href="#!" data-activates="dropdown-enterprise">
-              <i class="material-icons left">perm_identity</i>
-              Compañía
+              <i class="material-icons left">language</i>
+              Conecta!
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
@@ -70,7 +74,10 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a href="/duckboard/newsletter" class="waves-effect waves-light right"><i class="material-icons left">Motivacional</i>Chat</a>
+            <a href="/duckboard/newsletter" class="waves-effect waves-light right"><i class="material-icons left">Newsletter</i>Chat</a>
+          </li>
+          <li>
+            <a href="/duckboard/motivational" class="waves-effect waves-light right"><i class="material-icons left">Motivacional</i>Chat</a>
           </li>
            <li class="divider"></li>
           <li>

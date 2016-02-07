@@ -2,215 +2,279 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
-  <jsp:include page="head.jsp"/>
-  <body>
-    <jsp:include page="navbar.jsp"/>
-    <main>
-      <div class="container">
-        
-        <div class="section no-pad-bot" id="index-banner"></div>
-        
-        <div id="toastMessages"></div>
-        
-        <div id="login" class="row linear-transition" style="display:none;">
-          <form class="col s8 offset-s2" method="POST" action="/duckboard/login">
-            <div class="card white">
-              <div class="card-content grey-text text-darken-3">
-                <span class="card-title grey-text text-darken-2">Login</span>
-                <div class="input-field">
-                  <input id="email" type="email" class="validate" name="email">
-                  <label for="email">Email</label>
-                </div>
-                <div class="input-field">
-                  <input id="password" type="password" class="validate" name="password">
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div class="card-action right-align">
-                <div class="">
-                  <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
-                  <button href="#" class="btn waves-effect waves-light light-blue darken-1 " type="submit">Entrar</button>
-                </div>
-              </div>
-            </div> 
-          </form>     
-        </div>
+    <jsp:include page="head.jsp"/>
+    <body>
+        <jsp:include page="navbar.jsp"/>
+        <main>
+            <div class="container">
 
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="col s12">           
-            <iframe src="https://embed.spotify.com/?uri=spotify:user:spotify_espa%C3%B1a:playlist:2JIAFFwXL4tAGF0sZFIklk" width="100%" height="100rem" frameborder="0" allowtransparency="true"></iframe>
-            <div class="slider">
-              <ul class="slides">
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/1"> <!-- random image -->
-                  <div class="caption center-align">
-                    <h3>"If you cannot do great things, do small things in a great way."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Napoleon Hill</h5>
-                  </div>
-                </li>
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/2"> <!-- random image -->
-                  <div class="caption left-align">
-                    <h3>"Everything should be made as simple as possible, but not simpler."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Albert Einsten</h5>
-                  </div>
-                </li>
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/3"> <!-- random image -->
-                  <div class="caption right-align">
-                    <h3>"Have no fear of perfeciton, you'll never reach it."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Salvador Dalí­.</h5>
-                  </div>
-                </li>
-                <li>
-                  <img src="http://lorempixel.com/580/250/people/4"> <!-- random image -->
-                  <div class="caption center-align">
-                    <h3> "Design is not just what it looks like and feels like. Design is how it works."</h3>
-                    <h5 class="light grey-text text-lighten-3">- Steve Jobs.</h5>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+                <div class="section no-pad-bot" id="index-banner"></div>
 
-          <div class="row">
-            <div class="col s6" style="height:29em;margin-top: 1em; ">
-              <iframe id="player" type="video/html"
-                      src="https://www.youtube.com/embed/26U_seo0a1g"
-                      frameborder="0" width="100%" height="100%" allowfullscreen>                       
-              </iframe>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/2">
-                  <span class="card-title">Tetris Gameboy</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="https://ihatetomatoes.net/happy-25th-birthday-game-boy/">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/3">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/4">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/5">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/6">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/7">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/8">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/9">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end for -->
-        </div>
+                <div id="toastMessages"></div>
 
-    </main>
+                <div id="login" class="row linear-transition" style="display:none;">
+                    <form class="col s8 offset-s2" method="POST" action="/duckboard/login">
+                        <div class="card white">
+                            <div class="card-content grey-text text-darken-3">
+                                <span class="card-title grey-text text-darken-2">Login</span>
+                                <div class="input-field">
+                                    <input id="email" type="email" class="validate" name="email">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-field">
+                                    <input id="password" type="password" class="validate" name="password">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="card-action right-align">
+                                <div class="">
+                                    <a id="cancelLogin" class="" style="cursor:pointer;">Cancelar</a>
+                                    <button href="#" class="btn waves-effect waves-light light-blue darken-1 " type="submit">Entrar</button>
+                                </div>
+                            </div>
+                        </div> 
+                    </form>     
+                </div>
 
-    <jsp:include page="footer.jsp"/>
-    <jsp:include page="scripts.jsp"/>
+                <!--   videos  -->
+                <div class="row">     
+                    <div class="col s9"> 
+                        <div class="card center" style="padding-bottom: 10px;">
+                            <h4 class="card-title" style="padding-top: 10px;">Último video</h4>
+                            <iframe  id="player" type="video/html"
+                                     src="https://www.youtube.com/embed/U6z36JjGyCQ"
+                                     frameborder="0" width="95%" height="450px" allowfullscreen>                       
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="col s3 ">
+                        <div class="card center">
+                            <h5 class="card-title" style="padding-top: 10px;" >Otros videos</h5>
+                            <div class="video-lat">
 
-    <script type="text/javascript">
+                                <div class="col s12">           
+                                    <iframe id="player" type="video/html"
+                                            src="https://www.youtube.com/embed/YAb3Bq96-K8"
+                                            frameborder="0" width="98%" height="150px" allowfullscreen>                       
+                                    </iframe>
+                                </div>
+                                <div class="col s12">           
+                                    <iframe id="player" type="video/html"
+                                            src="https://www.youtube.com/embed/icb0apfAEVU"
+                                            frameborder="0" width="98%" height="150px" allowfullscreen>                       
+                                    </iframe>
+                                </div>
 
-      $(document).ready(function () {
+                                <div class="col s12">           
+                                    <iframe id="player" type="video/html"
+                                            src="https://www.youtube.com/embed/zJNsv79RgNM"
+                                            frameborder="0" width="98%" height="150px" allowfullscreen>                       
+                                    </iframe>
+                                </div>
+                                <div class="col s12">           
+                                    <iframe id="player" type="video/html"
+                                            src="https://www.youtube.com/embed/PN5_BdqZCnk"
+                                            frameborder="0" width="98%" height="150px" allowfullscreen>                       
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-      /*********************************/
-      /****** LOGIN FUNCTIONS **********/
-      /*********************************/
+                    <!-- noticias -->
+                    <div class="col s9"> 
+                        <div class="card center" >
+                            <h4 class="card-title" style="padding-top:10px;"> Últimas noticias</h4>
+                            <ul class="collection notice-left">
+                                
+                                <li class="collection-item avatar row">
+                                    <div class="col s3">
+                                        <img src="http://lorempixel.com/400/400/technics/1" alt="" style="width: 100%">
+                                    </div>
+                                    <div class="col s9 left-align">
+                                    <h5 class="title">Noticia 1</h5>
+                                    <p>
+                                        "<i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>"
+                                    </p>
+                                    <a href="#!" class="right">Leer más...</a>
+                                    </div>
+                 
+                                </li>
+                                <li class="collection-item avatar row">
+                                    <div class="col s3">
+                                        <img src="http://lorempixel.com/400/400/technics/2" alt="" style="width: 100%">
+                                    </div>
+                                    <div class="col s9 left-align">
+                                    <h5 class="title">Noticia 2</h5>
+                                    <p>
+                                        "<i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>"
+                                    </p>
+                                    <a href="#!" class="right">Leer más...</a>
+                                    </div>
+                 
+                                </li>
+                                <li class="collection-item avatar row">
+                                    <div class="col s3">
+                                        <img src="http://lorempixel.com/400/400/technics/3" alt="" style="width: 100%">
+                                    </div>
+                                    <div class="col s9 left-align">
+                                    <h5 class="title">Noticia 3</h5>
+                                    <p>
+                                        "<i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>"
+                                    </p>
+                                    <a href="#!" class="right">Leer más...</a>
+                                    </div>
+                 
+                                </li>
+                                <li class="collection-item avatar row">
+                                    <div class="col s3">
+                                        <img src="http://lorempixel.com/400/400/technics/4" alt="" style="width: 100%">
+                                    </div>
+                                    <div class="col s9 left-align">
+                                    <h5 class="title">Noticia 4</h5>
+                                    <p>
+                                        "<i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>"
+                                    </p>
+                                    <a href="#!" class="right">Leer más...</a>
+                                    </div>
+                 
+                                </li>
+                                <li class="collection-item avatar row">
+                                    <div class="col s3">
+                                        <img src="http://lorempixel.com/400/400/technics/5" alt="" style="width: 100%">
+                                    </div>
+                                    <div class="col s9 left-align">
+                                    <h5 class="title">Noticia 5</h5>
+                                    <p>
+                                        "<i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i>"
+                                    </p>
+                                    <a href="#!" class="right">Leer más...</a>
+                                    </div>
+                 
+                                </li>
+                                <li class=" center" style="padding-bottom: 10px;padding-top:10px;">
+                                    <span ><i class=" fa fa-circle-o-notch fa-spin"></i></span>
+                                </li>
 
-      $('.loginButton').click(function (e) {
+                            </ul>
+                        </div>
+                    </div>
 
-      $('#login').toggle(400, function () {
-      // animation complete
-      });
-      });
-      $('#cancelLogin').click(function (e) {
+                    <div class="col s3 ">
+                        <div class="card left" style="margin-top: 15px;">
+                            <h5 class="center-align card-title" style=" padding-bottom:5px">Destacadas</h5>
+                             <div class="divider"></div>
+                            <div class="notice-lat">
+                                <div class="col s12 left">
+                                    
+                                    <blockquote>
+                                        <h5><b>Título1</b></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua...<a href="#!" class="grey-text "> ver más!</a></p>
+                                        
+                                    </blockquote>
+                                        
+                                    <div class="divider"></div>
+                                </div>
+                               <div class="col s12 left">
+                                    
+                                    <blockquote>
+                                        <h5><b>Título2</b></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua...<a href="#!" class="grey-text "> ver más!</a></p>
+                                        
+                                    </blockquote>
+                                        
+                                    <div class="divider"></div>
+                                </div>
+                                <div class="col s12 left">
+                                    
+                                    <blockquote>
+                                        <h5><b>Título3</b></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua...<a href="#!" class="grey-text "> ver más!</a></p>
+                                        
+                                    </blockquote>
+                                        
+                                    <div class="divider"></div>
+                                </div>
+                                <div class="col s12 left">
+                                    
+                                    <blockquote>
+                                        <h5><b>Título4</b></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua...<a href="#!" class="grey-text "> ver más!</a></p>
+                                        
+                                    </blockquote>
+                                        
+                                    <div class="divider"></div>
+                                </div>
+                                <div class="col s12 left">
+                                    
+                                    <blockquote>
+                                        <h5><b>Título5</b></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                                            et dolore magna aliqua...<a href="#!" class="grey-text "> ver más!</a></p>
+                                        
+                                    </blockquote>
+                                        
+                                    <div class="divider"></div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end for -->
+                </div>
 
-      $('#login').hide(400, function () {
-      // animation complete
-      });
-      });
-      /*********************************/
-      /******** IMAGE CAROUSEL *********/
-      /*********************************/
+        </main>
 
-      $('.slider').slider({full_width: true});
-         
-         
-      /*********************************/
-      /******** TOAST MSGS *************/
-      /*********************************/
-      });
+        <jsp:include page="footer.jsp"/>
+        <jsp:include page="scripts.jsp"/>
 
-    </script>
+        <script type="text/javascript">
 
-  </body>
+            $(document).ready(function () {
+
+                /*********************************/
+                /****** LOGIN FUNCTIONS **********/
+                /*********************************/
+
+                $('.loginButton').click(function (e) {
+
+                    $('#login').toggle(400, function () {
+                        // animation complete
+                    });
+                });
+                $('#cancelLogin').click(function (e) {
+
+                    $('#login').hide(400, function () {
+                        // animation complete
+                    });
+                });
+                /*********************************/
+                /******** IMAGE CAROUSEL *********/
+                /*********************************/
+
+                $('.slider').slider({full_width: true});
+
+
+                /*********************************/
+                /******** TOAST MSGS *************/
+                /*********************************/
+            });
+
+        </script>
+
+    </body>
 </html>

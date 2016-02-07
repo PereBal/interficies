@@ -194,3 +194,18 @@ main {
 .chat-selected {
    background-color: lightgray !important;
 }
+
+.video-lat{
+    max-height: 475px;
+    overflow: scroll;
+}
+
+.notice-lat{
+   max-height: 700px !important;
+   overflow-y: scroll; 
+}
+
+.notice-left{
+   max-height: 700px !important;
+   overflow-y: scroll; 
+}
