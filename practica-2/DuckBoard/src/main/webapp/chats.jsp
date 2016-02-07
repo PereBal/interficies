@@ -173,7 +173,6 @@
 
             if (message.user_id !==  ${user.id}) { // current user msg
 
-
             toAppend = '<div class="row row-fit">'+
                         '<div class="chat-bubble blue-grey lighten-5 left">'+
                           '<div class="chat-bubble-text">' + message.text + '</>'+
@@ -185,7 +184,6 @@
                       '</div>';
 
             } else {
-
 
             toAppend = '<div class="row row-fit">'+
                         '<div class="chat-bubble light-green lighten-4 right">'+
@@ -222,8 +220,6 @@
                   
               $('.chat-selected').removeClass('chat-selected');    
               $('#' + chatId).addClass('chat-selected'); 
-              
-              console.log('motherf')
               
               chatForm.show();
               msgChatForm.hide();
@@ -319,7 +315,16 @@
             msgChatForm.show();
         }
           
-       
+        var intervalID = setInterval(
+            function (){
+
+                var currentChat = $('.chat-selected').attr('id');
+
+                if(currentChat !== undefined && currentChat !== null && currentChat !== '' ) {
+
+                    retrieveConversation(currentChat);
+                }
+            }, 1000);
       });
 
       /*function deleteChat(chatId) {
