@@ -62,6 +62,8 @@
                   <div class="input-field col s6">
                     <input id="pwd2" name="pwd2" type="password" length="32" required>
                     <label for="pwd2">Repeat password</label>
+                    <span id="wrong-psw" style="display:none;"><i class="red-text fa fa-exclamation-triangle"></i> Las contraseñas no coinciden</span>
+                    <span id="correct-psw" style="display:none;"><i class="right green-text fa fa-check-square-o"></i></span>
                   </div>
 
                   <div class="input-field col s12">
@@ -96,27 +98,37 @@
 
       var pwd = document.getElementById('pwd');
       var pwd2 = document.getElementById('pwd2');
-      $('#pwd').keypress(function (event) {
+      $('#pwd').keyup(function (event) {
         if (event.which === 13) {
           event.preventDefault();
         }
+        var pwd = document.getElementById('pwd');
         pwdcheck();
       });
-      $('#pwd2').keypress(function (event) {
+      
+      $('#pwd2').keyup(function (event) {
         if (event.which === 13) {
           event.preventDefault();
         }
+        var pwd2 = document.getElementById('pwd2');
         pwdcheck();
       });
 
       function pwdcheck() {
+        console.log(pwd.value);
+        console.log(pwd2.value);
+        
         if (pwd.value !== pwd2.value) {
-          // Wrong label
+          $("#wrong-psw").css("display", "block");
+          $("#correct-psw").css("display", "none");
           document.getElementById('');
         } else {
-          // Matches label
+          $("#wrong-psw").css("display", "none");
+          $("#correct-psw").css("display", "block");
         }
-      };
+          
+       }
+     });
     </script>
   </body>
 </html>
