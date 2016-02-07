@@ -72,13 +72,16 @@
                         </div>
 
                       <div class="grey lighten-5">
-                        <form class="col s12" style="padding-top: 1.5em;">
+                          <div id="msgChatForm" class="col s8 offset-s2" style="padding-top:2rem; font-size: 16px;">
+                            Escoja un chat para iniciar una conversacion.. <i class="material-icons">chat</i>
+                        </div>  
+                        <form class="col s12" style="padding-top: 1.5em;" id="chatForm">
                           <div class="row">
                             <div class="col s10">
-                              <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aquí su mensaje..."></textarea>
+                                <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aquí su mensaje..."></textarea>
                             </div>
                             <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1" onclick="saveMessage()"
-                               id="sendBtn" style="padding: inherit;">Enviar</a>
+                               style="padding: inherit;">Enviar</a>
                           </div>
                         </form>
                       </div>
@@ -99,8 +102,9 @@
       var openChats = $('#contactsList');
       var conversation = $('#conversation');
       var chatTextArea = $('#chatText');
-      var sendButton = $('#sendBtn');
-
+      var chatForm = $('#chatForm');
+      var msgChatForm = $('#msgChatForm');
+      
       var niceScrollConf = {
         cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
         cursorwidth: "8px"
@@ -171,9 +175,13 @@
             success: function (data) {
                   
               $('.chat-selected').removeClass('chat-selected');    
-              $('#' + chatId).addClass('chat-selected');  
-              chatTextArea.prop('disabled', false);
-              sendButton.prop('disabled', false);
+              $('#' + chatId).addClass('chat-selected'); 
+              
+              console.log('motherf')
+              
+              chatForm.show();
+              msgChatForm.hide();
+              
               buildConversation(data);
             },
             error: function (){}
@@ -252,16 +260,17 @@
         chatTextArea.niceScroll(niceScrollConf);
         conversation.niceScroll(niceScrollConf);
         
-        if('${currentChat}' != null) {
+        if('${currentChat}' !== '' && '${currentChat}' !== undefined ) {
             
             $('#' + '${currentChat}').addClass('chat-selected');
             retrieveConversation('${currentChat}');
-            chatTextArea.prop('disabled', false);
-            sendButton.prop('disabled', false);
+            
+            chatForm.show();
+            msgChatForm.hide();
         } else {
             
-            chatTextArea.prop('disabled', true);
-            sendButton.prop('disabled', true);
+            chatForm.hide();
+            msgChatForm.show();
         }
           
        
