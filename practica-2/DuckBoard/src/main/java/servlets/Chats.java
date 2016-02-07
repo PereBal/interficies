@@ -178,7 +178,8 @@ public class Chats extends HttpServlet {
       Helper.setErrorFlash(s, "No hemos sido capaces de borrar tu conversación :(");
       Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
     } finally {
-      response.sendRedirect("/duckboard/chats");
+      response.sendRedirect("/duckboard");
+      //response.sendRedirect("/duckboard/chats");
     }
   }
 

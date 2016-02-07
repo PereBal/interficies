@@ -48,7 +48,7 @@ public class Messages extends HttpServlet {
       String unread = request.getParameter("unread");
       String skip   = request.getParameter("skip");
 
-      if (chatId == null) {
+      if (chatId == null || chatId.trim().equals("")) {
         response.sendRedirect("/duckboard/chats"); return;
       }
 
