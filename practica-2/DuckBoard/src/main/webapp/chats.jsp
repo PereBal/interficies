@@ -40,20 +40,20 @@
                                   id="${chat}">
                                 <img src="" alt="" class="circle"/>
 
-                                <span class="title"><c:out value="${nameChat}"/></span>
+                                <span class="title">${nameChat}</span>
                                 <div class="row">
                                   <div class="col s-9">
-                                    <p><c:out value="${emailChat}"/></p>
+                                    <p>${emailChat}</p>
                                   </div>
                                   <div class="col s3">
-                                      <a onclick="deleteChat('${chat}')" style="cursor: pointer">
+                                      <a id="sendBtn" onclick="deleteChat('${chat}')" style="cursor: pointer">
                                       <i class="material-icons red-text right">delete</i>
                                     </a>
                                   </div>
                                 </div>
                                 <c:if test="${haveUnreadMessages}">
                                   <div class="secondary-content">
-                                    <span class="new badge conversation-span red accent-4"><c:out value="${unreadMessages}"/></span>
+                                    <span class="new badge conversation-span red accent-4">${unreadMessages}</span>
                                   </div>
                                 </c:if>
                               </li>
@@ -75,10 +75,10 @@
                         <form class="col s12" style="padding-top: 1.5em;">
                           <div class="row">
                             <div class="col s10">
-                              <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="escribe aquï¿½ su mensaje..."></textarea>
+                              <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aquí su mensaje..."></textarea>
                             </div>
                             <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1" onclick="saveMessage()"
-                               style="padding: inherit;">Enviar</a>
+                               id="sendBtn" style="padding: inherit;">Enviar</a>
                           </div>
                         </form>
                       </div>
@@ -96,8 +96,10 @@
     <jsp:include page="scripts.jsp"/>
     <script type="text/javascript">
       /* GLOBAL VARIABLES */
-      var openChats = $('#contacts');
+      var openChats = $('#contactsList');
       var conversation = $('#conversation');
+      var chatTextArea = $('#chatText');
+      var sendButton = $('#sendBtn');
 
       var niceScrollConf = {
         cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
@@ -115,12 +117,11 @@
 
        conversation.empty();
 
-       if (!$.empty('data.messages')){
+       if (data.messages != undefined && data.messages !== null && data.messages.length > 0){
 
-        $.each(data.messages, function (message, userId) {
+        $.each(data.messages, function (index, message) {
 
-
-            if (message.user_id ===  userId) { // current user msg
+            if (message.user_id !==  ${user.id}) { // current user msg
 
 
             toAppend = '<div class="row row-fit">'+
@@ -149,18 +150,13 @@
 
             conversation.append(toAppend);
         });
-      } else {
-          conversation.append('No hay mensajes');
-      }
-    };
+        }
+    }
 
     /**
      * Gets conversation messages
      */
     var retrieveConversation = function(chatId) {
-
-        // remove class from current chat element first, do it on success.
-        $('#' + chatId).addClass('chat-selected');
         
         $.ajax({
             type: 'GET',
@@ -169,11 +165,15 @@
             dataType: "json",
             data: ({
               'cid'    : chatId,
-              'unread' : true,
+              'unread' : false,
               'skip'   : 0
             }),
             success: function (data) {
-
+                  
+              $('.chat-selected').removeClass('chat-selected');    
+              $('#' + chatId).addClass('chat-selected');  
+              chatTextArea.prop('disabled', false);
+              sendButton.prop('disabled', false);
               buildConversation(data);
             },
             error: function (){}
@@ -188,14 +188,9 @@
     var saveMessage = function() {
         
         var chatId = $('.chat-selected').attr('id');
-        var message = $('#chattext').val();
+        var message = $('#chatText').val();
         
-        var message = {
-            'text'       : 'hello',
-            'created_at' : 'blabla'
-        };
-        
-        paintMessage(message);
+        if ($.trim(message) !== '') {
         
         $.ajax({
             type: 'POST',
@@ -206,21 +201,21 @@
               'cid'  : chatId,
               'text' : message
             }),
-            success: function () {
-              console.log('here'); 
+            success: function (data) { 
               
-               
+               paintMessage(data);
+               $('#chatText').val('');
             },
             error: function (){}
           }); 
+        } 
     }
     
     var paintMessage = function(message) {
         
       var toAppend;  
-        
-      /*if (message.user_id ===  userId) { // current user msg*/
-
+      
+      if (message.user_id !==  ${user.id}) { // current user msg*/
 
       toAppend = '<div class="row row-fit">'+
                   '<div class="chat-bubble blue-grey lighten-5 left">'+
@@ -231,9 +226,7 @@
                     '</div>'+
                   '</div>'+
                 '</div>';
-
-      /*} else {*/
-
+      } else {
 
       toAppend = '<div class="row row-fit">'+
                   '<div class="chat-bubble light-green lighten-4 right">'+
@@ -244,26 +237,37 @@
                     '</div>'+
                   '</div>'+
                 '</div>';
-      /*}*/
+      }
 
       conversation.append(toAppend);
     }
 
       $(document).ready(function () {
-          
-        /*$('#' + chatId).addClass('chat-selected');*/ 
-        
-        // Activate Dropdown menu
+           // Activate Dropdown menu
         $(".dropdown-button").dropdown();
         // Activate button-collapse for mobile
         $(".button-collapse").sideNav();
 
         openChats.niceScroll(niceScrollConf);
-        $('#chatText').niceScroll(niceScrollConf);
+        chatTextArea.niceScroll(niceScrollConf);
         conversation.niceScroll(niceScrollConf);
+        
+        if('${currentChat}' != null) {
+            
+            $('#' + '${currentChat}').addClass('chat-selected');
+            retrieveConversation('${currentChat}');
+            chatTextArea.prop('disabled', false);
+            sendButton.prop('disabled', false);
+        } else {
+            
+            chatTextArea.prop('disabled', true);
+            sendButton.prop('disabled', true);
+        }
+          
+       
       });
 
-      function deleteChat(chatId) {
+      /*function deleteChat(chatId) {
         // $.ajax({
         //   url: '/duckboard/chats',
         //   method: 'DELETE',
@@ -277,7 +281,7 @@
         //   //}
         // });
         console.log("hola");
-      }
+      };*/
     </script>
   </body>
 </html>
