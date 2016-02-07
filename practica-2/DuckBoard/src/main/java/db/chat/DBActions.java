@@ -1,5 +1,6 @@
 package db.chat;
 
+import com.mongodb.MongoQueryException;
 import model.User;
 import model.Chat;
 import model.Party;
@@ -157,6 +158,10 @@ public class DBActions {
     try (DBConnection connection = new DBConnection()) {
       connection.open();
       MongoDatabase db = connection.getDatabase();
+      
+      if (getMessages(chatId, userId, true, Message.LIMIT, 0).isEmpty()) {
+          return;
+      }
 
       String messageId = db.getCollection(DBProperties.COLL).find(
               eq("_id", new ObjectId(chatId)))
