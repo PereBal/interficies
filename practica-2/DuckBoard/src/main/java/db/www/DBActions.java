@@ -122,26 +122,6 @@ public class DBActions {
     return null;
   }
 
-//  public ArrayList<User> getUsers() {
-//    // OJO al límit
-//    final int lim = 20;
-//    ArrayList<User> userList = null;
-//    try (DBConnection con = new DBConnection();) {
-//      con.open();
-//      Statement st = con.getConection().createStatement();
-//      ResultSet rs = st.executeQuery("SELECT " + basicFactory.fields() + " FROM user LIMIT " + lim + ";");
-//
-//      userList = new ArrayList<>(lim);
-//      while (rs.next()) {
-//        userList.add(basicFactory.toUser(rs));
-//      }
-//
-//    } catch (Exception ex) {
-//      java.util.logging.Logger.getLogger(DBActions.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//    }
-//    return userList;
-//  }
-
   /**
    * Inserts an user into the DB.
    *

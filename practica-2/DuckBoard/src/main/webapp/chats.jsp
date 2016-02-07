@@ -37,14 +37,14 @@
                                %>
                               <li class="collection-item avatar conversation-li" onclick="retrieveConversation('${chat}')" style="cursor: pointer;">
                                 <img src="" alt="" class="circle"/>
-                               
+
                                 <span class="title"><c:out value="${nameChat}"/></span>
                                 <div class="row">
                                   <div class="col s-9">
                                     <p><c:out value="${emailChat}"/></p>
                                   </div>
                                   <div class="col s3">
-                                      <a href="/duckboard/chats/delete?cid=${chat}" onclick="function(event){e.stopPopagation();}">
+                                      <a onclick="deleteChat('${chat}')" style="cursor: pointer">
                                       <i class="material-icons red-text right">delete</i>
                                     </a>
                                   </div>
@@ -64,7 +64,7 @@
 
 
                   <div class="col s8 conversation">
-                    <div>    
+                    <div>
 
                         <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
                         </div>
@@ -73,14 +73,14 @@
                         <form class="col s12" style="padding-top: 1.5em;">
                           <div class="row">
                             <div class="col s10">
-                              <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="escribe aquí su mensaje..."></textarea>
+                              <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="escribe aquï¿½ su mensaje..."></textarea>
                             </div>
                             <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1"
                                style="padding: inherit;">Enviar</a>
                           </div>
                         </form>
                       </div>
-                    </div>  
+                    </div>
 
                   </div>
                 </div>
@@ -93,7 +93,7 @@
     <jsp:include page="footer.jsp"/>
     <jsp:include page="scripts.jsp"/>
     <script type="text/javascript">
-      /* GLOBAL VARIABLES */  
+      /* GLOBAL VARIABLES */
       var openChats = $('#contacts');
       var conversation = $('#conversation');
 
@@ -101,26 +101,26 @@
         cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
         cursorwidth: "8px"
       }
-      
+
       /* SUPPORT FUNCTIONS */
-      
+
     /**
      * Appends messages to the conversation div
      */
     var buildConversation = function(data) {
-            
+
        var toAppend;
-       
-       conversation.empty(); 
-       
+
+       conversation.empty();
+
        if (!$.empty('data.messages')){
-        
+
         $.each(data.messages, function (message, userId) {
-            
+
 
             if (message.user_id ===  userId) { // current user msg
 
-               
+
             toAppend = '<div class="row row-fit">'+
                         '<div class="chat-bubble blue-grey lighten-5 left">'+
                           '<div class="chat-bubble-text">' + message.text + '</>'+
@@ -133,7 +133,7 @@
 
             } else {
 
-               
+
             toAppend = '<div class="row row-fit">'+
                         '<div class="chat-bubble light-green lighten-4 right">'+
                           '<div class="chat-bubble-text">' + message.text + '</>'+
@@ -144,19 +144,19 @@
                         '</div>'+
                       '</div>';
             }
-            
+
             conversation.append(toAppend);
-        }); 
+        });
       } else {
           conversation.append('No hay mensajes');
       }
     };
-    
+
     /**
      * Gets conversation messages
      */
     var retrieveConversation = function(chatId) {
-        
+
         $.ajax({
             type: 'GET',
             url: '/duckboard/chats/messages',
@@ -165,16 +165,16 @@
             data: ({
               'cid'    : chatId,
               'unread' : true,
-              'begin'  : 0
+              'skip'   : 0
             }),
             success: function (data) {
-              
-              buildConversation(data);  
+
+              buildConversation(data);
             },
             error: function (){}
-          }); 
+          });
     };
-      
+
       $(document).ready(function () {
         // Activate Dropdown menu
         $(".dropdown-button").dropdown();
@@ -185,6 +185,22 @@
         $('#chatText').niceScroll(niceScrollConf);
         conversation.niceScroll(niceScrollConf);
       });
+
+      function deleteChat(chatId) {
+        // $.ajax({
+        //   url: '/duckboard/chats',
+        //   method: 'DELETE',
+        //   async: false,
+        //   data: { cid: chatId }
+        //   succes: function () {
+        //     console.log("hello")
+        //   }
+        //   //error: function () {
+        //
+        //   //}
+        // });
+        console.log("hola");
+      }
     </script>
   </body>
 </html>

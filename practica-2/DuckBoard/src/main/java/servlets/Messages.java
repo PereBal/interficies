@@ -37,10 +37,10 @@ public class Messages extends HttpServlet {
           throws ServletException, IOException {
     response.setContentType("application/text-plain;charset=UTF-8");
     Sesion s = new Sesion(request.getSession());
-    if (Sesion.isAutenticated(s)) {
+    if (!Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return;
     }
-
+    
     if (Helper.isAjax(request)) {
       User user = s.getUser();
 
@@ -76,9 +76,9 @@ public class Messages extends HttpServlet {
       }
 
       JSONObject object = new JSONObject();
-      JSONArray jsonMessages = new JSONArray();
-
       object.put("cid", chatId);
+      
+      JSONArray jsonMessages = new JSONArray();
       for (Message message : messages) {
         JSONObject jsonMessage = new JSONObject();
         jsonMessage.put("user_id", message.getUser().getId());
@@ -89,12 +89,15 @@ public class Messages extends HttpServlet {
       }
       object.put("messages", jsonMessages);
 
-      jsonMessages.write(response.getWriter());
+      object.write(response.getWriter());
       response.setContentType("application/json;charset=UTF-8");
       response.getWriter().close();
       
       try {
-        Chat.retrieveByPk(chatId).setLastReadMessage(user.getId());
+        Chat chat = Chat.retrieveByPk(chatId);
+        if (!chat.getMessages().isEmpty()) {
+            chat.setLastReadMessage(user.getId());
+        }
       } catch (ChatDoesNotExistException | UserNotInPartyException | UserDoesNotExistException ex) {
         Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
       }
@@ -116,7 +119,7 @@ public class Messages extends HttpServlet {
           throws ServletException, IOException {
     response.setContentType("application/text-plain;charset=UTF-8");
     Sesion s = new Sesion(request.getSession());
-    if (Sesion.isAutenticated(s)) {
+    if (!Sesion.isAutenticated(s)) {
       response.sendRedirect("/duckboard"); return;
     }
 

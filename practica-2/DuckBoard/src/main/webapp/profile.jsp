@@ -160,7 +160,7 @@
             </div>
 
             <div class="card-action">
-              <a id="deleteAccount" class="red-text">ELIMINAR</a>
+              <a id="deleteAccount" class="red-text"  style="cursor: pointer">ELIMINAR</a>
               <button  id="editButton" class="btn waves-effect waves-light light-blue darken-1">
                 EDITAR
                 <i class="fa fa-edit fa-2x"></i>
@@ -181,7 +181,6 @@
   <script type="text/javascript">
 
     $(document).ready(function () {
-
       $('#deleteAccount').click(function (e) {
         $.ajax({
           url: '/duckboard/users',
