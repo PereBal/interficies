@@ -24,7 +24,7 @@ public class Message {
     this.chatId = chatId;
     this.user = user;
     this.text = text;
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+    DateFormat df = new SimpleDateFormat("HH:mm");
     this.createdAt = df.format(id.getDate());
   }
 
