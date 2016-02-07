@@ -1,15 +1,14 @@
 package model;
 
 import java.util.List;
-import org.bson.types.ObjectId;
+import java.util.Date;
 import db.chat.DBActions;
+import org.bson.types.ObjectId;
 import db.chat.exceptions.UserNotInPartyException;
 import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
 import db.chat.exceptions.MessageDoesNotExistException;
 import db.chat.exceptions.MessageIsNotPartOfThisChatException;
-import java.util.Collections;
-import java.util.Date;
 
 public class Chat {
 
@@ -32,43 +31,39 @@ public class Chat {
   public List<Party> getParties() {
     return parties;
   }
-  
+
   public String getChatName(int userId) {
     for (Party party : parties) {
       if (party.getUser().getId() != userId) {
        return party.getUser().getName() + " " + party.getUser().getLastName();
       }
     }
-    
+
     return "Conversación";
   }
-  
+
   public String getChatEmail(int userId) {
     for (Party party : parties) {
       if (party.getUser().getId() != userId) {
        return party.getUser().getEmail();
       }
     }
-    
+
     return "";
   }
 
   public List<Message> getMessages() throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, 0);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(toString(), Message.LIMIT, 0);
   }
 
   public List<Message> getMessages(int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, skip);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(toString(), Message.LIMIT, skip);
   }
-  
+
   public boolean haveUnreadMessages(int userId) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
@@ -87,18 +82,14 @@ public class Chat {
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(toString(), userId, true, Message.LIMIT, 0);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT, 0);
   }
 
   public List<Message> getUnreadMessages(int userId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(toString(), userId, true, Message.LIMIT, skip);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT, skip);
   }
 
   public void setMessages(List<Message> messages) throws
@@ -135,11 +126,11 @@ public class Chat {
   public String toString() {
     return this.id.toString();
   }
-  
+
   public void delete() {
     DBActions.delete(this.id.toString());
-  } 
-  
+  }
+
   ///////////////////////////////////
   /////   Wrappering DBActions!!!
   ///////////////////////////////////

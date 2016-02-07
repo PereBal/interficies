@@ -12,24 +12,16 @@ import static java.util.Arrays.asList;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.AggregateIterable;
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.ne;
-import static com.mongodb.client.model.Filters.lt;
-import static com.mongodb.client.model.Filters.and;
-import static com.mongodb.client.model.Updates.set;
-import static com.mongodb.client.model.Aggregates.skip;
-import static com.mongodb.client.model.Aggregates.sort;
-import static com.mongodb.client.model.Aggregates.match;
-import static com.mongodb.client.model.Aggregates.limit;
+import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Updates.*;
 import db.chat.exceptions.UserNotInPartyException;
-import static com.mongodb.client.model.Updates.addToSet;
 import db.www.exceptions.UserDoesNotExistException;
-import static com.mongodb.client.model.Filters.elemMatch;
-import static com.mongodb.client.model.Projections.slice;
+import static com.mongodb.client.model.Aggregates.*;
 import db.chat.exceptions.ChatDoesNotExistException;
+import db.chat.exceptions.MessageDoesNotExistException;
+import static com.mongodb.client.model.Projections.slice;
 import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Indexes.descending;
-import db.chat.exceptions.MessageDoesNotExistException;
 import db.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class DBActions {
@@ -61,6 +53,11 @@ public class DBActions {
     try (DBConnection connection = new DBConnection();) {
       connection.open();
 
+      Chat existChat = chatExist(userId1, userId2);
+      if (existChat != null) {
+          return existChat;
+      }
+      
       Document chat = new Document()
               .append("party", asList(
                       new Document()
@@ -550,6 +547,37 @@ public class DBActions {
     }
 
     return chat != null;
+  }
+  
+    /**
+   *
+   * @param userId1
+   * @param userId2
+   * @return
+   * @throws db.chat.exceptions.ChatDoesNotExistException
+   * @throws db.chat.exceptions.UserNotInPartyException
+   */
+  private static Chat chatExist(int userId1, int userId2) throws 
+          ChatDoesNotExistException, 
+          UserNotInPartyException {
+    Document chat = null;
+
+    try (DBConnection connection = new DBConnection();) {
+      connection.open();
+      MongoDatabase db = connection.getDatabase();
+
+      chat = db.getCollection(DBProperties.COLL).find(
+              and(eq("party.user_id", userId1), eq("party.user_id", userId2)))
+              .first();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+    if (chat == null) {
+        return null;
+    } 
+
+    return DBActions.documentToChat(chat);
   }
   
   /**

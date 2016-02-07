@@ -1,10 +1,9 @@
 <%@page import="servlets.tools.Helper"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-  <%
-    pageContext.setAttribute("logged", Helper.isLogged(request));
-    pageContext.setAttribute("user", Helper.getCurrentUser(request));
-    %>
+<%
+pageContext.setAttribute("logged", Helper.isLogged(request));
+pageContext.setAttribute("user", Helper.getCurrentUser(request));
+%>
 <!DOCTYPE html>
 <html>
   <jsp:include page="head.jsp"/>

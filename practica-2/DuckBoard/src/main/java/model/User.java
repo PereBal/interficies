@@ -77,7 +77,7 @@ public class User {
   public void setAuthToken(String token) {
     this.authToken = token;
   }
-  
+
   public String getGravatarUrl() {
     Gravatar gravatar = new Gravatar();
     gravatar.setSize(420);
@@ -95,35 +95,27 @@ public class User {
   public List<Message> getMessages(String chatId) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, 0);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(toString(), Message.LIMIT, 0);
   }
 
   public List<Message> getMessages(String chatId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException {
-    List<Message> list = DBActions.getMessages(chatId, Message.LIMIT, skip);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(chatId, Message.LIMIT, skip);
   }
 
   public List<Message> getUnreadMessages(String chatId) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(chatId, this.id, true, Message.LIMIT, 0);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, 0);
   }
 
   public List<Message> getUnreadMessages(String chatId, int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(chatId, this.id, true, Message.LIMIT, skip);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(chatId, this.id, true, Message.LIMIT, skip);
   }
 
   @Override

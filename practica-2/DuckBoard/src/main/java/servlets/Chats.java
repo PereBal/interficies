@@ -137,7 +137,7 @@ public class Chats extends HttpServlet {
     if (userId == null) {
       Helper.setErrorFlash(s, "Hablar solo, esta guay, pero aquí nos gusta hablar con otras personas!!!");
     }
-
+    
     try {
       Chat currentChat = Chat.create(user.getId(), Integer.parseInt(userId));
       response.sendRedirect("/duckboard/chats?cid=" + currentChat);

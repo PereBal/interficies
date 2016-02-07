@@ -55,18 +55,14 @@ public class Party {
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, 0);
   }
 
   public List<Message> getUnreadMessages(int skip) throws
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, skip);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(this.chatId.toString(), this.user.getId(), true, Message.LIMIT, skip);
   }
 
   public ObjectId getChatId() {

@@ -1,13 +1,13 @@
 package model;
 
-import java.util.Date;
 import java.util.List;
 import db.chat.DBActions;
+import java.text.DateFormat;
 import org.bson.types.ObjectId;
+import java.text.SimpleDateFormat;
 import db.chat.exceptions.UserNotInPartyException;
 import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
-import java.util.Collections;
 
 public class Message {
 
@@ -17,14 +17,15 @@ public class Message {
   private final ObjectId chatId;
   private final User user;
   private final String text;
-  private final Date createdAt;
+  private final String createdAt;
 
   public Message(ObjectId id, ObjectId chatId, User user, String text) {
     this.id = id;
     this.chatId = chatId;
     this.user = user;
     this.text = text;
-    this.createdAt = id.getDate();
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+    this.createdAt = df.format(id.getDate());
   }
 
   public ObjectId getId() {
@@ -39,7 +40,7 @@ public class Message {
     return text;
   }
 
-  public Date getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
@@ -60,7 +61,7 @@ public class Message {
 
     return DBActions.getChatById(this.chatId.toString());
   }
-  
+
   @Override
   public String toString() {
     return this.id.toString();
@@ -85,8 +86,6 @@ public class Message {
           ChatDoesNotExistException,
           UserNotInPartyException,
           UserDoesNotExistException {
-    List<Message> list = DBActions.getMessages(chatId, userId, true, Message.LIMIT, 0);
-    Collections.reverse(list);
-    return list;
+    return DBActions.getMessages(chatId, userId, true, Message.LIMIT, 0);
   }
 }
