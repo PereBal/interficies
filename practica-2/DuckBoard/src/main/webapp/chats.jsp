@@ -35,7 +35,9 @@
                                  pageContext.setAttribute("haveUnreadMessages", chat.haveUnreadMessages(user.getId()));
                                  pageContext.setAttribute("unreadMessages", chat.countUnreadMessages(user.getId()));
                                %>
-                              <li class="collection-item avatar conversation-li" onclick="retrieveConversation('${chat}')" style="cursor: pointer;">
+                              <li class="collection-item avatar conversation-li waves-effect" 
+                                  onclick="retrieveConversation('${chat}')" style="cursor: pointer; width: 100%"
+                                  id="${chat}">
                                 <img src="" alt="" class="circle"/>
 
                                 <span class="title"><c:out value="${nameChat}"/></span>
@@ -75,7 +77,7 @@
                             <div class="col s10">
                               <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="escribe aqu� su mensaje..."></textarea>
                             </div>
-                            <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1"
+                            <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1" onclick="saveMessage()"
                                style="padding: inherit;">Enviar</a>
                           </div>
                         </form>
@@ -157,6 +159,9 @@
      */
     var retrieveConversation = function(chatId) {
 
+        // remove class from current chat element first, do it on success.
+        $('#' + chatId).addClass('chat-selected');
+        
         $.ajax({
             type: 'GET',
             url: '/duckboard/chats/messages',
@@ -175,7 +180,79 @@
           });
     };
 
+    
+    /**
+     * Funciton to post new message
+     * @param {type} param
+     */
+    var saveMessage = function() {
+        
+        var chatId = $('.chat-selected').attr('id');
+        var message = $('#chattext').val();
+        
+        var message = {
+            'text'       : 'hello',
+            'created_at' : 'blabla'
+        };
+        
+        paintMessage(message);
+        
+        $.ajax({
+            type: 'POST',
+            url: '/duckboard/chats/messages',
+            async: true,
+            dataType: "json",
+            data: ({
+              'cid'  : chatId,
+              'text' : message
+            }),
+            success: function () {
+              console.log('here'); 
+              
+               
+            },
+            error: function (){}
+          }); 
+    }
+    
+    var paintMessage = function(message) {
+        
+      var toAppend;  
+        
+      /*if (message.user_id ===  userId) { // current user msg*/
+
+
+      toAppend = '<div class="row row-fit">'+
+                  '<div class="chat-bubble blue-grey lighten-5 left">'+
+                    '<div class="chat-bubble-text">' + message.text + '</>'+
+                      '<span class="chat-timestamp grey-text text-darken-1">'+
+                        '<i class="fa fa-clock-o">' + message.created_at + '</i>'+
+                      '</span>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>';
+
+      /*} else {*/
+
+
+      toAppend = '<div class="row row-fit">'+
+                  '<div class="chat-bubble light-green lighten-4 right">'+
+                    '<div class="chat-bubble-text">' + message.text + '</>'+
+                      '<span class="chat-timestamp grey-text text-darken-1">'+
+                        '<i class="fa fa-clock-o">' + message.created_at + '</i>'+
+                      '</span>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>';
+      /*}*/
+
+      conversation.append(toAppend);
+    }
+
       $(document).ready(function () {
+          
+        /*$('#' + chatId).addClass('chat-selected');*/ 
+        
         // Activate Dropdown menu
         $(".dropdown-button").dropdown();
         // Activate button-collapse for mobile

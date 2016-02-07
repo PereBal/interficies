@@ -138,12 +138,6 @@ main {
   overflow-y: auto;
 }
 
-.dynamic-height{
-}
-
-.dynamic-height-messages{
-}
-
 .alert-error {
   background-color: red;
 }
@@ -195,4 +189,8 @@ main {
   border: none;
   resize: none;
   outline:none;
+}
+
+.chat-selected {
+   background-color: lightgray !important;
 }
