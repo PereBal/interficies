@@ -56,9 +56,12 @@
                               '<div class="collapsible-header" onclick="appendCollapsibleBody(\'collapsible-'+ collapsible.id +'\');">'+
                                 '<i class="material-icons">perm_identity</i>'+
                                 'Nombre: ' + collapsible.name +  ' - ' + 'Email: ' + collapsible.email +
-                                '<a class="waves-effect waves-light right" onclick="startChat('+ collapsible.id +')">'+
-                                  '<i class="material-icons right-align">comment</i>' + 
-                                '</a>'+
+                                '<form action="/duckboard/chats?party=' + collapsible.id + '" method="POST" name="chatForm-'+ collapsible.id +'">' + 
+                                  '<a class="waves-effect waves-light right" onclick="document.forms[\'chatForm-'+ collapsible.id + '\'].submit();'+ 
+                                      'startChat(event)" style="margin-top: -3rem;">'+
+                                    '<i class="material-icons right-align">comment</i>' + 
+                                  '</a>'+
+                                '</form>' +
                                 '</div>' +
                               '<div id="collapsible-'+ collapsible.id +'" class="collapsible-body inner-padding grey-text text-darken-2">'+ 
                               '</div>'+
@@ -159,32 +162,9 @@
           target.append(toAppend);
         };
     
-// LLLLUUUUC SHIT 
-        function superHackerFunction(action, method, input) {
-          'use strict';
-           var form;
-           form = $('<form />', {
-            action: action,
-            method: method,
-            style: 'display: none;'
-           });
-          if (typeof input !== 'undefined' && input !== null) {
-          $.each(input, function (name, value) {
-            $('<input />', {
-                type: 'hidden',
-                name: name,
-                value: value
-            }).appendTo(form);
-          });
-          }
-          form.appendTo('body').submit();
-        }
-  // LLLLUUUUC SHIT
           
-        var startChat = function(uid){
-          superHackerFunction('/duckboard/chats', 'post', {
-           party: uid,
-          });
+        var startChat = function(e){
+          e.stopPropagation();
         };
       
       

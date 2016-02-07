@@ -22,13 +22,18 @@ public class Utils {
   }
 
   public static String cleanName(String name) {
-    return "'" + name.toUpperCase().replaceAll("[^A-Z0-9]", "") + "'";
+    //String cleanName = WordUtils.capitalize(name);
+    String cleanName = name;
+    return "'" + cleanName.replaceAll("[^A-Z0-9]", "") + "'";
   }
 
   public static String cleanLastName(String lastName) {
     if (lastName == null)
       return null;
-    return "'" + lastName.toUpperCase().replaceAll("[^A-Z0-9 ]", "") + "'";
+    
+    //String cleanLName = WordUtils.capitalize(lastName); < maven i apache ho faran posible
+    String cleanLName = lastName;
+    return "'" + cleanLName.replaceAll("[^A-Z0-9 ]", "") + "'";
   }
 
   public static String cleanPwd(String pwd) {

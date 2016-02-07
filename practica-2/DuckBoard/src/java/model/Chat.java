@@ -33,6 +33,26 @@ public class Chat {
   public List<Party> getParties() {
     return parties;
   }
+  
+  public String getChatName(int userId) {
+    for (Party party : parties) {
+      if (party.getUser().getId() != userId) {
+       return party.getUser().getName() + " " + party.getUser().getLastName();
+      }
+    }
+    
+    return "Conversación";
+  }
+  
+  public String getChatEmail(int userId) {
+    for (Party party : parties) {
+      if (party.getUser().getId() != userId) {
+       return party.getUser().getEmail();
+      }
+    }
+    
+    return "";
+  }
 
   public List<Message> getMessages() throws
           ChatDoesNotExistException,
@@ -48,6 +68,13 @@ public class Chat {
     List<Message> list = DBActions.getMessages(toString(), Message.LIMIT, skip);
     Collections.reverse(list);
     return list;
+  }
+  
+  public boolean haveUnreadMessages(int userId) throws
+          ChatDoesNotExistException,
+          UserNotInPartyException,
+          UserDoesNotExistException {
+    return DBActions.getMessages(toString(), userId, true, Message.LIMIT * 50, 0).size() > 0;
   }
 
   public int countUnreadMessages(int userId) throws
