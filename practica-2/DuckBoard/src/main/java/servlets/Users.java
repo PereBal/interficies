@@ -23,7 +23,14 @@ public class Users extends HttpServlet {
     String name = request.getParameter("name");
     String lastName = request.getParameter("last_name");
     char sex = request.getParameter("sex").charAt(0);
-    String birthDay = LocalDate.parse(request.getParameter("birth_day"), DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+    String birthDay;
+    try {
+        birthDay = LocalDate.parse(request.getParameter("birth_day"), DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+    } catch (Exception e) {
+        LocalDate a = LocalDate.now();
+        a.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        birthDay = a.toString();
+    }
     String quote = request.getParameter("quote");
 
     return new model.User(userId, email, name, lastName, sex, null, birthDay, quote);

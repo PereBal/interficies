@@ -117,7 +117,7 @@
                 <div class="col s3">
                   <div class="row">
                     <div class="col s12">
-                      <img style="width: 100%; border-radius: 3px;" <c:out value="src=${user.gravatarUrl}"/>/>
+                      <img style="width: 100%; border-radius: 3px;" src="<c:out value="${user.gravatarUrl}"/>"/>
                     </div>
                   </div>
                 </div>
