@@ -6,6 +6,16 @@
     <body>
         <jsp:include page="navbar.jsp"/>
         <main>
+          <div class="section">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="col s12 blue-grey darken-1" style="padding-left: 1em">
+                    <a class="breadcrumb">Duckoard</a>
+                    <a class="breadcrumb">Newsletter</a>
+                  </div>
+                </div>
+            </nav>
+          </div>
             <div class="container">
 
                 <div class="section no-pad-bot" id="index-banner"></div>

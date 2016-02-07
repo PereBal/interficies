@@ -4,6 +4,16 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
+          <div class="section">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="col s12 blue-grey darken-1" style="padding-left: 1em">
+                    <a class="breadcrumb">Duckoard</a>
+                    <a class="breadcrumb">Dashboard</a>
+                  </div>
+                </div>
+            </nav>
+          </div>
       <div class="section no-pad-bot" id="index-banner"></div>
 
       <div id="g1" class="container" style="display:none">

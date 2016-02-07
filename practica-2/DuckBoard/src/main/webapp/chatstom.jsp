@@ -7,7 +7,7 @@
   <jsp:include page="head.jsp"/>
   <body>
     <jsp:include page="navbar.jsp"/>
-    <main>      
+    <main> 
       <div class="container" style="padding-top: 10px">
         <div class="row z-depth-3 dynamic-height">
           <div id="scrolldiv" class="col s4 col-fit dynamic-height">

@@ -4,6 +4,16 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
+          <div class="section">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="col s12 blue-grey darken-1" style="padding-left: 1em">
+                    <a class="breadcrumb">Duckoard</a>
+                    <a class="breadcrumb">Users</a>
+                  </div>
+                </div>
+            </nav>
+          </div>
       <div class="container top-row-buffer">
         <div class="row">
           <div class="col s12">

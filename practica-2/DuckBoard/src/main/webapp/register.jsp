@@ -10,6 +10,16 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
+        <div class="section">
+          <nav>
+              <div class="nav-wrapper">
+                  <div class="col s12 blue-grey darken-1" style="padding-left: 1em">
+                  <a class="breadcrumb">Duckoard</a>
+                  <a class="breadcrumb">Register</a>
+                </div>
+              </div>
+          </nav>
+        </div>
       <div class="container">
         <!--FORM REGISTER-->
         <h4>Registro de usuario</h4>
