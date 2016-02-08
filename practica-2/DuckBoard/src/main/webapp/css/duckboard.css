@@ -192,20 +192,52 @@ main {
 }
 
 .chat-selected {
-   background-color: lightgray !important;
+  background-color: lightgray !important;
 }
 
 .video-lat{
-    max-height: 475px;
-    overflow: scroll;
+  max-height: 475px;
+  overflow: scroll;
 }
 
 .notice-lat{
-   max-height: 700px !important;
-   overflow-y: scroll; 
+  max-height: 700px !important;
+  overflow-y: scroll; 
 }
 
 .notice-left{
-   max-height: 700px !important;
-   overflow-y: scroll; 
+  max-height: 700px !important;
+  overflow-y: scroll; 
+}
+
+/* SCROLLBAR FOR WEBKIT EXPLORERS*/
+::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+::-webkit-scrollbar{
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #aaa;
+}
+/* SCROLLBAR FOR MOZILLA FIREFOX*/
+::-moz-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+::-moz-scrollbar{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+::-moz-scrollbar-thumb{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: graytext;
 }

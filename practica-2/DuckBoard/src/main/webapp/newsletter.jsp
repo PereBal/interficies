@@ -11,7 +11,7 @@
                     <nav class="col s10 offset-s1 blue-grey darken-1">
                         <div class="nav-wrapper">
                             <div class="col s12">
-                            <a class="breadcrumb">Duckoard</a>
+                            <a class="breadcrumb">DuckBoard</a>
                             <a class="breadcrumb">Noticias</a>
                           </div>
                         </div>
@@ -62,7 +62,7 @@
                     <div class="col s3 ">
                         <div class="card center">
                             <h5 class="card-title" style="padding-top: 10px;" >Otros videos</h5>
-                            <div class="video-lat">
+                            <div id="otrosVideos" class="video-lat">
 
                                 <div class="col s12">           
                                     <iframe id="player" type="video/html"
@@ -97,7 +97,7 @@
                     <div class="col s9"> 
                         <div class="card center" >
                             <h4 class="card-title" style="padding-top:10px;"> Últimas noticias</h4>
-                            <ul class="collection notice-left">
+                            <ul id="ultimasNoticias" class="collection notice-left">
                                 
                                 <li class="collection-item avatar row">
                                     <div class="col s3">
@@ -182,11 +182,11 @@
                         </div>
                     </div>
 
-                    <div class="col s3 ">
+                    <div class="col s3">
                         <div class="card left" style="margin-top: 15px;">
                             <h5 class="center-align card-title" style=" padding-bottom:5px">Destacadas</h5>
                              <div class="divider"></div>
-                            <div class="notice-lat">
+                            <div id="destacadas" class="notice-lat">
                                 <div class="col s12 left">
                                     
                                     <blockquote>
@@ -255,8 +255,21 @@
         <jsp:include page="scripts.jsp"/>
 
         <script type="text/javascript">
+            
+            var niceScrollConf = {
+              cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+              cursorwidth: "8px"
+            }
+            var otrosVideos = $('#otrosVideos');
+            var ultimasNoticias = $('#ultimasNoticias');
+            var destacadas = $('#destacadas');
 
             $(document).ready(function () {
+                
+                otrosVideos.niceScroll(niceScrollConf);
+                ultimasNoticias.niceScroll(niceScrollConf);
+                destacadas.niceScroll(niceScrollConf);
+
 
                 /*********************************/
                 /****** LOGIN FUNCTIONS **********/

@@ -15,7 +15,7 @@
             <nav class="col s10 offset-s1 blue-grey darken-1">
                 <div class="nav-wrapper">
                     <div class="col s12">
-                    <a class="breadcrumb">Duckoard</a>
+                    <a class="breadcrumb">DuckBoard</a>
                     <a class="breadcrumb">Chat</a>
                   </div>
                 </div>

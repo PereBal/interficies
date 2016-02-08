@@ -9,7 +9,7 @@
                 <nav class="col s10 offset-s1 blue-grey darken-1">
                     <div class="nav-wrapper">
                         <div class="col s12">
-                        <a class="breadcrumb">Duckoard</a>
+                        <a class="breadcrumb">DuckBoard</a>
                         <a class="breadcrumb">Usuarios</a>
                       </div>
                     </div>
@@ -17,12 +17,6 @@
             </div>
         </div>
       <div class="container top-row-buffer">
-        <div class="row">
-          <div class="col s12">
-            <h4>Usuarios</h4>
-          </div>
-        </div>
-
         <div class="row">
           <form class="col s12">
             <div class="row">

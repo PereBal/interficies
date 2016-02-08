@@ -11,7 +11,7 @@
                 <nav class="col s10 offset-s1 blue-grey darken-1">
                     <div class="nav-wrapper">
                         <div class="col s12">
-                        <a class="breadcrumb">Duckoard</a>
+                        <a class="breadcrumb">DuckBoard</a>
                         <a class="breadcrumb">Motivacional</a>
                       </div>
                     </div>
@@ -87,7 +87,7 @@
           </div>
 
           <div class="row">
-            <div class="col s6" style="height:29em;margin-top: 1em; ">
+            <div class="col s12" style="height:29em;margin-top: 1em; ">
               <iframe id="player" type="video/html"
                       src="https://www.youtube.com/embed/26U_seo0a1g"
                       frameborder="0" width="100%" height="100%" allowfullscreen>                       
@@ -137,50 +137,6 @@
                 </div>
               </div>
             </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/6">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/7">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/8">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card">
-                <div class="card-image">
-                  <img src="http://lorempixel.com/400/250/people/9">
-                  <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-action">
-                  <a class="blue-text text-lighten-1" href="#">Leer más...</a>
-                </div>
-              </div>
-            </div>
           </div>
           <!-- end for -->
         </div>
@@ -193,7 +149,7 @@
     <script type="text/javascript">
 
       $(document).ready(function () {
-
+          
       /*********************************/
       /****** LOGIN FUNCTIONS **********/
       /*********************************/
