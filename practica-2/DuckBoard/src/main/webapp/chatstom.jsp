@@ -65,7 +65,7 @@
                           <div class="chat-bubble blue-grey lighten-5 left">
                             <div class="chat-bubble-text"><c:out value="${msg.text}"/>
                               <span class="chat-timestamp grey-text text-darken-1">
-                                <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
+                                <i class="material-icons tiny green-text">done_all</i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
                               </span>
                             </div>
                           </div>
@@ -76,7 +76,7 @@
                           <div class="chat-bubble light-green lighten-4 right">
                             <div class="chat-bubble-text"><c:out value="${msg.text}"/>
                               <span class="chat-timestamp grey-text text-darken-1">
-                                <i class="fa fa-clock-o"></i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
+                                <i class="material-icons tiny green-text">done_all</i><fmt:formatDate pattern="HH:mm" value="${msg.createdAt}"/>
                               </span>
                             </div>
                           </div>
