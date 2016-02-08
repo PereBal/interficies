@@ -17,15 +17,17 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
-        <div class="section">
-          <nav>
-              <div class="nav-wrapper">
-                  <div class="col s12 blue-grey darken-1" style="padding-left: 1em">
-                  <a class="breadcrumb">Duckoard</a>
-                  <a class="breadcrumb">Profile</a>
-                </div>
-              </div>
-          </nav>
+        <div class="section container-fluid">
+            <div class="row">
+                <nav class="col s10 offset-s1 blue-grey darken-1">
+                    <div class="nav-wrapper">
+                        <div class="col s12">
+                        <a class="breadcrumb">Duckoard</a>
+                        <a class="breadcrumb">Perfil</a>
+                      </div>
+                    </div>
+                </nav>
+            </div>
         </div>
       <div class="container">
 

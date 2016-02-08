@@ -10,17 +10,19 @@
   <body>
     <jsp:include page="navbar.jsp"/>
     <main>
-      <div class="container">
-          <div class="section">
-            <nav>
+    <div class="section container-fluid">
+        <div class="row">
+            <nav class="col s10 offset-s1 blue-grey darken-1">
                 <div class="nav-wrapper">
-                    <div class="col s12 blue-grey darken-1" style="padding-left: 1em">
+                    <div class="col s12">
                     <a class="breadcrumb">Duckoard</a>
                     <a class="breadcrumb">Chat</a>
                   </div>
                 </div>
             </nav>
-          </div>
+        </div>
+    </div>
+      <div class="container">
         <div class="section">
           <!-- Icon Section -->
           <div class="row">
