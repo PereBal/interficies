@@ -31,7 +31,6 @@
 
 ### DBProporties ja que en Rafa es retarded ###
 ### Horas perdidas: 2h ###
-practica-2/DuckBoard/src/main/java/db/chat/DBConnection.java
 practica-2/DuckBoard/src/main/java/db/chat/DBProperties.java
 practica-2/DuckBoard/src/main/java/db/highcharts/DBProperties.java
 practica-2/DuckBoard/src/main/java/db/www/DBProperties.java
