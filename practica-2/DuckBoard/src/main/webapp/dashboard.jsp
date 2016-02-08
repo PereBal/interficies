@@ -272,7 +272,7 @@
                     <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Tendencias</span>
                   </div>
                   <div class="card-action">
-                    <a onClick="ver('#g1')"  class="blue-text text-darken-1">Ver gráfica</a>
+                    <a onClick="ver('#g1')"  class="blue-text text-darken-1" href="#">Ver gráfica</a>
                   </div>
                 </div>
               </div>
