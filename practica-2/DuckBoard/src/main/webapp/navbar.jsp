@@ -31,7 +31,7 @@
       </li>
       <li class="divider"></li>
       <li>
-        <a href="/duckboard/motivational" class="blue-grey-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
+        <a href="/duckboard/motivational.jsp" class="blue-grey-text text-darken-1"><i class="material-icons left">thumb_up</i>Motivacional</a>
       </li>
     </ul>
     <nav class="blue-grey darken-1">
@@ -74,10 +74,10 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a href="/duckboard/newsletter" class="waves-effect waves-light right"><i class="material-icons left">Newsletter</i>Chat</a>
+            <a href="/duckboard/newsletter"><i class="material-icons left">library_books</i>Noticias</a>
           </li>
           <li>
-            <a href="/duckboard/motivational" class="waves-effect waves-light right"><i class="material-icons left">Motivacional</i>Chat</a>
+            <a href="/duckboard/motivational.jsp"><i class="material-icons left">thumb_up</i>Motivacional</a>
           </li>
            <li class="divider"></li>
           <li>
