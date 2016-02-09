@@ -112,7 +112,7 @@ public class Chat {
           ChatDoesNotExistException,
           UserDoesNotExistException,
           UserNotInPartyException {
-    DBActions.updateLastReadMessage(toString(), userId);
+     DBActions.updateLastReadMessage(toString(), userId);
   }
 
   public void setLastReadMessage(int userId, String messageId) throws

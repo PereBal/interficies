@@ -61,7 +61,7 @@
                                                                     pageContext.setAttribute("lastReadMessage", "");
                                                                 }
                                                             %>
-                                                            <li class="conversation-li collection-item avatar waves-effect" 
+                                                            <li class="conversation-li collection-item avatar waves-effect"
                                                                 onclick="retrieveConversation('${chat}')" style="cursor: pointer; width: 100%"
                                                                 id="${chat}">
                                                                 <i class="material-icons circle">contacts</i>
@@ -78,7 +78,7 @@
                                                                         </div>
                                                                         <div class="row">
                                                                             <a id="sendBtn" onclick="deleteChat('${chat}')" style="cursor: pointer">
-                                                                            <i class="material-icons black-text right">delete</i></a>                                                                            
+                                                                            <i class="material-icons black-text right">delete</i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -90,18 +90,18 @@
                                         </div>
                                     </div>
                                     <div  class="col s8 conversation">
-                                        <div>    
+                                        <div>
                                             <div id="conversation" class="chat-conversation" style="background-color: whitesmoke;">
                                             </div>
 
                                             <div class="grey lighten-5">
                                                 <div id="msgChatForm" class="col s8 offset-s2" style="padding-top:2rem; font-size: 16px;">
                                                     Escoja un chat para iniciar una conversacion.. <i class="material-icons">chat</i>
-                                                </div>  
+                                                </div>
                                                 <form class="col s12" style="padding-top: 1.5em;" id="chatForm">
                                                     <div class="row">
                                                         <div class="col s10">
-                                                            <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aquí su mensaje..."></textarea>
+                                                            <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aquï¿½ su mensaje..."></textarea>
                                                         </div>
                                                         <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1" onclick="saveMessage()"
                                                            style="padding: inherit;">Enviar</a>
@@ -321,11 +321,11 @@
 
             $('#conversation').scroll(function () {
                 /* con message (sin el spin)
-                 var max= $('#conversation').position()['top']; 
+                 var max= $('#conversation').position()['top'];
                  var actual= $('#message').position()['top'];
                  console.log("max: "+max+" - actual: "+actual);
                  if((max-actual)<=0.5){
-                 //Aquí va la función que carga mensajes.
+                 //Aquï¿½ va la funciï¿½n que carga mensajes.
                  console.log('putoamo');
                  }*/
 
@@ -333,7 +333,7 @@
                 var spin = $('#spin').offset()['top'];
                 console.log("max: " + max + " - spin: " + spin);
                 if (spin >= max) {
-                    //Aquí va la función que carga mensajes.
+                    //Aquï¿½ va la funciï¿½n que carga mensajes.
 
                 }
 

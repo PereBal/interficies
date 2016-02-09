@@ -1,10 +1,6 @@
 package db.chat;
 
-import com.mongodb.MongoQueryException;
-import model.User;
-import model.Chat;
-import model.Party;
-import model.Message;
+import model.*;
 import java.util.List;
 import org.bson.Document;
 import java.util.ArrayList;
@@ -12,6 +8,7 @@ import org.bson.types.ObjectId;
 import static java.util.Arrays.asList;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.PushOptions;
 import com.mongodb.client.AggregateIterable;
 import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Updates.*;
@@ -27,6 +24,13 @@ import db.chat.exceptions.MessageIsNotPartOfThisChatException;
 
 public class DBActions {
 
+    /**
+     * LLOCS A TENIR EN COMPTE!!! PEL TEMA DEL SORT A SUBSETS
+     * - getChatsByUserId
+     * - getMessages(String chatId, int limit, int skip)
+     * - getMessages(String chatId, Integer userId, boolean unread, int limit, int skip)
+     */
+    
   public static void info() {
     try (DBConnection conn = new DBConnection()) {
       conn.open();
@@ -118,7 +122,7 @@ public class DBActions {
 
       db.getCollection(DBProperties.COLL).updateOne(
               eq("_id", new ObjectId(chatId)),
-              addToSet("messages", message));
+              pushEach("messages", asList(message), new PushOptions().sort(-1)));
 
       return DBActions.documentToMessage(message, new ObjectId(chatId));
     } catch (Exception e) {
@@ -163,19 +167,16 @@ public class DBActions {
           return;
       }
 
-      String messageId = db.getCollection(DBProperties.COLL).find(
+      Document message = (Document) db.getCollection(DBProperties.COLL).find(
               eq("_id", new ObjectId(chatId)))
-              .projection(
-                      fields(
-                              sort(descending("messages._id")),
-                              elemMatch("messages", ne("user_id", userId))))
-              .first().getObjectId("messages._id").toString();
-
+              .projection(elemMatch("messages", ne("user_id", userId)))
+              .first().get("messages", ArrayList.class).get(0);
+      
       db.getCollection(DBProperties.COLL).updateOne(
               and(
                       eq("_id", new ObjectId(chatId)),
                       eq("party.user_id", userId)),
-              set("party.$.last_read_message", messageId));
+              set("party.$.last_read_message", message.getObjectId("_id")));
     }
   }
   
@@ -269,13 +270,8 @@ public class DBActions {
    *
    * @param id
    * @return
-   * @throws db.chat.exceptions.ChatDoesNotExistException
    */
-  public static Message getMessageById(String id) throws ChatDoesNotExistException {
-    if (!DBActions.chatExist(id)) {
-      throw new ChatDoesNotExistException();
-    }
-
+  public static Message getMessageById(String id) {
     Document chat;
 
     try (DBConnection connection = new DBConnection()) {
@@ -325,7 +321,7 @@ public class DBActions {
 
       chat = db.getCollection(DBProperties.COLL).find(
               eq("_id", new ObjectId(chatId)))
-              .sort(descending("messages._id"))
+//              .sort(descending("messages._id")) -> aixo no canvia l'ordre
               .projection(slice("messages", skip, limit))
               .first();
     } catch (Exception e) {
@@ -381,20 +377,18 @@ public class DBActions {
       List list = new ArrayList<>();
 
       list.add(match(eq("_id", new ObjectId(chatId))));
-//      list.add(new Document("$project", new Document("$elemMatch", eq("party.user_id", userId)))); // project on aggregates are not working properly
-      list.add(sort(descending("messages._id")));
       list.add(new Document("$unwind", "$messages"));
       list.add(match(ne("messages.user_id", userId)));
 
       if (unread) {
-        ObjectId lastReadMessage = db.getCollection(DBProperties.COLL).find(
+        Document lastReadMessage = (Document) db.getCollection(DBProperties.COLL).find(
                 eq("_id", new ObjectId(chatId)))
                 .projection(fields(
                         elemMatch("party", eq("user_id", userId))))
-                .first().getObjectId("party.last_read_message");
+                .first().get("party", ArrayList.class).get(0);
 
-        if (lastReadMessage != null) {
-          list.add(match(lt("messages._id", lastReadMessage)));
+        if (lastReadMessage.getObjectId("last_read_message") != null) {
+          list.add(match(gt("messages._id", lastReadMessage.getObjectId("last_read_message")))); // no se si lt o ge
         }
       }
 
@@ -485,8 +479,8 @@ public class DBActions {
       iterator = db.getCollection(DBProperties.COLL).find(
               eq("party.user_id", userId))
               .projection(elemMatch("party", eq("user_id", userId)))
-              .sort(descending("party.last_read_message"))
-              .sort(descending("_id"));
+              .sort(descending("party.last_read_message")) // a saber si rula, els sorts fan un poc el que volen per subsets
+              .sort(descending("_id"));                    // a saber si rula, aixo son els docs a pel, hauria de tirar
 
       List<Chat> chats = new ArrayList<>();
 
