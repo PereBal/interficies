@@ -74,7 +74,7 @@
                                                                     <div class="col s2">
                                                                         <div class="row">
                                                                             <c:if test="${haveUnreadMessages}">
-                                                                                <span class="new badge red">${unreadMessages}</span>
+                                                                                <span id="un-${chat}" class="new badge red">${unreadMessages}</span>
                                                                             </c:if>
                                                                         </div>
                                                                         <div class="row">
@@ -127,7 +127,8 @@
             var chatTextArea = $('#chatText');
             var chatForm = $('#chatForm');
             var msgChatForm = $('#msgChatForm');
-            var messageLimit = 20;
+
+            var globalCount = 0;
 
             var niceScrollConf = {
                 cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
@@ -155,7 +156,7 @@
                         conversation.scrollTop($(conversation)[0].scrollHeight);
                     });
                 }
-                
+
                 conversation.scrollTop($(conversation)[0].scrollHeight); // Set the scroll to the bottom of the conversation div.
             }
 
@@ -163,7 +164,15 @@
              * Gets conversation messages on first load
              */
             var retrieveConversation = function (chatId) {
-                
+
+                globalCount = 0;
+
+                $('.chat-selected').removeClass('chat-selected');
+                $('#' + chatId).addClass('chat-selected');
+
+                chatForm.show();
+                msgChatForm.hide();
+
                 $.ajax({
                     type: 'GET',
                     url: '/duckboard/chats/messages',
@@ -175,12 +184,8 @@
                         'skip': 0
                     }),
                     success: function (data) {
-               
-                        $('.chat-selected').removeClass('chat-selected');
-                        $('#' + chatId).addClass('chat-selected');
 
-                        chatForm.show();
-                        msgChatForm.hide();
+                        globalCount = globalCount + data.messages.length;
 
                         buildConversation(data.messages);
                     },
@@ -188,44 +193,69 @@
                 });
             };
 
-            /**    
-             * Gets unread messages
+            var pollNewMessages = function (chatId) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/duckboard/chats/messages',
+                    async: true,
+                    dataType: "json",
+                    data: ({
+                        'cid': chatId,
+                        'unread': true,
+                        'skip': 0
+                    }),
+                    success: function (data) {
+
+                        globalCount = globalCount + data.messages.length;
+
+                        $.each(data.messages, function (index, message) {
+
+                            appendMessage(message);
+                        });
+
+                        console.log(data.messages)
+                        console.log(globalCount)
+                    },
+                    error: function () {}
+                });
+
+            }
+
+
+            /**
+             * Gets conversation messages on first load
              */
-            var retrieveUnreadMessages = function (chatId) {
-                
-                var unreadMessageCount = messageLimit;
-                var unreadMessage = [];
+            var retrieveOldMessages = function (chatId) {
 
-                var skip = 0;
+                $('.chat-selected').removeClass('chat-selected');
+                $('#' + chatId).addClass('chat-selected');
 
-                while (unreadMessages === messageLimit) {
+                chatForm.show();
+                msgChatForm.hide();
 
-                    var amount = skip * messageLimit;
+                $.ajax({
+                    type: 'GET',
+                    url: '/duckboard/chats/messages',
+                    async: true,
+                    dataType: "json",
+                    data: ({
+                        'cid': chatId,
+                        'unread': false,
+                        'skip': globalCount
+                    }),
+                    success: function (data) {
 
-                    $.ajax({
-                        type: 'GET',
-                        url: '/duckboard/chats/messages',
-                        async: true,
-                        dataType: "json",
-                        data: ({
-                            'cid': chatId,
-                            'unread': true,
-                            'skip': amount
-                        }),
-                        success: function (data) {
+                        $.each(data.messages, function (index, message) {
 
-                            unreadMessageCount = data.messages.length;
+                            prependMessage(message);
+                        });
 
-                            $.merge(unreadMessages, data.messages);
-                        },
-                        error: function () {}
-                    });
-                    
-                    skip++;
-                }
-                
-                return unreadMessages;
-            }; 
+                        globalCount = globalCount + messageLimit;
+                    },
+                    error: function () {}
+                });
+            };
 
             /**
              * Funciton to post new message
@@ -249,8 +279,9 @@
                         }),
                         success: function (data) {
 
-                            paintMessage(data);
+                            appendMessage(data);
                             chatTextArea.val('');
+                            globalCount++;
                         },
                         error: function () {}
                     });
@@ -347,6 +378,37 @@
              console.log("hola");
              };*/
 
+            /**
+             * Function to poll messages
+             * @type type
+             */
+            var intervalID = setInterval(
+                    function () {
+
+                        var currentChat = $('.chat-selected').attr('id');
+
+                        if (currentChat !== undefined && currentChat !== null && currentChat !== '') {
+
+                            pollNewMessages(currentChat);
+                        }
+                    }, 5000);
+
+
+            /**
+             * Function to poll messages
+             * @type type
+             */
+            var intervalID2 = setInterval(
+                    function () {
+
+                        /*var currentChat = $('.chat-selected').attr('id');
+
+                        if (currentChat !== undefined && currentChat !== null && currentChat !== '') {
+
+                            pollNewMessages(currentChat);
+                        }*/
+                    }, 5000);
+
             $(document).ready(function () {
                 // Activate Dropdown menu
                 $(".dropdown-button").dropdown();
@@ -370,45 +432,8 @@
                     msgChatForm.show();
                 }
 
-                /**
-                 * Function to poll messages
-                 * @type type
-                 */
-                var intervalID = setInterval(
-                        function () {
 
-                            var currentChat = $('.chat-selected').attr('id');
 
-                            if (currentChat !== undefined && currentChat !== null && currentChat !== '') {
-
-                                
-                            }
-                        }, 1000);
-
-                /**
-                 * Gets the scroll event on the chat conversation
-                 * @param {type} param
-                 */
-                conversation.scroll(function () {
-                    /* con message (sin el spin)
-                     var max= $('#conversation').position()['top']; 
-                     var actual= $('#message').position()['top'];
-                     console.log("max: "+max+" - actual: "+actual);
-                     if((max-actual)<=0.5){
-                     //Aquí va la función que carga mensajes.
-                     console.log('putoamo');
-                     }*/
-
-                    var max = conversation.offset()['top'];
-                    var spin = $('#spin').offset()['top'];
-                    console.log("max: " + max + " - spin: " + spin);
-                    if (spin >= max) {
-
-                        //Aquí va la función que carga mensajes.
-                        chatCache.count++;
-                        retrieveConversation(chatCache.cid, chatCache.count * 20);
-                    }
-                });
             });
 
         </script>
