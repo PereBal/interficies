@@ -156,31 +156,8 @@
 
         $.each(chatCache.messages, function (index, message) {
 
-            if (message.user_id !==  ${user.id}) { // current user msg
-
-            toAppend = '<div class="row row-fit">' +
-                            '<div class="chat-bubble blue-grey lighten-5 left">' +
-                            '<div class="chat-bubble-text">' + message.text + '</>' +
-                            '<span class="chat-timestamp grey-text text-darken-1">' +
-                            '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
-                            '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>';
-
-            } else {
-
-            toAppend = '<div class="row row-fit">' +
-                            '<div class="chat-bubble light-green lighten-4 right">' +
-                            '<div class="chat-bubble-text">' + message.text + '</>' +
-                            '<span class="chat-timestamp grey-text text-darken-1">' +
-                            '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
-                            '</span>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>';
-            }
-
+            paintMessage(message);
+           
             conversation.append(toAppend);
             conversation.scrollTop($(conversation)[0].scrollHeight);
         });
