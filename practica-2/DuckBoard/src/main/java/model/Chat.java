@@ -133,8 +133,11 @@ public class Chat {
     return this.id.toString();
   }
 
-  public void delete() {
-    DBActions.delete(this.id.toString());
+  public void delete(int userId) throws 
+          ChatDoesNotExistException, 
+          UserDoesNotExistException, 
+          UserNotInPartyException {
+    DBActions.updateIsDeleted(this.id.toString(), userId, true);
   }
 
   ///////////////////////////////////

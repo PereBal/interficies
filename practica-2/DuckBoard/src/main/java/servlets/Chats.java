@@ -173,13 +173,10 @@ public class Chats extends HttpServlet {
 
     try {
       Chat chat = Chat.retrieveByPk(chatId);
-      chat.delete();
-    } catch (ChatDoesNotExistException | UserNotInPartyException ex) {
+      chat.delete(s.getUserId());
+    } catch (UserDoesNotExistException | ChatDoesNotExistException | UserNotInPartyException ex) {
       Helper.setErrorFlash(s, "No hemos sido capaces de borrar tu conversación :(");
       Logger.getLogger(Chats.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      response.sendRedirect("/duckboard");
-      //response.sendRedirect("/duckboard/chats");
     }
   }
 

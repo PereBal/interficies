@@ -16,16 +16,34 @@ public class Party {
 
   private final User user;
   private final ObjectId chatId;
+  private final String userName;
+  private final String userEmail;
+  private final boolean isDeleted;
   private Message lastReadMessage;
 
-  public Party(User user, ObjectId chatId, Message lastReadMessage) {
-    this.user = user;
-    this.chatId = chatId;
+  public Party(User user, ObjectId chatId, String userName, String userEmail, boolean isDeleted, Message lastReadMessage) {
+    this.user            = user;
+    this.chatId          = chatId;
+    this.userName        = userName;
+    this.userEmail       = userEmail;
+    this.isDeleted       = isDeleted;
     this.lastReadMessage = lastReadMessage;
   }
 
   public User getUser() {
     return user;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public String getUserEmail() {
+    return userEmail;
+  }
+
+  public boolean getIsDeleted() {
+    return isDeleted;
   }
 
   public Message getLastReadMessage() {
