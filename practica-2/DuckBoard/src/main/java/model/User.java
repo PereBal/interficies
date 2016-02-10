@@ -5,7 +5,6 @@ import db.chat.DBActions;
 import db.chat.exceptions.UserNotInPartyException;
 import db.www.exceptions.UserDoesNotExistException;
 import db.chat.exceptions.ChatDoesNotExistException;
-import java.util.Collections;
 import jgravatar.Gravatar;
 import jgravatar.GravatarDefaultImage;
 

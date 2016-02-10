@@ -54,6 +54,7 @@
                                                                 }
                                                                 pageContext.setAttribute("haveUnreadMessages", chat.haveUnreadMessages(user.getId()));
                                                                 pageContext.setAttribute("unreadMessages", chat.countUnreadMessages(user.getId()));
+                                                                pageContext.setAttribute("gravatar", user.getGravatarUrl());
                                                                 List<Message> messages = chat.getMessages();
                                                                 if (messages.size() > 0) {
                                                                     pageContext.setAttribute("lastReadMessage", messages.get(messages.size() - 1).getText());
@@ -64,7 +65,7 @@
                                                             <li class="conversation-li collection-item avatar waves-effect"
                                                                 onclick="retrieveConversation('${chat}')" style="cursor: pointer; width: 100%"
                                                                 id="${chat}">
-                                                                <i class="material-icons circle">contacts</i>
+                                                                <img class="circle" src="${user.gravatarUrl}"/>
                                                                 <div class="row chat-contact-fit">
                                                                     <div class="col s10">
                                                                         <span class="title truncate">${nameChat}</span>
@@ -101,7 +102,7 @@
                                                 <form class="col s12" style="padding-top: 1.5em;" id="chatForm">
                                                     <div class="row">
                                                         <div class="col s10">
-                                                            <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aqu� su mensaje..."></textarea>
+                                                            <textarea id="chatText" class="duckboard-textaera" rows="3" placeholder="Escriba aqui su mensaje..."></textarea>
                                                         </div>
                                                         <a class="waves-effect waves-teal btn-flat s2 light-blue-text text-darken-1" onclick="saveMessage()"
                                                            style="padding: inherit;">Enviar</a>
@@ -345,8 +346,6 @@
              // });
              console.log("hola");
              };*/
-
-
 
             $(document).ready(function () {
                 // Activate Dropdown menu

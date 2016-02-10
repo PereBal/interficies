@@ -52,7 +52,7 @@
           <!-- Dropdown Trigger -->
           <li>
             <a class="dropdown-button" href="#!" data-activates="navbar-dropdown">
-              <img style="width: 2.5em;vertical-align: middle;" class="circle" <c:out value="src=${user.gravatarUrl}"/>  />
+              <img style="width: 2.5em;vertical-align: middle;" class="circle" <c:out value="src=${user.gravatarUrl}"/> />
               <c:out value="${user.name}"/>
               <i class="material-icons right">arrow_drop_down</i>
             </a>
