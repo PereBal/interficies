@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package db.highcharts;
 
 import db.highcharts.graphs.Graph;
@@ -12,11 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.json.JSONArray;
 
-/**
- *
- * @author PereBal
- * @author dobleme
- */
 public class DBActions {
 
   private final Graph[] graphs = new Graph[]{

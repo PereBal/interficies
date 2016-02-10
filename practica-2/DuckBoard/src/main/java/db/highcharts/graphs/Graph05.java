@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package db.highcharts.graphs;
 
 import java.math.BigDecimal;
@@ -11,10 +6,6 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- *
- * @author pere
- */
 public class Graph05 implements Graph {
 
   private final String q;
