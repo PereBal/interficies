@@ -74,7 +74,7 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
           <p class="grey-text text-darken-3 lighten-3">Aquí puedes ver información sobre los desarrolladores de DuckBoard&reg;</p>
           <div  class="row">
             <div class="col s2 center">
-              <img class="parallax-img circle" src="img/user-pd.png" />
+              <img class="parallax-img circle" src="img/rafa.jpg" />
               <h6>Rafael Cuart</h6>
               <span class="grey-text text-lighten-1">Ing. de sistemas<br></span>
               <span>
@@ -86,7 +86,7 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
               </span>
             </div>
             <div class="col s2 center">
-              <img class="parallax-img circle" src="img/user-pd.png" />
+              <img class="parallax-img circle" src="img/fran.jpg" />
               <h6>Francesc Bisquerra</h6>
               <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
               <span>
@@ -98,8 +98,8 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
               </span>
             </div>
             <div class="col s2 center">
-              <img class="parallax-img circle" src="img/user-pd.png" />
-              <h6>Lucas Martorell</h6>
+              <img class="parallax-img circle" src="img/lluc.jpg" />
+              <h6>Lluc Martorell</h6>
               <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
               <span>
                 <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i></a>
@@ -110,7 +110,7 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
               </span>
             </div>
             <div class="col s2 center">
-              <img class="parallax-img circle" src="img/user-pd.png" />
+              <img class="parallax-img circle" src="img/pere.jpg" />
               <h6>Pere Balaguer</h6>
               <span class="grey-text text-lighten-1">Ing. de computación<br></span>
               <span>
@@ -122,7 +122,7 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
               </span>
             </div>
             <div class="col s2 center">
-              <img class="parallax-img circle" src="img/user-pd.png" />
+              <img class="parallax-img circle" src="img/tomeu.jpg" />
               <h6>Tomeu Crespí</h6>
               <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
               <span>
@@ -134,7 +134,7 @@ pageContext.setAttribute("user", Helper.getCurrentUser(request));
               </span>
             </div>
             <div class="col s2 center">
-              <img class="parallax-img circle" src="img/user-pd.png" />
+              <img class="parallax-img circle" src="img/guillem.jpg" />
               <h6>Guillem Barceló</h6>
               <span class="grey-text text-lighten-1">Ing. de hardware<br></span>
               <span>
