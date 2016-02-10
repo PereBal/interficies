@@ -16,8 +16,8 @@ public class DBConnection implements java.lang.AutoCloseable {
     try {
       Class.forName("com.mysql.jdbc.Driver");
       con = DriverManager.getConnection("jdbc:mysql://"
-              + DBProperties.HOST + ":" + DBProperties.PORT
-              + "/" + DBProperties.DB, DBProperties.USER, DBProperties.PWD);
+              + db.www.DBProperties.HOST + ":" + db.www.DBProperties.PORT
+              + "/" + db.www.DBProperties.DB, db.www.DBProperties.USER, db.www.DBProperties.PWD);
     } catch (ClassNotFoundException | SQLException ex) {
       java.util.logging.Logger.getLogger(DBConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }

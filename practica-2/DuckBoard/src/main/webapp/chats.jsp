@@ -155,15 +155,14 @@
                     });
                 }
                 
-                conversation.scrollTop($(conversation)[0].scrollHeight // Set the scroll to the bottom of the conversation div.
-
+                conversation.scrollTop($(conversation)[0].scrollHeight); // Set the scroll to the bottom of the conversation div.
             }
 
             /**
              * Gets conversation messages on first load
              */
             var retrieveConversation = function (chatId) {
-
+                
                 $.ajax({
                     type: 'GET',
                     url: '/duckboard/chats/messages',
@@ -175,7 +174,7 @@
                         'skip': 0
                     }),
                     success: function (data) {
-
+               
                         $('.chat-selected').removeClass('chat-selected');
                         $('#' + chatId).addClass('chat-selected');
 
@@ -188,16 +187,13 @@
                 });
             };
 
-
-            var unreadMessageCount = messageLimit;
-            var unreadMessages = [];
             /**    
              * Gets unread messages
              */
             var retrieveUnreadMessages = function (chatId) {
                 
-                unreadMessageCount = messageLimit;
-                unreadMessage = [];
+                var unreadMessageCount = messageLimit;
+                var unreadMessage = [];
 
                 var skip = 0;
 
@@ -226,6 +222,8 @@
                     
                     skip++;
                 }
+                
+                return unreadMessages;
             }; 
 
             /**
