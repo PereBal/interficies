@@ -74,7 +74,7 @@ public class DBActions {
 
       MongoDatabase db = connection.getDatabase();
 
-      db.getCollection(DBProperties.COLL).insertOne(chat);
+      db.getCollection(Sample.COLL).insertOne(chat);
 
       return DBActions.documentToChat(chat);
     } catch (Exception e) {
@@ -120,7 +120,7 @@ public class DBActions {
 
       MongoDatabase db = connection.getDatabase();
 
-      db.getCollection(DBProperties.COLL).updateOne(
+      db.getCollection(Sample.COLL).updateOne(
               eq("_id", new ObjectId(chatId)),
               pushEach("messages", asList(message), new PushOptions().sort(-1)));
 
@@ -167,12 +167,13 @@ public class DBActions {
           return;
       }
 
-      Document message = (Document) db.getCollection(DBProperties.COLL).find(
+
+      Document message = (Document) db.getCollection(Sample.COLL).find(
               eq("_id", new ObjectId(chatId)))
               .projection(elemMatch("messages", ne("user_id", userId)))
               .first().get("messages", ArrayList.class).get(0);
       
-      db.getCollection(DBProperties.COLL).updateOne(
+      db.getCollection(Sample.COLL).updateOne(
               and(
                       eq("_id", new ObjectId(chatId)),
                       eq("party.user_id", userId)),
@@ -221,7 +222,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      db.getCollection(DBProperties.COLL).updateOne(
+      db.getCollection(Sample.COLL).updateOne(
               and(
                       eq("_id", new ObjectId(chatId)),
                       eq("party.user_id", userId)),
@@ -250,7 +251,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               eq("_id", new ObjectId(id)))
               .first();
     } catch (Exception e) {
@@ -278,7 +279,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               eq("messages._id", new ObjectId(id)))
               .projection(elemMatch("messages", eq("_id", new ObjectId(id))))
               .first();
@@ -319,7 +320,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               eq("_id", new ObjectId(chatId)))
 //              .sort(descending("messages._id")) -> aixo no canvia l'ordre
               .projection(slice("messages", skip, limit))
@@ -381,7 +382,9 @@ public class DBActions {
       list.add(match(ne("messages.user_id", userId)));
 
       if (unread) {
-        Document lastReadMessage = (Document) db.getCollection(DBProperties.COLL).find(
+          
+        Document lastReadMessage = (Document) db.getCollection(Sample.COLL).find(
+
                 eq("_id", new ObjectId(chatId)))
                 .projection(fields(
                         elemMatch("party", eq("user_id", userId))))
@@ -394,7 +397,7 @@ public class DBActions {
 
       list.add(limit(limit));
       list.add(skip(skip));
-      AggregateIterable<Document> iterator = db.getCollection(DBProperties.COLL).aggregate(list);
+      AggregateIterable<Document> iterator = db.getCollection(Sample.COLL).aggregate(list);
 
       List<Message> messages = new ArrayList<>();
 
@@ -432,7 +435,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               eq("_id", new ObjectId(id)))
               .projection(slice("party", limit))
               .first();
@@ -476,7 +479,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      iterator = db.getCollection(DBProperties.COLL).find(
+      iterator = db.getCollection(Sample.COLL).find(
               eq("party.user_id", userId))
               .projection(elemMatch("party", eq("user_id", userId)))
               .sort(descending("party.last_read_message")) // a saber si rula, els sorts fan un poc el que volen per subsets
@@ -518,7 +521,7 @@ public class DBActions {
       Document query = new Document("_id", new ObjectId(chatId)).
               append("party.user_id", userId);
 
-      party = db.getCollection(DBProperties.COLL).find(query).limit(1).first();
+      party = db.getCollection(Sample.COLL).find(query).limit(1).first();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -538,7 +541,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               eq("_id", new ObjectId(chatId)))
               .first();
     } catch (Exception e) {
@@ -565,7 +568,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               and(eq("party.user_id", userId1), eq("party.user_id", userId2)))
               .first();
     } catch (Exception e) {
@@ -591,7 +594,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               eq("messages._id", new ObjectId(messageId)))
               .first();
     } catch (Exception e) {
@@ -614,7 +617,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      chat = db.getCollection(DBProperties.COLL).find(
+      chat = db.getCollection(Sample.COLL).find(
               and(
                       eq("_id", new ObjectId(chatId)),
                       eq("messages._id", new ObjectId(messageId)))).first();
@@ -638,7 +641,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      db.getCollection(DBProperties.COLL).deleteMany(eq("_id", new ObjectId(id)));
+      db.getCollection(Sample.COLL).deleteMany(eq("_id", new ObjectId(id)));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -698,7 +701,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      Document parent = db.getCollection(DBProperties.COLL).find(eq("messages._id", id)).first();
+      Document parent = db.getCollection(Sample.COLL).find(eq("messages._id", id)).first();
 
       if (parent == null) {
         return null;
@@ -713,7 +716,7 @@ public class DBActions {
       connection.open();
       MongoDatabase db = connection.getDatabase();
 
-      Document parent = db.getCollection(DBProperties.COLL).find(eq("party.user_id", id)).first();
+      Document parent = db.getCollection(Sample.COLL).find(eq("party.user_id", id)).first();
 
       if (parent == null) {
         return null;

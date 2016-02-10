@@ -268,7 +268,7 @@
               <div class="col s12">
                 <div class="center card">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr001.png">
+                    <img class="img-graph" src="img/gr001.png" onClick="ver('#g1')">
                     <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Tendencias</span>
                   </div>
                   <div class="card-action">
@@ -282,7 +282,7 @@
               <div class="col s12">
                 <div class="card center ">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr002.png">
+                    <img class="img-graph" src="img/gr002.png" onClick="ver('#g2')">
                     <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Idiomas</span>
                   </div>
                   <div class="card-action">
@@ -298,7 +298,7 @@
           <div class="col s6">
             <div class="card center ">
               <div class="card-image">         
-                <img class="img-graph" src="img/gr004.png"></img>
+                <img class="img-graph" src="img/gr004.png" onClick="ver('#g4')"></img>
                 <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Distribución geográfica</span>
                 
               </div>
@@ -320,7 +320,7 @@
               <div class="col s12">
                 <div class="card center ">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr003.png">
+                    <img class="img-graph" src="img/gr003.png" onClick="ver('#g3');">
                     <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Polaridad</span>
                   </div>
                   <div class="card-action">
@@ -334,7 +334,7 @@
               <div class="col s12">
                 <div class="card center ">
                   <div class="card-image">
-                    <img class="img-graph" src="img/gr005.png">
+                    <img class="img-graph" src="img/gr005.png" onClick="ver('#g5')">
                     <span style="padding-bottom: 0px;" class="card-title blue-grey-text text-darken-1">Actividad balear</span>
                   </div>
                   <div class="card-action">

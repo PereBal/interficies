@@ -24,7 +24,7 @@ public class Graph04 implements Graph {
           + " WHEN mes_num BETWEEN 1 AND 2 THEN 'invierno' "
           + "END AS estacion,"
           + "isla, COUNT(isla) AS cnt_isla, anyo, mes_num "
-          + "FROM " + db.highcharts.DBProperties.DB + ".sm_procesados "
+          + "FROM " + db.highcharts.Sample.DB + ".sm_procesados "
           + "GROUP BY estacion, isla "
           + "HAVING ";
 

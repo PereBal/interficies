@@ -182,6 +182,7 @@ main {
 .img-graph{
   padding:2.5em !important;
   padding-top: 0.5em !important;
+  cursor: pointer;
 }
 
 .parallax-img{

@@ -27,18 +27,18 @@ public class Graph01 implements Graph {
       q += "COUNT(T_" + fname + ") AS " + fname + ",";
     }
     q += "anyo,mes_num ";
-    q += "FROM " + db.highcharts.DBProperties.DB + ".sm_procesados ";
+    q += "FROM " + db.highcharts.Sample.DB + ".sm_procesados ";
   }
 
   @Override
   public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {
-    return st.executeQuery(q + "HAVING " + db.highcharts.DBProperties.DB + ".sm_procesados.anyo=" + year + ";");
+    return st.executeQuery(q + "HAVING " + db.highcharts.Sample.DB + ".sm_procesados.anyo=" + year + ";");
   }
 
   @Override
   public java.sql.ResultSet query(java.sql.Statement st, int year, int month) throws java.sql.SQLException {
-    return st.executeQuery(q + "HAVING " + db.highcharts.DBProperties.DB + ".sm_procesados.anyo=" + year + " "
-            + "AND " + db.highcharts.DBProperties.DB + ".sm_procesados.mes_num=" + month + ";");
+    return st.executeQuery(q + "HAVING " + db.highcharts.Sample.DB + ".sm_procesados.anyo=" + year + " "
+            + "AND " + db.highcharts.Sample.DB + ".sm_procesados.mes_num=" + month + ";");
   }
 
   @Override

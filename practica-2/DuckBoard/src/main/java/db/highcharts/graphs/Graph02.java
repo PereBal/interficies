@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class Graph02 implements Graph {
 
   private final String q = "SELECT idioma, COUNT(idioma) AS cnt_idioma, anyo, mes_num "
-          + "FROM " + db.highcharts.DBProperties.DB + ".sm_procesados GROUP BY idioma ";
+          + "FROM " + db.highcharts.Sample.DB + ".sm_procesados GROUP BY idioma ";
 
   @Override
   public java.sql.ResultSet query(java.sql.Statement st, int year) throws java.sql.SQLException {

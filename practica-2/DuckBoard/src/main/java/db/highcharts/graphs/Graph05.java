@@ -20,7 +20,7 @@ public class Graph05 implements Graph {
   private final String q;
 
   public Graph05() {
-    q = "SELECT isla, COUNT(isla) AS cnt_isla, anyo, mes_num FROM " + db.highcharts.DBProperties.DB + ".sm_procesados "
+    q = "SELECT isla, COUNT(isla) AS cnt_isla, anyo, mes_num FROM " + db.highcharts.Sample.DB + ".sm_procesados "
             + "GROUP BY isla ";
   }
 

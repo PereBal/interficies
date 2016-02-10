@@ -17,7 +17,7 @@ public class DBConnection implements java.lang.AutoCloseable {
   public void open() {
     try {
       if (client == null) {
-        client = new MongoClient(db.chat.DBProperties.HOST, db.chat.DBProperties.PORT);
+        client = new MongoClient(db.chat.Sample.HOST, db.chat.Sample.PORT);
       }
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -45,6 +45,6 @@ public class DBConnection implements java.lang.AutoCloseable {
     if (client == null) {
       throw new NullPointerException("Connection not opened");
     }
-    return client.getDatabase(DBProperties.DB);
+    return client.getDatabase(Sample.DB);
   }
 }
