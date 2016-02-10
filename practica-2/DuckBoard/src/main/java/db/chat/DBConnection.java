@@ -17,7 +17,7 @@ public class DBConnection implements java.lang.AutoCloseable {
   public void open() {
     try {
       if (client == null) {
-        client = new MongoClient(db.chat.Sample.HOST, db.chat.Sample.PORT);
+        client = new MongoClient(db.chat.DBProperties.HOST, db.chat.DBProperties.PORT);
       }
     } catch (Exception ex) {
       ex.printStackTrace();

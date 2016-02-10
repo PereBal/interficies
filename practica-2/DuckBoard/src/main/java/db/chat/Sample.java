@@ -2,7 +2,7 @@ package db.chat;
 
 public class Sample {
 
-  public static final String HOST = "192.168.90.100";
+  public static final String HOST = "localhost";
   public static final int PORT    = 27017;
   public static final String DB   = "chat";
   public static final String COLL = "chats";
