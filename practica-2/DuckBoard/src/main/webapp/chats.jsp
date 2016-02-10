@@ -78,7 +78,7 @@
                                                                         </div>
                                                                         <div class="row">
                                                                             <a id="sendBtn" onclick="deleteChat('${chat}')" style="cursor: pointer">
-                                                                            <i class="material-icons black-text right">delete</i></a>
+                                                                                <i class="material-icons black-text right">delete</i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -117,210 +117,240 @@
                 </div>
             </div>
         </main>
-    <jsp:include page="footer.jsp"/>
-    <jsp:include page="scripts.jsp"/>
-    <script type="text/javascript">
-      /* GLOBAL VARIABLES */
-      var openChats = $('#contactsList');
-      var conversation = $('#conversation');
-      var chatTextArea = $('#chatText');
-      var chatForm = $('#chatForm');
-      var msgChatForm = $('#msgChatForm');
-      
-      var niceScrollConf = {
-        cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
-        cursorwidth: "8px"
-      }
-      
-      /* CHAT CACHE */
-      
-      var chatCache = {
-          
-          cid      : '',
-          messages : [],
-          count    : 0 
-      }
+        <jsp:include page="footer.jsp"/>
+        <jsp:include page="scripts.jsp"/>
+        <script type="text/javascript">
+            /* GLOBAL VARIABLES */
+            var openChats = $('#contactsList');
+            var conversation = $('#conversation');
+            var chatTextArea = $('#chatText');
+            var chatForm = $('#chatForm');
+            var msgChatForm = $('#msgChatForm');
+            var messageLimit = 20;
 
-      /* SUPPORT FUNCTIONS */
+            var niceScrollConf = {
+                cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+                cursorwidth: "8px"
+            }
 
-    /**
-     * Appends messages to the conversation div
-     */
-    var buildConversation = function() {
+            /* SUPPORT FUNCTIONS */
 
-       var toAppend;
+            /**
+             * Appends all messages to the conversation div on first load
+             */
+            var buildConversation = function (messages) {
 
-       conversation.empty();
+                var toAppend;
 
-       if (chatCache.messages != undefined && chatCache.messages !== null && chatCache.messages.length > 0){
+                conversation.empty();
 
-        $.each(chatCache.messages, function (index, message) {
+                if (messages != undefined && messages !== null && messages.length > 0) {
 
-            paintMessage(message);
-           
-            conversation.append(toAppend);
-            conversation.scrollTop($(conversation)[0].scrollHeight);
-        });
-        }
-    }
+                    $.each(messages, function (index, message) {
 
-    /**
-     * Gets conversation messages
-     */
-    var retrieveConversation = function(chatId, skip) {
-    
-             
-       // clean old chat cache if new chat
-       if (chatCache.cid != chatId) {
-           
-        chatCache.cid = chatId;
-        chatCache.messages = [];
-        chatCache.count = 0;
-       }
-       
-       console.log(chatCache);
-        
-        $.ajax({
-            type: 'GET',
-            url: '/duckboard/chats/messages',
-            async: true,
-            dataType: "json",
-            data: ({
-              'cid'    : chatId,
-              'unread' : false,
-              'skip'   : skip
-            }),
-            success: function (data) {
-                  
-              $('.chat-selected').removeClass('chat-selected');    
-              $('#' + chatId).addClass('chat-selected'); 
-              
-              chatForm.show();
-              msgChatForm.hide();
-              
-              $.merge(chatCache.messages, data.messages); 
-              
-              buildConversation();
-              
-              console.log(chatCache);
-            },
-            error: function (){}
-          });
-    };
+                        appendMessage(message);
 
-    
-    /**
-     * Funciton to post new message
-     * @param {type} param
-     */
-    var saveMessage = function() {
-        
-        var chatId = $('.chat-selected').attr('id');
-        var message = $('#chatText').val();
-        
-        if ($.trim(message) !== '') {
-        
-        $.ajax({
-            type: 'POST',
-            url: '/duckboard/chats/messages',
-            async: true,
-            dataType: "json",
-            data: ({
-              'cid'  : chatId,
-              'text' : message
-            }),
-            success: function (data) { 
-              
-               paintMessage(data);
-               chatTextArea.val('');
-            },
-            error: function (){}
-          }); 
-        } 
-    }
-    
-    var paintMessage = function(message) {
-        
-      var toAppend;  
-      
-      if (message.user_id !==  ${user.id}) { // current user msg*/
+                        conversation.append(toAppend);
+                        conversation.scrollTop($(conversation)[0].scrollHeight);
+                    });
+                }
+                
+                conversation.scrollTop($(conversation)[0].scrollHeight // Set the scroll to the bottom of the conversation div.
 
-      toAppend = '<div class="row row-fit">' +
-	                '<div class="chat-bubble blue-grey lighten-5 left">' +
-	                '<div class="chat-bubble-text">' + message.text + '</>' +
-	                '<span class="chat-timestamp grey-text text-darken-1">' +
-	                '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
-	                '</span>' +
-	                '</div>' +
-	                '</div>' +
-	                '</div>';
-      } else {
+            }
 
-      toAppend = '<div class="row row-fit">' +
-  		            '<div class="chat-bubble light-green lighten-4 right">' +
-                    '<div class="chat-bubble-text">' + message.text + '</>' +
-                    '<span class="chat-timestamp grey-text text-darken-1">' +
-                    '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
-                    '</span>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
-      }
+            /**
+             * Gets conversation messages on first load
+             */
+            var retrieveConversation = function (chatId) {
 
-      conversation.append(toAppend);
-      conversation.scrollTop($(conversation)[0].scrollHeight);
-    }
-    
-    /*function deleteChat(chatId) {
-        // $.ajax({
-        //   url: '/duckboard/chats',
-        //   method: 'DELETE',
-        //   async: false,
-        //   data: { cid: chatId }
-        //   succes: function () {
-        //     console.log("hello")
-        //   }
-        //   //error: function () {
-        //
-        //   //}
-        // });
-        console.log("hola");
-      };*/
-      
-      conversation.scroll(function () {
-          /* con message (sin el spin)
-        var max= $('#conversation').position()['top']; 
-        var actual= $('#message').position()['top'];
-        console.log("max: "+max+" - actual: "+actual);
-         if((max-actual)<=0.5){
-         //Aquí va la función que carga mensajes.
-         console.log('putoamo');
-        }*/
-        
-        var max = conversation.offset()['top'];
-        var spin = $('#spin').offset()['top'];
-        console.log("max: "+max+" - spin: "+spin);
-         if (spin >= max) {
-             
-         //Aquí va la función que carga mensajes.
-         chatCache.count++;
-         retrieveConversation(chatCache.cid, chatCache.count * 20);
-        }
-      });
-      
-      // Plugin to detect enter keypress
-      $.fn.enterKey = function (fnc) {
-            return this.each(function () {
-                $(this).keypress(function (ev) {
-                    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-                    if (keycode == '13') {
-                        fnc.call(this, ev);
-                    }
-                })
-            })
-        }
+                $.ajax({
+                    type: 'GET',
+                    url: '/duckboard/chats/messages',
+                    async: true,
+                    dataType: "json",
+                    data: ({
+                        'cid': chatId,
+                        'unread': false,
+                        'skip': 0
+                    }),
+                    success: function (data) {
 
-                 $(document).ready(function () {
+                        $('.chat-selected').removeClass('chat-selected');
+                        $('#' + chatId).addClass('chat-selected');
+
+                        chatForm.show();
+                        msgChatForm.hide();
+
+                        buildConversation(data.messages);
+                    },
+                    error: function () {}
+                });
+            };
+
+
+            var unreadMessageCount = messageLimit;
+            var unreadMessages = [];
+            /**    
+             * Gets unread messages
+             */
+            var retrieveUnreadMessages = function (chatId) {
+                
+                unreadMessageCount = messageLimit;
+                unreadMessage = [];
+
+                var skip = 0;
+
+                while (unreadMessages === messageLimit) {
+
+                    var amount = skip * messageLimit;
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/duckboard/chats/messages',
+                        async: true,
+                        dataType: "json",
+                        data: ({
+                            'cid': chatId,
+                            'unread': true,
+                            'skip': amount
+                        }),
+                        success: function (data) {
+
+                            unreadMessageCount = data.messages.length;
+
+                            $.merge(unreadMessages, data.messages);
+                        },
+                        error: function () {}
+                    });
+                    
+                    skip++;
+                }
+            }; 
+
+            /**
+             * Funciton to post new message
+             * @param {type} param
+             */
+            var saveMessage = function () {
+
+                var chatId = $('.chat-selected').attr('id');
+                var message = $('#chatText').val();
+
+                if ($.trim(message) !== '') {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/duckboard/chats/messages',
+                        async: true,
+                        dataType: "json",
+                        data: ({
+                            'cid': chatId,
+                            'text': message
+                        }),
+                        success: function (data) {
+
+                            paintMessage(data);
+                            chatTextArea.val('');
+                        },
+                        error: function () {}
+                    });
+                }
+            }
+
+            /**
+             * Paints a message at the bottom of the chat
+             * @param {type} message
+             * @returns {undefined}
+             */
+            var appendMessage = function (message) {
+
+                var toAppend;
+
+                if (message.user_id !== ${user.id}) { // current user msg*/
+
+                    toAppend = '<div class="row row-fit">' +
+                            '<div class="chat-bubble blue-grey lighten-5 left">' +
+                            '<div class="chat-bubble-text">' + message.text + '</>' +
+                            '<span class="chat-timestamp grey-text text-darken-1">' +
+                            '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
+                            '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                } else {
+
+                    toAppend = '<div class="row row-fit">' +
+                            '<div class="chat-bubble light-green lighten-4 right">' +
+                            '<div class="chat-bubble-text">' + message.text + '</>' +
+                            '<span class="chat-timestamp grey-text text-darken-1">' +
+                            '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
+                            '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                }
+
+                conversation.append(toAppend);
+            }
+
+
+            /**
+             * Paints a message at the top of the chat
+             * @param {type} message
+             * @returns {undefined}
+             */
+
+            var prependMessage = function (message) {
+
+                var toPrepend;
+
+                if (message.user_id !== ${user.id}) { // current user msg*/
+
+                    toPrepend = '<div class="row row-fit">' +
+                            '<div class="chat-bubble blue-grey lighten-5 left">' +
+                            '<div class="chat-bubble-text">' + message.text + '</>' +
+                            '<span class="chat-timestamp grey-text text-darken-1">' +
+                            '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
+                            '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                } else {
+
+                    toPrepend = '<div class="row row-fit">' +
+                            '<div class="chat-bubble light-green lighten-4 right">' +
+                            '<div class="chat-bubble-text">' + message.text + '</>' +
+                            '<span class="chat-timestamp grey-text text-darken-1">' +
+                            '<i class="material-icons tiny green-text">done_all</i>' + message.created_at +
+                            '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                }
+
+                conversation.prepend(toPrepend);
+            }
+
+            /*function deleteChat(chatId) {
+             // $.ajax({
+             //   url: '/duckboard/chats',
+             //   method: 'DELETE',
+             //   async: false,
+             //   data: { cid: chatId }
+             //   succes: function () {
+             //     console.log("hello")
+             //   }
+             //   //error: function () {
+             //
+             //   //}
+             // });
+             console.log("hola");
+             };*/
+
+
+
+            $(document).ready(function () {
                 // Activate Dropdown menu
                 $(".dropdown-button").dropdown();
                 // Activate button-collapse for mobile
@@ -343,6 +373,10 @@
                     msgChatForm.show();
                 }
 
+                /**
+                 * Function to poll messages
+                 * @type type
+                 */
                 var intervalID = setInterval(
                         function () {
 
@@ -350,46 +384,36 @@
 
                             if (currentChat !== undefined && currentChat !== null && currentChat !== '') {
 
-                                retrieveConversation(currentChat);
+                                
                             }
                         }, 1000);
+
+                /**
+                 * Gets the scroll event on the chat conversation
+                 * @param {type} param
+                 */
+                conversation.scroll(function () {
+                    /* con message (sin el spin)
+                     var max= $('#conversation').position()['top']; 
+                     var actual= $('#message').position()['top'];
+                     console.log("max: "+max+" - actual: "+actual);
+                     if((max-actual)<=0.5){
+                     //Aquí va la función que carga mensajes.
+                     console.log('putoamo');
+                     }*/
+
+                    var max = conversation.offset()['top'];
+                    var spin = $('#spin').offset()['top'];
+                    console.log("max: " + max + " - spin: " + spin);
+                    if (spin >= max) {
+
+                        //Aquí va la función que carga mensajes.
+                        chatCache.count++;
+                        retrieveConversation(chatCache.cid, chatCache.count * 20);
+                    }
+                });
             });
 
-            /*function deleteChat(chatId) {
-             // $.ajax({
-             //   url: '/duckboard/chats',
-             //   method: 'DELETE',
-             //   async: false,
-             //   data: { cid: chatId }
-             //   succes: function () {
-             //     console.log("hello")
-             //   }
-             //   //error: function () {
-             //
-             //   //}
-             // });
-             console.log("hola");
-             };*/
-
-            $('#conversation').scroll(function () {
-                /* con message (sin el spin)
-                 var max= $('#conversation').position()['top'];
-                 var actual= $('#message').position()['top'];
-                 console.log("max: "+max+" - actual: "+actual);
-                 if((max-actual)<=0.5){
-                 //Aquï¿½ va la funciï¿½n que carga mensajes.
-                 console.log('putoamo');
-                 }*/
-
-                var max = $('#conversation').offset()['top'];
-                var spin = $('#spin').offset()['top'];
-                console.log("max: " + max + " - spin: " + spin);
-                if (spin >= max) {
-                    //Aquï¿½ va la funciï¿½n que carga mensajes.
-
-                }
-
-            });
         </script>
     </body>
 </html>

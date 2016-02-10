@@ -9,6 +9,25 @@
     cursoropacitymax: 0.4, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
     cursorwidth: "10px"
   }
+  
+  
+  /**
+   * 
+   * @returns {undefined}
+   * Plugin to make an input get do a function on enter key.
+   */
+  $.fn.enterKey = function (fnc) {
+        return this.each(function () {
+            $(this).keypress(function (ev) {
+                var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+                if (keycode == '13') {
+                    fnc.call(this, ev);
+                }
+            })
+        })
+    }
+
+
   $(document).ready(function () {
 
     $('html').niceScroll(niceScrollConf);
