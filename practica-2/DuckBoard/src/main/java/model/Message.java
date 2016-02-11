@@ -11,7 +11,7 @@ import db.chat.exceptions.ChatDoesNotExistException;
 
 public class Message {
 
-  public final static int LIMIT = 20;
+  public final static int LIMIT = 1000;
 
   private final ObjectId id;
   private final ObjectId chatId;

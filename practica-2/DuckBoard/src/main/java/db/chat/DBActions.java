@@ -21,6 +21,8 @@ import static com.mongodb.client.model.Projections.slice;
 import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Indexes.descending;
 import db.chat.exceptions.MessageIsNotPartOfThisChatException;
+import java.util.Collection;
+import java.util.Collections;
 
 public class DBActions {
 
@@ -383,6 +385,8 @@ public class DBActions {
         messages.add(messageDocument);
       }
     }
+    
+    Collections.reverse(messages);
 
     return messages;
   }
@@ -452,6 +456,8 @@ public class DBActions {
         }
       }
 
+      Collections.reverse(messages);
+      
       return messages;
     } catch (Exception e) {
       e.printStackTrace();

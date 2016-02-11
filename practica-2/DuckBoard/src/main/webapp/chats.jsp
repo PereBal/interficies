@@ -38,48 +38,46 @@
                                                     <c:otherwise>
                                                         <c:forEach var="chat" items="${chats}">
                                                             <%
-                                                                Chat chat = (Chat) pageContext.getAttribute("chat");
-                                                                User user = (User) pageContext.getAttribute("user");
-                                                                try {
-                                                                    pageContext.setAttribute("nameChat", chat.getChatName(user.getId()));
-                                                                    pageContext.setAttribute("emailChat", chat.getChatEmail(user.getId()));
-                                                                } catch (NullPointerException ex) {
-                                                                    System.out.println("========================================");
-                                                                    System.out.println("========================================");
-                                                                    ex.toString();
-                                                                    System.out.println(chat);
-                                                                    System.out.println(user);
-                                                                    System.out.println("========================================");
-                                                                    System.out.println("========================================");
-                                                                }
-                                                                pageContext.setAttribute("haveUnreadMessages", chat.haveUnreadMessages(user.getId()));
-                                                                pageContext.setAttribute("unreadMessages", chat.countUnreadMessages(user.getId()));
-                                                                pageContext.setAttribute("gravatar", user.getGravatarUrl());
-                                                                List<Message> messages = chat.getMessages();
-                                                                if (messages.size() > 0) {
-                                                                    pageContext.setAttribute("lastReadMessage", messages.get(messages.size() - 1).getText());
-                                                                } else {
-                                                                    pageContext.setAttribute("lastReadMessage", "");
-                                                                }
+                                                              Chat chat = (Chat) pageContext.getAttribute("chat");
+                                                              User user = (User) pageContext.getAttribute("user");
+                                                              try {
+                                                                pageContext.setAttribute("nameChat", chat.getChatName(user.getId()));
+                                                                pageContext.setAttribute("emailChat", chat.getChatEmail(user.getId()));
+                                                                pageContext.setAttribute("otherGravatar",
+                                                                        db.www.DBActions.getUserByEmail(chat.getChatEmail(user.getId())).getGravatarUrl());
+                                                              } catch (NullPointerException ex) {
+                                                                System.out.println("========================================");
+                                                                System.out.println("========================================");
+                                                                ex.toString();
+                                                                System.out.println(chat);
+                                                                System.out.println(user);
+                                                                System.out.println("========================================");
+                                                                System.out.println("========================================");
+                                                              }
+
+                                                              pageContext.setAttribute("haveUnreadMessages", chat.haveUnreadMessages(user.getId()));
+                                                              pageContext.setAttribute("unreadMessages", chat.countUnreadMessages(user.getId()));
+                                                              List<Message> messages = chat.getMessages();
+                                                              if (messages.size() > 0) {
+                                                                pageContext.setAttribute("lastReadMessage", messages.get(messages.size() - 1).getText());
+                                                              } else {
+                                                                pageContext.setAttribute("lastReadMessage", "");
+                                                              }
                                                             %>
                                                             <li class="conversation-li collection-item avatar waves-effect"
                                                                 onclick="retrieveConversation('${chat}')" style="cursor: pointer; width: 100%"
                                                                 id="${chat}">
-                                                                <img class="circle" src="${user.gravatarUrl}"/>
+                                                                <img class="circle" src="${otherGravatar}"/>
                                                                 <div class="row chat-contact-fit">
-                                                                    <div class="col s10">
+                                                                    <div id="lastmsg-${chat}" class="col s10">
                                                                         <span class="title truncate">${nameChat}</span>
-                                                                        <p class="truncate">${lastReadMessage}</p>
+                                                                        <%--p class="truncate">${lastReadMessage}</p--%>
                                                                     </div>
                                                                     <div class="col s2">
-                                                                        <div class="row">
+                                                                        <div id="unread-${chat}"class="row">
                                                                             <c:if test="${haveUnreadMessages}">
-                                                                                <span id="un-${chat}" class="new badge red">${unreadMessages}</span>
+                                                                                <span  class="new badge red">${unreadMessages}</span>
                                                                             </c:if>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <a id="sendBtn" onclick="deleteChat('${chat}')" style="cursor: pointer">
-                                                                                <i class="material-icons black-text right">delete</i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -167,6 +165,9 @@
 
                 globalCount = 0;
 
+                var row = $('#unread-' + chatId);
+                row.empty();
+
                 $('.chat-selected').removeClass('chat-selected');
                 $('#' + chatId).addClass('chat-selected');
 
@@ -224,15 +225,10 @@
 
 
             /**
-             * Gets conversation messages on first load
              */
-            var retrieveOldMessages = function (chatId) {
+            var retrieveOldMessages = function (chatId, e) {
 
-                $('.chat-selected').removeClass('chat-selected');
-                $('#' + chatId).addClass('chat-selected');
-
-                chatForm.show();
-                msgChatForm.hide();
+                e.stopPropagation();
 
                 $.ajax({
                     type: 'GET',
@@ -241,17 +237,18 @@
                     dataType: "json",
                     data: ({
                         'cid': chatId,
-                        'unread': false,
                         'skip': globalCount
                     }),
                     success: function (data) {
+
+                        console.log(data)
 
                         $.each(data.messages, function (index, message) {
 
                             prependMessage(message);
                         });
 
-                        globalCount = globalCount + messageLimit;
+                        globalCount = globalCount + data.messages.length;
                     },
                     error: function () {}
                 });
@@ -362,21 +359,43 @@
                 conversation.prepend(toPrepend);
             }
 
-            /*function deleteChat(chatId) {
-             // $.ajax({
-             //   url: '/duckboard/chats',
-             //   method: 'DELETE',
-             //   async: false,
-             //   data: { cid: chatId }
-             //   succes: function () {
-             //     console.log("hello")
-             //   }
-             //   //error: function () {
-             //
-             //   //}
-             // });
-             console.log("hola");
-             };*/
+
+            /**
+             */
+            var retrieveCountUnreadMessages = function () {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/duckboard/chats/messages',
+                    async: true,
+                    dataType: "json",
+                    data: ({
+                    }),
+                    success: function (data) {
+
+                        paintContactList(data);
+                    },
+                    error: function () {}
+                });
+            };
+
+
+
+            var paintContactList = function (data) {
+
+                $.each(data, function (index, chat) {
+                    $.each(chat, function (index, chatId) {
+
+                        var row = $('#unread-' + index);
+                        row.empty();
+                        if (chatId.count > 0){
+                            
+                            row.append('<span class="new badge red">' + chatId.count + '</span>');
+                        }
+                    });
+                });
+            };
+
 
             /**
              * Function to poll messages
@@ -394,6 +413,7 @@
                     }, 5000);
 
 
+
             /**
              * Function to poll messages
              * @type type
@@ -401,13 +421,26 @@
             var intervalID2 = setInterval(
                     function () {
 
-                        /*var currentChat = $('.chat-selected').attr('id');
+                        retrieveCountUnreadMessages();
 
-                        if (currentChat !== undefined && currentChat !== null && currentChat !== '') {
-
-                            pollNewMessages(currentChat);
-                        }*/
                     }, 5000);
+
+
+            /**
+             * Catch press enterkey event
+             * @param {type} fnc
+             * @returns {$.fn@call;each}
+             */
+            $.fn.enterKey = function (fnc) {
+                return this.each(function () {
+                    $(this).keypress(function (ev) {
+                        var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+                        if (keycode == '13') {
+                            fnc.call(this, ev);
+                        }
+                    })
+                })
+            }
 
             $(document).ready(function () {
                 // Activate Dropdown menu
@@ -418,6 +451,11 @@
                 openChats.niceScroll(niceScrollConf);
                 chatTextArea.niceScroll(niceScrollConf);
                 conversation.niceScroll(niceScrollConf);
+
+                chatTextArea.enterKey(function () {
+                    saveMessage();
+                    conversation.scrollTop($(conversation)[0].scrollHeight); // Set the scroll to the bottom of the conversation div.
+                });
 
                 if ('${currentChat}' !== '' && '${currentChat}' !== undefined) {
 
